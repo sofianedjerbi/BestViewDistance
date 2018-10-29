@@ -1,9 +1,9 @@
-name: Mute
+name: BestViewDistance
 version: 1.0
-api-version: 1.13.2
+api-version: 1.13
 description: Best View Distance. Optimize your view distance.
 author: Lxct
-main: me.lxct.bestviewdistance
+main: me.lxct.bestviewdistance.main
 
 commands:
   mute:
