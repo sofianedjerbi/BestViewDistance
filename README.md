@@ -9,6 +9,11 @@ The reduction indice change in function of server's **TPS**.
 
 This plugin reduce players's lag, reduce players's ping and optimize your by offering a better distance of view.
 
+## Dependencies
+Please download Paper !
+https://papermc.io
+It's better than spigot and bukkit.
+Also provide you a lot of optimizations and options.
 
 ## Commands
 ```

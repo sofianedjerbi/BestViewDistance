@@ -7,6 +7,7 @@ import static me.lxct.bestviewdistance.commands.commands.*;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.event.player.PlayerLoginEvent;
 
 public class main extends org.bukkit.plugin.java.JavaPlugin
 {
@@ -31,6 +32,11 @@ public class main extends org.bukkit.plugin.java.JavaPlugin
                 setServerReductionIndice(getNewReductionIndice(tps)); // Update Reduction Indice
                 setPlayersBestViewDistance(getNewReductionIndice(tps)); // Update Players View Distance
             };
+
+    @org.bukkit.event.EventHandler
+    public void onLogin(PlayerLoginEvent event){
+        event.getPlayer().setViewDistance(4);
+    }
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if(cmd.getName().equalsIgnoreCase("view") && sender.hasPermission("view.check")) {
