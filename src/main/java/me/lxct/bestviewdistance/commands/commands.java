@@ -1,14 +1,15 @@
 package me.lxct.bestviewdistance.commands;
 
-
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.io.File;
+
 import static me.lxct.bestviewdistance.functions.get.getActualReductionIndice;
 
 public class commands extends org.bukkit.plugin.java.JavaPlugin {
-    private static String colorize(String string) {
+    public static String colorize(String string) {
         return org.bukkit.ChatColor.translateAlternateColorCodes('&', string);
     }
 
@@ -30,6 +31,7 @@ public class commands extends org.bukkit.plugin.java.JavaPlugin {
             sender.sendMessage(colorize("&aView Distance of " + player.getName() + " => &d" + TpsMsg));
         }
     }
+
 
     public static void commandServer(String[] args, CommandSender sender){
         if(args[0].equalsIgnoreCase("server")){

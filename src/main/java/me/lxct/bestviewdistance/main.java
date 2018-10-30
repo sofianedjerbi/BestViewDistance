@@ -36,7 +36,12 @@ public class main extends org.bukkit.plugin.java.JavaPlugin
         if(cmd.getName().equalsIgnoreCase("view")) {
             if (args[0].equalsIgnoreCase("server") || args[0].equalsIgnoreCase("tps")) {
                 commandServer(args, sender);
+
                 commandTPS(args, sender);
+            }
+            else if (args[0].equalsIgnoreCase("reload")){
+                this.reloadConfig();
+                sender.sendMessage(colorize("&aBestViewDistance config reloaded !"));
             }
             else {commandView(args, sender);}
         }
