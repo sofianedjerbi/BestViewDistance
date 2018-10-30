@@ -24,7 +24,7 @@ public class get extends org.bukkit.plugin.java.JavaPlugin {
         return (long) (int) initconfig.get("ViewDistance.Delay");
     }
 
-    static int getPlayerViewDistance(Player player){
+    public static int getPlayerViewDistance(Player player){
         File file = new File("plugins/BestViewDistance/data/" + player.getUniqueId() + ".yml");
         FileConfiguration config = YamlConfiguration.loadConfiguration(file);
         return (int) config.get("ViewDistance");

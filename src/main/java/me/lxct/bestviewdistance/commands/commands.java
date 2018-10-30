@@ -4,9 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import static me.lxct.bestviewdistance.functions.get.getActualReductionIndice;
-import static me.lxct.bestviewdistance.functions.get.getMaxViewDistance;
-import static me.lxct.bestviewdistance.functions.get.getMinViewDistance;
+import static me.lxct.bestviewdistance.functions.get.*;
 
 public class commands extends org.bukkit.plugin.java.JavaPlugin {
 
@@ -53,7 +51,7 @@ public class commands extends org.bukkit.plugin.java.JavaPlugin {
         }
         else {
             String TpsMsg = String.valueOf(player.getViewDistance());
-            sender.sendMessage(colorize("&aView Distance of " + player.getName() + " => &d" + TpsMsg));
+            sender.sendMessage(colorize("&aView Distance of " + player.getName() + " => &d" + TpsMsg + "/" + getPlayerViewDistance(player)));
         }
     }
 
