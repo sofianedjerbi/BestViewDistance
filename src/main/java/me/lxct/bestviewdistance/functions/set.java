@@ -42,16 +42,12 @@ public class set extends org.bukkit.plugin.java.JavaPlugin {
             // Create player.yml
             genPlayerData(player);
             if(player.spigot().getPing() < 50 && getPlayerViewDistance(player) < getMaxViewDistance()){
-                int ViewDistance = (int) Math.round((getPlayerViewDistance(player)+1)*(1-ReductionIndice));
-                player.setViewDistance(ViewDistance);
-                setPlayerViewDistance(player, ViewDistance);
+                setPlayerViewDistance(player, getPlayerViewDistance(player)+1);
             }
             else if(player.spigot().getPing() > 999 && getPlayerViewDistance(player) > getMinViewDistance()){
-                int ViewDistance = (int) Math.round((getPlayerViewDistance(player)-1)*(1-ReductionIndice));
-                player.setViewDistance(ViewDistance);
-                setPlayerViewDistance(player, ViewDistance);
+                setPlayerViewDistance(player, getPlayerViewDistance(player)-1);
             }
-            player.setViewDistance(getPlayerViewDistance(player));
+            player.setViewDistance((int) Math.round((getPlayerViewDistance(player))*(1-ReductionIndice)));
         }
     }
 }
