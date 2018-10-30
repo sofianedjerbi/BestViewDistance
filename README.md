@@ -21,6 +21,7 @@ Also provide you a lot of optimizations and options.
 /view tps => Get server's tps.
 /view ping <player> => Get player ping.
 /view <player> => Get player view distance.
+/view limit => View config limits.
 
 Permission : view.check
 ```
@@ -28,9 +29,9 @@ Permission : view.check
 ## Config
 ```
 ViewDistance:
-  Min: 3 // Min View Distance.
+  Min: 4 // Min View Distance. Keep it above 3.
   Max: 16 // Max View Distance.
-  Delay: 5 // Delay between calculations seconds.
+  Delay: 20 // Delay between calculations, in seconds. Keep it above 15.
 ```
 
 ## Compilation
