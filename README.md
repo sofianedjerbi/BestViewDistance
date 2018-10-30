@@ -2,12 +2,12 @@
 A view distance plugin for Paper. Created to boost ping/tps and view distance.
 
 ## How it works ?
-This plugin choose the **better view distance for your players**.
-The view distance is calculated in **function of your ping, and server's tps**.
-If the TPS are low, the view distance is reduced by a percentage named "*Reduction Indice*".
-The reduction indice change in function of server's **TPS**.
+This plugin chooses the **best view distance for your players**.
+The **view distance** is calculated based on your ping and the **TPS of the server**.
+If the TPS are low, the view distance is reduced by a percentage called "*reduction indice*".
+The reduction indice changes according to the TPS of the server.
 
-This plugin reduce players's lag, reduce players's ping and optimize your by offering a better distance of view.
+This plugin **reduces players lag**, reduces players **ping** and** optimizes **your server a **better view distance**.
 
 ## Dependencies
 Please download Paper !
