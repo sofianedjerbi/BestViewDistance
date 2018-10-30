@@ -26,7 +26,7 @@ public class commands extends org.bukkit.plugin.java.JavaPlugin {
                 sender.sendMessage(colorize("&c/view ping <player>"));
             } else {
                 String PingMsg = String.valueOf(player.spigot().getPing());
-                sender.sendMessage(colorize("&aPing of " + player.getName() + " => &d" + PingMsg));
+                sender.sendMessage(colorize("&aPing of " + player.getName() + " => &d" + PingMsg + "ms"));
             }
         }
     }
