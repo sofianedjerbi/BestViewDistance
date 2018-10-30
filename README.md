@@ -46,3 +46,8 @@ The jar is in the `target/` folder.
 ## Contact
 Add me on Discord => Lxct#9971
 I'd like to hear your comments ! <3
+
+
+## Infos
+Spigot Link : [https://www.spigotmc.org/resources/best-view-distance.61963/](https://www.spigotmc.org/resources/best-view-distance.61963/)
+Github Link : [https://github.com/Lxct/BestViewDistance](https://github.com/Lxct/BestViewDistance)
