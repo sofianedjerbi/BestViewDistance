@@ -24,7 +24,7 @@ public class get extends org.bukkit.plugin.java.JavaPlugin {
         return (long) (int) initconfig.get("ViewDistance.Delay");
     }
 
-    public static int getPlayerViewDistance(Player player){
+    static int getPlayerViewDistance(Player player){
         File file = new File("plugins/BestViewDistance/data/" + player.getUniqueId() + ".yml");
         FileConfiguration config = YamlConfiguration.loadConfiguration(file);
         return (int) config.get("ViewDistance");
@@ -37,11 +37,14 @@ public class get extends org.bukkit.plugin.java.JavaPlugin {
     }
 
     public static double getNewReductionIndice(Double TPS){
-        if(TPS > 19.7){
+        if(TPS > 19.7 && getActualReductionIndice() >= 0.05){
+            return getActualReductionIndice()-0.05;
+        }
+        else if(TPS < 19.7 && getActualReductionIndice() <= 0.95) {
             return getActualReductionIndice()+0.05;
         }
         else {
-            return getActualReductionIndice()-0.05;
+            return getActualReductionIndice();
         }
     }
 }
