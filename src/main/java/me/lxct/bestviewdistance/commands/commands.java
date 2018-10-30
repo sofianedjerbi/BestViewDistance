@@ -4,8 +4,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.io.File;
-
 import static me.lxct.bestviewdistance.functions.get.getActualReductionIndice;
 
 public class commands extends org.bukkit.plugin.java.JavaPlugin {
