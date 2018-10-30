@@ -21,8 +21,8 @@ public class commands extends org.bukkit.plugin.java.JavaPlugin {
 
     public static void commandLimit(String[] args, CommandSender sender){
         if(args[0].equalsIgnoreCase("limit")){
-            sender.sendMessage(colorize("&aMin => &d" + getMaxViewDistance()));
-            sender.sendMessage(colorize("&aMax => &d" + getMinViewDistance()));
+            sender.sendMessage(colorize("&aMax => &d" + getMaxViewDistance()));
+            sender.sendMessage(colorize("&aMin => &d" + getMinViewDistance()));
         }
     }
 

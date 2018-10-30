@@ -48,10 +48,11 @@ public class set extends org.bukkit.plugin.java.JavaPlugin {
     }
 
     public static void setServerLimits(){
-        if(getActualReductionIndice() > 0.75){
+        double ReductionIndice = getActualReductionIndice();
+        if(ReductionIndice > 0.75){
             setServerReductionIndice(0.75);
         }
-        else if(getActualReductionIndice() < 0){
+        else if(ReductionIndice < 0){
             setServerReductionIndice(0);
         }
     }
@@ -60,7 +61,6 @@ public class set extends org.bukkit.plugin.java.JavaPlugin {
     public static void setPlayersBestViewDistance(double ReductionIndice){
         for(Player player : Bukkit.getOnlinePlayers()) { // For each player...
             // Create player.yml
-            genPlayerData(player);
             int viewDistance = getPlayerViewDistance(player);
             if(player.spigot().getPing() < 100){
                 setPlayerViewDistance(player, viewDistance+1);

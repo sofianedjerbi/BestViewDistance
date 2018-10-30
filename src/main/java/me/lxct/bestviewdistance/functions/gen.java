@@ -33,7 +33,7 @@ public class gen extends org.bukkit.plugin.java.JavaPlugin {
         }
     }
 
-    static void genPlayerData(Player player) {
+    public static void genPlayerData(Player player) {
         File file = new File("plugins/BestViewDistance/data/" + player.getUniqueId() + ".yml");
         if (!file.exists()) {
             FileConfiguration config = YamlConfiguration.loadConfiguration(file);

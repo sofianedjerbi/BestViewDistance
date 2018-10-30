@@ -6,6 +6,8 @@ import org.bukkit.entity.Player;
 import java.io.File;
 
 public class get extends org.bukkit.plugin.java.JavaPlugin {
+
+
     public static int getMaxViewDistance(){
         File data = new File("plugins/BestViewDistance/config.yml");
         FileConfiguration initconfig = YamlConfiguration.loadConfiguration(data);
