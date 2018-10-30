@@ -33,10 +33,10 @@ public class main extends org.bukkit.plugin.java.JavaPlugin
             };
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if(cmd.getName().equalsIgnoreCase("view")) {
-            if (args[0].equalsIgnoreCase("server") || args[0].equalsIgnoreCase("tps")) {
+        if(cmd.getName().equalsIgnoreCase("view") && sender.hasPermission("view.check")) {
+            if (args[0].equalsIgnoreCase("server") || args[0].equalsIgnoreCase("tps") || args[0].equalsIgnoreCase("ping")) {
                 commandServer(args, sender);
-
+                commandPing(args, sender);
                 commandTPS(args, sender);
             }
             else if (args[0].equalsIgnoreCase("reload")){

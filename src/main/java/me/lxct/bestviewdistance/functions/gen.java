@@ -22,8 +22,8 @@ public class gen extends org.bukkit.plugin.java.JavaPlugin {
             try {
                 data.createNewFile();
                 initconfig.set("ViewDistance.Min", 3);
-                initconfig.set("ViewDistance.Max", 12);
-                initconfig.set("ViewDistance.Delay", 30);
+                initconfig.set("ViewDistance.Max", 16);
+                initconfig.set("ViewDistance.Delay", 5);
                 initconfig.save(data);
             } catch (IOException ex) {
                 Bukkit.getLogger().info("[BestViewDistance] Cannot create config.yml file. Please make sure you have editing rights on the entire plugin folder.");

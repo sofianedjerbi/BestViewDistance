@@ -19,6 +19,18 @@ public class commands extends org.bukkit.plugin.java.JavaPlugin {
         }
     }
 
+    public static void commandPing(String[] args, CommandSender sender) {
+        if(args[0].equalsIgnoreCase("ping")) {
+            Player player = Bukkit.getServer().getPlayerExact(args[1]);
+            if (player == null) {
+                sender.sendMessage(colorize("&c/view ping <player>"));
+            } else {
+                String PingMsg = String.valueOf(player.spigot().getPing());
+                sender.sendMessage(colorize("&aPing of " + player.getName() + " => &d" + PingMsg));
+            }
+        }
+    }
+
     public static void commandView(String[] args, CommandSender sender) {
         Player player = Bukkit.getServer().getPlayerExact(args[0]);
         if (player == null) {
