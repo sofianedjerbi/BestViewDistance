@@ -1,0 +1,4 @@
+ViewDistance: # By LXCT
+  Min: 4 # Min View Distance. Keep it above 3.
+  Max: 16 # Max View Distance.
+  Delay: 20 # Delay between calculations, in seconds. Keep it above 15. NEED RESTART.

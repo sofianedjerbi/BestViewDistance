@@ -1,5 +1,6 @@
 package me.lxct.bestviewdistance.functions;
 
+import me.lxct.bestviewdistance.main;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -36,14 +37,12 @@ public class set extends org.bukkit.plugin.java.JavaPlugin {
     }
 
     private static void setPlayerLimits(Player player){
-        int max = getMaxViewDistance();
-        int min = getMinViewDistance();
         int playerViewDistance = getPlayerViewDistance(player);
-        if(playerViewDistance > max){
-            setPlayerViewDistance(player, max);
+        if(playerViewDistance > main.plugin.getConfig().getInt("ViewDistance.Max")){
+            setPlayerViewDistance(player, main.plugin.getConfig().getInt("ViewDistance.Max"));
         }
-        else if(playerViewDistance < min){
-            setPlayerViewDistance(player, min);
+        else if(playerViewDistance < main.plugin.getConfig().getInt("ViewDistance.Min")){
+            setPlayerViewDistance(player, main.plugin.getConfig().getInt("ViewDistance.Min"));
         }
     }
 

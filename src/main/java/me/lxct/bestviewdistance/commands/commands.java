@@ -1,5 +1,6 @@
 package me.lxct.bestviewdistance.commands;
 
+import me.lxct.bestviewdistance.main;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -21,8 +22,8 @@ public class commands extends org.bukkit.plugin.java.JavaPlugin {
 
     public static void commandLimit(String[] args, CommandSender sender){
         if(args[0].equalsIgnoreCase("limit")){
-            sender.sendMessage(colorize("&aMax => &d" + getMaxViewDistance()));
-            sender.sendMessage(colorize("&aMin => &d" + getMinViewDistance()));
+            sender.sendMessage(colorize("&aMax => &d" + main.plugin.getConfig().getInt("ViewDistance.Maw")));
+            sender.sendMessage(colorize("&aMin => &d" + main.plugin.getConfig().getInt("ViewDistance.Min")));
         }
     }
 
