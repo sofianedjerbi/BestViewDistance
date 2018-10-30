@@ -42,3 +42,7 @@ cd BestViewDistance
 sudo mvn clean install
 ```
 The jar is in the `target/` folder.
+
+## Contact
+Add me on Discord => Lxct#9971
+I'd like to hear your comments ! <3

@@ -7,6 +7,8 @@ import org.bukkit.entity.Player;
 import static me.lxct.bestviewdistance.functions.get.getActualReductionIndice;
 
 public class commands extends org.bukkit.plugin.java.JavaPlugin {
+
+
     public static String colorize(String string) {
         return org.bukkit.ChatColor.translateAlternateColorCodes('&', string);
     }
