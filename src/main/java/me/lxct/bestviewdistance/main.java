@@ -10,7 +10,6 @@ import org.bukkit.event.player.PlayerLoginEvent;
 
 public class main extends org.bukkit.plugin.java.JavaPlugin
 {
-
     public main() {}
     public void onEnable() {
         // WARNING
@@ -20,17 +19,18 @@ public class main extends org.bukkit.plugin.java.JavaPlugin
         Bukkit.getLogger().info("[BestViewDistance] https://papermc.io/ <3");
         Bukkit.getLogger().info("[BestViewDistance] -------------------------------------------------");
         // WARNING
+        genDirectory();
         genServerData();
         genConfig(); // CREATING CONFIG.YML
-        // SCHEDULER
-        getServer().getScheduler().scheduleSyncRepeatingTask(this, () -> {
-            double tps = Bukkit.getTPS()[0]; // Get TPS
-            setServerReductionIndice(getNewReductionIndice(tps)); // Update Reduction Indice
-            setPlayersBestViewDistance(getNewReductionIndice(tps)); // Update Players View Distance
-        }, 0L, 20*getDelayViewDistance());
-        // SCHEDULER END
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, task, 0L,getDelayViewDistance()*20L); // SCHEDULER
     }
 
+    private Runnable task =
+            () -> {
+                double tps = Bukkit.getTPS()[0]; // Get TPS
+                setServerReductionIndice(getNewReductionIndice(tps)); // Update Reduction Indice
+                setPlayersBestViewDistance(getNewReductionIndice(tps)); // Update Players View Distance
+            };
 
     @org.bukkit.event.EventHandler
     public void playerLogin(PlayerLoginEvent event){
@@ -41,8 +41,4 @@ public class main extends org.bukkit.plugin.java.JavaPlugin
         int ViewDistance = getPlayerViewDistance(player);
         player.setViewDistance(ViewDistance);
     }
-
-
-
-
 }

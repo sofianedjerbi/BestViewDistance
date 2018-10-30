@@ -1,57 +1,47 @@
 package me.lxct.bestviewdistance.functions;
 
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import java.io.File;
-import java.io.IOException;
 
 public class get extends org.bukkit.plugin.java.JavaPlugin {
-
-
-    public static void genConfig() {
+    static int getMaxViewDistance(){
         File data = new File("plugins/BestViewDistance/config.yml");
         FileConfiguration initconfig = YamlConfiguration.loadConfiguration(data);
-        if (!data.exists()) {
-            try {
-                data.createNewFile();
-                initconfig.set("ViewDistance.Min", 3);
-                initconfig.set("ViewDistance.Maw", 12);
-                initconfig.set("ViewDistance.Delay", 30);
-                initconfig.save(data);
-            } catch (IOException ex) {
-                Bukkit.getLogger().info("[BestViewDistance] Cannot create yml files. Please make sure you have editing rights on the entire plugin folder.");
-            }
-        }
+        return (int) initconfig.get("ViewDistance.Max");
     }
 
-    public static void genPlayerData(Player player) {
+    static int getMinViewDistance(){
+        File data = new File("plugins/BestViewDistance/config.yml");
+        FileConfiguration initconfig = YamlConfiguration.loadConfiguration(data);
+        return (int) initconfig.get("ViewDistance.Min");
+    }
+
+    public static Long getDelayViewDistance(){
+        File data = new File("plugins/BestViewDistance/config.yml");
+        FileConfiguration initconfig = YamlConfiguration.loadConfiguration(data);
+        return (long) (int) initconfig.get("ViewDistance.Delay");
+    }
+
+    public static int getPlayerViewDistance(Player player){
         File file = new File("plugins/BestViewDistance/data/" + player.getUniqueId() + ".yml");
         FileConfiguration config = YamlConfiguration.loadConfiguration(file);
-        if (!file.exists()) {
-            try {
-                file.createNewFile();
-                config.set("ViewDistance", 4);
-                config.save(file);
-            } catch (IOException ex) {
-                Bukkit.getLogger().info("[BestViewDistance] Cannot create yml files. Please make sure you have editing rights on the entire plugin folder.");
-            }
-        }
+        return (int) config.get("ViewDistance");
     }
 
-    public static void genServerData() {
+    private static double getActualReductionIndice(){
         File file = new File("plugins/BestViewDistance/data/server.yml");
         FileConfiguration config = YamlConfiguration.loadConfiguration(file);
-        if (!file.exists()) {
-            try {
-                file.createNewFile();
-                config.set("ReductionIndice", 0.0);
-                config.save(file);
-            } catch (IOException ex) {
-                Bukkit.getLogger().info("[BestViewDistance] Cannot create yml files. Please make sure you have editing rights on the entire plugin folder.");
-            }
-        }
+        return (double) config.get("ReductionIndice");
+    }
 
+    public static double getNewReductionIndice(Double TPS){
+        if(TPS > 19.7){
+            return getActualReductionIndice()+0.05;
+        }
+        else {
+            return getActualReductionIndice()-0.05;
+        }
     }
 }
