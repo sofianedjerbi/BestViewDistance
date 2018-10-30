@@ -8,7 +8,7 @@ main: me.lxct.bestviewdistance.main
 commands:
   mute:
     description: Mute un joueur.
-    permission: mute.mute
+    permission: nothing
     permission-message:
 
 permissions:

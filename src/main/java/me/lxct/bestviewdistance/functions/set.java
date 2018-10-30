@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import java.io.File;
 import java.io.IOException;
 
+import static me.lxct.bestviewdistance.functions.gen.genPlayerData;
 import static me.lxct.bestviewdistance.functions.get.getMaxViewDistance;
 import static me.lxct.bestviewdistance.functions.get.getMinViewDistance;
 import static me.lxct.bestviewdistance.functions.get.getPlayerViewDistance;
@@ -38,6 +39,8 @@ public class set extends org.bukkit.plugin.java.JavaPlugin {
 
     public static void setPlayersBestViewDistance(double ReductionIndice){
         for(Player player : Bukkit.getOnlinePlayers()) { // For each player...
+            // Create player.yml
+            genPlayerData(player);
             if(player.spigot().getPing() < 50 && getPlayerViewDistance(player) < getMaxViewDistance()){
                 int ViewDistance = (int) Math.round((getPlayerViewDistance(player)+1)*(1-ReductionIndice));
                 player.setViewDistance(ViewDistance);
@@ -48,7 +51,7 @@ public class set extends org.bukkit.plugin.java.JavaPlugin {
                 player.setViewDistance(ViewDistance);
                 setPlayerViewDistance(player, ViewDistance);
             }
-
+            player.setViewDistance(getPlayerViewDistance(player));
         }
     }
 }

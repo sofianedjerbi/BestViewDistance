@@ -3,10 +3,7 @@ package me.lxct.bestviewdistance;
 import static me.lxct.bestviewdistance.functions.get.*;
 import static me.lxct.bestviewdistance.functions.gen.*;
 import static me.lxct.bestviewdistance.functions.set.*;
-
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerLoginEvent;
 
 public class main extends org.bukkit.plugin.java.JavaPlugin
 {
@@ -31,14 +28,4 @@ public class main extends org.bukkit.plugin.java.JavaPlugin
                 setServerReductionIndice(getNewReductionIndice(tps)); // Update Reduction Indice
                 setPlayersBestViewDistance(getNewReductionIndice(tps)); // Update Players View Distance
             };
-
-    @org.bukkit.event.EventHandler
-    public void playerLogin(PlayerLoginEvent event){
-        // Create player.yml
-        Player player = event.getPlayer();
-        genPlayerData(player);
-        // Apply Config
-        int ViewDistance = getPlayerViewDistance(player);
-        player.setViewDistance(ViewDistance);
-    }
 }
