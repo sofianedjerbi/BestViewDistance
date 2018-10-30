@@ -30,18 +30,19 @@ public class main extends org.bukkit.plugin.java.JavaPlugin
 
     private Runnable task =
             () -> {
-                double tps = Bukkit.getTPS()[0]; // Get TPS
-                setServerReductionIndice(getNewReductionIndice(tps)); // Update Reduction Indice
-                setPlayersBestViewDistance(getNewReductionIndice(tps)); // Update Players View Distance
+                setServerReductionIndice(getNewReductionIndice(Bukkit.getTPS()[0])); // Update Reduction Indice
+                setServerLimits(); // Control
+                setPlayersBestViewDistance(getActualReductionIndice()); // Update Players View Distance
             };
 
 
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if(cmd.getName().equalsIgnoreCase("view") && sender.hasPermission("view.check")) {
-            if (args[0].equalsIgnoreCase("server") || args[0].equalsIgnoreCase("tps") || args[0].equalsIgnoreCase("ping")) {
+            if (args[0].equalsIgnoreCase("server") || args[0].equalsIgnoreCase("tps") || args[0].equalsIgnoreCase("ping") || args[0].equalsIgnoreCase("limit"))  {
                 commandServer(args, sender);
                 commandPing(args, sender);
+                commandLimit(args, sender);
                 commandTPS(args, sender);
             }
             else if (args[0].equalsIgnoreCase("reload")){

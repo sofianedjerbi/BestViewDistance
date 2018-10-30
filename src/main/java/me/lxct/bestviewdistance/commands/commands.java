@@ -5,6 +5,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import static me.lxct.bestviewdistance.functions.get.getActualReductionIndice;
+import static me.lxct.bestviewdistance.functions.get.getMaxViewDistance;
+import static me.lxct.bestviewdistance.functions.get.getMinViewDistance;
 
 public class commands extends org.bukkit.plugin.java.JavaPlugin {
 
@@ -18,6 +20,17 @@ public class commands extends org.bukkit.plugin.java.JavaPlugin {
             Double tps = Bukkit.getTPS()[0];
             String TpsMsg = tps.toString();
             sender.sendMessage(colorize("&aTPS => &d" + TpsMsg));
+        }
+    }
+
+    public static void commandLimit(String[] args, CommandSender sender){
+        if(args[0].equalsIgnoreCase("limit")){
+            int Max = getMaxViewDistance();
+            int Min = getMinViewDistance();
+            String MaxMsg = String.valueOf(Max);
+            String MinMsg = String.valueOf(Min);
+            sender.sendMessage(colorize("&aMin => &d" + MinMsg));
+            sender.sendMessage(colorize("&aMax => &d" + MaxMsg));
         }
     }
 

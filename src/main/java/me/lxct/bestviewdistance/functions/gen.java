@@ -7,6 +7,8 @@ import org.bukkit.entity.Player;
 import java.io.File;
 import java.io.IOException;
 
+import static me.lxct.bestviewdistance.functions.get.getMinViewDistance;
+
 public class gen extends org.bukkit.plugin.java.JavaPlugin {
 
     public static void genFolders(){
@@ -21,9 +23,9 @@ public class gen extends org.bukkit.plugin.java.JavaPlugin {
         if (!data.exists()) {
             try {
                 data.createNewFile();
-                initconfig.set("ViewDistance.Min", 3);
+                initconfig.set("ViewDistance.Min", 4);
                 initconfig.set("ViewDistance.Max", 16);
-                initconfig.set("ViewDistance.Delay", 5);
+                initconfig.set("ViewDistance.Delay", 20);
                 initconfig.save(data);
             } catch (IOException ex) {
                 Bukkit.getLogger().info("[BestViewDistance] Cannot create config.yml file. Please make sure you have editing rights on the entire plugin folder.");
@@ -37,7 +39,7 @@ public class gen extends org.bukkit.plugin.java.JavaPlugin {
         if (!file.exists()) {
             try {
                 file.createNewFile();
-                config.set("ViewDistance", 4);
+                config.set("ViewDistance", getMinViewDistance());
                 config.save(file);
             } catch (IOException ex) {
                 Bukkit.getLogger().info("[BestViewDistance] Cannot create playerdatas yml files. Please make sure you have editing rights on the entire plugin folder.");

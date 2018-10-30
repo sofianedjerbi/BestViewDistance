@@ -6,13 +6,13 @@ import org.bukkit.entity.Player;
 import java.io.File;
 
 public class get extends org.bukkit.plugin.java.JavaPlugin {
-    static int getMaxViewDistance(){
+    public static int getMaxViewDistance(){
         File data = new File("plugins/BestViewDistance/config.yml");
         FileConfiguration initconfig = YamlConfiguration.loadConfiguration(data);
         return (int) initconfig.get("ViewDistance.Max");
     }
 
-    static int getMinViewDistance(){
+    public static int getMinViewDistance(){
         File data = new File("plugins/BestViewDistance/config.yml");
         FileConfiguration initconfig = YamlConfiguration.loadConfiguration(data);
         return (int) initconfig.get("ViewDistance.Min");
@@ -37,10 +37,10 @@ public class get extends org.bukkit.plugin.java.JavaPlugin {
     }
 
     public static double getNewReductionIndice(Double TPS){
-        if(TPS > 19.7 && getActualReductionIndice() > 0 && TPS < 20){ // Min Indice = 0
+        if(TPS > 19.7 && TPS < 20){ // Min Indice = 0
             return getActualReductionIndice()-0.05;
         }
-        else if(TPS < 19.7 && getActualReductionIndice() < 0.75 && TPS < 20) { // Max Indice = 0.75 (Pay Attention. 75% of 12 View Distance = 3 Chunks.
+        else if(TPS < 19.7) { // Max Indice = 0.75 (Pay Attention. 75% of 12 View Distance = 3 Chunks.)
             return getActualReductionIndice()+0.05;
         }
         else {
