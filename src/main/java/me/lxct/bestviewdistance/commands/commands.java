@@ -15,20 +15,14 @@ public class commands extends org.bukkit.plugin.java.JavaPlugin {
 
     public static void commandTPS(String[] args, CommandSender sender){
         if(args[0].equalsIgnoreCase("tps")){
-            Double tps = Bukkit.getTPS()[0];
-            String TpsMsg = tps.toString();
-            sender.sendMessage(colorize("&aTPS => &d" + TpsMsg));
+            sender.sendMessage(colorize("&aTPS => &d" + Bukkit.getTPS()[0]));
         }
     }
 
     public static void commandLimit(String[] args, CommandSender sender){
         if(args[0].equalsIgnoreCase("limit")){
-            int Max = getMaxViewDistance();
-            int Min = getMinViewDistance();
-            String MaxMsg = String.valueOf(Max);
-            String MinMsg = String.valueOf(Min);
-            sender.sendMessage(colorize("&aMin => &d" + MinMsg));
-            sender.sendMessage(colorize("&aMax => &d" + MaxMsg));
+            sender.sendMessage(colorize("&aMin => &d" + getMaxViewDistance()));
+            sender.sendMessage(colorize("&aMax => &d" + getMinViewDistance()));
         }
     }
 
@@ -38,8 +32,7 @@ public class commands extends org.bukkit.plugin.java.JavaPlugin {
             if (player == null) {
                 sender.sendMessage(colorize("&c/view ping <player>"));
             } else {
-                String PingMsg = String.valueOf(player.spigot().getPing());
-                sender.sendMessage(colorize("&aPing of " + player.getName() + " => &d" + PingMsg + "ms"));
+                sender.sendMessage(colorize("&aPing of " + args[1] + " => &d" + player.spigot().getPing() + "ms"));
             }
         }
     }

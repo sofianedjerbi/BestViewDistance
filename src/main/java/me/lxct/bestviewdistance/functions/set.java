@@ -36,11 +36,14 @@ public class set extends org.bukkit.plugin.java.JavaPlugin {
     }
 
     private static void setPlayerLimits(Player player){
-        if(getPlayerViewDistance(player) > getMaxViewDistance()){
-            setPlayerViewDistance(player, getMaxViewDistance());
+        int max = getMaxViewDistance();
+        int min = getMinViewDistance();
+        int playerViewDistance = getPlayerViewDistance(player);
+        if(playerViewDistance > max){
+            setPlayerViewDistance(player, max);
         }
-        else if(getPlayerViewDistance(player) < getMinViewDistance()){
-            setPlayerViewDistance(player, getMinViewDistance());
+        else if(playerViewDistance < min){
+            setPlayerViewDistance(player, min);
         }
     }
 
@@ -58,14 +61,15 @@ public class set extends org.bukkit.plugin.java.JavaPlugin {
         for(Player player : Bukkit.getOnlinePlayers()) { // For each player...
             // Create player.yml
             genPlayerData(player);
-            if(player.spigot().getPing() < 75 && getPlayerViewDistance(player) < getMaxViewDistance()){
-                setPlayerViewDistance(player, getPlayerViewDistance(player)+1);
+            int viewDistance = getPlayerViewDistance(player);
+            if(player.spigot().getPing() < 100){
+                setPlayerViewDistance(player, viewDistance+1);
             }
-            else if(player.spigot().getPing() > 999 && getPlayerViewDistance(player) > getMinViewDistance()){
-                setPlayerViewDistance(player, getPlayerViewDistance(player)-1);
+            else if(player.spigot().getPing() > 999){
+                setPlayerViewDistance(player, viewDistance-1);
             }
             setPlayerLimits(player);
-            player.setViewDistance((int) Math.round((getPlayerViewDistance(player))*(1-ReductionIndice)));
+            player.setViewDistance((int) Math.round(viewDistance*(1-ReductionIndice)));
         }
     }
 }

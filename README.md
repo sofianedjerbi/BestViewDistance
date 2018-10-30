@@ -7,7 +7,7 @@ The **view distance** is calculated based on your ping and the **TPS of the serv
 If the TPS are low, the view distance is reduced by a percentage called "*reduction indice*".
 The reduction indice changes according to the TPS of the server.
 
-This plugin **reduces players lag**, reduces players **ping** and** optimizes **your server a **better view distance**.
+This plugin **reduces players lag**, reduces players **ping** and **optimizes** your server a **better view distance**.
 
 ## Dependencies
 Please download Paper !

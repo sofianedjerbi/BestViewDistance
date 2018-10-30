@@ -37,14 +37,15 @@ public class get extends org.bukkit.plugin.java.JavaPlugin {
     }
 
     public static double getNewReductionIndice(Double TPS){
-        if(TPS > 19.7 && TPS < 20){ // Min Indice = 0
-            return getActualReductionIndice()-0.05;
+        double ActualReductionIndice = getActualReductionIndice();
+        if(TPS > 19.5 && TPS < 20){ // Min Indice = 0
+            return ActualReductionIndice-0.05;
         }
-        else if(TPS < 19.7) { // Max Indice = 0.75 (Pay Attention. 75% of 12 View Distance = 3 Chunks.)
-            return getActualReductionIndice()+0.05;
+        else if(TPS < 19.5) { // Max Indice = 0.75 (Pay Attention. 75% of 12 View Distance = 3 Chunks.)
+            return ActualReductionIndice+0.05;
         }
         else {
-            return getActualReductionIndice();
+            return ActualReductionIndice;
         }
     }
 }

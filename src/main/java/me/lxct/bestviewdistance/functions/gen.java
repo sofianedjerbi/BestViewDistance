@@ -19,8 +19,8 @@ public class gen extends org.bukkit.plugin.java.JavaPlugin {
 
     public static void genConfig() {
         File data = new File("plugins/BestViewDistance/config.yml");
-        FileConfiguration initconfig = YamlConfiguration.loadConfiguration(data);
         if (!data.exists()) {
+            FileConfiguration initconfig = YamlConfiguration.loadConfiguration(data);
             try {
                 data.createNewFile();
                 initconfig.set("ViewDistance.Min", 4);
@@ -35,8 +35,8 @@ public class gen extends org.bukkit.plugin.java.JavaPlugin {
 
     static void genPlayerData(Player player) {
         File file = new File("plugins/BestViewDistance/data/" + player.getUniqueId() + ".yml");
-        FileConfiguration config = YamlConfiguration.loadConfiguration(file);
         if (!file.exists()) {
+            FileConfiguration config = YamlConfiguration.loadConfiguration(file);
             try {
                 file.createNewFile();
                 config.set("ViewDistance", getMinViewDistance());
@@ -49,8 +49,8 @@ public class gen extends org.bukkit.plugin.java.JavaPlugin {
 
     public static void genServerData() {
         File file = new File("plugins/BestViewDistance/data/server.yml");
-        FileConfiguration config = YamlConfiguration.loadConfiguration(file);
         if (!file.exists()) {
+            FileConfiguration config = YamlConfiguration.loadConfiguration(file);
             try {
                 file.createNewFile();
                 config.set("ReductionIndice", 0.0);
