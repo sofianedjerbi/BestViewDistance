@@ -30,17 +30,17 @@ public class get extends org.bukkit.plugin.java.JavaPlugin {
         return (int) config.get("ViewDistance");
     }
 
-    private static double getActualReductionIndice(){
+    public static double getActualReductionIndice(){
         File file = new File("plugins/BestViewDistance/data/server.yml");
         FileConfiguration config = YamlConfiguration.loadConfiguration(file);
         return (double) config.get("ReductionIndice");
     }
 
     public static double getNewReductionIndice(Double TPS){
-        if(TPS > 19.7 && getActualReductionIndice() >= 0.05){
+        if(TPS > 19.7 && getActualReductionIndice() > 0 && TPS < 20){ // Min Indice = 0
             return getActualReductionIndice()-0.05;
         }
-        else if(TPS < 19.7 && getActualReductionIndice() <= 0.95) {
+        else if(TPS < 19.7 && getActualReductionIndice() < 0.75 && TPS < 20) { // Max Indice = 0.75 (Pay Attention. 75% of 12 View Distance = 3 Chunks.
             return getActualReductionIndice()+0.05;
         }
         else {

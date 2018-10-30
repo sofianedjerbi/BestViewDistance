@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class gen extends org.bukkit.plugin.java.JavaPlugin {
 
-    public static void genDirectory(){
+    public static void genFolders(){
         new File("plugins/BestViewDistance").mkdirs();
         new File("plugins/BestViewDistance/data").mkdirs();
     }
@@ -31,7 +31,7 @@ public class gen extends org.bukkit.plugin.java.JavaPlugin {
         }
     }
 
-    public static void genPlayerData(Player player) {
+    static void genPlayerData(Player player) {
         File file = new File("plugins/BestViewDistance/data/" + player.getUniqueId() + ".yml");
         FileConfiguration config = YamlConfiguration.loadConfiguration(file);
         if (!file.exists()) {

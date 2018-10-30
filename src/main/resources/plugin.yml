@@ -6,12 +6,12 @@ author: Lxct
 main: me.lxct.bestviewdistance.main
 
 commands:
-  mute:
-    description: Mute un joueur.
-    permission: nothing
+  view:
+    description: Best View Distance Interface
+    permission: view.check
     permission-message:
 
 permissions:
-  mute.mute:
-    description: /mute
+  view.check:
+    description: /view
     default: op
