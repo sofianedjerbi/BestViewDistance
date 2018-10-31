@@ -8,7 +8,6 @@ import org.bukkit.entity.Player;
 import java.io.File;
 import java.io.IOException;
 
-import static me.lxct.bestviewdistance.functions.gen.genPlayerData;
 import static me.lxct.bestviewdistance.functions.get.*;
 
 public class set extends org.bukkit.plugin.java.JavaPlugin {
@@ -58,8 +57,7 @@ public class set extends org.bukkit.plugin.java.JavaPlugin {
 
 
     public static void setPlayersBestViewDistance(double ReductionIndice){
-        for(Player player : Bukkit.getOnlinePlayers()) { // For each player...
-            // Create player.yml
+        for(Player player : Bukkit.getOnlinePlayers()) {
             int viewDistance = getPlayerViewDistance(player);
             if(player.spigot().getPing() < 100){
                 setPlayerViewDistance(player, viewDistance+1);

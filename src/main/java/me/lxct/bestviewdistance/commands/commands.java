@@ -22,7 +22,7 @@ public class commands extends org.bukkit.plugin.java.JavaPlugin {
 
     public static void commandLimit(String[] args, CommandSender sender){
         if(args[0].equalsIgnoreCase("limit")){
-            sender.sendMessage(colorize("&aMax => &d" + main.plugin.getConfig().getInt("ViewDistance.Maw")));
+            sender.sendMessage(colorize("&aMax => &d" + main.plugin.getConfig().getInt("ViewDistance.Max")));
             sender.sendMessage(colorize("&aMin => &d" + main.plugin.getConfig().getInt("ViewDistance.Min")));
         }
     }

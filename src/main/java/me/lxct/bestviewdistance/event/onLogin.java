@@ -13,7 +13,7 @@ public class onLogin implements Listener {
     public static void onPlayerLogin(PlayerJoinEvent event){
         Player player = event.getPlayer();
         genPlayerData(player);
-        event.getPlayer().setViewDistance(main.plugin.getConfig().getInt("ViewDistance.Delay"));
+        event.getPlayer().setViewDistance(main.plugin.getConfig().getInt("ViewDistance.Min"));
     }
 
 }

@@ -9,17 +9,17 @@ import me.lxct.bestviewdistance.event.onLogin;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.plugin.Plugin;
 
 public class main extends org.bukkit.plugin.java.JavaPlugin
 {
-
     public static main plugin;
 
+    @Override
     public void onEnable() {
+        plugin=this;
         getServer().getPluginManager().registerEvents(new onLogin(), this);
         // GENERATE CONFIG
-        plugin.saveDefaultConfig();
+        this.saveDefaultConfig();
         // WARNING
         Bukkit.getLogger().info("[BestViewDistance] -------------------------------------------------");
         Bukkit.getLogger().info("[BestViewDistance] Best View Distance By LXCT => WARNING :");
@@ -32,6 +32,8 @@ public class main extends org.bukkit.plugin.java.JavaPlugin
         genConfig(); // CREATING CONFIG.YML
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, task, 0L,this.getConfig().getInt("ViewDistance.Delay")*20L); // SCHEDULER
     }
+
+
 
     private Runnable task =
             () -> {
