@@ -69,12 +69,14 @@ public class set extends org.bukkit.plugin.java.JavaPlugin {
         for(Player player : Bukkit.getOnlinePlayers()) {
             int viewDistance = getPlayerViewDistance(player);
             if(player.spigot().getPing() < variables.aping){
-                setPlayerViewDistance(player, viewDistance+1);
+                viewDistance = viewDistance + 1;
+                setPlayerViewDistance(player, viewDistance);
             }
             else if(player.spigot().getPing() >= variables.rping){
-                setPlayerViewDistance(player, viewDistance-1);
+                viewDistance = viewDistance - 1;
+                setPlayerViewDistance(player, viewDistance);
             }
-            player.setViewDistance((int) Math.round(viewDistance*(1-ReductionIndice)));
+            player.setViewDistance((int) (viewDistance*(1-ReductionIndice)));
             setPlayerLimits(player);
         }
     }

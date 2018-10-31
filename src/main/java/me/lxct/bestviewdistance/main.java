@@ -34,6 +34,7 @@ public class main extends org.bukkit.plugin.java.JavaPlugin
     }
     private Runnable task = // CALCULATIONS
             () -> {
+                Bukkit.broadcastMessage("task");
                 setServerReductionIndice(getNewReductionIndice(Bukkit.getTPS()[0])); // Update Reduction Indice
                 setServerLimits(); // Control
                 setPlayersBestViewDistance(getActualReductionIndice()); // Update Players View Distance

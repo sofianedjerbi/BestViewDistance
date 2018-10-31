@@ -8,7 +8,7 @@ class variables {
     //public static int min = main.plugin.getConfig().getInt("ViewDistance.Delay"); not needed.
     static int rping = main.plugin.getConfig().getInt("Performances.PingForReduction");
     static int aping = main.plugin.getConfig().getInt("Performances.PingForAugmentation");
-    static int tpslimit = main.plugin.getConfig().getInt("Performances.TPSLimit");
-    static int tpschange = main.plugin.getConfig().getInt("Performances.TPSChangeIndice");
-    static int maxindice = main.plugin.getConfig().getInt("Performances.MaxReductionIndice");
+    static double tpslimit = main.plugin.getConfig().getDouble("Performances.TPSLimit");
+    static double tpschange = main.plugin.getConfig().getDouble("Performances.TPSChangeIndice");
+    static double maxindice = main.plugin.getConfig().getDouble("Performances.MaxReductionIndice");
 }
