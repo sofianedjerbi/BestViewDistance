@@ -20,7 +20,7 @@ Also provide you a lot of optimizations and options.
 /view server => Get reduction indice.
 /view tps => Get server's tps.
 /view ping <player> => Get player ping.
-/view <player> => Get player view distance.
+/view <player> => Get player actual view distance and his max view distance.
 /view limit => View config limits.
 
 Permission : view.check
