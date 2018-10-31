@@ -10,6 +10,7 @@ import java.io.IOException;
 
 import static me.lxct.bestviewdistance.functions.get.getActualReductionIndice;
 import static me.lxct.bestviewdistance.functions.get.getPlayerViewDistance;
+import static me.lxct.bestviewdistance.functions.variable.afkList;
 
 public class set extends org.bukkit.plugin.java.JavaPlugin {
 
@@ -67,17 +68,21 @@ public class set extends org.bukkit.plugin.java.JavaPlugin {
 
     public static void setPlayersBestViewDistance(double ReductionIndice){
         for(Player player : Bukkit.getOnlinePlayers()) {
-            int viewDistance = getPlayerViewDistance(player);
-            if(player.spigot().getPing() < variable.aping){
-                viewDistance = viewDistance + 1;
-                setPlayerViewDistance(player, viewDistance);
+            if(afkList.contains(player)) {
+                player.setViewDistance(variable.min);
             }
-            else if(player.spigot().getPing() >= variable.rping){
-                viewDistance = viewDistance - 1;
-                setPlayerViewDistance(player, viewDistance);
+            else{
+                int viewDistance = getPlayerViewDistance(player);
+                if (player.spigot().getPing() < variable.aping) {
+                    viewDistance = viewDistance + 1;
+                    setPlayerViewDistance(player, viewDistance);
+                } else if (player.spigot().getPing() >= variable.rping) {
+                    viewDistance = viewDistance - 1;
+                    setPlayerViewDistance(player, viewDistance);
+                }
+                player.setViewDistance((int) (viewDistance * (1 - ReductionIndice)));
+                setPlayerLimits(player);
             }
-            player.setViewDistance((int) (viewDistance*(1-ReductionIndice)));
-            setPlayerLimits(player);
         }
     }
 }

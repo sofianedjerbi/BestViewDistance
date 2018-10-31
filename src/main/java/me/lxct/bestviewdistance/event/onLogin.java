@@ -1,6 +1,6 @@
 package me.lxct.bestviewdistance.event;
 
-import me.lxct.bestviewdistance.main;
+import me.lxct.bestviewdistance.functions.variable;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,7 +13,7 @@ public class onLogin implements Listener {
     public static void onPlayerLogin(PlayerJoinEvent event){
         Player player = event.getPlayer();
         genPlayerData(player);
-        event.getPlayer().setViewDistance(main.plugin.getConfig().getInt("ViewDistance.Min"));
+        event.getPlayer().setViewDistance(variable.min);
     }
 
 }

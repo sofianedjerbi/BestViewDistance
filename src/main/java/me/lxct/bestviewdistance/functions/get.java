@@ -3,6 +3,7 @@ package me.lxct.bestviewdistance.functions;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+
 import java.io.File;
 
 public class get extends org.bukkit.plugin.java.JavaPlugin {
@@ -29,4 +30,5 @@ public class get extends org.bukkit.plugin.java.JavaPlugin {
             return ActualReductionIndice;
         }
     }
+
 }

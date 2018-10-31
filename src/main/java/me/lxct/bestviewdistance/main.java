@@ -2,6 +2,8 @@ package me.lxct.bestviewdistance;
 
 import me.lxct.bestviewdistance.commands.viewCommand;
 import me.lxct.bestviewdistance.event.onLogin;
+import me.lxct.bestviewdistance.event.onPlayerMove;
+import me.lxct.bestviewdistance.functions.other;
 import org.bukkit.Bukkit;
 
 import static me.lxct.bestviewdistance.functions.gen.genFolders;
@@ -18,6 +20,7 @@ public class main extends org.bukkit.plugin.java.JavaPlugin
     public void onEnable() {
         plugin=this; // Allow main.plugin
         getServer().getPluginManager().registerEvents(new onLogin(), this); // Add OnLogin Event
+        getServer().getPluginManager().registerEvents(new onPlayerMove(), this); // Add OnPlayerMove Event
         saveDefaultConfig(); // GENERATE CONFIG
         // WARNING
         Bukkit.getLogger().info("╔╗ ┌─┐┌─┐┌┬┐  ╦  ╦┬┌─┐┬ ┬  ╔╦╗┬┌─┐┌┬┐┌─┐┌┐┌┌─┐┌─┐");
@@ -30,13 +33,18 @@ public class main extends org.bukkit.plugin.java.JavaPlugin
         genFolders(); // CREATING /plugins/BestViewDistance/data/
         genServerData(); // CREATING SERVER.YML
         getCommand("view").setExecutor(new viewCommand());
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, task, 0L,this.getConfig().getInt("ViewDistance.Delay")*20L); // SCHEDULER
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, calculations, 0L,this.getConfig().getInt("ViewDistance.Delay")*20L); // CALCULATIONS SCHEDULER
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, detectAFK, 0L,1800L); // DETECT AFK SCHEDULER
     }
-    private Runnable task = // CALCULATIONS
+
+    private Runnable calculations = // CALCULATIONS
             () -> {
                 setServerReductionIndice(getNewReductionIndice(Bukkit.getTPS()[0])); // Update Reduction Indice
                 setServerLimits(); // Control
                 setPlayersBestViewDistance(getActualReductionIndice()); // Update Players View Distance
             };
+
+    private Runnable detectAFK = // CHECK IF AFK
+            other::putPlayerAFK;
 
 }
