@@ -1,14 +1,15 @@
 package me.lxct.bestviewdistance.functions;
 
-import me.lxct.bestviewdistance.main;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+
 import java.io.File;
 import java.io.IOException;
 
-import static me.lxct.bestviewdistance.functions.get.*;
+import static me.lxct.bestviewdistance.functions.get.getActualReductionIndice;
+import static me.lxct.bestviewdistance.functions.get.getPlayerViewDistance;
 
 public class set extends org.bukkit.plugin.java.JavaPlugin {
 
@@ -37,18 +38,18 @@ public class set extends org.bukkit.plugin.java.JavaPlugin {
 
     private static void setPlayerLimits(Player player){
         int playerViewDistance = getPlayerViewDistance(player);
-        if(playerViewDistance > main.plugin.getConfig().getInt("ViewDistance.Max")){
-            setPlayerViewDistance(player, main.plugin.getConfig().getInt("ViewDistance.Max"));
+        if(playerViewDistance > variables.max){
+            setPlayerViewDistance(player, variables.max);
         }
-        else if(playerViewDistance < main.plugin.getConfig().getInt("ViewDistance.Min")){
-            setPlayerViewDistance(player, main.plugin.getConfig().getInt("ViewDistance.Min"));
+        else if(playerViewDistance < variables.min){
+            setPlayerViewDistance(player, variables.min);
         }
     }
 
     public static void setServerLimits(){
         double ReductionIndice = getActualReductionIndice();
-        if(ReductionIndice > 0.75){
-            setServerReductionIndice(0.75);
+        if(ReductionIndice > variables.maxindice){
+            setServerReductionIndice(variables.maxindice);
         }
         else if(ReductionIndice < 0){
             setServerReductionIndice(0);
@@ -59,10 +60,10 @@ public class set extends org.bukkit.plugin.java.JavaPlugin {
     public static void setPlayersBestViewDistance(double ReductionIndice){
         for(Player player : Bukkit.getOnlinePlayers()) {
             int viewDistance = getPlayerViewDistance(player);
-            if(player.spigot().getPing() < 100){
+            if(player.spigot().getPing() < variables.aping){
                 setPlayerViewDistance(player, viewDistance+1);
             }
-            else if(player.spigot().getPing() > 999){
+            else if(player.spigot().getPing() >= variables.rping){
                 setPlayerViewDistance(player, viewDistance-1);
             }
             player.setViewDistance((int) Math.round(viewDistance*(1-ReductionIndice)));

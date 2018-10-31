@@ -21,17 +21,45 @@ Also provide you a lot of optimizations and options.
 /view tps => Get server's tps.
 /view ping <player> => Get player ping.
 /view <player> => Get player actual view distance and his max view distance.
-/view limit => View config limits.
+/view => Get help
 
 Permission : view.check
 ```
 
 ## Config
 ```
+#   ╔╗ ┌─┐┌─┐┌┬┐  ╦  ╦┬┌─┐┬ ┬  ╔╦╗┬┌─┐┌┬┐┌─┐┌┐┌┌─┐┌─┐
+#   ╠╩╗├┤ └─┐ │   ╚╗╔╝│├┤ │││   ║║│└─┐ │ ├─┤││││  ├┤
+#   ╚═╝└─┘└─┘ ┴    ╚╝ ┴└─┘└┴┘  ═╩╝┴└─┘ ┴ ┴ ┴┘└┘└─┘└─┘
+#       - Get a Better View Distance, By LXCT. -
+#=======================================================
+# (Don't change Performances unless You Know what you're doing !)
+# Need some help to config ?
+# Read this :
+#
+#
+# ViewDistance:
+#   Min: 4 # Min View Distance. Keep it above 4.
+#   Max: 16 # Max View Distance.
+#   Delay: 25 # Delay between calculations. Keep it above 20. If you increase this, view distance and ReductionIndice will change faster.
+# Performances:
+#   PingForReduction: 1000 # If your ping is higher than this value, then your view distance will be reduced. Keep it above 500.
+#   PingForAugmentation: 90 # If your ping is less than this value, then your view distance will be increased. Keep it below 100.
+#   TPSLimit: 19.5 # If the tps are above this value, the ReductionIndice is reduced. If the tps are below this value, the ReductionIndice will increase.
+#   TPSChangeIndice: 0.05 # How much the reduction indice will be decreased/increased par calculations. Keep this value between 0.1 and 0.01
+#   MaxReductionIndice: 0.75 # Maximum value of the reduction indice.
+
+
 ViewDistance:
-  Min: 4 // Min View Distance. Keep it above 3.
-  Max: 16 // Max View Distance.
-  Delay: 20 // Delay between calculations, in seconds. Keep it above 15.
+  Min: 4
+  Max: 16
+  Delay: 25
+Performances:
+  PingForReduction: 1000
+  PingForAugmentation: 90
+  TPSLimit: 19.5
+  TPSChangeIndice: 0.05
+  MaxReductionIndice: 0.75
 ```
 
 ## Compilation

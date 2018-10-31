@@ -19,11 +19,11 @@ public class get extends org.bukkit.plugin.java.JavaPlugin {
 
     public static double getNewReductionIndice(Double TPS){
         double ActualReductionIndice = getActualReductionIndice();
-        if(TPS > 19.5 && TPS < 20){ // Min Indice = 0
-            return ActualReductionIndice-0.05;
+        if(TPS > variables.tpslimit && TPS < 20){ // Min Indice = 0
+            return ActualReductionIndice-variables.tpschange;
         }
-        else if(TPS < 19.5) { // Max Indice = 0.75 (Pay Attention. 75% of 12 View Distance = 3 Chunks.)
-            return ActualReductionIndice+0.05;
+        else if(TPS < variables.tpslimit) { // Max Indice = 0.75 (Pay Attention. 75% of 12 View Distance = 3 Chunks.)
+            return ActualReductionIndice+variables.tpschange;
         }
         else {
             return ActualReductionIndice;

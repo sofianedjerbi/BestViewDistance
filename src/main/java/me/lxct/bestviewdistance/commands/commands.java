@@ -5,29 +5,31 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import static me.lxct.bestviewdistance.functions.get.*;
+import static me.lxct.bestviewdistance.functions.get.getActualReductionIndice;
+import static me.lxct.bestviewdistance.functions.get.getPlayerViewDistance;
 
-public class commands extends org.bukkit.plugin.java.JavaPlugin {
+class commands {
 
 
-    public static String colorize(String string) {
+    private static String colorize(String string) {
         return org.bukkit.ChatColor.translateAlternateColorCodes('&', string);
     }
 
-    public static void commandTPS(String[] args, CommandSender sender){
+    static void commandTPS(String[] args, CommandSender sender){
         if(args[0].equalsIgnoreCase("tps")){
             sender.sendMessage(colorize("&aTPS => &d" + Bukkit.getTPS()[0]));
         }
     }
 
-    public static void commandLimit(String[] args, CommandSender sender){
-        if(args[0].equalsIgnoreCase("limit")){
-            sender.sendMessage(colorize("&aMax => &d" + main.plugin.getConfig().getInt("ViewDistance.Max")));
-            sender.sendMessage(colorize("&aMin => &d" + main.plugin.getConfig().getInt("ViewDistance.Min")));
-        }
+    static void commandHelp(CommandSender sender) {
+        sender.sendMessage(colorize("/view server => Get reduction indice."));
+        sender.sendMessage(colorize("/view tps => Get server's tps."));
+        sender.sendMessage(colorize("/view ping <player> => Get player ping."));
+        sender.sendMessage(colorize("/view <player> => Get player actual view distance/max view distance."));
+        sender.sendMessage(colorize("/view => This message."));
     }
 
-    public static void commandPing(String[] args, CommandSender sender) {
+    static void commandPing(String[] args, CommandSender sender) {
         if(args[0].equalsIgnoreCase("ping")) {
             Player player = Bukkit.getServer().getPlayerExact(args[1]);
             if (player == null) {
@@ -38,7 +40,7 @@ public class commands extends org.bukkit.plugin.java.JavaPlugin {
         }
     }
 
-    public static void commandView(String[] args, CommandSender sender) {
+    static void commandView(String[] args, CommandSender sender) {
         Player player = Bukkit.getServer().getPlayerExact(args[0]);
         if (player == null) {
             sender.sendMessage(colorize("&c/view <player>"));
@@ -50,10 +52,19 @@ public class commands extends org.bukkit.plugin.java.JavaPlugin {
     }
 
 
-    public static void commandServer(String[] args, CommandSender sender){
+    static void commandServer(String[] args, CommandSender sender){
         if(args[0].equalsIgnoreCase("server")){
             String indice = String.valueOf(getActualReductionIndice()*100);
             sender.sendMessage(colorize("&aThe view distance is reduced by &d" + indice + "%"));
         }
     }
+
+    static void commandReload(String[] args, CommandSender sender){
+        if(args[0].equalsIgnoreCase("reload")){
+            main.plugin.reloadConfig();
+            sender.sendMessage(colorize("&aBest View Distance config reloaded !"));
+        }
+    }
+
+
 }

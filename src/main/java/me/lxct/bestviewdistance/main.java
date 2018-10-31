@@ -1,14 +1,14 @@
 package me.lxct.bestviewdistance;
 
-import static me.lxct.bestviewdistance.functions.get.*;
-import static me.lxct.bestviewdistance.functions.gen.*;
-import static me.lxct.bestviewdistance.functions.set.*;
-import static me.lxct.bestviewdistance.commands.commands.*;
-
+import me.lxct.bestviewdistance.commands.viewCommand;
 import me.lxct.bestviewdistance.event.onLogin;
 import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
+
+import static me.lxct.bestviewdistance.functions.gen.genFolders;
+import static me.lxct.bestviewdistance.functions.gen.genServerData;
+import static me.lxct.bestviewdistance.functions.get.getActualReductionIndice;
+import static me.lxct.bestviewdistance.functions.get.getNewReductionIndice;
+import static me.lxct.bestviewdistance.functions.set.*;
 
 public class main extends org.bukkit.plugin.java.JavaPlugin
 {
@@ -16,49 +16,27 @@ public class main extends org.bukkit.plugin.java.JavaPlugin
 
     @Override
     public void onEnable() {
-        plugin=this;
-        getServer().getPluginManager().registerEvents(new onLogin(), this);
-        // GENERATE CONFIG
-        this.saveDefaultConfig();
+        plugin=this; // Allow main.plugin
+        getServer().getPluginManager().registerEvents(new onLogin(), this); // Add OnLogin Event
+        saveDefaultConfig(); // GENERATE CONFIG
         // WARNING
         Bukkit.getLogger().info("╔╗ ┌─┐┌─┐┌┬┐  ╦  ╦┬┌─┐┬ ┬  ╔╦╗┬┌─┐┌┬┐┌─┐┌┐┌┌─┐┌─┐");
         Bukkit.getLogger().info("╠╩╗├┤ └─┐ │   ╚╗╔╝│├┤ │││   ║║│└─┐ │ ├─┤││││  ├┤ ");
         Bukkit.getLogger().info("╚═╝└─┘└─┘ ┴    ╚╝ ┴└─┘└┴┘  ═╩╝┴└─┘ ┴ ┴ ┴┘└┘└─┘└─┘");
-        Bukkit.getLogger().info("╚ Make sure you use this plugin with paper.");
+        Bukkit.getLogger().info("╚ Make sure you use this plugin with Paper.");
         Bukkit.getLogger().info("╚ https://papermc.io/");
-        Bukkit.getLogger().info("╚ Best View Distance, By Lxct.");
+        Bukkit.getLogger().info("╚ Best View Distance, By Lxct. ");
         // WARNING
         genFolders(); // CREATING /plugins/BestViewDistance/data/
         genServerData(); // CREATING SERVER.YML
-        genConfig(); // CREATING CONFIG.YML
+        getCommand("view").setExecutor(new viewCommand());
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, task, 0L,this.getConfig().getInt("ViewDistance.Delay")*20L); // SCHEDULER
     }
-
-
-
-    private Runnable task =
+    private Runnable task = // CALCULATIONS
             () -> {
                 setServerReductionIndice(getNewReductionIndice(Bukkit.getTPS()[0])); // Update Reduction Indice
                 setServerLimits(); // Control
                 setPlayersBestViewDistance(getActualReductionIndice()); // Update Players View Distance
             };
 
-
-
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if(cmd.getName().equalsIgnoreCase("view") && sender.hasPermission("view.check")) {
-            if (args[0].equalsIgnoreCase("server") || args[0].equalsIgnoreCase("tps") || args[0].equalsIgnoreCase("ping") || args[0].equalsIgnoreCase("limit"))  {
-                commandServer(args, sender);
-                commandPing(args, sender);
-                commandLimit(args, sender);
-                commandTPS(args, sender);
-            }
-            else if (args[0].equalsIgnoreCase("reload")){
-                this.reloadConfig();
-                sender.sendMessage(colorize("&aBestViewDistance config reloaded !"));
-            }
-            else {commandView(args, sender);}
-        }
-        return true;
-    }
 }
