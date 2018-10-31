@@ -25,7 +25,7 @@ class commands {
         sender.sendMessage(colorize("&d/view server => &aGet reduction indice."));
         sender.sendMessage(colorize("&d/view tps => &aGet server's tps."));
         sender.sendMessage(colorize("&d/view ping <player> => &aGet player ping."));
-        sender.sendMessage(colorize("&d/view <player> => &aGet player actual view distance/max view distance."));
+        sender.sendMessage(colorize("&d/view <player> => &aGet player view distance/max view distance."));
         sender.sendMessage(colorize("&d/view => &aThis message."));
     }
 

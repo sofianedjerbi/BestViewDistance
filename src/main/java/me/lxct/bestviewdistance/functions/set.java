@@ -44,6 +44,14 @@ public class set extends org.bukkit.plugin.java.JavaPlugin {
         else if(playerViewDistance < variables.min){
             setPlayerViewDistance(player, variables.min);
         }
+        if(player.getViewDistance() > variables.max){
+            player.setViewDistance(variables.max);
+        }
+        else if(player.getViewDistance() < variables.min) {
+            player.setViewDistance(variables.min);
+        }
+
+
     }
 
     public static void setServerLimits(){
