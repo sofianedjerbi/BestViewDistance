@@ -7,6 +7,8 @@ import org.bukkit.entity.Player;
 
 import static me.lxct.bestviewdistance.functions.get.getActualReductionIndice;
 import static me.lxct.bestviewdistance.functions.get.getPlayerViewDistance;
+import static me.lxct.bestviewdistance.functions.variable.*;
+
 
 class commands {
 
@@ -61,9 +63,14 @@ class commands {
 
     static void commandReload(String[] args, CommandSender sender){
         if(args[0].equalsIgnoreCase("reload")){
-            main.plugin.getPluginLoader().disablePlugin(main.plugin);
             main.plugin.reloadConfig();
-            main.plugin.getPluginLoader().enablePlugin(main.plugin);
+            max = main.plugin.getConfig().getInt("ViewDistance.Max");
+            min = main.plugin.getConfig().getInt("ViewDistance.Min");
+            rping = main.plugin.getConfig().getInt("Performances.PingForReduction");
+            aping = main.plugin.getConfig().getInt("Performances.PingForAugmentation");
+            tpslimit = main.plugin.getConfig().getDouble("Performances.TPSLimit");
+            tpschange = main.plugin.getConfig().getDouble("Performances.TPSChangeIndice");
+            maxindice = main.plugin.getConfig().getDouble("Performances.MaxReductionIndice");
             sender.sendMessage(colorize("&aBest View Distance config reloaded !"));
         }
     }

@@ -2,13 +2,13 @@ package me.lxct.bestviewdistance.functions;
 
 import me.lxct.bestviewdistance.main;
 
-class variable{
-    static int max = main.plugin.getConfig().getInt("ViewDistance.Max");
-    static int min = main.plugin.getConfig().getInt("ViewDistance.Min");
+public class variable{
+    public static int max = main.plugin.getConfig().getInt("ViewDistance.Max");
+    public static int min = main.plugin.getConfig().getInt("ViewDistance.Min");
     //public static int min = main.plugin.getConfig().getInt("ViewDistance.Delay"); not needed.
-    static int rping = main.plugin.getConfig().getInt("Performances.PingForReduction");
-    static int aping = main.plugin.getConfig().getInt("Performances.PingForAugmentation");
-    static double tpslimit = main.plugin.getConfig().getDouble("Performances.TPSLimit");
-    static double tpschange = main.plugin.getConfig().getDouble("Performances.TPSChangeIndice");
-    static double maxindice = main.plugin.getConfig().getDouble("Performances.MaxReductionIndice");
+    public static int rping = main.plugin.getConfig().getInt("Performances.PingForReduction");
+    public static int aping = main.plugin.getConfig().getInt("Performances.PingForAugmentation");
+    public static double tpslimit = main.plugin.getConfig().getDouble("Performances.TPSLimit");
+    public static double tpschange = main.plugin.getConfig().getDouble("Performances.TPSChangeIndice");
+    public static double maxindice = main.plugin.getConfig().getDouble("Performances.MaxReductionIndice");
 }
