@@ -38,17 +38,17 @@ public class set extends org.bukkit.plugin.java.JavaPlugin {
 
     private static void setPlayerLimits(Player player){
         int playerViewDistance = getPlayerViewDistance(player);
-        if(playerViewDistance > variables.max){
-            setPlayerViewDistance(player, variables.max);
+        if(playerViewDistance > variable.max){
+            setPlayerViewDistance(player, variable.max);
         }
-        else if(playerViewDistance < variables.min){
-            setPlayerViewDistance(player, variables.min);
+        else if(playerViewDistance < variable.min){
+            setPlayerViewDistance(player, variable.min);
         }
-        if(player.getViewDistance() > variables.max){
-            player.setViewDistance(variables.max);
+        if(player.getViewDistance() > variable.max){
+            player.setViewDistance(variable.max);
         }
-        else if(player.getViewDistance() < variables.min) {
-            player.setViewDistance(variables.min);
+        else if(player.getViewDistance() < variable.min) {
+            player.setViewDistance(variable.min);
         }
 
 
@@ -56,8 +56,8 @@ public class set extends org.bukkit.plugin.java.JavaPlugin {
 
     public static void setServerLimits(){
         double ReductionIndice = getActualReductionIndice();
-        if(ReductionIndice > variables.maxindice){
-            setServerReductionIndice(variables.maxindice);
+        if(ReductionIndice > variable.maxindice){
+            setServerReductionIndice(variable.maxindice);
         }
         else if(ReductionIndice < 0){
             setServerReductionIndice(0);
@@ -68,11 +68,11 @@ public class set extends org.bukkit.plugin.java.JavaPlugin {
     public static void setPlayersBestViewDistance(double ReductionIndice){
         for(Player player : Bukkit.getOnlinePlayers()) {
             int viewDistance = getPlayerViewDistance(player);
-            if(player.spigot().getPing() < variables.aping){
+            if(player.spigot().getPing() < variable.aping){
                 viewDistance = viewDistance + 1;
                 setPlayerViewDistance(player, viewDistance);
             }
-            else if(player.spigot().getPing() >= variables.rping){
+            else if(player.spigot().getPing() >= variable.rping){
                 viewDistance = viewDistance - 1;
                 setPlayerViewDistance(player, viewDistance);
             }

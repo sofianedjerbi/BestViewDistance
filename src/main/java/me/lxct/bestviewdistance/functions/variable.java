@@ -2,7 +2,7 @@ package me.lxct.bestviewdistance.functions;
 
 import me.lxct.bestviewdistance.main;
 
-class variables {
+class variable{
     static int max = main.plugin.getConfig().getInt("ViewDistance.Max");
     static int min = main.plugin.getConfig().getInt("ViewDistance.Min");
     //public static int min = main.plugin.getConfig().getInt("ViewDistance.Delay"); not needed.

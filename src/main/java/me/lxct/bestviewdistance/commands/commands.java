@@ -61,7 +61,9 @@ class commands {
 
     static void commandReload(String[] args, CommandSender sender){
         if(args[0].equalsIgnoreCase("reload")){
+            main.plugin.getPluginLoader().disablePlugin(main.plugin);
             main.plugin.reloadConfig();
+            main.plugin.getPluginLoader().enablePlugin(main.plugin);
             sender.sendMessage(colorize("&aBest View Distance config reloaded !"));
         }
     }

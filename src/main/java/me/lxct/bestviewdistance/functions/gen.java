@@ -21,7 +21,7 @@ public class gen extends org.bukkit.plugin.java.JavaPlugin {
             FileConfiguration config = YamlConfiguration.loadConfiguration(file);
             try {
                 file.createNewFile();
-                config.set("ViewDistance", variables.min);
+                config.set("ViewDistance", variable.min);
                 config.save(file);
             } catch (IOException ex) {
                 Bukkit.getLogger().info("[BestViewDistance] Cannot create playerdatas yml files. Please make sure you have editing rights on the entire plugin folder.");
