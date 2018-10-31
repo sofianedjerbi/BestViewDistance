@@ -11,7 +11,7 @@ import static me.lxct.bestviewdistance.functions.get.getPlayerViewDistance;
 class commands {
 
 
-    private static String colorize(String string) {
+    static String colorize(String string) {
         return org.bukkit.ChatColor.translateAlternateColorCodes('&', string);
     }
 
@@ -22,11 +22,11 @@ class commands {
     }
 
     static void commandHelp(CommandSender sender) {
-        sender.sendMessage(colorize("/view server => Get reduction indice."));
-        sender.sendMessage(colorize("/view tps => Get server's tps."));
-        sender.sendMessage(colorize("/view ping <player> => Get player ping."));
-        sender.sendMessage(colorize("/view <player> => Get player actual view distance/max view distance."));
-        sender.sendMessage(colorize("/view => This message."));
+        sender.sendMessage(colorize("&d/view server => &aGet reduction indice."));
+        sender.sendMessage(colorize("&d/view tps => &aGet server's tps."));
+        sender.sendMessage(colorize("&d/view ping <player> => &aGet player ping."));
+        sender.sendMessage(colorize("&d/view <player> => &aGet player actual view distance/max view distance."));
+        sender.sendMessage(colorize("&d/view => &aThis message."));
     }
 
     static void commandPing(String[] args, CommandSender sender) {
