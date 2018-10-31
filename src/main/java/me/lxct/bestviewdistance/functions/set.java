@@ -65,8 +65,8 @@ public class set extends org.bukkit.plugin.java.JavaPlugin {
             else if(player.spigot().getPing() > 999){
                 setPlayerViewDistance(player, viewDistance-1);
             }
-            setPlayerLimits(player);
             player.setViewDistance((int) Math.round(viewDistance*(1-ReductionIndice)));
+            setPlayerLimits(player);
         }
     }
 }

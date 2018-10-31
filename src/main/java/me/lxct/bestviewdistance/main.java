@@ -21,11 +21,12 @@ public class main extends org.bukkit.plugin.java.JavaPlugin
         // GENERATE CONFIG
         this.saveDefaultConfig();
         // WARNING
-        Bukkit.getLogger().info("[BestViewDistance] -------------------------------------------------");
-        Bukkit.getLogger().info("[BestViewDistance] Best View Distance By LXCT => WARNING :");
-        Bukkit.getLogger().info("[BestViewDistance] Make sure you use this plugin with Paper !");
-        Bukkit.getLogger().info("[BestViewDistance] https://papermc.io/ <3");
-        Bukkit.getLogger().info("[BestViewDistance] -------------------------------------------------");
+        Bukkit.getLogger().info("╔╗ ┌─┐┌─┐┌┬┐  ╦  ╦┬┌─┐┬ ┬  ╔╦╗┬┌─┐┌┬┐┌─┐┌┐┌┌─┐┌─┐");
+        Bukkit.getLogger().info("╠╩╗├┤ └─┐ │   ╚╗╔╝│├┤ │││   ║║│└─┐ │ ├─┤││││  ├┤ ");
+        Bukkit.getLogger().info("╚═╝└─┘└─┘ ┴    ╚╝ ┴└─┘└┴┘  ═╩╝┴└─┘ ┴ ┴ ┴┘└┘└─┘└─┘");
+        Bukkit.getLogger().info("╚ Make sure you use this plugin with paper.");
+        Bukkit.getLogger().info("╚ https://papermc.io/");
+        Bukkit.getLogger().info("╚ Best View Distance, By Lxct.");
         // WARNING
         genFolders(); // CREATING /plugins/BestViewDistance/data/
         genServerData(); // CREATING SERVER.YML
