@@ -46,5 +46,4 @@ public class main extends org.bukkit.plugin.java.JavaPlugin
 
     private Runnable detectAFK = // CHECK IF AFK
             other::putPlayerAFK;
-
 }
