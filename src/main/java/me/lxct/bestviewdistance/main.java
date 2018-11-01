@@ -36,7 +36,7 @@ public class main extends org.bukkit.plugin.java.JavaPlugin
         getCommand("view").setExecutor(new viewCommand());
         getCommand("vdist").setExecutor(new viewCommand());
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, calculations, 0L,this.getConfig().getInt("ViewDistance.Delay")*20L); // CALCULATIONS SCHEDULER
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, detectAFK, 0L,1800L); // DETECT AFK SCHEDULER
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, detectAFK, 0L,this.getConfig().getInt("Performances.AFKTimer")*20L); // DETECT AFK SCHEDULER
     }
 
     @Override
