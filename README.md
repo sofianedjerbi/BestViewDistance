@@ -15,7 +15,7 @@ https://papermc.io
 It's better than spigot and bukkit.
 Also provide you a lot of optimizations and options.
 
-## Commands
+## Commands / Permissions
 ```
 /view server => Get reduction indice.
 /view tps => Get server's tps.
