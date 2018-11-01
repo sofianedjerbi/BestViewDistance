@@ -18,7 +18,7 @@
 #   TPSLimit: 19.5 # If the tps are above this value, the ReductionIndice is reduced. If the tps are below this value, the ReductionIndice will increase.
 #   TPSChangeIndice: 0.05 # How much the reduction indice will be decreased/increased par calculations. Keep this value between 0.1 and 0.01
 #   MaxReductionIndice: 0.75 # Maximum value of the reduction indice.
-#   AFKTimer : 90 # Seconds before getting "AFK" and get his view distance reduced to "Min" value.
+#   AFKTimer : 90 # Seconds before getting "AFK" and get his view distance reduced to "Min" value. Keep this value over 60.
 #
 # Please restart your server the first time you're using this plugin. Don't reload.
 #
