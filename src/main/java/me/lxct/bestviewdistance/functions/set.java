@@ -8,7 +8,6 @@ import org.bukkit.entity.Player;
 import java.io.File;
 import java.io.IOException;
 
-import static me.lxct.bestviewdistance.functions.get.getActualReductionIndice;
 import static me.lxct.bestviewdistance.functions.variable.afkList;
 import static me.lxct.bestviewdistance.functions.variable.playerViewDistance;
 
@@ -25,17 +24,6 @@ public class set extends org.bukkit.plugin.java.JavaPlugin {
         }
     }
 
-
-    public static void setServerReductionIndice(double x) {
-        File file = new File("plugins/BestViewDistance/data/server.yml");
-        FileConfiguration config = YamlConfiguration.loadConfiguration(file);
-        config.set("ReductionIndice", x);
-        try {
-            config.save(file);
-        } catch (IOException e) {
-            Bukkit.getLogger().info("[BestViewDistance] Cannot edit yml files. Please make sure you have editing rights on the entire plugin folder.");
-        }
-    }
 
     private static void setPlayerLimits(Player player) {
         String name = player.getName();
@@ -55,11 +43,10 @@ public class set extends org.bukkit.plugin.java.JavaPlugin {
     }
 
     public static void setServerLimits() {
-        double ReductionIndice = getActualReductionIndice();
-        if (ReductionIndice > variable.maxindice) {
-            setServerReductionIndice(variable.maxindice);
-        } else if (ReductionIndice < 0) {
-            setServerReductionIndice(0);
+        if (variable.reductionIndice > variable.maxindice) {
+            variable.reductionIndice = variable.maxindice;
+        } else if (variable.reductionIndice < 0) {
+            variable.reductionIndice = 0.0;
         }
     }
 
@@ -79,7 +66,7 @@ public class set extends org.bukkit.plugin.java.JavaPlugin {
                     viewDistance = viewDistance - 1;
                     playerViewDistance.put(name, viewDistance);
                 }
-                player.setViewDistance((int) (viewDistance * (1 - ReductionIndice)));
+                player.setViewDistance(Math.round((int) (viewDistance * (1 - ReductionIndice))));
                 setPlayerLimits(player);
             }
         }

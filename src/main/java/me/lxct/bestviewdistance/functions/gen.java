@@ -8,6 +8,9 @@ import org.bukkit.entity.Player;
 import java.io.File;
 import java.io.IOException;
 
+import static me.lxct.bestviewdistance.functions.get.getPlayerViewDistance;
+import static me.lxct.bestviewdistance.functions.variable.playerViewDistance;
+
 public class gen extends org.bukkit.plugin.java.JavaPlugin {
 
     public static void genFolders(){
@@ -26,6 +29,13 @@ public class gen extends org.bukkit.plugin.java.JavaPlugin {
             } catch (IOException ex) {
                 Bukkit.getLogger().info("[BestViewDistance] Cannot create playerdatas yml files. Please make sure you have editing rights on the entire plugin folder.");
             }
+        }
+    }
+
+    public static void genAllOnlinePlayerData() {
+        for (Player player : Bukkit.getServer().getOnlinePlayers()) { // Every players...
+            genPlayerData(player);
+            playerViewDistance.put(player.getName(), getPlayerViewDistance(player)); // LOAD PLAYER DATA
         }
     }
 

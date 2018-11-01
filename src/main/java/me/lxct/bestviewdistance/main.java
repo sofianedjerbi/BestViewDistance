@@ -4,14 +4,17 @@ import me.lxct.bestviewdistance.commands.viewCommand;
 import me.lxct.bestviewdistance.event.onLogin;
 import me.lxct.bestviewdistance.event.onPlayerMove;
 import me.lxct.bestviewdistance.functions.other;
+import me.lxct.bestviewdistance.functions.variable;
 import org.bukkit.Bukkit;
 
-import static me.lxct.bestviewdistance.functions.gen.genFolders;
-import static me.lxct.bestviewdistance.functions.gen.genServerData;
+import static me.lxct.bestviewdistance.functions.gen.*;
 import static me.lxct.bestviewdistance.functions.get.getActualReductionIndice;
 import static me.lxct.bestviewdistance.functions.get.getNewReductionIndice;
+import static me.lxct.bestviewdistance.functions.other.loadServerReductionIndice;
 import static me.lxct.bestviewdistance.functions.other.savePlayerViewDistance;
-import static me.lxct.bestviewdistance.functions.set.*;
+import static me.lxct.bestviewdistance.functions.other.saveReductionIndice;
+import static me.lxct.bestviewdistance.functions.set.setPlayersBestViewDistance;
+import static me.lxct.bestviewdistance.functions.set.setServerLimits;
 
 public class main extends org.bukkit.plugin.java.JavaPlugin
 {
@@ -33,6 +36,8 @@ public class main extends org.bukkit.plugin.java.JavaPlugin
         // WARNING
         genFolders(); // CREATING /plugins/BestViewDistance/data/
         genServerData(); // CREATING SERVER.YML
+        genAllOnlinePlayerData(); // In case of a /reload
+        loadServerReductionIndice();
         getCommand("view").setExecutor(new viewCommand());
         getCommand("vdist").setExecutor(new viewCommand());
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, calculations, 0L,this.getConfig().getInt("ViewDistance.Delay")*20L); // CALCULATIONS SCHEDULER
@@ -41,12 +46,15 @@ public class main extends org.bukkit.plugin.java.JavaPlugin
 
     @Override
     public void onDisable(){
+        Bukkit.getLogger().info("[BestViewDistance] Saving players data...");
         savePlayerViewDistance(); // Save data of all players
+        saveReductionIndice(variable.reductionIndice); // Save Reduction Indice
+        Bukkit.getLogger().info("[BestViewDistance] Players data saved !");
     }
 
     private Runnable calculations = // CALCULATIONS
             () -> {
-                setServerReductionIndice(getNewReductionIndice(Bukkit.getTPS()[0])); // Update Reduction Indice
+                variable.reductionIndice = getNewReductionIndice(Bukkit.getTPS()[0]); // Update Reduction Indice
                 setServerLimits(); // Control
                 setPlayersBestViewDistance(getActualReductionIndice()); // Update Players View Distance
             };

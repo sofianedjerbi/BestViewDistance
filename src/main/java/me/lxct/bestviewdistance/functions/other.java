@@ -2,8 +2,12 @@ package me.lxct.bestviewdistance.functions;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
 import static me.lxct.bestviewdistance.functions.set.setPlayerViewDistance;
@@ -21,6 +25,24 @@ public class other {
                 playerLocation.put(player.getName(), player.getLocation()); // Actualize the position.
             }
         }
+    }
+
+    public static void saveReductionIndice(double x) {
+        File file = new File("plugins/BestViewDistance/data/server.yml");
+        FileConfiguration config = YamlConfiguration.loadConfiguration(file);
+        config.set("ReductionIndice", x);
+        try {
+            config.save(file);
+        } catch (IOException e) {
+            Bukkit.getLogger().info("[BestViewDistance] Cannot edit yml files. Please make sure you have editing rights on the entire plugin folder.");
+        }
+    }
+
+
+    public static void loadServerReductionIndice() {
+        File file = new File("plugins/BestViewDistance/data/server.yml");
+        FileConfiguration config = YamlConfiguration.loadConfiguration(file);
+        variable.reductionIndice = config.getDouble("ReductionIndice");
     }
 
     public static void savePlayerViewDistance() {

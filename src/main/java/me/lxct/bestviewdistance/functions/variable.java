@@ -19,4 +19,5 @@ public class variable{
     static HashMap<String, Location> playerLocation = new HashMap<>();
     public static HashMap<String, Integer> playerViewDistance = new HashMap<>();
     public static List<String> afkList = new ArrayList<>();
+    public static Double reductionIndice = 0.0;
 }
