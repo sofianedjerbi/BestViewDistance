@@ -8,12 +8,14 @@ import org.bukkit.entity.Player;
 import java.io.File;
 import java.io.IOException;
 
+import static me.lxct.bestviewdistance.functions.gen.genPlayerData;
 import static me.lxct.bestviewdistance.functions.variable.afkList;
 import static me.lxct.bestviewdistance.functions.variable.playerViewDistance;
 
 public class set extends org.bukkit.plugin.java.JavaPlugin {
 
     static void setPlayerViewDistance(Player player, int x) {
+        genPlayerData(player);
         File file = new File("plugins/BestViewDistance/data/" + player.getUniqueId() + ".yml");
         FileConfiguration config = YamlConfiguration.loadConfiguration(file);
         config.set("ViewDistance", x);
