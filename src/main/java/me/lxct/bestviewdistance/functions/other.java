@@ -4,8 +4,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
-import static me.lxct.bestviewdistance.functions.variable.afkList;
-import static me.lxct.bestviewdistance.functions.variable.playerLocation;
+import java.util.Map;
+
+import static me.lxct.bestviewdistance.functions.set.setPlayerViewDistance;
+import static me.lxct.bestviewdistance.functions.variable.*;
 
 public class other {
     public static void putPlayerAFK() { // What this function does ? if the player has exactly the same position as two minutes ago, he'll be set in "AFK" mode.
@@ -21,4 +23,11 @@ public class other {
         }
     }
 
+    public static void savePlayerViewDistance() {
+        for(Map.Entry<String, Integer> entry : playerViewDistance.entrySet()) {
+            String name = entry.getKey();
+            Integer viewDist = entry.getValue();
+            setPlayerViewDistance(Bukkit.getPlayer(name), viewDist);
+        }
+    }
 }

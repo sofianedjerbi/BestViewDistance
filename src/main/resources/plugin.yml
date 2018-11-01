@@ -8,10 +8,18 @@ main: me.lxct.bestviewdistance.main
 commands:
   view:
     description: Best View Distance Interface
-    permission: view.check
-    permission-message:
+    permission: view
+  vdist:
+    description: Best View Distance Interface
+    permission: view.info
 
 permissions:
   view.check:
+    description: /view
+    default: op
+  view.info:
+    description: /ve
+    default: op
+  view.reload:
     description: /view
     default: op

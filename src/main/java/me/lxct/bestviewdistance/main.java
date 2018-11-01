@@ -10,6 +10,7 @@ import static me.lxct.bestviewdistance.functions.gen.genFolders;
 import static me.lxct.bestviewdistance.functions.gen.genServerData;
 import static me.lxct.bestviewdistance.functions.get.getActualReductionIndice;
 import static me.lxct.bestviewdistance.functions.get.getNewReductionIndice;
+import static me.lxct.bestviewdistance.functions.other.savePlayerViewDistance;
 import static me.lxct.bestviewdistance.functions.set.*;
 
 public class main extends org.bukkit.plugin.java.JavaPlugin
@@ -17,7 +18,7 @@ public class main extends org.bukkit.plugin.java.JavaPlugin
     public static main plugin;
 
     @Override
-    public void onEnable() {
+    public void onEnable(){
         plugin=this; // Allow main.plugin
         getServer().getPluginManager().registerEvents(new onLogin(), this); // Add OnLogin Event
         getServer().getPluginManager().registerEvents(new onPlayerMove(), this); // Add OnPlayerMove Event
@@ -33,8 +34,14 @@ public class main extends org.bukkit.plugin.java.JavaPlugin
         genFolders(); // CREATING /plugins/BestViewDistance/data/
         genServerData(); // CREATING SERVER.YML
         getCommand("view").setExecutor(new viewCommand());
+        getCommand("vdist").setExecutor(new viewCommand());
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, calculations, 0L,this.getConfig().getInt("ViewDistance.Delay")*20L); // CALCULATIONS SCHEDULER
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, detectAFK, 0L,1800L); // DETECT AFK SCHEDULER
+    }
+
+    @Override
+    public void onDisable(){
+        savePlayerViewDistance(); // Save data of all players
     }
 
     private Runnable calculations = // CALCULATIONS

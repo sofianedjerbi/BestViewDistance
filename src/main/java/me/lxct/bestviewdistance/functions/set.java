@@ -9,12 +9,12 @@ import java.io.File;
 import java.io.IOException;
 
 import static me.lxct.bestviewdistance.functions.get.getActualReductionIndice;
-import static me.lxct.bestviewdistance.functions.get.getPlayerViewDistance;
 import static me.lxct.bestviewdistance.functions.variable.afkList;
+import static me.lxct.bestviewdistance.functions.variable.playerViewDistance;
 
 public class set extends org.bukkit.plugin.java.JavaPlugin {
 
-    private static void setPlayerViewDistance(Player player, int x) {
+    static void setPlayerViewDistance(Player player, int x) {
         File file = new File("plugins/BestViewDistance/data/" + player.getUniqueId() + ".yml");
         FileConfiguration config = YamlConfiguration.loadConfiguration(file);
         config.set("ViewDistance", x);
@@ -38,11 +38,12 @@ public class set extends org.bukkit.plugin.java.JavaPlugin {
     }
 
     private static void setPlayerLimits(Player player) {
-        int playerViewDistance = getPlayerViewDistance(player);
-        if (playerViewDistance > variable.max) {
-            setPlayerViewDistance(player, variable.max);
-        } else if (playerViewDistance < variable.min) {
-            setPlayerViewDistance(player, variable.min);
+        String name = player.getName();
+        int pViewDistance = playerViewDistance.get(name);
+        if (pViewDistance > variable.max) {
+            playerViewDistance.put(name, variable.max);
+        } else if (pViewDistance < variable.min) {
+            playerViewDistance.put(name, variable.min);
         }
         if (player.getViewDistance() > variable.max) {
             player.setViewDistance(variable.max);
@@ -68,14 +69,15 @@ public class set extends org.bukkit.plugin.java.JavaPlugin {
             if(afkList.contains(player.getName())){
                 player.setViewDistance(variable.min);
             } else {
-                int viewDistance = getPlayerViewDistance(player);
+                String name = player.getName();
+                int viewDistance = playerViewDistance.get(name);
                 int ping = player.spigot().getPing();
                 if (ping < variable.aping && ping > 1) {
                     viewDistance = viewDistance + 1;
-                    setPlayerViewDistance(player, viewDistance);
+                    playerViewDistance.put(name, viewDistance);
                 } else if (ping >= variable.rping) {
                     viewDistance = viewDistance - 1;
-                    setPlayerViewDistance(player, viewDistance);
+                    playerViewDistance.put(name, viewDistance);
                 }
                 player.setViewDistance((int) (viewDistance * (1 - ReductionIndice)));
                 setPlayerLimits(player);

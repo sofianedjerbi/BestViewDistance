@@ -6,7 +6,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import static me.lxct.bestviewdistance.functions.get.getActualReductionIndice;
-import static me.lxct.bestviewdistance.functions.get.getPlayerViewDistance;
 import static me.lxct.bestviewdistance.functions.variable.*;
 
 
@@ -49,7 +48,7 @@ class commands {
         }
         else {
             String TpsMsg = String.valueOf(player.getViewDistance());
-            sender.sendMessage(colorize("&aView Distance of " + player.getName() + " => &d" + TpsMsg + "/" + getPlayerViewDistance(player)));
+            sender.sendMessage(colorize("&aView Distance of " + player.getName() + " => &d" + TpsMsg + "/" + playerViewDistance.get(player.getName())));
         }
     }
 
