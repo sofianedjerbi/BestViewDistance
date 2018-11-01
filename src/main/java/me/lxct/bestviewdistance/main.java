@@ -8,11 +8,8 @@ import me.lxct.bestviewdistance.functions.variable;
 import org.bukkit.Bukkit;
 
 import static me.lxct.bestviewdistance.functions.gen.*;
-import static me.lxct.bestviewdistance.functions.get.getActualReductionIndice;
 import static me.lxct.bestviewdistance.functions.get.getNewReductionIndice;
-import static me.lxct.bestviewdistance.functions.other.loadServerReductionIndice;
-import static me.lxct.bestviewdistance.functions.other.savePlayerViewDistance;
-import static me.lxct.bestviewdistance.functions.other.saveReductionIndice;
+import static me.lxct.bestviewdistance.functions.other.*;
 import static me.lxct.bestviewdistance.functions.set.setPlayersBestViewDistance;
 import static me.lxct.bestviewdistance.functions.set.setServerLimits;
 
@@ -56,7 +53,7 @@ public class main extends org.bukkit.plugin.java.JavaPlugin
             () -> {
                 variable.reductionIndice = getNewReductionIndice(Bukkit.getTPS()[0]); // Update Reduction Indice
                 setServerLimits(); // Control
-                setPlayersBestViewDistance(getActualReductionIndice()); // Update Players View Distance
+                setPlayersBestViewDistance(variable.reductionIndice); // Update Players View Distance
             };
 
     private Runnable detectAFK = // CHECK IF AFK

@@ -5,7 +5,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import static me.lxct.bestviewdistance.functions.get.getActualReductionIndice;
 import static me.lxct.bestviewdistance.functions.variable.*;
 
 
@@ -55,7 +54,7 @@ class commands {
 
     static void commandServer(String[] args, CommandSender sender){
         if(args[0].equalsIgnoreCase("server")){
-            String indice = String.valueOf(getActualReductionIndice()*100);
+            String indice = String.valueOf(reductionIndice*100);
             sender.sendMessage(colorize("&aThe view distance is reduced by &d" + indice + "%"));
         }
     }
