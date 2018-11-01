@@ -1,8 +1,9 @@
 package me.lxct.bestviewdistance.functions;
+
 import me.lxct.bestviewdistance.main;
 import org.bukkit.Location;
-import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,6 +16,6 @@ public class variable{
     public static double tpslimit = main.plugin.getConfig().getDouble("Performances.TPSLimit");
     public static double tpschange = main.plugin.getConfig().getDouble("Performances.TPSChangeIndice");
     public static double maxindice = main.plugin.getConfig().getDouble("Performances.MaxReductionIndice");
-    static HashMap<Player, Location> playerLocation;
-    public static List<Player> afkList;
+    static HashMap<String, Location> playerLocation = new HashMap<>();
+    public static List<String> afkList = new ArrayList<>();
 }

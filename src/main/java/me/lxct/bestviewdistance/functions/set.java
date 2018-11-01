@@ -14,7 +14,7 @@ import static me.lxct.bestviewdistance.functions.variable.afkList;
 
 public class set extends org.bukkit.plugin.java.JavaPlugin {
 
-    private static void setPlayerViewDistance(Player player, int x){
+    private static void setPlayerViewDistance(Player player, int x) {
         File file = new File("plugins/BestViewDistance/data/" + player.getUniqueId() + ".yml");
         FileConfiguration config = YamlConfiguration.loadConfiguration(file);
         config.set("ViewDistance", x);
@@ -26,7 +26,7 @@ public class set extends org.bukkit.plugin.java.JavaPlugin {
     }
 
 
-    public static void setServerReductionIndice(double x){
+    public static void setServerReductionIndice(double x) {
         File file = new File("plugins/BestViewDistance/data/server.yml");
         FileConfiguration config = YamlConfiguration.loadConfiguration(file);
         config.set("ReductionIndice", x);
@@ -37,46 +37,43 @@ public class set extends org.bukkit.plugin.java.JavaPlugin {
         }
     }
 
-    private static void setPlayerLimits(Player player){
+    private static void setPlayerLimits(Player player) {
         int playerViewDistance = getPlayerViewDistance(player);
-        if(playerViewDistance > variable.max){
+        if (playerViewDistance > variable.max) {
             setPlayerViewDistance(player, variable.max);
-        }
-        else if(playerViewDistance < variable.min){
+        } else if (playerViewDistance < variable.min) {
             setPlayerViewDistance(player, variable.min);
         }
-        if(player.getViewDistance() > variable.max){
+        if (player.getViewDistance() > variable.max) {
             player.setViewDistance(variable.max);
-        }
-        else if(player.getViewDistance() < variable.min) {
+        } else if (player.getViewDistance() < variable.min) {
             player.setViewDistance(variable.min);
         }
 
 
     }
 
-    public static void setServerLimits(){
+    public static void setServerLimits() {
         double ReductionIndice = getActualReductionIndice();
-        if(ReductionIndice > variable.maxindice){
+        if (ReductionIndice > variable.maxindice) {
             setServerReductionIndice(variable.maxindice);
-        }
-        else if(ReductionIndice < 0){
+        } else if (ReductionIndice < 0) {
             setServerReductionIndice(0);
         }
     }
 
 
-    public static void setPlayersBestViewDistance(double ReductionIndice){
-        for(Player player : Bukkit.getOnlinePlayers()) {
-            if(afkList.contains(player)) {
+    public static void setPlayersBestViewDistance(double ReductionIndice) {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            if(afkList.contains(player.getName())){
                 player.setViewDistance(variable.min);
-            }
-            else{
+            } else {
                 int viewDistance = getPlayerViewDistance(player);
-                if (player.spigot().getPing() < variable.aping) {
+                int ping = player.spigot().getPing();
+                if (ping < variable.aping && ping > 1) {
                     viewDistance = viewDistance + 1;
                     setPlayerViewDistance(player, viewDistance);
-                } else if (player.spigot().getPing() >= variable.rping) {
+                } else if (ping >= variable.rping) {
                     viewDistance = viewDistance - 1;
                     setPlayerViewDistance(player, viewDistance);
                 }
