@@ -12,10 +12,9 @@ import static me.lxct.bestviewdistance.functions.variable.playerViewDistance;
 
 public class onLogin implements Listener {
     @EventHandler
-    public static void onPlayerLogin(PlayerJoinEvent event){
+    public static void onPlayerLogin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         genPlayerData(player);
         playerViewDistance.put(player.getUniqueId(), getPlayerViewDistance(player)); // LOAD PLAYER DATA
     }
-
 }

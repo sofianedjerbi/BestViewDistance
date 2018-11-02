@@ -5,7 +5,6 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
@@ -16,7 +15,7 @@ import static me.lxct.bestviewdistance.functions.variable.playerViewDistance;
 
 public class set extends org.bukkit.plugin.java.JavaPlugin {
 
-    static void setPlayerViewDistance(OfflinePlayer player, int x) {
+    public static void setPlayerViewDistance(OfflinePlayer player, int x) {
         genPlayerData(player);
         File file = new File("plugins/BestViewDistance/data/" + player.getUniqueId() + ".yml");
         FileConfiguration config = YamlConfiguration.loadConfiguration(file);

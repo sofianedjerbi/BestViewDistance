@@ -24,7 +24,7 @@ public class main extends org.bukkit.plugin.java.JavaPlugin
         getServer().getPluginManager().registerEvents(new onPlayerMove(), this); // Add OnPlayerMove Event
         saveDefaultConfig(); // GENERATE CONFIG
         // WARNING
-        Bukkit.getLogger().info("╔╗ ┌─┐┌─┐┌┬┐  ╦  ╦┬┌─┐┬ ┬  ╔╦╗┬┌─┐┌┬┐┌─┐┌┐┌┌─┐┌─┐");
+        Bukkit.getLogger().info("╔╗ ┌─┐┌─┐┌┬┐  ╦  ╦┬┌─┐┬ ┬  ╔╦╗┬┌─┐┌┬┐┌─┐┌┐┌┌─┐┌─┐"); // Display
         Bukkit.getLogger().info("╠╩╗├┤ └─┐ │   ╚╗╔╝│├┤ │││   ║║│└─┐ │ ├─┤││││  ├┤ ");
         Bukkit.getLogger().info("╚═╝└─┘└─┘ ┴    ╚╝ ┴└─┘└┴┘  ═╩╝┴└─┘ ┴ ┴ ┴┘└┘└─┘└─┘");
         Bukkit.getLogger().info("╚ Make sure you use this plugin with Paper.");
@@ -34,8 +34,8 @@ public class main extends org.bukkit.plugin.java.JavaPlugin
         genFolders(); // CREATING /plugins/BestViewDistance/data/
         genServerData(); // CREATING SERVER.YML
         genAllOnlinePlayerData(); // In case of a /reload
-        loadServerReductionIndice();
-        getCommand("view").setExecutor(new viewCommand());
+        loadServerReductionIndice(); // Load reduction indice
+        getCommand("view").setExecutor(new viewCommand()); // Executor for commands
         getCommand("vdist").setExecutor(new viewCommand());
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, calculations, 0L,this.getConfig().getInt("ViewDistance.Delay")*20L); // CALCULATIONS SCHEDULER
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, detectAFK, 0L,this.getConfig().getInt("Performances.AFKTimer")*20L); // DETECT AFK SCHEDULER
