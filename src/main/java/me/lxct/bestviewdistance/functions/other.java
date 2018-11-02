@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 import static me.lxct.bestviewdistance.functions.set.setPlayerViewDistance;
 import static me.lxct.bestviewdistance.functions.variable.*;
@@ -46,10 +47,10 @@ public class other {
     }
 
     public static void savePlayerViewDistance() {
-        for(Map.Entry<String, Integer> entry : playerViewDistance.entrySet()) {
-            String name = entry.getKey();
+        for(Map.Entry<UUID, Integer> entry : playerViewDistance.entrySet()) {
+            UUID name = entry.getKey();
             Integer viewDist = entry.getValue();
-            setPlayerViewDistance(Bukkit.getPlayer(name), viewDist);
+            setPlayerViewDistance(Bukkit.getOfflinePlayer(name), viewDist);
         }
     }
 }

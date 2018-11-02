@@ -1,12 +1,14 @@
 package me.lxct.bestviewdistance.functions;
 
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
 
 import static me.lxct.bestviewdistance.functions.gen.genPlayerData;
 import static me.lxct.bestviewdistance.functions.variable.afkList;
@@ -14,7 +16,7 @@ import static me.lxct.bestviewdistance.functions.variable.playerViewDistance;
 
 public class set extends org.bukkit.plugin.java.JavaPlugin {
 
-    static void setPlayerViewDistance(Player player, int x) {
+    static void setPlayerViewDistance(OfflinePlayer player, int x) {
         genPlayerData(player);
         File file = new File("plugins/BestViewDistance/data/" + player.getUniqueId() + ".yml");
         FileConfiguration config = YamlConfiguration.loadConfiguration(file);
@@ -28,7 +30,7 @@ public class set extends org.bukkit.plugin.java.JavaPlugin {
 
 
     private static void setPlayerLimits(Player player) {
-        String name = player.getName();
+        UUID name = player.getUniqueId();
         int pViewDistance = playerViewDistance.get(name);
         if (pViewDistance > variable.max) {
             playerViewDistance.put(name, variable.max);
@@ -58,7 +60,7 @@ public class set extends org.bukkit.plugin.java.JavaPlugin {
             if(afkList.contains(player.getName())){
                 player.setViewDistance(variable.min);
             } else {
-                String name = player.getName();
+                UUID name = player.getUniqueId();
                 int viewDistance = playerViewDistance.get(name);
                 int ping = player.spigot().getPing();
                 if (ping < variable.aping && ping > 1) {

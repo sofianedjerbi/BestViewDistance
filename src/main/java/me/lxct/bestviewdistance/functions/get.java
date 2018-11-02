@@ -29,5 +29,4 @@ public class get extends org.bukkit.plugin.java.JavaPlugin {
             return variable.reductionIndice;
         }
     }
-
 }

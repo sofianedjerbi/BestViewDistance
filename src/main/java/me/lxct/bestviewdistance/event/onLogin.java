@@ -15,7 +15,7 @@ public class onLogin implements Listener {
     public static void onPlayerLogin(PlayerJoinEvent event){
         Player player = event.getPlayer();
         genPlayerData(player);
-        playerViewDistance.put(player.getName(), getPlayerViewDistance(player)); // LOAD PLAYER DATA
+        playerViewDistance.put(player.getUniqueId(), getPlayerViewDistance(player)); // LOAD PLAYER DATA
     }
 
 }

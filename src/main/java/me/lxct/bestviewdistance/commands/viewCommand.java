@@ -30,7 +30,7 @@ public class viewCommand implements CommandExecutor {
         }
         else if (cmd.getName().equalsIgnoreCase("vdist") && sender.hasPermission("view.info")) {
             if (sender instanceof Player) {
-                sender.sendMessage(colorize("&7View Distance => &d" + ((Player) sender).getViewDistance() + "/" + playerViewDistance.get(((Player) sender).getPlayer().getName())));
+                sender.sendMessage(colorize("&7View Distance => &d" + ((Player) sender).getViewDistance() + "/" + playerViewDistance.get(((Player) sender).getUniqueId())));
             }
         }
         return true;
