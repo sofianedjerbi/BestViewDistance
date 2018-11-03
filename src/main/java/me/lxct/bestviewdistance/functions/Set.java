@@ -21,8 +21,12 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
 
         //noinspection deprecation
         int clientSideViewDistance = player.getClientViewDistance(); // Get Client Side View Distance
-        if (viewDistance > clientSideViewDistance){ // If given view distance is more than client side view distance
-            viewDistance = clientSideViewDistance;
+        if (viewDistance > clientSideViewDistance) { // If given view distance is more than client side view distance
+            if (viewDistance < Variable.min) {
+                viewDistance = Variable.min;
+            } else {
+                viewDistance = clientSideViewDistance;
+            }
         }
         return viewDistance;
     }
