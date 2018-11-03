@@ -1,14 +1,14 @@
 package me.lxct.bestviewdistance.commands;
 
-import me.lxct.bestviewdistance.main;
+import me.lxct.bestviewdistance.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import static me.lxct.bestviewdistance.functions.variable.*;
+import static me.lxct.bestviewdistance.functions.Variable.*;
 
 
-class commands {
+class Commands {
 
 
     static String colorize(String string) {
@@ -47,7 +47,7 @@ class commands {
         }
         else {
             String TpsMsg = String.valueOf(player.getViewDistance());
-            sender.sendMessage(colorize("&aView Distance of " + player.getName() + " => &d" + TpsMsg + "/" + playerViewDistance.get(player.getUniqueId())));
+            sender.sendMessage(colorize("&aView Distance of " + player.getName() + " => &d" + TpsMsg + "/" + playerViewDistance.get(player.getName())));
         }
     }
 
@@ -61,14 +61,14 @@ class commands {
 
     static void commandReload(String[] args, CommandSender sender){
         if(args[0].equalsIgnoreCase("reload")){
-            main.plugin.reloadConfig();
-            max = main.plugin.getConfig().getInt("ViewDistance.Max");
-            min = main.plugin.getConfig().getInt("ViewDistance.Min");
-            rping = main.plugin.getConfig().getInt("Performances.PingForReduction");
-            aping = main.plugin.getConfig().getInt("Performances.PingForAugmentation");
-            tpslimit = main.plugin.getConfig().getDouble("Performances.TPSLimit");
-            tpschange = main.plugin.getConfig().getDouble("Performances.TPSChangeIndice");
-            maxindice = main.plugin.getConfig().getDouble("Performances.MaxReductionIndice");
+            Main.plugin.reloadConfig();
+            max = Main.plugin.getConfig().getInt("ViewDistance.Max");
+            min = Main.plugin.getConfig().getInt("ViewDistance.Min");
+            rping = Main.plugin.getConfig().getInt("Performances.PingForReduction");
+            aping = Main.plugin.getConfig().getInt("Performances.PingForAugmentation");
+            tpslimit = Main.plugin.getConfig().getDouble("Performances.TPSLimit");
+            tpschange = Main.plugin.getConfig().getDouble("Performances.TPSChangeIndice");
+            maxindice = Main.plugin.getConfig().getDouble("Performances.MaxReductionIndice");
             sender.sendMessage(colorize("&aBest View Distance config reloaded !"));
         }
     }

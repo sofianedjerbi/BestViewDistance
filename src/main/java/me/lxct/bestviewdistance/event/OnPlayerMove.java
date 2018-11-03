@@ -4,10 +4,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-import static me.lxct.bestviewdistance.functions.variable.afkList;
+import static me.lxct.bestviewdistance.functions.Variable.afkList;
 
 
-public class onPlayerMove implements Listener {
+public class OnPlayerMove implements Listener {
     @EventHandler
     public static void playerMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
