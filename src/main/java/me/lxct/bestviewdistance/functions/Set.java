@@ -22,7 +22,7 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
         //noinspection deprecation
         int clientSideViewDistance = player.getClientViewDistance(); // Get Client Side View Distance
         if (viewDistance > clientSideViewDistance) { // If given view distance is more than client side view distance
-            if (viewDistance < Variable.min) {
+            if (clientSideViewDistance < Variable.min) {
                 viewDistance = Variable.min;
             } else {
                 viewDistance = clientSideViewDistance;
@@ -51,13 +51,13 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
         }
     }
 
-    // THE MAIN FUNCTION ! CALCULATE BEST PLAYER VIEW DISTANCE WITH REDUCTION INDICE
+    // THE MAIN FUNCTION ! CALCULATE BEST PLAYER VIEW DISTANCE WITH REDUCTION INDICE |||| NEED IMPROVEMENTS
     public static void setPlayersBestViewDistance(double ReductionIndice) {
         for (Player player : Bukkit.getOnlinePlayers()) {
             if(afkList.contains(player.getName())){ // IF player is afk
                 player.setViewDistance(Variable.min);
             }
-            else {
+            else{
                 int supportedViewDistance = playerViewDistance.get(player.getName()); // View distance supported by player
                 int ping = player.spigot().getPing(); // Ping of player
 

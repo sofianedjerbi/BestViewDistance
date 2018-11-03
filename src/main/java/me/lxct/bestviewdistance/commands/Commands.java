@@ -47,7 +47,8 @@ class Commands {
         }
         else {
             String TpsMsg = String.valueOf(player.getViewDistance());
-            sender.sendMessage(colorize("&aView Distance of " + player.getName() + " => &d" + TpsMsg + "/" + playerViewDistance.get(player.getName())));
+            //noinspection deprecation
+            sender.sendMessage(colorize("&aView Distance of " + player.getName() + " => &d" + TpsMsg + "/" + player.getClientViewDistance()));
         }
     }
 

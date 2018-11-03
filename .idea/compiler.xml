@@ -6,8 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Best View Distance" />
+        <module name="BestViewDistance" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Best View Distance" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
