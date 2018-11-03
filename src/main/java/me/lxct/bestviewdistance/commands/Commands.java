@@ -1,6 +1,6 @@
 package me.lxct.bestviewdistance.commands;
 
-import me.lxct.bestviewdistance.Main;
+import me.lxct.bestviewdistance.BestViewDistance;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -61,14 +61,14 @@ class Commands {
 
     static void commandReload(String[] args, CommandSender sender){
         if(args[0].equalsIgnoreCase("reload")){
-            Main.plugin.reloadConfig();
-            max = Main.plugin.getConfig().getInt("ViewDistance.Max");
-            min = Main.plugin.getConfig().getInt("ViewDistance.Min");
-            rping = Main.plugin.getConfig().getInt("Performances.PingForReduction");
-            aping = Main.plugin.getConfig().getInt("Performances.PingForAugmentation");
-            tpslimit = Main.plugin.getConfig().getDouble("Performances.TPSLimit");
-            tpschange = Main.plugin.getConfig().getDouble("Performances.TPSChangeIndice");
-            maxindice = Main.plugin.getConfig().getDouble("Performances.MaxReductionIndice");
+            BestViewDistance.plugin.reloadConfig();
+            max = BestViewDistance.plugin.getConfig().getInt("ViewDistance.Max");
+            min = BestViewDistance.plugin.getConfig().getInt("ViewDistance.Min");
+            rping = BestViewDistance.plugin.getConfig().getInt("Performances.PingForReduction");
+            aping = BestViewDistance.plugin.getConfig().getInt("Performances.PingForAugmentation");
+            tpslimit = BestViewDistance.plugin.getConfig().getDouble("Performances.TPSLimit");
+            tpschange = BestViewDistance.plugin.getConfig().getDouble("Performances.TPSChangeIndice");
+            maxindice = BestViewDistance.plugin.getConfig().getDouble("Performances.MaxReductionIndice");
             sender.sendMessage(colorize("&aBest View Distance config reloaded !"));
         }
     }

@@ -12,9 +12,9 @@ import static me.lxct.bestviewdistance.functions.Get.getNewReductionIndice;
 import static me.lxct.bestviewdistance.functions.Set.setPlayersBestViewDistance;
 import static me.lxct.bestviewdistance.functions.Set.setServerLimits;
 
-public class Main extends org.bukkit.plugin.java.JavaPlugin
+public class BestViewDistance extends org.bukkit.plugin.java.JavaPlugin
 {
-    public static Main plugin;
+    public static BestViewDistance plugin;
 
     @Override
     public void onEnable(){
