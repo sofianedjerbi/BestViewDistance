@@ -1,10 +1,11 @@
 package me.lxct.bestviewdistance;
 
 import me.lxct.bestviewdistance.commands.ViewCommand;
-import me.lxct.bestviewdistance.event.OnPlayerMove;
 import me.lxct.bestviewdistance.event.OnLogin;
+import me.lxct.bestviewdistance.event.OnPlayerMove;
 import me.lxct.bestviewdistance.functions.Other;
 import me.lxct.bestviewdistance.functions.Variable;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 
 import static me.lxct.bestviewdistance.functions.Get.getNewReductionIndice;
@@ -33,6 +34,7 @@ public class Main extends org.bukkit.plugin.java.JavaPlugin
         getCommand("vdist").setExecutor(new ViewCommand());
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, calculations, 0L,this.getConfig().getInt("ViewDistance.Delay")*20L); // CALCULATIONS SCHEDULER
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, detectAFK, 0L,this.getConfig().getInt("Performances.AFKTimer")*20L); // DETECT AFK SCHEDULER
+        Metrics metrics = new Metrics(this); // METRICS
     }
 
     private Runnable calculations = // CALCULATIONS
