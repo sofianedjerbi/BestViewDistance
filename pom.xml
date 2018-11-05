@@ -19,6 +19,10 @@
     </properties>
     <repositories>
         <repository>
+            <id>dmulloy2-repo</id>
+            <url>http://repo.dmulloy2.net/nexus/repository/public/</url>
+        </repository>
+        <repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
@@ -32,6 +36,12 @@
         </repository>
     </repositories>
     <dependencies>
+        <!-- ProtocolLib API -->
+        <dependency>
+            <groupId>com.comphenix.protocol</groupId>
+            <artifactId>ProtocolLib</artifactId>
+            <version>4.4.0</version>
+        </dependency>
         <!-- BStats Metrics -->
         <dependency>
             <groupId>org.bstats</groupId>
