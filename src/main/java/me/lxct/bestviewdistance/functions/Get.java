@@ -1,7 +1,6 @@
 package me.lxct.bestviewdistance.functions;
 
-import me.lxct.bestviewdistance.functions.packets.AbstractPacket;
-import me.lxct.bestviewdistance.functions.packets.WrapperPlayClientSettings;
+import me.lxct.bestviewdistance.BestViewDistance;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -18,9 +17,8 @@ public class Get extends org.bukkit.plugin.java.JavaPlugin {
     }
     public static int getViewDistance(Player player){
         if (Bukkit.getVersion().contains("1.12")) {
-            AbstractPacket.receivePacket(player);
-            new WrapperPlayClientSettings(AbstractPacket.getHandle());
-            return WrapperPlayClientSettings.getViewDistanceOld();
+            Bukkit.getScheduler().runTask(BestViewDistance.plugin, new GetClientViewDistance(player)); // Break async chain
+            return GetClientViewDistance.getViewDistanceOld;
         }
         else{
             return player.getViewDistance();
