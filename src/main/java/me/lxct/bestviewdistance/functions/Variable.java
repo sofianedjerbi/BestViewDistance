@@ -10,7 +10,7 @@ import java.util.List;
 public class Variable{
     public static int max = BestViewDistance.plugin.getConfig().getInt("ViewDistance.Max");
     public static int min = BestViewDistance.plugin.getConfig().getInt("ViewDistance.Min");
-    static int afk = BestViewDistance.plugin.getConfig().getInt("ViewDistance.AFK");
+    public static int afk = BestViewDistance.plugin.getConfig().getInt("ViewDistance.AFK");
     // public static int min = Main.plugin.getConfig().getInt("ViewDistance.Delay"); not needed.
     public static int rping = BestViewDistance.plugin.getConfig().getInt("Performances.PingForReduction");
     public static int aping = BestViewDistance.plugin.getConfig().getInt("Performances.PingForAugmentation");

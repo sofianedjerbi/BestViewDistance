@@ -64,6 +64,7 @@ class Commands {
         if(args[0].equalsIgnoreCase("reload")){
             BestViewDistance.plugin.reloadConfig();
             max = BestViewDistance.plugin.getConfig().getInt("ViewDistance.Max");
+            afk = BestViewDistance.plugin.getConfig().getInt("ViewDistance.AFK");
             min = BestViewDistance.plugin.getConfig().getInt("ViewDistance.Min");
             rping = BestViewDistance.plugin.getConfig().getInt("Performances.PingForReduction");
             aping = BestViewDistance.plugin.getConfig().getInt("Performances.PingForAugmentation");
