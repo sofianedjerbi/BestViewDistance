@@ -4,6 +4,7 @@ import me.lxct.bestviewdistance.BestViewDistance;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import static me.lxct.bestviewdistance.functions.Get.getViewDistance;
 import static me.lxct.bestviewdistance.functions.Variable.afkList;
 import static me.lxct.bestviewdistance.functions.Variable.playerViewDistance;
 
@@ -22,9 +23,7 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
 
     // A FUNCTION FOR CLIENT SIDE SETTING. DON'T GIVE MORE VIEW DISTANCE THAN REQUIRED.
     private static int setClientSettingLimit(Player player, int viewDistance) {
-
-        //noinspection deprecation
-        int clientSideViewDistance = player.getClientViewDistance(); // Get Client Side View Distance
+        int clientSideViewDistance = getViewDistance(player); // Get Client Side View Distance
         if (viewDistance > clientSideViewDistance) { // If given view distance is more than client side view distance
             if (clientSideViewDistance < Variable.min) {
                 viewDistance = Variable.min;
@@ -54,7 +53,7 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
         }
     }
 
-    // THE MAIN FUNCTION ! CALCULATE BEST PLAYER VIEW DISTANCE WITH REDUCTION INDICE |||| NEED IMPROVEMENTS
+    // THE MAIN FUNCTION ! CALCULATE BEST PLAYER VIEW DISTANCE WITH REDUCTION INDICE |||| NEED IMPROVEMENTS !!
     public static void setPlayersBestViewDistance(double ReductionIndice) {
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (afkList.contains(player.getName())) { // IF player is afk

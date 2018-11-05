@@ -7,6 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import static me.lxct.bestviewdistance.commands.Commands.*;
+import static me.lxct.bestviewdistance.functions.Get.getViewDistance;
 
 public class ViewCommand implements CommandExecutor {
 
@@ -29,8 +30,7 @@ public class ViewCommand implements CommandExecutor {
         }
         else if (cmd.getName().equalsIgnoreCase("vdist") && sender.hasPermission("view.info")) {
             if (sender instanceof Player) {
-                //noinspection deprecation
-                sender.sendMessage(colorize("&7View Distance => &d" + ((Player) sender).getViewDistance() + "/" + ((Player) sender).getClientViewDistance()));
+                sender.sendMessage(colorize("&7View Distance => &d" + ((Player) sender).getViewDistance() + "/" + (getViewDistance((Player) sender))));
             }
         }
         return true;
