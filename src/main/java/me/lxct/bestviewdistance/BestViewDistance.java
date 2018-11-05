@@ -33,8 +33,10 @@ public class BestViewDistance extends JavaPlugin{
         // WARNING
         getCommand("view").setExecutor(new ViewCommand()); // Executor for commands
         getCommand("vdist").setExecutor(new ViewCommand());
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, calculations, 0L,this.getConfig().getInt("ViewDistance.Delay")*20L); // CALCULATIONS SCHEDULER
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, detectAFK, 0L,this.getConfig().getInt("Performances.AFKTimer")*20L); // DETECT AFK SCHEDULER
+        //noinspection deprecation
+        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, calculations, 0L,this.getConfig().getInt("ViewDistance.Delay")*20L); // CALCULATIONS SCHEDULER
+        //noinspection deprecation
+        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, detectAFK, 0L,this.getConfig().getInt("Performances.AFKTimer")*20L); // DETECT AFK SCHEDULER
         Metrics metrics = new Metrics(this); // METRICS
     }
 
