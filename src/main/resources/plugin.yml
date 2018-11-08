@@ -3,6 +3,7 @@ version: 4.0
 api-version: 1.13
 description: Best View Distance. Optimize your view distance.
 author: Lxct
+softdepend: [ProtocolLib]
 main: me.lxct.bestviewdistance.BestViewDistance
 
 commands:
