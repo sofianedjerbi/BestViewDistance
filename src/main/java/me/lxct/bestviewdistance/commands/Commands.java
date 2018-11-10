@@ -61,6 +61,7 @@ class Commands {
     static void commandReload(String[] args, CommandSender sender){
         if(args[0].equalsIgnoreCase("reload")){
             BestViewDistance.plugin.reloadConfig();
+            Other.loadMessagesYml(); // Like a "BestViewDistance.plugin.reloadCustomConfig();" you know
             loadVariables();
             sender.sendMessage(colorize(Other.replacePlaceHolders(viewReload)));
         }
