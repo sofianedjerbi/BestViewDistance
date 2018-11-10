@@ -10,6 +10,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import static me.lxct.bestviewdistance.functions.Get.getNewReductionIndice;
+import static me.lxct.bestviewdistance.functions.Other.genMessagesYml;
+import static me.lxct.bestviewdistance.functions.Other.loadMessagesYml;
 import static me.lxct.bestviewdistance.functions.Set.setPlayersBestViewDistance;
 import static me.lxct.bestviewdistance.functions.Set.setServerLimits;
 
@@ -22,7 +24,9 @@ public class BestViewDistance extends JavaPlugin{
         plugin=this; // Allow BestViewDistance.plugin
         getServer().getPluginManager().registerEvents(new OnLogin(), this); // Add OnLogin Event
         getServer().getPluginManager().registerEvents(new OnPlayerMove(), this); // Add OnPlayerMove Event
-        saveDefaultConfig(); // GENERATE CONFIG
+        saveDefaultConfig(); // GENERATE
+        genMessagesYml();
+        loadMessagesYml();
         // WARNING
         Bukkit.getLogger().info("╔╗ ┌─┐┌─┐┌┬┐  ╦  ╦┬┌─┐┬ ┬  ╔╦╗┬┌─┐┌┬┐┌─┐┌┐┌┌─┐┌─┐"); // Display
         Bukkit.getLogger().info("╠╩╗├┤ └─┐ │   ╚╗╔╝│├┤ │││   ║║│└─┐ │ ├─┤││││  ├┤ ");

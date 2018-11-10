@@ -1,0 +1,47 @@
+#   ╔╗ ┌─┐┌─┐┌┬┐  ╦  ╦┬┌─┐┬ ┬  ╔╦╗┬┌─┐┌┬┐┌─┐┌┐┌┌─┐┌─┐
+#   ╠╩╗├┤ └─┐ │   ╚╗╔╝│├┤ │││   ║║│└─┐ │ ├─┤││││  ├┤
+#   ╚═╝└─┘└─┘ ┴    ╚╝ ┴└─┘└┴┘  ═╩╝┴└─┘ ┴ ┴ ┴┘└┘└─┘└─┘
+#       - Get a Better View Distance, By LXCT. -
+#=======================================================
+# Customize your messages !
+#
+# Custom Place Holders :
+#
+# %PLAYER% => The name of the player.
+# %VIEWDISTANCE% => Actual view distance of player
+# %SETTINGS% => View Distance in settings of player
+# %PINGVIEW% => Maximum view distance supported by the ping
+# %REDUCTIONINDICE% => The Reduction Indice in percentage
+# %PING% => Ping of a player
+# %TPS% => TPS of the server
+#
+# Minecraft color code is obviously supported.
+
+view:
+  reload: "&aBest View Distance config reloaded !"
+  ping: "Ping of %PLAYER%: %PING%ms"
+  tps: "TPS => %TPS"
+  server: "&7The view distance is reduced by:&d %REDUCTIONINDICE%%"
+  offline: "&cPlayer offline. /view <player>"
+  incorrectPing: "&c/view ping <player>"
+  incorrectView: "&c/view <player>"
+
+viewPlayer:
+  line1: "&7View Distance of %PLAYER% =>&d %VIEWDISTANCE% (Actual)"
+  line2: "&7View Distance of %PLAYER% =>&d %PINGVIEW% (Supported)"
+  line3: "&7View Distance of %PLAYER% =>&d %SETTINGS% (Settings)"
+
+
+vdist:
+  line1: "&7View Distance =>&d %VIEWDISTANCE% (Actual)"
+  line2: "&7View Distance =>&d %PINGVIEW% (Supported)"
+  line3: "&7View Distance =>&d %SETTINGS% (Settings)"
+  line4: "&7View distance reduced by&d %REDUCTIONINDICE%%"
+
+help:
+  line1: "&d/vdist =>&a View your own view distance."
+  line2: "&d/view server =>&a Get reduction indice."
+  line3: "&d/view tps =>&a Get server's tps."
+  line4: "&d/view ping <player> =>&a Get player ping."
+  line5: "&d/view <player> =>&a Get player view distance info."
+  line6: "&d/view =>&a This message."

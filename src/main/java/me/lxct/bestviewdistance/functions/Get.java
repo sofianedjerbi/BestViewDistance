@@ -16,7 +16,7 @@ public class Get {
         }
     }
 
-    public static int getViewDistance(Player player) {
+    static int getViewDistance(Player player) {
         if (Bukkit.getVersion().contains("1.12")) {
             Bukkit.getScheduler().runTask(BestViewDistance.plugin, new GetClientViewDistance(player));
             return Variable.tmpClientViewDistance;

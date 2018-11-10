@@ -22,7 +22,7 @@
 #   AFKTimer : 90 # Seconds before getting "AFK" and get his view distance reduced to "Min" value. Keep this value over 60. (Doesn't affect gameplay)
 # Other:
 #   HideReductionIndiceFromVdist: false # Hide the "Reduced by x.x%" when players uses /vdist
-#   Metrics: true # Please keep this to true. Metrics is anonymous and it helps developers stay motivated.
+#   Metrics: true # Please keep this to true. Metrics is anonymous and it helps developers stay motivated. NEED RESTART
 #
 # Please restart your server the first time you're using this plugin. Don't reload.
 #
@@ -43,5 +43,5 @@ Performances:
   MaxReductionIndice: 0.75
   AFKTimer: 90
 Other:
-  HideReductionIndiceFromVdist: false
+  HideReductionIndiceInVdist: false
   Metrics: true
