@@ -38,6 +38,7 @@ public class BestViewDistance extends JavaPlugin{
         //noinspection deprecation
         Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, detectAFK, 0L,this.getConfig().getInt("Performances.AFKTimer")*20L); // DETECT AFK SCHEDULER
         if(this.getConfig().getBoolean("Other.Metrics")) {
+            //noinspection unused
             Metrics metrics = new Metrics(this); // METRICS
         }
     }
