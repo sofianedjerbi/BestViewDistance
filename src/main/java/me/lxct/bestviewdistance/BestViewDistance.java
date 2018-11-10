@@ -19,7 +19,7 @@ public class BestViewDistance extends JavaPlugin{
 
     @Override
     public void onEnable(){
-        plugin=this; // Allow java.lang.NoClassDefFoundError: org/bstats/bukkit/Metrics.plugin
+        plugin=this; // Allow BestViewDistance.plugin
         getServer().getPluginManager().registerEvents(new OnLogin(), this); // Add OnLogin Event
         getServer().getPluginManager().registerEvents(new OnPlayerMove(), this); // Add OnPlayerMove Event
         saveDefaultConfig(); // GENERATE CONFIG
@@ -37,7 +37,9 @@ public class BestViewDistance extends JavaPlugin{
         Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, calculations, 0L,this.getConfig().getInt("ViewDistance.Delay")*20L); // CALCULATIONS SCHEDULER
         //noinspection deprecation
         Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, detectAFK, 0L,this.getConfig().getInt("Performances.AFKTimer")*20L); // DETECT AFK SCHEDULER
-        Metrics metrics = new Metrics(this); // METRICS
+        if(this.getConfig().getBoolean("Other.Metrics")) {
+            Metrics metrics = new Metrics(this); // METRICS
+        }
     }
 
     private Runnable calculations = // CALCULATIONS
