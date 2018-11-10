@@ -22,11 +22,6 @@ public class BestViewDistance extends JavaPlugin{
     @Override
     public void onEnable(){
         plugin=this; // Allow BestViewDistance.plugin
-        getServer().getPluginManager().registerEvents(new OnLogin(), this); // Add OnLogin Event
-        getServer().getPluginManager().registerEvents(new OnPlayerMove(), this); // Add OnPlayerMove Event
-        saveDefaultConfig(); // GENERATE
-        genMessagesYml();
-        loadMessagesYml();
         // WARNING
         Bukkit.getLogger().info("╔╗ ┌─┐┌─┐┌┬┐  ╦  ╦┬┌─┐┬ ┬  ╔╦╗┬┌─┐┌┬┐┌─┐┌┐┌┌─┐┌─┐"); // Display
         Bukkit.getLogger().info("╠╩╗├┤ └─┐ │   ╚╗╔╝│├┤ │││   ║║│└─┐ │ ├─┤││││  ├┤ ");
@@ -35,6 +30,11 @@ public class BestViewDistance extends JavaPlugin{
         Bukkit.getLogger().info("╚ https://papermc.io/");
         Bukkit.getLogger().info("╚ Best View Distance, By Lxct. ");
         // WARNING
+        getServer().getPluginManager().registerEvents(new OnLogin(), this); // Add OnLogin Event
+        getServer().getPluginManager().registerEvents(new OnPlayerMove(), this); // Add OnPlayerMove Event
+        saveDefaultConfig(); // GENERATE
+        genMessagesYml();
+        loadMessagesYml();
         getCommand("view").setExecutor(new ViewCommand()); // Executor for commands
         getCommand("vdist").setExecutor(new ViewCommand());
         //noinspection deprecation
