@@ -47,15 +47,16 @@ class Commands {
             sender.sendMessage(colorize("&c/view <player>"));
         }
         else {
-            sender.sendMessage(colorize("&aView Distance of " + player.getName() + " => &d" + String.valueOf(player.getViewDistance()) + "/" + getViewDistance(player)));
+            sender.sendMessage(colorize("&aView Distance of " + player.getName() + " => &d" + player.getViewDistance() + " (Actual)"));
+            sender.sendMessage(colorize("&aView Distance of " + player.getName() + " => &d" + playerViewDistance.get(player.getName()) + " (Ping Max)"));
+            sender.sendMessage(colorize("&aView Distance of " + player.getName() + " => &d" + getViewDistance(player) + " (Settings)"));
         }
     }
 
 
     static void commandServer(String[] args, CommandSender sender){
         if(args[0].equalsIgnoreCase("server")){
-            String indice = String.valueOf(reductionIndice*100);
-            sender.sendMessage(colorize("&aThe view distance is reduced by &d" + indice + "%"));
+            sender.sendMessage(colorize("&aThe view distance is reduced by &d" + Math.round(reductionIndice*100) + "%"));
         }
     }
 
@@ -70,6 +71,7 @@ class Commands {
             tpslimit = BestViewDistance.plugin.getConfig().getDouble("Performances.TPSLimit");
             tpschange = BestViewDistance.plugin.getConfig().getDouble("Performances.TPSChangeIndice");
             maxindice = BestViewDistance.plugin.getConfig().getDouble("Performances.MaxReductionIndice");
+            hidereductionindice = BestViewDistance.plugin.getConfig().getBoolean("Other.HideReductionIndiceFromVdist");
             sender.sendMessage(colorize("&aBest View Distance config reloaded !"));
         }
     }

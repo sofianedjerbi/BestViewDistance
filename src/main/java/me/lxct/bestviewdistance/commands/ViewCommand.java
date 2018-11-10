@@ -1,5 +1,6 @@
 package me.lxct.bestviewdistance.commands;
 
+import me.lxct.bestviewdistance.functions.Variable;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -8,6 +9,8 @@ import org.bukkit.entity.Player;
 
 import static me.lxct.bestviewdistance.commands.Commands.*;
 import static me.lxct.bestviewdistance.functions.Get.getViewDistance;
+import static me.lxct.bestviewdistance.functions.Variable.playerViewDistance;
+import static me.lxct.bestviewdistance.functions.Variable.reductionIndice;
 
 public class ViewCommand implements CommandExecutor {
 
@@ -30,7 +33,12 @@ public class ViewCommand implements CommandExecutor {
         }
         else if (cmd.getName().equalsIgnoreCase("vdist") && sender.hasPermission("view.info")) {
             if (sender instanceof Player) {
-                sender.sendMessage(colorize("&7View Distance => &d" + ((Player) sender).getViewDistance() + "/" + (getViewDistance((Player) sender))));
+                sender.sendMessage(colorize("&7View Distance => &d" + ((Player) sender).getViewDistance() + " &7(Actual)"));
+                sender.sendMessage(colorize("&7View Distance => &d" + playerViewDistance.get(sender.getName()) + " &7(Ping Max)"));
+                sender.sendMessage(colorize("&7View Distance => &d" + getViewDistance((Player) sender) + " &7(Settings)"));
+                if(Variable.hidereductionindice) {
+                    sender.sendMessage(colorize("&7Reduced by &d" + Math.round(reductionIndice * 100) + "%"));
+                }
             }
         }
         return true;

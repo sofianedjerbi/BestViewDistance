@@ -1,8 +1,6 @@
 package me.lxct.bestviewdistance.functions;
 
-import com.comphenix.protocol.PacketType;
-import com.comphenix.protocol.events.PacketContainer;
-import me.lxct.bestviewdistance.functions.packets.WrapperPlayClientSettings;
+import me.lxct.bestviewdistance.BestViewDistance;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -17,14 +15,12 @@ public class Get {
             return Variable.reductionIndice; // Nothing.
         }
     }
-    public static int getViewDistance(Player player){
+
+    public static int getViewDistance(Player player) {
         if (Bukkit.getVersion().contains("1.12")) {
-            PacketContainer packetClientSettings = new PacketContainer(PacketType.Play.Client.SETTINGS);
-            WrapperPlayClientSettings viewDistanceWrapper = new WrapperPlayClientSettings(packetClientSettings);
-            viewDistanceWrapper.receivePacket(player);
-            return viewDistanceWrapper.getViewDistance();
-        }
-        else{
+            Bukkit.getScheduler().runTask(BestViewDistance.plugin, new GetClientViewDistance(player));
+            return Variable.tmpClientViewDistance;
+        } else {
             return player.getViewDistance();
         }
     }

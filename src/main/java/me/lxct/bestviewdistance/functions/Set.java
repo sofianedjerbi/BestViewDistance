@@ -25,11 +25,7 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
     private static int setClientSettingLimit(Player player, int viewDistance) {
         int clientSideViewDistance = getViewDistance(player); // Get Client Side View Distance
         if (viewDistance > clientSideViewDistance) { // If given view distance is more than client side view distance
-            if (clientSideViewDistance < Variable.min) {
-                viewDistance = Variable.min;
-            } else {
                 viewDistance = clientSideViewDistance;
-            }
         }
         return viewDistance;
     }
