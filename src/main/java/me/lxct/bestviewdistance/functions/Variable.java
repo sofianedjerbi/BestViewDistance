@@ -17,7 +17,6 @@ public class Variable {
     static int max;
     public static int min;
     static int afk;
-    // public static int min = Main.plugin.getConfig().getInt("ViewDistance.Delay"); not needed.
     static int rping;
     static int aping;
     static double tpslimit;

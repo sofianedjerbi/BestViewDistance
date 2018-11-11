@@ -14,13 +14,13 @@ import java.io.IOException;
 import static me.lxct.bestviewdistance.functions.Variable.*;
 
 public class Other {
-    private static YamlConfiguration customConfig;
+    private static FileConfiguration customConfig;
 
     public static void putPlayerAFK() { // What this function does ? if the player has exactly the same position as two minutes ago, he'll be set in "AFK" mode.
         for (Player player : Bukkit.getServer().getOnlinePlayers()) { // Every players...
             Location location = player.getLocation(); // Get Location
-            if (location.equals(playerLocation.get(player.getName()))){ // If same position ...
-                if(!afkList.contains(player.getName())) { // If player is not afk
+            if (location.equals(playerLocation.get(player.getName()))) { // If same position ...
+                if (!afkList.contains(player.getName())) { // If player is not afk
                     afkList.add(player.getName()); // SET AFK
                 }
             } else { // If it's not the same position...
@@ -30,12 +30,16 @@ public class Other {
     }
 
     public static void loadMessagesYml() { // Load messages.yml
-        File customConfigFile = new File("messages.yml");
-        customConfig = new YamlConfiguration();
+        File customConfigFile = new File(BestViewDistance.plugin.getDataFolder(), "messages.yml");
         try {
-            customConfig.load(customConfigFile);
-        } catch (IOException | InvalidConfigurationException e) {
-            e.printStackTrace();
+            customConfig = YamlConfiguration.loadConfiguration(customConfigFile);
+            try {
+                customConfig.load(customConfigFile);
+            } catch (IOException | InvalidConfigurationException e) {
+                e.printStackTrace();
+            }
+        } catch (IllegalArgumentException e) {
+            customConfig = new YamlConfiguration();
         }
     }
 
@@ -44,18 +48,35 @@ public class Other {
     }
 
     public static void genMessagesYml() { // Generate messages.yml file
-        Bukkit.getLogger().info("[BestViewDistance] Generating messages.yml...");
-        BestViewDistance.plugin.saveResource("messages.yml", false);
-        Bukkit.getLogger().info("[BestViewDistance] messages.yml generated !");
+        if (!new File(BestViewDistance.plugin.getDataFolder(), "messages.yml").exists()) {
+            Bukkit.getLogger().info("[BestViewDistance] Generating messages.yml...");
+            BestViewDistance.plugin.saveResource("messages.yml", false);
+            Bukkit.getLogger().info("[BestViewDistance] messages.yml generated !");
+        }
     }
-    public static String replacePlaceHolders(String string){ // Replace placeholders in messages.yml
-        string = string.replace("%TPS%", String.valueOf(Bukkit.getServer().getTPS()[0]));
-        string = string.replace("%PLAYER%", player.getName());
-        string = string.replace("%VIEWDISTANCE%", String.valueOf(player.getViewDistance()));
-        string = string.replace("%SETTINGS%", String.valueOf(Get.getViewDistance(player)));
-        string = string.replace("%REDUCTIONINDICE%", String.valueOf(Math.round(reductionIndice*100)));
-        string = string.replace("%PING%", String.valueOf(player.spigot().getPing()));
-        string = string.replace("%PINGVIEW%", String.valueOf(playerViewDistance.get(player.getName())));
+
+    public static String replacePlaceHolders(String string) { // Replace placeholders in messages.yml
+        if (string.contains("%TPS%")) {
+            string = string.replace("%TPS%", String.valueOf(Bukkit.getServer().getTPS()[0]));
+        }
+        if (string.contains("%PLAYER%")) {
+            string = string.replace("%PLAYER%", player.getName());
+        }
+        if (string.contains("%VIEWDISTANCE%")) {
+            string = string.replace("%VIEWDISTANCE%", String.valueOf(player.getViewDistance()));
+        }
+        if (string.contains("%SETTINGS%")) {
+            string = string.replace("%SETTINGS%", String.valueOf(Get.getViewDistance(player)));
+        }
+        if (string.contains("%REDUCTIONINDICE%")) {
+            string = string.replace("%REDUCTIONINDICE%", String.valueOf(Math.round(reductionIndice * 100)));
+        }
+        if (string.contains("%PING%")) {
+            string = string.replace("%PING%", String.valueOf(player.spigot().getPing()));
+        }
+        if (string.contains("%PINGVIEW%")) {
+            string = string.replace("%PINGVIEW%", String.valueOf(playerViewDistance.get(player.getName())));
+        }
         return string;
     }
 }

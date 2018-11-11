@@ -7,21 +7,21 @@
 #
 # Custom Place Holders :
 #
-# %PLAYER% => The name of the player.
-# %VIEWDISTANCE% => Actual view distance of player
-# %SETTINGS% => View Distance in settings of player
-# %PINGVIEW% => Maximum view distance supported by the ping
-# %REDUCTIONINDICE% => The Reduction Indice in percentage
-# %PING% => Ping of a player
-# %TPS% => TPS of the server
+# %PLAYER%            => The name of the player.
+# %VIEWDISTANCE%      => Actual view distance of player
+# %SETTINGS%          => View Distance in settings of player
+# %PINGVIEW%          => Maximum view distance supported by the ping
+# %REDUCTIONINDICE%   => The Reduction Indice in percentage
+# %PING%              => Ping of a player
+# %TPS%               => TPS of the server
 #
 # Minecraft color code is obviously supported.
 
 view:
   reload: "&aBest View Distance config reloaded !"
   ping: "Ping of %PLAYER%: %PING%ms"
-  tps: "TPS => %TPS"
-  server: "&7The view distance is reduced by:&d %REDUCTIONINDICE%%"
+  tps: "&7TPS =>&d %TPS%"
+  server: "&7The view distance is reduced by&d %REDUCTIONINDICE%%"
   offline: "&cPlayer offline. /view <player>"
   incorrectPing: "&c/view ping <player>"
   incorrectView: "&c/view <player>"

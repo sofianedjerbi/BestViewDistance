@@ -4,6 +4,7 @@ import me.lxct.bestviewdistance.BestViewDistance;
 import me.lxct.bestviewdistance.functions.Other;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 import static me.lxct.bestviewdistance.functions.Variable.*;
 
@@ -40,11 +41,12 @@ class Commands {
     }
 
     static void commandView(String[] args, CommandSender sender) {
-        player = Bukkit.getServer().getPlayerExact(args[0]);
-        if (player == null) {
+        Player playerArgs = Bukkit.getServer().getPlayerExact(args[0]);
+        if (playerArgs == null) {
             sender.sendMessage(colorize(Other.replacePlaceHolders(viewIncorrectView)));
         }
         else {
+            player = playerArgs;
             sender.sendMessage(colorize(Other.replacePlaceHolders(viewPlayerLine1)));
             sender.sendMessage(colorize(Other.replacePlaceHolders(viewPlayerLine2)));
             sender.sendMessage(colorize(Other.replacePlaceHolders(viewPlayerLine3)));

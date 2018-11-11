@@ -14,6 +14,7 @@ import static me.lxct.bestviewdistance.functions.Other.genMessagesYml;
 import static me.lxct.bestviewdistance.functions.Other.loadMessagesYml;
 import static me.lxct.bestviewdistance.functions.Set.setPlayersBestViewDistance;
 import static me.lxct.bestviewdistance.functions.Set.setServerLimits;
+import static me.lxct.bestviewdistance.functions.Variable.loadVariables;
 
 public class BestViewDistance extends JavaPlugin{
 
@@ -33,8 +34,9 @@ public class BestViewDistance extends JavaPlugin{
         getServer().getPluginManager().registerEvents(new OnLogin(), this); // Add OnLogin Event
         getServer().getPluginManager().registerEvents(new OnPlayerMove(), this); // Add OnPlayerMove Event
         saveDefaultConfig(); // GENERATE
-        genMessagesYml();
-        loadMessagesYml();
+        genMessagesYml(); // Generate Messages.yml
+        loadMessagesYml(); // Load CustomConfig (Messages)
+        loadVariables(); // Load Variables (Config / Messages)
         getCommand("view").setExecutor(new ViewCommand()); // Executor for commands
         getCommand("vdist").setExecutor(new ViewCommand());
         //noinspection deprecation
