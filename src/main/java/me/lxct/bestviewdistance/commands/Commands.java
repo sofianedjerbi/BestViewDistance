@@ -27,6 +27,7 @@ class Commands {
         sender.sendMessage(colorize(Other.replacePlaceHolders(viewHelpLine4)));
         sender.sendMessage(colorize(Other.replacePlaceHolders(viewHelpLine5)));
         sender.sendMessage(colorize(Other.replacePlaceHolders(viewHelpLine6)));
+        sender.sendMessage(colorize(Other.replacePlaceHolders(viewHelpLine7)));
     }
 
     static void commandPing(String[] args, CommandSender sender) {

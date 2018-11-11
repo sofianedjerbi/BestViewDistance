@@ -39,9 +39,10 @@ vdist:
   line4: "&7View distance reduced by&d %REDUCTIONINDICE%%"
 
 help:
-  line1: "&d/vdist =>&a View your own view distance."
-  line2: "&d/view server =>&a Get reduction indice."
-  line3: "&d/view tps =>&a Get server's tps."
-  line4: "&d/view ping <player> =>&a Get player ping."
-  line5: "&d/view <player> =>&a Get player view distance info."
-  line6: "&d/view =>&a This message."
+  line1: "&d&l==== BestViewDistance By Lxct ===="
+  line2: "&d/vdist =>&a View your own view distance."
+  line3: "&d/view server =>&a Get reduction indice."
+  line4: "&d/view tps =>&a Get server's tps."
+  line5: "&d/view ping <player> =>&a Get player ping."
+  line6: "&d/view <player> =>&a Get player view distance info."
+  line7: "&d/view =>&a This message."

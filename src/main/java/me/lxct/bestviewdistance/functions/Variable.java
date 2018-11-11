@@ -35,6 +35,7 @@ public class Variable {
     public static String viewHelpLine4;
     public static String viewHelpLine5;
     public static String viewHelpLine6;
+    public static String viewHelpLine7;
 
     //viewPlayer
     public static String viewPlayerLine1;
@@ -94,6 +95,7 @@ public class Variable {
         viewHelpLine4 = Other.getCustomConfig().getString("help.line4");
         viewHelpLine5 = Other.getCustomConfig().getString("help.line5");
         viewHelpLine6 = Other.getCustomConfig().getString("help.line6");
+        viewHelpLine7 = Other.getCustomConfig().getString("help.line7");
 
         //viewPlayer
         viewPlayerLine1 = Other.getCustomConfig().getString("viewPLayer.line1");
