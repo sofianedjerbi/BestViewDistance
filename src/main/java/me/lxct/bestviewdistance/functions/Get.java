@@ -18,7 +18,12 @@ public class Get {
 
     static int getViewDistance(Player player) {
         if (Bukkit.getVersion().contains("1.12")) {
-            return Variable.playerSettingsViewDistance.get(player.getName());
+            if(Variable.playerSettingsViewDistance.containsKey(player.getName())){
+                return Variable.playerSettingsViewDistance.get(player.getName());
+            }
+            else{
+                return Variable.min;
+            }
         } else {
             return player.getViewDistance();
         }

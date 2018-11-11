@@ -1,10 +1,14 @@
 package me.lxct.bestviewdistance;
 
+import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
+import com.comphenix.protocol.events.ListenerPriority;
+import com.comphenix.protocol.events.PacketAdapter;
+import com.comphenix.protocol.events.PacketContainer;
+import com.comphenix.protocol.events.PacketEvent;
 import me.lxct.bestviewdistance.commands.ViewCommand;
 import me.lxct.bestviewdistance.event.OnLogin;
-import me.lxct.bestviewdistance.event.OnPacketReceiving;
 import me.lxct.bestviewdistance.event.OnPlayerMove;
 import me.lxct.bestviewdistance.functions.AsyncUpdateChecker;
 import me.lxct.bestviewdistance.functions.Other;
@@ -23,7 +27,6 @@ import static me.lxct.bestviewdistance.functions.data.Variable.loadVariables;
 public class BestViewDistance extends JavaPlugin{
 
     public static BestViewDistance plugin;
-    public static ProtocolManager protocolManager = ProtocolLibrary.getProtocolManager();
 
     @Override
     public void onEnable(){
@@ -36,9 +39,31 @@ public class BestViewDistance extends JavaPlugin{
         Bukkit.getLogger().info("╚ https://papermc.io/");
         Bukkit.getLogger().info("╚ Best View Distance, By Lxct. ");
         // WARNING
+
+        //
+        // 1.12 compatibility
+        //
+
         if (Bukkit.getVersion().contains("1.12")) { // Add 1.12 Support for Client View Distance
-            getServer().getPluginManager().registerEvents(new OnPacketReceiving(), this);
+            ProtocolManager protocolManager = ProtocolLibrary.getProtocolManager();
+            protocolManager.addPacketListener(new PacketAdapter(BestViewDistance.plugin,
+                    ListenerPriority.NORMAL,
+                    PacketType.Play.Client.SETTINGS) {
+                @Override
+                public void onPacketReceiving(PacketEvent event) {
+                    if (event.getPacketType() == PacketType.Play.Client.SETTINGS) {
+                        PacketContainer packet = event.getPacket();
+                        Variable.playerSettingsViewDistance.put(event.getPlayer().getName(), packet.getIntegers().read(0));
+
+                    }
+                }
+            });
         }
+
+        //
+        // 1.12 compatibility
+        //
+
         getServer().getPluginManager().registerEvents(new OnLogin(), this); // Add OnLogin Event
         getServer().getPluginManager().registerEvents(new OnPlayerMove(), this); // Add OnPlayerMove Event
         saveDefaultConfig(); // GENERATE
