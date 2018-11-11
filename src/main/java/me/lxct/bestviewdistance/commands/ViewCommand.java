@@ -32,7 +32,7 @@ public class ViewCommand implements CommandExecutor {
                 sender.sendMessage(colorize(Other.replacePlaceHolders(vdistLine1)));
                 sender.sendMessage(colorize(Other.replacePlaceHolders(vdistLine2)));
                 sender.sendMessage(colorize(Other.replacePlaceHolders(vdistLine3)));
-                if(!Variable.hidereductionindice) {
+                if(!Variable.hideVdistLine4) {
                     sender.sendMessage(colorize(Other.replacePlaceHolders(vdistLine4)));
                 }
             }

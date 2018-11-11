@@ -23,7 +23,7 @@ public class Variable {
     public static double tpslimit;
     public static double tpschange;
     public static double maxindice;
-    public static boolean hidereductionindice;
+    public static boolean hideVdistLine4;
 
     //
     // Messages.yml stuff
@@ -84,7 +84,7 @@ public class Variable {
         tpslimit = BestViewDistance.plugin.getConfig().getDouble("Performances.TPSLimit");
         tpschange = BestViewDistance.plugin.getConfig().getDouble("Performances.TPSChangeIndice");
         maxindice = BestViewDistance.plugin.getConfig().getDouble("Performances.MaxReductionIndice");
-        hidereductionindice = BestViewDistance.plugin.getConfig().getBoolean("Other.HideReductionIndiceInVdist");
+        hideVdistLine4 = BestViewDistance.plugin.getConfig().getBoolean("Other.HideVdistLine4");
 
         //
         // Messages.yml stuff

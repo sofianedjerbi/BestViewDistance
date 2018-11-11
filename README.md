@@ -54,7 +54,7 @@ Permission : "view.check"
 #   MaxReductionIndice: 0.75 # Maximum value of the reduction indice.
 #   AFKTimer : 90 # Seconds before getting "AFK" and get his view distance reduced to "Min" value. Keep this value over 60. (Doesn't affect gameplay)
 # Other:
-#   HideReductionIndiceFromVdist: false # Hide the "Reduced by x.x%" when players uses /vdist
+#   HideVdistLine4: false # Hide vdist.line4 (in messages.yml) when players uses /vdist
 #   CheckUpdate: true # You should keep this to true. It check if your plugins version is the latest. THIS DOES NOT IMPACT PERFORMANCES, NEED RESTART
 #   Metrics: true # Please keep this to true. Metrics is anonymous and it helps developers stay motivated. THIS DOES NOT IMPACT PERFORMANCES, NEED RESTART
 #
