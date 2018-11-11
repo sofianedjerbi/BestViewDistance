@@ -15,12 +15,15 @@ commands:
     permission: view.info
 
 permissions:
+  view.update:
+    description: Check the update of the plugins
+    default: op
   view.check:
-    description: /view
+    description: Check players and reduction indice
     default: op
   view.info:
-    description: /ve
+    description: Use /vdist to get your own view distance
     default: op
   view.reload:
-    description: /view
+    description: Reload BestViewDistance
     default: op

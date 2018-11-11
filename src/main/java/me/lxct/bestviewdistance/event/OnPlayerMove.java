@@ -1,17 +1,16 @@
 package me.lxct.bestviewdistance.event;
-import org.bukkit.entity.Player;
+import me.lxct.bestviewdistance.BestViewDistance;
+import me.lxct.bestviewdistance.functions.async.UnsetAfk;
+import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
-
-import static me.lxct.bestviewdistance.functions.data.Variable.afkList;
 
 
 public class OnPlayerMove implements Listener {
     @EventHandler
     public static void playerMove(PlayerMoveEvent event) {
-        Player player = event.getPlayer();
-        // Unset Afk...
-        afkList.remove(player.getName());
+        // Unset Afk with Async Method...
+        Bukkit.getScheduler().runTaskAsynchronously(BestViewDistance.plugin, new UnsetAfk(event));
     }
 }

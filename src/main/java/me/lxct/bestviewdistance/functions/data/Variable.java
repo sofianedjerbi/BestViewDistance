@@ -50,6 +50,8 @@ public class Variable {
     public static String vdistLine4;
 
     //other
+    public static String viewUpdate;
+    public static String viewUpdateFail;
     public static String viewReload;
     public static String viewPing;
     public static String viewTps;
@@ -68,7 +70,6 @@ public class Variable {
     public static List<String> afkList = new ArrayList<>(); // AFK list
     public static Player player; // Player var used in commands for messages.yml
     public static Double reductionIndice = 0.0; // Initialize the Reduction indice
-    public static int tmpClientViewDistance;
 
     public static void loadVariables() {
 
@@ -112,6 +113,8 @@ public class Variable {
 
 
         //other
+        viewUpdate = Other.getCustomConfig().getString("view.update");
+        viewUpdateFail = Other.getCustomConfig().getString("view.updateFail");
         viewReload = Other.getCustomConfig().getString("view.reload");
         viewPing = Other.getCustomConfig().getString("view.ping");
         viewTps = Other.getCustomConfig().getString("view.tps");

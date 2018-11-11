@@ -1,9 +1,12 @@
 package me.lxct.bestviewdistance;
 
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.ProtocolManager;
 import me.lxct.bestviewdistance.commands.ViewCommand;
 import me.lxct.bestviewdistance.event.OnLogin;
 import me.lxct.bestviewdistance.event.OnPacketReceiving;
 import me.lxct.bestviewdistance.event.OnPlayerMove;
+import me.lxct.bestviewdistance.functions.AsyncUpdateChecker;
 import me.lxct.bestviewdistance.functions.Other;
 import me.lxct.bestviewdistance.functions.data.Variable;
 import org.bstats.bukkit.Metrics;
@@ -20,6 +23,7 @@ import static me.lxct.bestviewdistance.functions.data.Variable.loadVariables;
 public class BestViewDistance extends JavaPlugin{
 
     public static BestViewDistance plugin;
+    public static ProtocolManager protocolManager = ProtocolLibrary.getProtocolManager();
 
     @Override
     public void onEnable(){
@@ -51,6 +55,7 @@ public class BestViewDistance extends JavaPlugin{
             //noinspection unused
             Metrics metrics = new Metrics(this); // METRICS
         }
+        new AsyncUpdateChecker(this).checkForUpdate(); // Add AsyncUpdateChecker (Thx Benz56)
     }
 
     private Runnable calculations = // CALCULATIONS

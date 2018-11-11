@@ -18,6 +18,8 @@
 # Minecraft color code is obviously supported.
 
 view:
+  update: "&7[BestViewDistance]&d A new update is available at"
+  updateFail: "&7[BestViewDistance]&d Update checker failed!"
   reload: "&aBest View Distance config reloaded !"
   ping: "Ping of %PLAYER%: %PING%ms"
   tps: "&7TPS =>&d %TPS%"
