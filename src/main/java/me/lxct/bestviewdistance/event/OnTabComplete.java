@@ -16,18 +16,17 @@ public class OnTabComplete implements TabCompleter {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        if (args.length <= 1) {
-            ArrayList<String> COMMANDS = new ArrayList<>(Arrays.asList("tps", "server", "ping", "reload"));
+        if (args[0].equalsIgnoreCase("ping")) {
+            ArrayList<String> COMMANDS = new ArrayList<>();
             for (Player player : Bukkit.getOnlinePlayers()) {
                 COMMANDS.add(player.getName());
             }
             ArrayList<String> completions = new ArrayList<>(COMMANDS.size());
-            StringUtil.copyPartialMatches(args[0], COMMANDS, completions);
+            StringUtil.copyPartialMatches(args[1], COMMANDS, completions);
             Collections.sort(completions); // Sort completions
             return completions;
-        }
-        else{
-            ArrayList<String> COMMANDS = new ArrayList<>();
+        } else {
+            ArrayList<String> COMMANDS = new ArrayList<>(Arrays.asList("tps", "server", "ping", "reload"));
             for (Player player : Bukkit.getOnlinePlayers()) {
                 COMMANDS.add(player.getName());
             }

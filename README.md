@@ -44,14 +44,19 @@ Permission : "view.check"
 # ViewDistance:
 #   Min: 4 # Min View Distance. Keep it above 4.
 #   Max: 16 # Max View Distance. Player can't get above 32.
-#   Delay: 25 # Delay between calculations. Keep it above 10. If you increase this, view distance and ReductionIndice will change faster. NEED RESTART
+#   Delay: 15 # Delay between calculations. Keep it above 5. If you increase this, view distance and ReductionIndice will change faster. NEED RESTART
+#   AFK : 3 # View Distance of "AFK" players. You can't assign a value less than 3.
 # Performances:
 #   PingForReduction: 1000 # If your ping is higher than this value, then your view distance will be reduced. Keep it above 400.
 #   PingForAugmentation: 90 # If your ping is less than this value, then your view distance will be increased. Keep it below 100.
 #   TPSLimit: 19.5 # If the tps are above this value, the ReductionIndice is reduced. If the tps are below this value, the ReductionIndice will increase.
 #   TPSChangeIndice: 0.05 # How much the reduction indice will be decreased/increased par calculations. Keep this value between 0.1 and 0.01
 #   MaxReductionIndice: 0.75 # Maximum value of the reduction indice.
-#   AFKTimer : 90 # Seconds before getting "AFK" and get his view distance reduced to "Min" value. Keep this value over 60.
+#   AFKTimer : 90 # Seconds before getting "AFK" and get his view distance reduced to "Min" value. Keep this value over 60. (Doesn't affect gameplay)
+# Other:
+#   HideReductionIndiceFromVdist: false # Hide the "Reduced by x.x%" when players uses /vdist
+#   CheckUpdate: true # You should keep this to true. It check if your plugins version is the latest. THIS DOES NOT IMPACT PERFORMANCES, NEED RESTART
+#   Metrics: true # Please keep this to true. Metrics is anonymous and it helps developers stay motivated. THIS DOES NOT IMPACT PERFORMANCES, NEED RESTART
 #
 # Please restart your server the first time you're using this plugin. Don't reload.
 #
@@ -62,6 +67,7 @@ Permission : "view.check"
 ViewDistance:
   Min: 4
   Max: 16
+  AFK: 3
   Delay: 15
 Performances:
   PingForReduction: 600
@@ -69,8 +75,14 @@ Performances:
   TPSLimit: 19.5
   TPSChangeIndice: 0.05
   MaxReductionIndice: 0.75
-  AFKTimer: 60
+  AFKTimer: 90
+Other:
+  HideReductionIndiceInVdist: false
+  CheckUpdates: true
+  Metrics: true
 ```
+
++ Messages.yml File.
 
 ## Compilation
 Bash/Zsh linux terminal :
