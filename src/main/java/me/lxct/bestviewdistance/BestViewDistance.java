@@ -81,7 +81,9 @@ public class BestViewDistance extends JavaPlugin {
             //noinspection unused
             Metrics metrics = new Metrics(this); // METRICS
         }
-        new AsyncUpdateChecker(this).checkForUpdate(); // Add AsyncUpdateChecker (Thx Benz56)
+        if (this.getConfig().getBoolean("Other.CheckUpdates")) {
+            new AsyncUpdateChecker(this).checkForUpdate(); // Add AsyncUpdateChecker (Thx Benz56)
+        }
     }
 
     private Runnable calculations = // CALCULATIONS

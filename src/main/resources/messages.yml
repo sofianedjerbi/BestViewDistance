@@ -18,8 +18,8 @@
 # Minecraft color code is obviously supported.
 
 view:
-  update: "&d[View]&7 A new update is available at&a"
-  updateFail: "&d[View]&c Update checker failed!"
+  update: "&a[BestViewDistance]&7 A new update is available at&a"
+  updateFail: "&a[BestViewDistance]&c Update checker failed!"
   reload: "&aBest View Distance config reloaded !"
   ping: "Ping of %PLAYER%: %PING%ms"
   tps: "&aTPS =>&d %TPS%"
@@ -40,7 +40,7 @@ vdist:
   line4: "&aYour View Distance is reduced by&d %REDUCTIONINDICE%%"
 
 help:
-  line1: "&d&l==== BestViewDistance By Lxct ===="
+  line1: "&d&l======= BestViewDistance By Lxct ======="
   line2: "&d/vdist =>&a View your own view distance."
   line3: "&d/view server =>&a Get reduction indice."
   line4: "&d/view tps =>&a Get server's tps."

@@ -1,20 +1,40 @@
 package me.lxct.bestviewdistance.event;
 
-import me.lxct.bestviewdistance.functions.async.TabCompletions;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.entity.Player;
+import org.bukkit.util.StringUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class OnTabComplete implements TabCompleter {
 
-    public static ArrayList<String> completions;
-
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        new TabCompletions(args);
-        return completions;
+        if (args.length <= 1) {
+            ArrayList<String> COMMANDS = new ArrayList<>(Arrays.asList("tps", "server", "ping", "reload"));
+            for (Player player : Bukkit.getOnlinePlayers()) {
+                COMMANDS.add(player.getName());
+            }
+            ArrayList<String> completions = new ArrayList<>(COMMANDS.size());
+            StringUtil.copyPartialMatches(args[0], COMMANDS, completions);
+            Collections.sort(completions); // Sort completions
+            return completions;
+        }
+        else{
+            ArrayList<String> COMMANDS = new ArrayList<>();
+            for (Player player : Bukkit.getOnlinePlayers()) {
+                COMMANDS.add(player.getName());
+            }
+            ArrayList<String> completions = new ArrayList<>(COMMANDS.size());
+            StringUtil.copyPartialMatches(args[0], COMMANDS, completions);
+            Collections.sort(completions); // Sort completions
+            return completions;
+        }
     }
 }

@@ -18,10 +18,10 @@ public class ViewCommand implements CommandExecutor {
             if (args.length == 0) {
                 commandHelp(sender);
             } else if (sender.hasPermission("view.check")) {
-                commandView(args, sender);
                 commandServer(args, sender);
-                commandPing(args, sender);
                 commandTPS(args, sender);
+                commandPing(args, sender);
+                commandView(args, sender);
             } else if (sender.hasPermission("view.reload")) {
                 commandReload(args, sender);
             }

@@ -100,9 +100,9 @@ public class Variable {
         viewHelpLine7 = Other.getCustomConfig().getString("help.line7");
 
         //viewPlayer
-        viewPlayerLine1 = Other.getCustomConfig().getString("viewPLayer.line1");
-        viewPlayerLine2 = Other.getCustomConfig().getString("viewPLayer.line2");
-        viewPlayerLine3 = Other.getCustomConfig().getString("viewPLayer.line3");
+        viewPlayerLine1 = Other.getCustomConfig().getString("viewPlayer.line1");
+        viewPlayerLine2 = Other.getCustomConfig().getString("viewPlayer.line2");
+        viewPlayerLine3 = Other.getCustomConfig().getString("viewPlayer.line3");
 
         //vdist
         vdistLine1 = Other.getCustomConfig().getString("vdist.line1");
