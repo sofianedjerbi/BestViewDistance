@@ -47,8 +47,9 @@ Permission for update checker : "view.update"
 # ViewDistance:
 #   Min: 4 # Min View Distance. Keep it above 4.
 #   Max: 16 # Max View Distance. Player can't get above 32.
-#   Delay: 15 # Delay between calculations. Keep it above 5. If you increase this, view distance and ReductionIndice will change faster. NEED RESTART
 #   AFK : 3 # View Distance of "AFK" players. You can't assign a value less than 3.
+#   OnLogin: 4 # View Distance assigned on login. I advise you to set the same value as Min
+#   Delay: 15 # Delay between calculations. Keep it above 5. If you increase this, view distance and ReductionIndice will change faster. NEED RESTART
 # Performances:
 #   PingForReduction: 1000 # If your ping is higher than this value, then your view distance will be reduced. Keep it above 400.
 #   PingForAugmentation: 90 # If your ping is less than this value, then your view distance will be increased. Keep it below 100.
@@ -71,6 +72,7 @@ ViewDistance:
   Min: 4
   Max: 16
   AFK: 3
+  OnLogin: 4
   Delay: 15
 Performances:
   PingForReduction: 600
@@ -80,7 +82,7 @@ Performances:
   MaxReductionIndice: 0.75
   AFKTimer: 90
 Other:
-  HideReductionIndiceInVdist: false
+  HideVdistLine4: false
   CheckUpdates: true
   Metrics: true
 ```
