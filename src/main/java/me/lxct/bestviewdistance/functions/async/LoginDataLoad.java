@@ -14,7 +14,7 @@ public class LoginDataLoad implements Runnable {
     @Override
     public void run() {
         if (!playerViewDistance.containsKey(player.getName())) {
-            playerViewDistance.put(player.getName(), Variable.min); // LOAD PLAYER DATA
+            playerViewDistance.put(player.getName(), Variable.onloginview); // LOAD PLAYER DATA
         }
     }
 }

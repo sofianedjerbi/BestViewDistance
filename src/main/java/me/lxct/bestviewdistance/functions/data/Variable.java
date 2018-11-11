@@ -18,6 +18,7 @@ public class Variable {
     public static int max;
     public static int min;
     public static int afk;
+    public static int onloginview;
     public static int rping;
     public static int aping;
     public static double tpslimit;
@@ -79,6 +80,7 @@ public class Variable {
         max = BestViewDistance.plugin.getConfig().getInt("ViewDistance.Max");
         afk = BestViewDistance.plugin.getConfig().getInt("ViewDistance.AFK");
         min = BestViewDistance.plugin.getConfig().getInt("ViewDistance.Min");
+        onloginview = BestViewDistance.plugin.getConfig().getInt("ViewDistance.OnLogin");
         rping = BestViewDistance.plugin.getConfig().getInt("Performances.PingForReduction");
         aping = BestViewDistance.plugin.getConfig().getInt("Performances.PingForAugmentation");
         tpslimit = BestViewDistance.plugin.getConfig().getDouble("Performances.TPSLimit");

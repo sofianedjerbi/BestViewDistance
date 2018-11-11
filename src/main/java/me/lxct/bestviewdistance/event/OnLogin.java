@@ -15,6 +15,6 @@ public class OnLogin implements Listener {
     public static void onPlayerLogin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         Bukkit.getScheduler().runTaskAsynchronously(BestViewDistance.plugin, new LoginDataLoad(player)); // Load Data with Async Method
-        player.setViewDistance(Variable.min);
+        player.setViewDistance(Variable.onloginview);
     }
 }
