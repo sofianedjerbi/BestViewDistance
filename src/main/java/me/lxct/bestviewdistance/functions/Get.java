@@ -25,7 +25,7 @@ public class Get {
                 return Variable.min;
             }
         } else {
-            return player.getViewDistance();
+            return player.getClientViewDistance();
         }
     }
 }
