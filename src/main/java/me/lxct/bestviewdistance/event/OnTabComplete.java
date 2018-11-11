@@ -17,7 +17,7 @@ public class OnTabComplete implements TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (args[0].equalsIgnoreCase("ping")) { // Only for /view ping <player>
-            if (args.length > 1) {
+            if (args.length <= 2) {
                 ArrayList<String> COMMANDS = new ArrayList<>();
                 for (Player player : Bukkit.getOnlinePlayers()) {
                     COMMANDS.add(player.getName());
