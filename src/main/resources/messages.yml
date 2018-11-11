@@ -21,7 +21,7 @@ view:
   update: "&a[BestViewDistance]&7 A new update is available at&a"
   updateFail: "&a[BestViewDistance]&c Update checker failed!"
   reload: "&aBest View Distance config reloaded !"
-  ping: "Ping of %PLAYER%: %PING%ms"
+  ping: "&aPing of %PLAYER%:&d %PING%ms"
   tps: "&aTPS =>&d %TPS%"
   server: "&aThe view distance is reduced by&d %REDUCTIONINDICE%%"
   incorrectPing: "&c/view ping <player>"
