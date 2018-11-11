@@ -17,22 +17,24 @@ public class ViewCommand implements CommandExecutor {
         if (cmd.getName().equalsIgnoreCase("view")) {
             if (args.length == 0) {
                 commandHelp(sender);
-            } else if (sender.hasPermission("view.check")) {
-                commandServer(args, sender);
-                commandTPS(args, sender);
-                commandPing(args, sender);
-                commandView(args, sender);
-            } else if (sender.hasPermission("view.reload")) {
-                commandReload(args, sender);
+            } else {
+                if (sender.hasPermission("view.check")) {
+                    commandServer(args, sender);
+                    commandTPS(args, sender);
+                    commandPing(args, sender);
+                    commandView(args, sender);
+                }
+                if (sender.hasPermission("view.reload")) {
+                    commandReload(args, sender);
+                }
             }
-        }
-        else if (cmd.getName().equalsIgnoreCase("vdist") && sender.hasPermission("view.info")) {
+        } else if (cmd.getName().equalsIgnoreCase("vdist") && sender.hasPermission("view.info")) {
             if (sender instanceof Player) {
                 player = ((Player) sender);
                 sender.sendMessage(colorize(Other.replacePlaceHolders(vdistLine1)));
                 sender.sendMessage(colorize(Other.replacePlaceHolders(vdistLine2)));
                 sender.sendMessage(colorize(Other.replacePlaceHolders(vdistLine3)));
-                if(!Variable.hideVdistLine4) {
+                if (!Variable.hideVdistLine4) {
                     sender.sendMessage(colorize(Other.replacePlaceHolders(vdistLine4)));
                 }
             }

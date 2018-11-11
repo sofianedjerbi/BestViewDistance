@@ -17,14 +17,19 @@ public class OnTabComplete implements TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (args[0].equalsIgnoreCase("ping")) { // Only for /view ping <player>
-            ArrayList<String> COMMANDS = new ArrayList<>();
-            for (Player player : Bukkit.getOnlinePlayers()) {
-                COMMANDS.add(player.getName());
+            if (args.length > 1) {
+                ArrayList<String> COMMANDS = new ArrayList<>();
+                for (Player player : Bukkit.getOnlinePlayers()) {
+                    COMMANDS.add(player.getName());
+                }
+                ArrayList<String> completions = new ArrayList<>(COMMANDS.size());
+                StringUtil.copyPartialMatches(args[1], COMMANDS, completions);
+                Collections.sort(completions); // Sort completions
+                return completions;
             }
-            ArrayList<String> completions = new ArrayList<>(COMMANDS.size());
-            StringUtil.copyPartialMatches(args[1], COMMANDS, completions);
-            Collections.sort(completions); // Sort completions
-            return completions;
+            else{
+                return new ArrayList<>();
+            }
         }else if (args.length > 1){ // Does not spam tab complete
             return new ArrayList<>();
         }
