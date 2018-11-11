@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>me.lxct</groupId>
     <artifactId>BestViewDistance</artifactId>
-    <version>6.0</version>
+    <version>6.1</version>
     <packaging>jar</packaging>
     <properties>
         <!-- Encoding Properties -->
