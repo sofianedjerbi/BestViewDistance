@@ -22,23 +22,22 @@ view:
   updateFail: "&d[View]&c Update checker failed!"
   reload: "&aBest View Distance config reloaded !"
   ping: "Ping of %PLAYER%: %PING%ms"
-  tps: "&7TPS =>&d %TPS%"
-  server: "&7The view distance is reduced by&d %REDUCTIONINDICE%%"
-  offline: "&cPlayer offline. /view <player>"
+  tps: "&aTPS =>&d %TPS%"
+  server: "&aThe view distance is reduced by&d %REDUCTIONINDICE%%"
   incorrectPing: "&c/view ping <player>"
   incorrectView: "&c/view <player>"
 
 viewPlayer:
-  line1: "&7View Distance of %PLAYER% =>&d %VIEWDISTANCE% (Actual)"
-  line2: "&7View Distance of %PLAYER% =>&d %PINGVIEW% (Supported)"
-  line3: "&7View Distance of %PLAYER% =>&d %SETTINGS% (Settings)"
+  line1: "&aView Distance of %PLAYER% =>&d %VIEWDISTANCE% (Actual)"
+  line2: "&aView Distance of %PLAYER% =>&d %PINGVIEW% (Supported)"
+  line3: "&aView Distance of %PLAYER% =>&d %SETTINGS% (Settings)"
 
 
 vdist:
-  line1: "&7View Distance =>&d %VIEWDISTANCE% (Actual)"
-  line2: "&7View Distance =>&d %PINGVIEW% (Supported)"
-  line3: "&7View Distance =>&d %SETTINGS% (Settings)"
-  line4: "&7View distance reduced by&d %REDUCTIONINDICE%%"
+  line1: "&aView Distance =>&d %VIEWDISTANCE% (Actual)"
+  line2: "&aView Distance =>&d %PINGVIEW% (Supported)"
+  line3: "&aView Distance =>&d %SETTINGS% (Settings)"
+  line4: "&aYour View Distance is reduced by&d %REDUCTIONINDICE%%"
 
 help:
   line1: "&d&l==== BestViewDistance By Lxct ===="

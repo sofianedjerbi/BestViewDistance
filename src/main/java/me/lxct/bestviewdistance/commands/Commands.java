@@ -43,15 +43,16 @@ class Commands {
     }
 
     static void commandView(String[] args, CommandSender sender) {
-        Player playerArgs = Bukkit.getServer().getPlayerExact(args[0]);
-        if (playerArgs == null) {
-            sender.sendMessage(colorize(Other.replacePlaceHolders(viewIncorrectView)));
-        }
-        else {
-            player = playerArgs;
-            sender.sendMessage(colorize(Other.replacePlaceHolders(viewPlayerLine1)));
-            sender.sendMessage(colorize(Other.replacePlaceHolders(viewPlayerLine2)));
-            sender.sendMessage(colorize(Other.replacePlaceHolders(viewPlayerLine3)));
+        if(!args[0].equalsIgnoreCase("ping") && !args[0].equalsIgnoreCase("tps") && !args[0].equalsIgnoreCase("server") && !args[0].equalsIgnoreCase("reload")) {
+            Player playerArgs = Bukkit.getServer().getPlayerExact(args[0]);
+            if (playerArgs == null) {
+                sender.sendMessage(colorize(Other.replacePlaceHolders(viewIncorrectView)));
+            } else {
+                player = playerArgs;
+                sender.sendMessage(colorize(Other.replacePlaceHolders(viewPlayerLine1)));
+                sender.sendMessage(colorize(Other.replacePlaceHolders(viewPlayerLine2)));
+                sender.sendMessage(colorize(Other.replacePlaceHolders(viewPlayerLine3)));
+            }
         }
     }
 

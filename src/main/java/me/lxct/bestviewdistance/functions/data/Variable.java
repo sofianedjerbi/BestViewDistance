@@ -56,7 +56,6 @@ public class Variable {
     public static String viewPing;
     public static String viewTps;
     public static String viewServer;
-    public static String viewOffline;
     public static String viewIncorrectPing;
     public static String viewIncorrectView;
 
@@ -119,7 +118,6 @@ public class Variable {
         viewPing = Other.getCustomConfig().getString("view.ping");
         viewTps = Other.getCustomConfig().getString("view.tps");
         viewServer = Other.getCustomConfig().getString("view.server");
-        viewOffline = Other.getCustomConfig().getString("view.offline");
         viewIncorrectPing = Other.getCustomConfig().getString("view.incorrectPing");
         viewIncorrectView = Other.getCustomConfig().getString("view.incorrectView");
     }

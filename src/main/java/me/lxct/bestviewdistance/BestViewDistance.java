@@ -10,8 +10,9 @@ import com.comphenix.protocol.events.PacketEvent;
 import me.lxct.bestviewdistance.commands.ViewCommand;
 import me.lxct.bestviewdistance.event.OnLogin;
 import me.lxct.bestviewdistance.event.OnPlayerMove;
-import me.lxct.bestviewdistance.functions.AsyncUpdateChecker;
+import me.lxct.bestviewdistance.event.OnTabComplete;
 import me.lxct.bestviewdistance.functions.Other;
+import me.lxct.bestviewdistance.functions.async.AsyncUpdateChecker;
 import me.lxct.bestviewdistance.functions.data.Variable;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
@@ -24,13 +25,13 @@ import static me.lxct.bestviewdistance.functions.Set.setPlayersBestViewDistance;
 import static me.lxct.bestviewdistance.functions.Set.setServerLimits;
 import static me.lxct.bestviewdistance.functions.data.Variable.loadVariables;
 
-public class BestViewDistance extends JavaPlugin{
+public class BestViewDistance extends JavaPlugin {
 
     public static BestViewDistance plugin;
 
     @Override
-    public void onEnable(){
-        plugin=this; // Allow BestViewDistance.plugin
+    public void onEnable() {
+        plugin = this; // Allow BestViewDistance.plugin
         // WARNING
         Bukkit.getLogger().info("╔╗ ┌─┐┌─┐┌┬┐  ╦  ╦┬┌─┐┬ ┬  ╔╦╗┬┌─┐┌┬┐┌─┐┌┐┌┌─┐┌─┐"); // Display
         Bukkit.getLogger().info("╠╩╗├┤ └─┐ │   ╚╗╔╝│├┤ │││   ║║│└─┐ │ ├─┤││││  ├┤ ");
@@ -54,7 +55,6 @@ public class BestViewDistance extends JavaPlugin{
                     if (event.getPacketType() == PacketType.Play.Client.SETTINGS) {
                         PacketContainer packet = event.getPacket();
                         Variable.playerSettingsViewDistance.put(event.getPlayer().getName(), packet.getIntegers().read(0));
-
                     }
                 }
             });
@@ -72,11 +72,12 @@ public class BestViewDistance extends JavaPlugin{
         loadVariables(); // Load Variables (Config / Messages)
         getCommand("view").setExecutor(new ViewCommand()); // Executor for commands
         getCommand("vdist").setExecutor(new ViewCommand());
+        getCommand("view").setTabCompleter(new OnTabComplete()); // Tab completer
         //noinspection deprecation
-        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, calculations, 0L,this.getConfig().getInt("ViewDistance.Delay")*20L); // CALCULATIONS SCHEDULER
+        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, calculations, 0L, this.getConfig().getInt("ViewDistance.Delay") * 20L); // CALCULATIONS SCHEDULER
         //noinspection deprecation
-        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, detectAFK, 0L,this.getConfig().getInt("Performances.AFKTimer")*20L); // DETECT AFK SCHEDULER
-        if(this.getConfig().getBoolean("Other.Metrics")) {
+        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, detectAFK, 0L, this.getConfig().getInt("Performances.AFKTimer") * 20L); // DETECT AFK SCHEDULER
+        if (this.getConfig().getBoolean("Other.Metrics")) {
             //noinspection unused
             Metrics metrics = new Metrics(this); // METRICS
         }

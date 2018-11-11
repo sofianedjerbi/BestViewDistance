@@ -2,7 +2,6 @@ package me.lxct.bestviewdistance.commands;
 
 import me.lxct.bestviewdistance.functions.Other;
 import me.lxct.bestviewdistance.functions.data.Variable;
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -18,16 +17,13 @@ public class ViewCommand implements CommandExecutor {
         if (cmd.getName().equalsIgnoreCase("view")) {
             if (args.length == 0) {
                 commandHelp(sender);
-            } else if (Bukkit.getServer().getPlayerExact(args[0]) != null && sender.hasPermission("view.check")) {
+            } else if (sender.hasPermission("view.check")) {
                 commandView(args, sender);
-            } else if (args[0].equalsIgnoreCase("server") || args[0].equalsIgnoreCase("tps") || args[0].equalsIgnoreCase("ping") && sender.hasPermission("view.check")) {
                 commandServer(args, sender);
                 commandPing(args, sender);
                 commandTPS(args, sender);
             } else if (sender.hasPermission("view.reload")) {
                 commandReload(args, sender);
-            } else {
-                sender.sendMessage(colorize(Other.replacePlaceHolders(viewOffline)));
             }
         }
         else if (cmd.getName().equalsIgnoreCase("vdist") && sender.hasPermission("view.info")) {
@@ -36,7 +32,7 @@ public class ViewCommand implements CommandExecutor {
                 sender.sendMessage(colorize(Other.replacePlaceHolders(vdistLine1)));
                 sender.sendMessage(colorize(Other.replacePlaceHolders(vdistLine2)));
                 sender.sendMessage(colorize(Other.replacePlaceHolders(vdistLine3)));
-                if(Variable.hidereductionindice) {
+                if(!Variable.hidereductionindice) {
                     sender.sendMessage(colorize(Other.replacePlaceHolders(vdistLine4)));
                 }
             }

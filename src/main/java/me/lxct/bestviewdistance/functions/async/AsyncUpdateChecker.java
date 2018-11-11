@@ -1,4 +1,4 @@
-package me.lxct.bestviewdistance.functions;
+package me.lxct.bestviewdistance.functions.async;
 
 import me.lxct.bestviewdistance.functions.data.Variable;
 import org.bukkit.Bukkit;
