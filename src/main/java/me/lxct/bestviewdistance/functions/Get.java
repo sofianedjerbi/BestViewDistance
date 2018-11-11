@@ -1,6 +1,6 @@
 package me.lxct.bestviewdistance.functions;
 
-import me.lxct.bestviewdistance.BestViewDistance;
+import me.lxct.bestviewdistance.functions.data.Variable;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -18,8 +18,7 @@ public class Get {
 
     static int getViewDistance(Player player) {
         if (Bukkit.getVersion().contains("1.12")) {
-            Bukkit.getScheduler().runTask(BestViewDistance.plugin, new GetClientViewDistance(player));
-            return Variable.tmpClientViewDistance;
+            return Variable.playerSettingsViewDistance.get(player.getName());
         } else {
             return player.getViewDistance();
         }

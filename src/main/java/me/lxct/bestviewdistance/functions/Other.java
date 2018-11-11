@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 import java.io.File;
 import java.io.IOException;
 
-import static me.lxct.bestviewdistance.functions.Variable.*;
+import static me.lxct.bestviewdistance.functions.data.Variable.*;
 
 public class Other {
     private static FileConfiguration customConfig;
@@ -43,7 +43,7 @@ public class Other {
         }
     }
 
-    static FileConfiguration getCustomConfig() {
+    public static FileConfiguration getCustomConfig() {
         return customConfig;
     }
 

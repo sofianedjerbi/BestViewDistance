@@ -2,9 +2,10 @@ package me.lxct.bestviewdistance;
 
 import me.lxct.bestviewdistance.commands.ViewCommand;
 import me.lxct.bestviewdistance.event.OnLogin;
+import me.lxct.bestviewdistance.event.OnPacketReceiving;
 import me.lxct.bestviewdistance.event.OnPlayerMove;
 import me.lxct.bestviewdistance.functions.Other;
-import me.lxct.bestviewdistance.functions.Variable;
+import me.lxct.bestviewdistance.functions.data.Variable;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -14,7 +15,7 @@ import static me.lxct.bestviewdistance.functions.Other.genMessagesYml;
 import static me.lxct.bestviewdistance.functions.Other.loadMessagesYml;
 import static me.lxct.bestviewdistance.functions.Set.setPlayersBestViewDistance;
 import static me.lxct.bestviewdistance.functions.Set.setServerLimits;
-import static me.lxct.bestviewdistance.functions.Variable.loadVariables;
+import static me.lxct.bestviewdistance.functions.data.Variable.loadVariables;
 
 public class BestViewDistance extends JavaPlugin{
 
@@ -31,6 +32,9 @@ public class BestViewDistance extends JavaPlugin{
         Bukkit.getLogger().info("╚ https://papermc.io/");
         Bukkit.getLogger().info("╚ Best View Distance, By Lxct. ");
         // WARNING
+        if (Bukkit.getVersion().contains("1.12")) { // Add 1.12 Support for Client View Distance
+            getServer().getPluginManager().registerEvents(new OnPacketReceiving(), this);
+        }
         getServer().getPluginManager().registerEvents(new OnLogin(), this); // Add OnLogin Event
         getServer().getPluginManager().registerEvents(new OnPlayerMove(), this); // Add OnPlayerMove Event
         saveDefaultConfig(); // GENERATE

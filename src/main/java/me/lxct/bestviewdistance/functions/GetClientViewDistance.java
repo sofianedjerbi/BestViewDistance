@@ -1,5 +1,6 @@
 package me.lxct.bestviewdistance.functions;
 
+import me.lxct.bestviewdistance.functions.data.Variable;
 import me.lxct.bestviewdistance.functions.packets.WrapperPlayClientSettings;
 import org.bukkit.entity.Player;
 

@@ -1,12 +1,12 @@
 package me.lxct.bestviewdistance.event;
 
-import me.lxct.bestviewdistance.functions.Variable;
+import me.lxct.bestviewdistance.functions.data.Variable;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import static me.lxct.bestviewdistance.functions.Variable.playerViewDistance;
+import static me.lxct.bestviewdistance.functions.data.Variable.playerViewDistance;
 
 
 public class OnLogin implements Listener {

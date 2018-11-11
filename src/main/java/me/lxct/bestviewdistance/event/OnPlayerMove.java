@@ -4,7 +4,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-import static me.lxct.bestviewdistance.functions.Variable.afkList;
+import static me.lxct.bestviewdistance.functions.data.Variable.afkList;
 
 
 public class OnPlayerMove implements Listener {

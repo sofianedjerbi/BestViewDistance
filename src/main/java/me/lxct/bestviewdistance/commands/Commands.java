@@ -6,7 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import static me.lxct.bestviewdistance.functions.Variable.*;
+import static me.lxct.bestviewdistance.functions.data.Variable.*;
 
 
 class Commands {

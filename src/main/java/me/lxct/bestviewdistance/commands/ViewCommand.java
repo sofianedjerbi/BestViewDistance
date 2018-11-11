@@ -1,7 +1,7 @@
 package me.lxct.bestviewdistance.commands;
 
 import me.lxct.bestviewdistance.functions.Other;
-import me.lxct.bestviewdistance.functions.Variable;
+import me.lxct.bestviewdistance.functions.data.Variable;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -9,7 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import static me.lxct.bestviewdistance.commands.Commands.*;
-import static me.lxct.bestviewdistance.functions.Variable.*;
+import static me.lxct.bestviewdistance.functions.data.Variable.*;
 
 public class ViewCommand implements CommandExecutor {
 

@@ -1,6 +1,7 @@
-package me.lxct.bestviewdistance.functions;
+package me.lxct.bestviewdistance.functions.data;
 
 import me.lxct.bestviewdistance.BestViewDistance;
+import me.lxct.bestviewdistance.functions.Other;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -14,14 +15,14 @@ public class Variable {
     // Config.yml stuff
     //
 
-    static int max;
+    public static int max;
     public static int min;
-    static int afk;
-    static int rping;
-    static int aping;
-    static double tpslimit;
-    static double tpschange;
-    static double maxindice;
+    public static int afk;
+    public static int rping;
+    public static int aping;
+    public static double tpslimit;
+    public static double tpschange;
+    public static double maxindice;
     public static boolean hidereductionindice;
 
     //
@@ -61,12 +62,13 @@ public class Variable {
     // TMP stuff
     //
 
-    static HashMap<String, Location> playerLocation = new HashMap<>(); // Location list
+    public static HashMap<String, Location> playerLocation = new HashMap<>(); // Location list
     public static HashMap<String, Integer> playerViewDistance = new HashMap<>(); // View Distance list
+    public static HashMap<String, Integer> playerSettingsViewDistance = new HashMap<>(); // 1.12 Settings View Distance list
     public static List<String> afkList = new ArrayList<>(); // AFK list
     public static Player player; // Player var used in commands for messages.yml
     public static Double reductionIndice = 0.0; // Initialize the Reduction indice
-    static int tmpClientViewDistance;
+    public static int tmpClientViewDistance;
 
     public static void loadVariables() {
 

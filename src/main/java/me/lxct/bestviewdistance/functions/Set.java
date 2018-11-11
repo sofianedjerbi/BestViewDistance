@@ -1,12 +1,15 @@
 package me.lxct.bestviewdistance.functions;
 
 import me.lxct.bestviewdistance.BestViewDistance;
+import me.lxct.bestviewdistance.functions.data.Variable;
+import me.lxct.bestviewdistance.functions.sync.SetAfkViewDistance;
+import me.lxct.bestviewdistance.functions.sync.SetViewDistance;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import static me.lxct.bestviewdistance.functions.Get.getViewDistance;
-import static me.lxct.bestviewdistance.functions.Variable.afkList;
-import static me.lxct.bestviewdistance.functions.Variable.playerViewDistance;
+import static me.lxct.bestviewdistance.functions.data.Variable.afkList;
+import static me.lxct.bestviewdistance.functions.data.Variable.playerViewDistance;
 
 public class Set extends org.bukkit.plugin.java.JavaPlugin {
 
