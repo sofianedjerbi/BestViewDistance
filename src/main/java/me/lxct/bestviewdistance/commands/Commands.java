@@ -31,10 +31,11 @@ class Commands {
 
     static void commandPing(String[] args, CommandSender sender) {
         if(args[0].equalsIgnoreCase("ping")) {
-            player = Bukkit.getServer().getPlayerExact(args[1]);
-            if (player == null) {
+            Player playerArgs = Bukkit.getServer().getPlayerExact(args[1]);
+            if (playerArgs == null) {
                 sender.sendMessage(colorize(Other.replacePlaceHolders(viewIncorrectPing)));
             } else {
+                player = playerArgs;
                 sender.sendMessage(colorize(Other.replacePlaceHolders(viewPing)));
             }
         }
