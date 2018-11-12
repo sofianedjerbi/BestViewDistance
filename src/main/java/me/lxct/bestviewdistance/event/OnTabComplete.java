@@ -23,7 +23,9 @@ public class OnTabComplete implements TabCompleter {
                     COMMANDS.add(player.getName());
                 }
                 ArrayList<String> completions = new ArrayList<>(COMMANDS.size());
-                StringUtil.copyPartialMatches(args[1], COMMANDS, completions);
+                if(args.length == 2) {
+                    StringUtil.copyPartialMatches(args[1], COMMANDS, completions);
+                }
                 Collections.sort(completions); // Sort completions
                 return completions;
             }
