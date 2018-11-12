@@ -29,7 +29,7 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
     private static int setClientSettingLimit(Player player, int viewDistance) {
         int clientSideViewDistance = getViewDistance(player); // Get Client Side View Distance
         if (viewDistance > clientSideViewDistance) { // If given view distance is more than client side view distance
-                viewDistance = clientSideViewDistance;
+            viewDistance = clientSideViewDistance;
         }
         return viewDistance;
     }
@@ -53,7 +53,7 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
         }
     }
 
-    public static void setPlayersBestViewDistance(){
+    public static void setPlayersBestViewDistance() {
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (afkList.contains(player.getName())) { // IF player is afk
                 Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetAfkViewDistance(player)); // Break Async chain
@@ -66,28 +66,23 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
     // THE MAIN FUNCTION ! CALCULATE BEST PLAYER VIEW DISTANCE WITH REDUCTION INDICE
     public static void calculatePlayersBestViewDistance(double ReductionIndice) {
         for (Player player : Bukkit.getOnlinePlayers()) {
-            if (afkList.contains(player.getName())) { // IF player is afk
-                Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetAfkViewDistance(player)); // Break Async chain
-            } else {
-                int supportedViewDistance = playerViewDistance.get(player.getName()); // View distance supported by player
-                int ping = player.spigot().getPing(); // Ping of player
+            int supportedViewDistance = playerViewDistance.get(player.getName()); // View distance supported by player
+            int ping = player.spigot().getPing(); // Ping of player
 
-                if (ping < Variable.aping && ping > 1) {
-                    supportedViewDistance = supportedViewDistance + 1;
-                } // Low ping = More View Distance
-                else if (ping >= Variable.rping) {
-                    supportedViewDistance = supportedViewDistance - 1;
-                } // Big ping = Less View Distance
+            if (ping < Variable.aping && ping > 1) {
+                supportedViewDistance = supportedViewDistance + 1;
+            } // Low ping = More View Distance
+            else if (ping >= Variable.rping) {
+                supportedViewDistance = supportedViewDistance - 1;
+            } // Big ping = Less View Distance
 
-                playerViewDistance.put(player.getName(), supportedViewDistance); // Store in var
+            playerViewDistance.put(player.getName(), supportedViewDistance); // Store in var
 
-                setSupportedViewDistanceLimit(player.getName()); // Make sure supported view distance doesn't get over limits
-                int viewDistance = Math.round((int) (supportedViewDistance * (1 - ReductionIndice))); // Apply percentage
-                // About the line under this comment. We set player view distance only if view distance doesn't get over limits
-                // And respect player settings
-                playerLiveViewDistance.put(player.getName(), setClientSettingLimit(player, setViewDistanceLimit(viewDistance))); // Store result of calculations
-            }
+            setSupportedViewDistanceLimit(player.getName()); // Make sure supported view distance doesn't get over limits
+            int viewDistance = Math.round((int) (supportedViewDistance * (1 - ReductionIndice))); // Apply percentage
+            // About the line under this comment. We set player view distance only if view distance doesn't get over limits
+            // And respect player settings
+            playerLiveViewDistance.put(player.getName(), setClientSettingLimit(player, setViewDistanceLimit(viewDistance))); // Store result of calculations
         }
     }
-
 }
