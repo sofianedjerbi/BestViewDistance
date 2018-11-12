@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 
 import static me.lxct.bestviewdistance.functions.Get.getViewDistance;
 import static me.lxct.bestviewdistance.functions.data.Variable.afkList;
+import static me.lxct.bestviewdistance.functions.data.Variable.playerLiveViewDistance;
 import static me.lxct.bestviewdistance.functions.data.Variable.playerViewDistance;
 
 public class Set extends org.bukkit.plugin.java.JavaPlugin {
@@ -52,12 +53,22 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
         }
     }
 
-    // THE MAIN FUNCTION ! CALCULATE BEST PLAYER VIEW DISTANCE WITH REDUCTION INDICE |||| NEED IMPROVEMENTS !!
-    public static void setPlayersBestViewDistance(double ReductionIndice) {
+    public static void setPlayersBestViewDistance(){
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (afkList.contains(player.getName())) { // IF player is afk
                 Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetAfkViewDistance(player)); // Break Async chain
-            } else { // THIS REALLY REALLY NEED IMPROVEMENTS, Please help <3
+            } else {
+                Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetViewDistance(player, playerLiveViewDistance.get(player.getName()))); // Break Async chain
+            }
+        }
+    }
+
+    // THE MAIN FUNCTION ! CALCULATE BEST PLAYER VIEW DISTANCE WITH REDUCTION INDICE
+    public static void calculatePlayersBestViewDistance(double ReductionIndice) {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            if (afkList.contains(player.getName())) { // IF player is afk
+                Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetAfkViewDistance(player)); // Break Async chain
+            } else {
                 int supportedViewDistance = playerViewDistance.get(player.getName()); // View distance supported by player
                 int ping = player.spigot().getPing(); // Ping of player
 
@@ -74,8 +85,7 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
                 int viewDistance = Math.round((int) (supportedViewDistance * (1 - ReductionIndice))); // Apply percentage
                 // About the line under this comment. We set player view distance only if view distance doesn't get over limits
                 // And respect player settings
-                int finalviewDistance = setClientSettingLimit(player, setViewDistanceLimit(viewDistance));
-                Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetViewDistance(player, finalviewDistance)); // Break Async chain
+                playerLiveViewDistance.put(player.getName(), setClientSettingLimit(player, setViewDistanceLimit(viewDistance))); // Store result of calculations
             }
         }
     }

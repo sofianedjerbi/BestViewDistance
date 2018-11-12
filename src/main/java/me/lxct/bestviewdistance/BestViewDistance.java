@@ -12,6 +12,7 @@ import me.lxct.bestviewdistance.event.OnLogin;
 import me.lxct.bestviewdistance.event.OnPlayerMove;
 import me.lxct.bestviewdistance.event.OnTabComplete;
 import me.lxct.bestviewdistance.functions.Other;
+import me.lxct.bestviewdistance.functions.Set;
 import me.lxct.bestviewdistance.functions.async.AsyncUpdateChecker;
 import me.lxct.bestviewdistance.functions.data.Variable;
 import org.bstats.bukkit.Metrics;
@@ -21,7 +22,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import static me.lxct.bestviewdistance.functions.Get.getNewReductionIndice;
 import static me.lxct.bestviewdistance.functions.Other.genMessagesYml;
 import static me.lxct.bestviewdistance.functions.Other.loadMessagesYml;
-import static me.lxct.bestviewdistance.functions.Set.setPlayersBestViewDistance;
+import static me.lxct.bestviewdistance.functions.Set.calculatePlayersBestViewDistance;
 import static me.lxct.bestviewdistance.functions.Set.setServerLimits;
 import static me.lxct.bestviewdistance.functions.data.Variable.loadVariables;
 
@@ -73,10 +74,22 @@ public class BestViewDistance extends JavaPlugin {
         getCommand("view").setExecutor(new ViewCommand()); // Executor for commands
         getCommand("vdist").setExecutor(new ViewCommand());
         getCommand("view").setTabCompleter(new OnTabComplete()); // Tab completer
+
+        //
+        // Schedule tasks
+        //
+
         //noinspection deprecation
-        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, calculations, 0L, this.getConfig().getInt("ViewDistance.Delay") * 20L); // CALCULATIONS SCHEDULER
+        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, applyViewDistance, 0L, this.getConfig().getInt("ViewDistance.SetViewDelay") * 20L); // CALCULATIONS SCHEDULER
         //noinspection deprecation
         Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, detectAFK, 0L, this.getConfig().getInt("Performances.AFKTimer") * 20L); // DETECT AFK SCHEDULER
+        //noinspection deprecation
+        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, calculations, 0L, this.getConfig().getInt("ViewDistance.CalculationsDelay") * 20L);
+
+        //
+        // BSTATS + ASYNC UPDATE CHECKER
+        //
+
         if (this.getConfig().getBoolean("Other.Metrics")) {
             //noinspection unused
             Metrics metrics = new Metrics(this); // METRICS
@@ -90,8 +103,12 @@ public class BestViewDistance extends JavaPlugin {
             () -> {
                 Variable.reductionIndice = getNewReductionIndice(Bukkit.getTPS()[0]); // Update Reduction Indice
                 setServerLimits(); // Control
-                setPlayersBestViewDistance(Variable.reductionIndice); // Update Players View Distance
+                calculatePlayersBestViewDistance(Variable.reductionIndice); // Update Players View Distance
             };
+
+    // Update Players View Distance
+    private Runnable applyViewDistance = // CALCULATIONS
+            Set::setPlayersBestViewDistance;
 
     private Runnable detectAFK = // CHECK IF AFK
             Other::putPlayerAFK;

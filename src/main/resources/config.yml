@@ -13,7 +13,8 @@
 #   Max: 16 # Max View Distance. Player can't get above 32.
 #   AFK : 3 # View Distance of "AFK" players. You can't assign a value less than 3.
 #   OnLogin: 4 # View Distance assigned on login. I advise you to set the same value as Min
-#   Delay: 15 # Delay between calculations. Keep it above 5. If you increase this, view distance and ReductionIndice will change faster. NEED RESTART
+#   CalculationDelay: 2 # Delay between ASYNC calculations. Keep it above 1. NEED RESTART, DOES NOT AFFECT PERFORMANCES.
+#   SetViewDelay: 15 # Delay between applying calculations. Keep it above 5. A little number will make view distance change faster. NEED RESTART, AFFECT PERFORMANCES.
 # Performances:
 #   PingForReduction: 1000 # If your ping is higher than this value, then your view distance will be reduced. Keep it above 400.
 #   PingForAugmentation: 90 # If your ping is less than this value, then your view distance will be increased. Keep it below 100.
@@ -37,7 +38,8 @@ ViewDistance:
   Max: 16
   AFK: 3
   OnLogin: 4
-  Delay: 15
+  CalculationsDelay: 2
+  SetViewDelay: 15
 Performances:
   PingForReduction: 600
   PingForAugmentation: 80

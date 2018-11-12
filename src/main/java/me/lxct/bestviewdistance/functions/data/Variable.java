@@ -66,6 +66,7 @@ public class Variable {
 
     public static HashMap<String, Location> playerLocation = new HashMap<>(); // Location list
     public static HashMap<String, Integer> playerViewDistance = new HashMap<>(); // View Distance list
+    public static HashMap<String, Integer> playerLiveViewDistance = new HashMap<>(); // Live View Distance list
     public static HashMap<String, Integer> playerSettingsViewDistance = new HashMap<>(); // 1.12 Settings View Distance list
     public static List<String> afkList = new ArrayList<>(); // AFK list
     public static Player player; // Player var used in commands for messages.yml
