@@ -61,9 +61,6 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
                 if (playerLiveViewDistance.containsKey(player.getName())) {
                     Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetViewDistance(player, playerLiveViewDistance.get(player.getName()))); // Break Async chain
                 }
-                else{
-                    Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetViewDistance(player, Variable.min));
-                }
             }
         }
     }
