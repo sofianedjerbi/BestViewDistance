@@ -1,6 +1,7 @@
 package me.lxct.bestviewdistance.functions;
 
 import me.lxct.bestviewdistance.BestViewDistance;
+import me.lxct.bestviewdistance.functions.data.Variable;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -26,6 +27,13 @@ public class Other {
             } else { // If it's not the same position...
                 playerLocation.put(player.getName(), player.getLocation()); // Actualize the position.
             }
+        }
+    }
+
+    public static void genOnlinePlayerData(){ // Set all playerLiveViewDistance to onLoginView.
+        playerLiveViewDistance.clear();
+        for(Player player : Bukkit.getServer().getOnlinePlayers()){
+            playerLiveViewDistance.put(player.getName(), Variable.onloginview);
         }
     }
 

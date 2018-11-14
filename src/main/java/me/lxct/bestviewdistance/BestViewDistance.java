@@ -21,6 +21,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import static me.lxct.bestviewdistance.functions.Get.getNewReductionIndice;
 import static me.lxct.bestviewdistance.functions.Other.genMessagesYml;
+import static me.lxct.bestviewdistance.functions.Other.genOnlinePlayerData;
 import static me.lxct.bestviewdistance.functions.Other.loadMessagesYml;
 import static me.lxct.bestviewdistance.functions.Set.calculatePlayersBestViewDistance;
 import static me.lxct.bestviewdistance.functions.Set.setServerLimits;
@@ -71,6 +72,7 @@ public class BestViewDistance extends JavaPlugin {
         genMessagesYml(); // Generate Messages.yml
         loadMessagesYml(); // Load CustomConfig (Messages)
         loadVariables(); // Load Variables (Config / Messages)
+        genOnlinePlayerData(); // In case of a reload caused by another plugin
         getCommand("view").setExecutor(new ViewCommand()); // Executor for commands
         getCommand("vdist").setExecutor(new ViewCommand());
         getCommand("view").setTabCompleter(new OnTabComplete()); // Tab completer
