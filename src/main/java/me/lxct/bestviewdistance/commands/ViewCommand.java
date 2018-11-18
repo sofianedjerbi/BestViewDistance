@@ -27,6 +27,14 @@ public class ViewCommand implements CommandExecutor {
                 if (sender.hasPermission("view.reload")) {
                     commandReload(args, sender);
                 }
+                if (sender.hasPermission("view.modify.player")) {
+                    commandSetPlayer(args, sender);
+                    commandUnsetPlayer(args, sender);
+                }
+                if (sender.hasPermission("view.modify.server")) {
+                    commandSetServer(args, sender);
+                    commandUnsetServer(args, sender);
+                }
             }
         } else if (cmd.getName().equalsIgnoreCase("vdist") && sender.hasPermission("view.info")) {
             if (sender instanceof Player) {

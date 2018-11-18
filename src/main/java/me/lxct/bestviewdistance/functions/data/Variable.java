@@ -59,17 +59,28 @@ public class Variable {
     public static String viewServer;
     public static String viewIncorrectPing;
     public static String viewIncorrectView;
+    public static String viewIncorrectSetView;
+    public static String viewSetPlayer;
+    public static String viewSetServer;
+    public static String viewIncorrectUnsetView;
+    public static String viewUnsetPlayer;
+    public static String viewUnsetServer;
+    public static String viewNotSetPlayer;
+    public static String viewNotSetServer;
+    public static boolean serverViewSet;
 
     //
     // TMP stuff
     //
 
+    public static HashMap<String, Integer> playerViewSet = new HashMap<>(); // /view set <player> view
     public static HashMap<String, Location> playerLocation = new HashMap<>(); // Location list
     public static HashMap<String, Integer> playerViewDistance = new HashMap<>(); // View Distance list
     public static HashMap<String, Integer> playerLiveViewDistance = new HashMap<>(); // Live View Distance list
     public static HashMap<String, Integer> playerSettingsViewDistance = new HashMap<>(); // 1.12 Settings View Distance list
     public static List<String> afkList = new ArrayList<>(); // AFK list
     public static Player player; // Player var used in commands for messages.yml
+    public static String playerName; // PlayerNAME var used in commands for messages.yml
     public static Double reductionIndice = 0.0; // Initialize the Reduction indice
 
     public static void loadVariables() {
@@ -123,5 +134,13 @@ public class Variable {
         viewServer = Other.getCustomConfig().getString("view.server");
         viewIncorrectPing = Other.getCustomConfig().getString("view.incorrectPing");
         viewIncorrectView = Other.getCustomConfig().getString("view.incorrectView");
+        viewSetServer = Other.getCustomConfig().getString("view.setServer");
+        viewSetPlayer = Other.getCustomConfig().getString("view.setPlayer");
+        viewIncorrectSetView = Other.getCustomConfig().getString("view.incorrectSet");
+        viewUnsetServer = Other.getCustomConfig().getString("view.unsetServer");
+        viewUnsetPlayer = Other.getCustomConfig().getString("view.unsetPlayer");
+        viewNotSetServer = Other.getCustomConfig().getString("view.notSetServer");
+        viewNotSetPlayer = Other.getCustomConfig().getString("view.notSetPlayer");
+        viewIncorrectUnsetView = Other.getCustomConfig().getString("view.incorrectUnset");
     }
 }

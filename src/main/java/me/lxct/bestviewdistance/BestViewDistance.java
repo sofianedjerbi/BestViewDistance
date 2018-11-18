@@ -19,10 +19,11 @@ import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+
 import static me.lxct.bestviewdistance.functions.Get.getNewReductionIndice;
-import static me.lxct.bestviewdistance.functions.Other.genMessagesYml;
-import static me.lxct.bestviewdistance.functions.Other.genOnlinePlayerData;
-import static me.lxct.bestviewdistance.functions.Other.loadMessagesYml;
+import static me.lxct.bestviewdistance.functions.Get.getServerCustomViewBoolean;
+import static me.lxct.bestviewdistance.functions.Other.*;
 import static me.lxct.bestviewdistance.functions.Set.calculatePlayersBestViewDistance;
 import static me.lxct.bestviewdistance.functions.Set.setServerLimits;
 import static me.lxct.bestviewdistance.functions.data.Variable.loadVariables;
@@ -66,6 +67,14 @@ public class BestViewDistance extends JavaPlugin {
         // 1.12 compatibility
         //
 
+        //
+        // Load & Get info
+        //
+
+        if(new File(BestViewDistance.plugin.getDataFolder() + "/data/", "server.yml").exists()){
+            Variable.serverViewSet = getServerCustomViewBoolean();
+        }
+
         getServer().getPluginManager().registerEvents(new OnLogin(), this); // Add OnLogin Event
         getServer().getPluginManager().registerEvents(new OnPlayerMove(), this); // Add OnPlayerMove Event
         saveDefaultConfig(); // GENERATE
@@ -76,6 +85,10 @@ public class BestViewDistance extends JavaPlugin {
         getCommand("view").setExecutor(new ViewCommand()); // Executor for commands
         getCommand("vdist").setExecutor(new ViewCommand());
         getCommand("view").setTabCompleter(new OnTabComplete()); // Tab completer
+
+        //
+        // Load & Get info
+        //
 
         //
         // Schedule tasks
@@ -92,10 +105,10 @@ public class BestViewDistance extends JavaPlugin {
         // BSTATS + ASYNC UPDATE CHECKER
         //
 
-        if (this.getConfig().getBoolean("Other.Metrics")) {
-            //noinspection unused
-            Metrics metrics = new Metrics(this); // METRICS
-        }
+        //if (this.getConfig().getBoolean("Other.Metrics")) {
+        //noinspection unused
+        Metrics metrics = new Metrics(this); // METRICS
+        //}
         if (this.getConfig().getBoolean("Other.CheckUpdates")) {
             new AsyncUpdateChecker(this).checkForUpdate(); // Add AsyncUpdateChecker (Thx Benz56)
         }

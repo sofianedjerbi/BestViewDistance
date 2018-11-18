@@ -7,10 +7,11 @@ import me.lxct.bestviewdistance.functions.sync.SetViewDistance;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import static me.lxct.bestviewdistance.functions.Get.getViewDistance;
-import static me.lxct.bestviewdistance.functions.data.Variable.afkList;
-import static me.lxct.bestviewdistance.functions.data.Variable.playerLiveViewDistance;
-import static me.lxct.bestviewdistance.functions.data.Variable.playerViewDistance;
+import java.io.File;
+
+import static me.lxct.bestviewdistance.functions.Get.*;
+import static me.lxct.bestviewdistance.functions.Other.*;
+import static me.lxct.bestviewdistance.functions.data.Variable.*;
 
 public class Set extends org.bukkit.plugin.java.JavaPlugin {
 
@@ -23,7 +24,6 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
         }
         return viewDistance;
     }
-
 
     // A FUNCTION FOR CLIENT SIDE SETTING. DON'T GIVE MORE VIEW DISTANCE THAN REQUIRED.
     private static int setClientSettingLimit(Player player, int viewDistance) {
@@ -54,14 +54,44 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
     }
 
     public static void setPlayersBestViewDistance() {
-        for (Player player : Bukkit.getOnlinePlayers()) {
-            if (afkList.contains(player.getName())) { // IF player is afk
-                Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetAfkViewDistance(player)); // Break Async chain
-            } else {
-                if (playerLiveViewDistance.containsKey(player.getName())) {
-                    Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetViewDistance(player, playerLiveViewDistance.get(player.getName()))); // Break Async chain
+        if (!serverViewSet) {
+            for (Player player : Bukkit.getOnlinePlayers()) {
+                if (afkList.contains(player.getName())) { // IF player is afk
+                    Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetAfkViewDistance(player)); // Break Async chain
+                } else {
+                    if(!Variable.playerViewSet.containsKey(player.getName())) {
+                        if (playerLiveViewDistance.containsKey(player.getName())) {
+                            Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetViewDistance(player, playerLiveViewDistance.get(player.getName()))); // Break Async chain
+                        }
+                    }
                 }
             }
+        }
+    }
+
+    public static void setCustomPlayerDataViewDistance(Player player, int view) { // Get and apply a custom view distance if specified.
+        if (new File(BestViewDistance.plugin.getDataFolder() + "/data/", player.getName() + ".yml").exists()) { // If the player has already a file
+            getPlayerConfig(player).set("Data.CustomViewDistance", view); // Set value
+            savePlayerCustomViewFile(player); // Save the file
+        } else {
+            genPlayerCustomViewFile(player, view);
+        }
+        getPlayerConfig(player).set("Data.CustomViewDistanceIsSet", true); // Set true
+        playerViewSet.put(player.getName(), view);  // Put inside data
+        player.setViewDistance(view); // Set it for real
+    }
+
+    public static void setCustomServerDataViewDistance(int view) { // Get and apply a custom view distance if specified.
+        if (new File(BestViewDistance.plugin.getDataFolder() + "/data/", "server.yml").exists()) { // If the server has already a file
+            getServerConfig().set("Data.CustomViewDistance", view); // Set value
+            getServerConfig().set("Data.CustomViewDistanceIsSet", true); // Set value
+            saveServerCustomViewFile(); // Save the file
+        } else {
+            genServerCustomViewFile(view);
+        }
+        serverViewSet = true;  // Put inside data
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            player.setViewDistance(view); // Set it for real
         }
     }
 
@@ -70,16 +100,13 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
         for (Player player : Bukkit.getOnlinePlayers()) {
             int supportedViewDistance = playerViewDistance.get(player.getName()); // View distance supported by player
             int ping = player.spigot().getPing(); // Ping of player
-
             if (ping < Variable.aping && ping > 1) {
                 supportedViewDistance = supportedViewDistance + 1;
             } // Low ping = More View Distance
             else if (ping >= Variable.rping) {
                 supportedViewDistance = supportedViewDistance - 1;
             } // Big ping = Less View Distance
-
             playerViewDistance.put(player.getName(), supportedViewDistance); // Store in var
-
             setSupportedViewDistanceLimit(player.getName()); // Make sure supported view distance doesn't get over limits
             int viewDistance = Math.round((int) (supportedViewDistance * (1 - ReductionIndice))); // Apply percentage
             // About the line under this comment. We set player view distance only if view distance doesn't get over limits

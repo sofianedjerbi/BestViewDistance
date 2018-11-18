@@ -1,5 +1,5 @@
 name: BestViewDistance
-version: 6.5
+version: 7
 api-version: 1.13
 description: Best View Distance. Optimize your view distance.
 author: Lxct
@@ -23,6 +23,12 @@ permissions:
     default: op
   view.info:
     description: Use /vdist to get your own view distance
+    default: op
+  view.modify.player:
+    description: Use /view set player X and /view unset player
+    default: op
+  view.modify.server:
+    description: Use /view set server X and /view unset server
     default: op
   view.reload:
     description: Reload BestViewDistance

@@ -26,6 +26,14 @@ view:
   server: "&aThe view distance is reduced by&d %REDUCTIONINDICE%%"
   incorrectPing: "&c/view ping <player>"
   incorrectView: "&c/view <player>"
+  setPlayer: "&aView of %PLAYER% is now %VIEWDISTANCE%"
+  setServer: "&aServer view : %VIEWDISTANCE%"
+  unsetPlayer: "&7Unset custom view of&a %PLAYER%&7."
+  unsetServer: "&7Unset custom server view."
+  notSetPlayer: "&cThis player does not have a custom view."
+  notSetServer: "&cThe server does not have a custom view."
+  incorrectSet: "&c/view set <player/server> <range>"
+  incorrectUnset: "&c/view unset <player/server>"
 
 viewPlayer:
   line1: "&aView Distance of %PLAYER% =>&d %VIEWDISTANCE% (Current)"
