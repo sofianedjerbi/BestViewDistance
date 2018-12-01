@@ -42,8 +42,8 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
     }
 
     // CHECK AND USE PERMISSIONS
-    private static int setPlayerPermissions(Player player, int viewDistance) {
-        for(int i=3; i<=32; i++) { // Start at 3, to 32
+    public static int setPlayerPermissions(Player player, int viewDistance) {
+        for (int i = 3; i <= 32; i++) { // Start at 3, to 32
             if (player.hasPermission("view.set." + i)) {
                 return i; // If he has permission, then return the number "after" the permission.
             }
@@ -61,10 +61,10 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
     }
 
     // A FUNCTION THAT SET THE VIEW DISTANCE WITH FUNCTION THAT BREAK ASYNC CHAINS
-    public static void setPlayersBestViewDistance() {
+    public static void applyViewDistance() {
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (afkList.contains(player.getName())) { // IF player is afk
-                Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetAfkViewDistance(player)); // Break Async chain
+                Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetAfkViewDistance(player, setPlayerPermissions(player, afk))); // Break Async chain
             } else {
                 if (playerLiveViewDistance.containsKey(player.getName())) {
                     Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetViewDistance(player, playerLiveViewDistance.get(player.getName()))); // Break Async chain
@@ -72,7 +72,6 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
             }
         }
     }
-
 
     // THE MAIN FUNCTION ! CALCULATE BEST PLAYER VIEW DISTANCE WITH REDUCTION INDICE
     public static void calculatePlayersBestViewDistance(double ReductionIndice) {

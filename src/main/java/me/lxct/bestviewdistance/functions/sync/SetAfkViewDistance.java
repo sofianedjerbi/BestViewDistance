@@ -1,16 +1,18 @@
 package me.lxct.bestviewdistance.functions.sync;
 
-import me.lxct.bestviewdistance.functions.data.Variable;
 import org.bukkit.entity.Player;
 
 public class SetAfkViewDistance implements Runnable {
     private Player player;
-    public SetAfkViewDistance(Player player) {
+    private int permissionViewDistance;
+
+    public SetAfkViewDistance(Player player, int permissionViewDistance) {
         this.player = player;
+        this.permissionViewDistance = permissionViewDistance;
     }
 
     @Override
     public void run() {
-        player.setViewDistance(Variable.afk);
+        player.setViewDistance(permissionViewDistance);
     }
 }

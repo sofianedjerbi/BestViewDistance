@@ -23,19 +23,17 @@ public class OnTabComplete implements TabCompleter {
                     COMMANDS.add(player.getName());
                 }
                 ArrayList<String> completions = new ArrayList<>(COMMANDS.size());
-                if(args.length == 2) {
+                if (args.length == 2) {
                     StringUtil.copyPartialMatches(args[1], COMMANDS, completions);
                 }
                 Collections.sort(completions); // Sort completions
                 return completions;
-            }
-            else{
+            } else {
                 return new ArrayList<>();
             }
-        }else if (args.length > 1){ // Does not spam tab complete
+        } else if (args.length > 1) { // Does not spam tab complete
             return new ArrayList<>();
-        }
-        else { // TPS / SERVER / PING / RELOAD completion
+        } else { // TPS / SERVER / PING / RELOAD completion
             ArrayList<String> COMMANDS = new ArrayList<>(Arrays.asList("tps", "server", "ping", "reload"));
             for (Player player : Bukkit.getOnlinePlayers()) {
                 COMMANDS.add(player.getName());

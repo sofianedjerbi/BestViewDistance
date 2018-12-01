@@ -116,7 +116,7 @@ public class BestViewDistance extends JavaPlugin {
 
     // Update Players View Distance
     private Runnable applyViewDistance = // CALCULATIONS
-            Set::setPlayersBestViewDistance;
+            Set::applyViewDistance;
 
     private Runnable detectAFK = // CHECK IF AFK
             Other::putPlayerAFK;
