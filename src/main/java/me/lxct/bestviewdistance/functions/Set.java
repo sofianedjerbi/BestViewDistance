@@ -67,7 +67,7 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
                 Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetAfkViewDistance(player, setPlayerPermissions(player, afk))); // Break Async chain
             } else {
                 if (playerLiveViewDistance.containsKey(player.getName())) {
-                    Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetViewDistance(player, playerLiveViewDistance.get(player.getName()))); // Break Async chain
+                    Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetViewDistance(player, setPlayerPermissions(player, playerLiveViewDistance.get(player.getName())))); // Break Async chain
                 }
             }
         }
@@ -89,7 +89,7 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
             int viewDistance = Math.round((int) (supportedViewDistance * (1 - ReductionIndice))); // Apply percentage
             // About the line under this comment. We set player view distance only if view distance doesn't get over limits
             // And respect player settings
-            playerLiveViewDistance.put(player.getName(), setPlayerPermissions(player, setClientSettingLimit(player, setViewDistanceLimit(viewDistance)))); // Store result of calculations
+            playerLiveViewDistance.put(player.getName(), setClientSettingLimit(player, setViewDistanceLimit(viewDistance))); // Store result of calculations
         }
     }
 }
