@@ -24,11 +24,8 @@ permissions:
   view.info:
     description: Use /vdist to get your own view distance
     default: op
-  view.modify.player:
-    description: Use /view set player X and /view unset player
-    default: op
-  view.modify.server:
-    description: Use /view set server X and /view unset server
+  view.set:
+    description: Use /vdist to get your own view distance
     default: op
   view.reload:
     description: Reload BestViewDistance

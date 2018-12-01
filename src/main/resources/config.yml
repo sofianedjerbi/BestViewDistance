@@ -41,8 +41,8 @@ ViewDistance:
   CalculationsDelay: 2
   SetViewDelay: 15
 Performances:
-  PingForReduction: 600
-  PingForAugmentation: 80
+  PingForReduction: 1000
+  PingForAugmentation: 90
   TPSLimit: 19.5
   TPSChangeIndice: 0.05
   MaxReductionIndice: 0.75

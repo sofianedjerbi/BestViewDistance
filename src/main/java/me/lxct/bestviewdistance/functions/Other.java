@@ -11,9 +11,7 @@ import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
 
-import static me.lxct.bestviewdistance.functions.Get.getPlayerConfig;
 import static me.lxct.bestviewdistance.functions.data.Variable.*;
 
 public class Other {
@@ -32,59 +30,6 @@ public class Other {
         }
     }
 
-    static void genServerCustomViewFile(int view) { // Create a "player data" file and set a view distance.
-        File serverFile = new File(BestViewDistance.plugin.getDataFolder() + "/data/", "server.yml");
-        serverFile.mkdirs();
-        try {
-            YamlConfiguration serverConfig = YamlConfiguration.loadConfiguration(serverFile);
-            serverConfig.set("Data.CustomViewDistance", view);
-            serverConfig.save(serverFile);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void saveServerCustomViewFile() { // Create a "player data" file.
-        File serverFile = new File(BestViewDistance.plugin.getDataFolder() + "/data/", "server.yml");
-        try {
-            YamlConfiguration serverConfig = YamlConfiguration.loadConfiguration(serverFile);
-            serverConfig.save(serverFile);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    static void genPlayerCustomViewFile(Player player, int view) { // Create a "player data" file and set a view distance.
-        File userFile = new File(BestViewDistance.plugin.getDataFolder() + "/data/", player.getName() + ".yml");
-        userFile.mkdirs();
-        try {
-            YamlConfiguration userConfig = YamlConfiguration.loadConfiguration(userFile);
-            userConfig.set("Data.CustomViewDistance", view);
-            getPlayerConfig(player).set("Data.CustomViewDistanceIsSet", ""); // Set true
-            userConfig.save(userFile);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static boolean checkFile(File directory, String name) { // List files of a directory and see if it contain the file named "name"
-        for (File eachFiles : Objects.requireNonNull(directory.listFiles())) {
-            if (name.equals(eachFiles.toString())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    static void savePlayerCustomViewFile(Player player) { // Create a "player data" file.
-        File userFile = new File(BestViewDistance.plugin.getDataFolder() + "/data/", player.getName() + ".yml");
-        try {
-            YamlConfiguration userConfig = YamlConfiguration.loadConfiguration(userFile);
-            userConfig.save(userFile);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     public static void genOnlinePlayerData() { // Set all playerLiveViewDistance to onLoginView.
         playerLiveViewDistance.clear();

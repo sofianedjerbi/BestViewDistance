@@ -19,10 +19,7 @@ import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
-
 import static me.lxct.bestviewdistance.functions.Get.getNewReductionIndice;
-import static me.lxct.bestviewdistance.functions.Get.getServerCustomViewBoolean;
 import static me.lxct.bestviewdistance.functions.Other.*;
 import static me.lxct.bestviewdistance.functions.Set.calculatePlayersBestViewDistance;
 import static me.lxct.bestviewdistance.functions.Set.setServerLimits;
@@ -70,10 +67,6 @@ public class BestViewDistance extends JavaPlugin {
         //
         // Load & Get info
         //
-
-        if(new File(BestViewDistance.plugin.getDataFolder() + "/data/", "server.yml").exists()){
-            Variable.serverViewSet = getServerCustomViewBoolean();
-        }
 
         getServer().getPluginManager().registerEvents(new OnLogin(), this); // Add OnLogin Event
         getServer().getPluginManager().registerEvents(new OnPlayerMove(), this); // Add OnPlayerMove Event
