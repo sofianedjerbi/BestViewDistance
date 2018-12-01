@@ -78,7 +78,7 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
         for (Player player : Bukkit.getOnlinePlayers()) {
             int supportedViewDistance = playerViewDistance.get(player.getName()); // View distance supported by player
             int ping = player.spigot().getPing(); // Ping of player
-            if (ping < Variable.aping && ping > 1) {
+            if (ping < Variable.aping && ping >= 1) {
                 supportedViewDistance = supportedViewDistance + 1;
             } // Low ping = More View Distance
             else if (ping >= Variable.rping) {

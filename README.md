@@ -30,6 +30,9 @@ Permission : "view.check"
 /vdist => Allows your players to see their own view distance. Need "view.info"
 
 Permission for update checker : "view.update"
+
+Bypass algorithm : "view.set.x" (3 to 32)
+(Example : view.set.15 set a view dist of 15 chunks)
 ```
 
 ## Config
@@ -77,8 +80,8 @@ ViewDistance:
   CalculationsDelay: 2
   SetViewDelay: 15
 Performances:
-  PingForReduction: 600
-  PingForAugmentation: 80
+  PingForReduction: 1000
+  PingForAugmentation: 90
   TPSLimit: 19.5
   TPSChangeIndice: 0.05
   MaxReductionIndice: 0.75
