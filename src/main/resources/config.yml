@@ -26,6 +26,7 @@
 #   HideVdistLine4: false # Hide vdist.line4 (in messages.yml) when players uses /vdist
 #   CheckUpdate: true # You should keep this to true. It check if your plugins version is the latest. THIS DOES NOT IMPACT PERFORMANCES, NEED RESTART
 #   Metrics: true # Please keep this to true. Metrics is anonymous and it helps developers stay motivated. THIS DOES NOT IMPACT PERFORMANCES, NEED RESTART
+#   SafePing: 1 # Minimum ping required for calculations. Set it to 0 or -1 for local hosting. Keep this value below 1
 #
 # Please restart your server the first time you're using this plugin. Don't reload.
 #
@@ -51,3 +52,4 @@ Other:
   HideVdistLine4: false
   CheckUpdates: true
   Metrics: true
+  SafePing: 1
