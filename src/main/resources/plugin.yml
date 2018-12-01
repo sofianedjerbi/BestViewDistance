@@ -25,8 +25,8 @@ permissions:
     description: Use /vdist to get your own view distance
     default: op
   view.set:
-    description: Use /vdist to get your own view distance
-    default: op
+    description: Bypass algorithm
+    default: false
   view.reload:
     description: Reload BestViewDistance
     default: op
