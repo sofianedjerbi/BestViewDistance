@@ -30,7 +30,6 @@ public class Other {
         }
     }
 
-
     public static void genOnlinePlayerData() { // Set all playerLiveViewDistance to onLoginView.
         playerLiveViewDistance.clear();
         for (Player player : Bukkit.getServer().getOnlinePlayers()) {

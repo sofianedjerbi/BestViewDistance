@@ -43,13 +43,19 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
 
     // CHECK AND USE PERMISSIONS
     public static int setPlayerPermissions(Player player, int viewDistance) {
-        for (int i = 3; i <= 32; i++) { // Start at 3, to 32
-            if (player.hasPermission("view.set." + i)) {
-                return i; // If he has permission, then return the number "after" the permission.
+        for (int i = 3; i <= 32; i++) { // Start at 32, to 3
+            // 3 4 5 6 7 8 9 10 ... 30 31 32
+            if (player.hasPermission("view.set." + i)) { // view.set.i is set
+                for (int j = 32; j >= 3; j--) { // Start at 32, to 3
+                    // 32 31 30 29 28 27 ... 5 4 3
+                    if (player.hasPermission("view.set." + j) && i == j) {
+                        return i; // If he has permission, then return the number "after" the permission.
+                    }
+                }
             }
         }
-        return viewDistance; // If he doesn't have permissions, then return viewDistance.
-    }
+            return viewDistance; // If he doesn't have permissions, then return viewDistance.
+        }
 
     // MAKE SURE REDUCTION INDICE ISN'T OVER LIMITS
     public static void setServerLimits() {
@@ -64,7 +70,7 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
     public static void applyViewDistance() {
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (afkList.contains(player.getName())) { // IF player is afk
-                Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetAfkViewDistance(player, setPlayerPermissions(player, afk))); // Break Async chain
+                Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetAfkViewDistance(player, setPlayerPermissions(player, setClientSettingLimit(player, afk)))); // Break Async chain
             } else {
                 if (playerLiveViewDistance.containsKey(player.getName())) {
                     Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetViewDistance(player, setPlayerPermissions(player, playerLiveViewDistance.get(player.getName())))); // Break Async chain
