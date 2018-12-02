@@ -47,12 +47,13 @@ Bypass algorithm : "view.set.x" (3 to 32)
 # Read this :
 #
 #
+# Version: 1.0 # Version of the config file. DON'T TOUCH THIS
 # ViewDistance:
 #   Min: 4 # Min View Distance. Keep it above 4.
 #   Max: 16 # Max View Distance. Player can't get above 32.
 #   AFK : 3 # View Distance of "AFK" players. You can't assign a value less than 3.
 #   OnLogin: 4 # View Distance assigned on login. I advise you to set the same value as Min
-#   CalculationDelay: 2 # Delay between ASYNC calculations. Keep it above 1. NEED RESTART, DOES NOT AFFECT PERFORMANCES.
+#   CalculationDelay: 1 # Delay between ASYNC calculations. Keep it above 1. NEED RESTART, DOES NOT AFFECT PERFORMANCES.
 #   SetViewDelay: 15 # Delay between applying calculations. Keep it above 5. A little number will make view distance change faster. NEED RESTART, AFFECT PERFORMANCES.
 # Performances:
 #   PingForReduction: 1000 # If your ping is higher than this value, then your view distance will be reduced. Keep it above 400.
@@ -73,12 +74,13 @@ Bypass algorithm : "view.set.x" (3 to 32)
 # Add me on Discord ! Lxct#9971
 #
 
+Version: 1.0
 ViewDistance:
   Min: 4
   Max: 16
   AFK: 3
   OnLogin: 4
-  CalculationsDelay: 2
+  CalculationsDelay: 1
   SetViewDelay: 15
 Performances:
   PingForReduction: 1000
