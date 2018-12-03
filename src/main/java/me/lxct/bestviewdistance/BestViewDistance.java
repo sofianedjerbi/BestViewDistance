@@ -36,7 +36,8 @@ public class BestViewDistance extends JavaPlugin {
         Bukkit.getLogger().info("╔╗ ┌─┐┌─┐┌┬┐  ╦  ╦┬┌─┐┬ ┬  ╔╦╗┬┌─┐┌┬┐┌─┐┌┐┌┌─┐┌─┐"); // Display
         Bukkit.getLogger().info("╠╩╗├┤ └─┐ │   ╚╗╔╝│├┤ │││   ║║│└─┐ │ ├─┤││││  ├┤ ");
         Bukkit.getLogger().info("╚═╝└─┘└─┘ ┴    ╚╝ ┴└─┘└┴┘  ═╩╝┴└─┘ ┴ ┴ ┴┘└┘└─┘└─┘");
-        Bukkit.getLogger().info("╚ This");
+        Bukkit.getLogger().info("╚ Make sure you use this plugin with Paper.");
+        Bukkit.getLogger().info("╚ https://papermc.io/");
         Bukkit.getLogger().info("╚ Best View Distance, By Lxct. ");
         // WARNING
 
