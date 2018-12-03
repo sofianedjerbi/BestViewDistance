@@ -28,6 +28,7 @@ Permission : "view.check"
 
 /view reload => Reload plugin config. Need "view.reload"
 /vdist => Allows your players to see their own view distance. Need "view.info"
+/vping => Allows your players to see their own ping. Need "view.info"
 
 Permission for update checker : "view.update"
 
