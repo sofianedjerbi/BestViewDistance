@@ -34,6 +34,7 @@ Permission for update checker : "view.update"
 
 Bypass algorithm : "view.set.x" (3 to 32)
 (Example : view.set.15 set a view dist of 15 chunks)
+Does not work with "*"/"*.*" permissions nodes !
 ```
 
 ## Config
