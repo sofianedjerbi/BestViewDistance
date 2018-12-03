@@ -13,6 +13,9 @@ commands:
   vdist:
     description: Best View Distance Interface
     permission: view.info
+  vping:
+    description: Best View Distance Interface
+    permission: view.info
 
 permissions:
   view.update:

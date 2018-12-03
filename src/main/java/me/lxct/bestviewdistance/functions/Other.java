@@ -65,7 +65,7 @@ public class Other {
 
     public static String replacePlaceHolders(String string) { // Replace placeholders in messages.yml
         if (string.contains("%TPS%")) {
-            string = string.replace("%TPS%", String.valueOf(Bukkit.getServer().getTPS()[0]));
+            string = string.replace("%TPS%", String.valueOf(Get.get1minTPS()));
         }
         if (string.contains("%PLAYER%")) {
             string = string.replace("%PLAYER%", playerName);

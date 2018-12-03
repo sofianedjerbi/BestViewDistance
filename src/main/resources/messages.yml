@@ -38,6 +38,7 @@ vdist:
   line2: "&aView Distance =>&d %PINGVIEW% (Supported)"
   line3: "&aView Distance =>&d %SETTINGS% (Settings)"
   line4: "&aYour View Distance is reduced by&d %REDUCTIONINDICE%%"
+  vping: "&aYour ping :&d %PING%ms"
 
 help:
   line1: "&d&l======= BestViewDistance By Lxct ======="

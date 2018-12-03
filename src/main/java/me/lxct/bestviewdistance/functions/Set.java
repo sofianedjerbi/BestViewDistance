@@ -74,6 +74,25 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
         }
     }
 
+    // WORK IN PROGRESS...
+//    public static void setViewDistance(Player target, int chunks) {
+//        if (!Bukkit.getVersion().toUpperCase().contains("PAPER") || Bukkit.getVersion().contains("1.8")) {
+//            ProtocolManager protocolManager = ProtocolLibrary.getProtocolManager();
+//            PacketContainer viewDistance = ProtocolLibrary.getProtocolManager().createPacket(PacketType.Play.Client.SETTINGS);
+//
+//            viewDistance.getModifier().writeDefaults();
+//            viewDistance.getIntegers().write(0, chunks);
+//
+//            try {
+//                protocolManager.sendServerPacket(target, viewDistance);
+//            } catch (InvocationTargetException e) {
+//                throw new RuntimeException("Cannot send packet " + viewDistance, e);
+//            }
+//        } else {
+//            player.setViewDistance(chunks);
+//        }
+//    }
+
     // THE MAIN FUNCTION ! CALCULATE BEST PLAYER VIEW DISTANCE WITH REDUCTION INDICE
     public static void calculatePlayersBestViewDistance(double ReductionIndice) {
         for (Player player : Bukkit.getOnlinePlayers()) {

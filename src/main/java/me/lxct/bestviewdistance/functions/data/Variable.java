@@ -50,6 +50,7 @@ public class Variable {
     public static String vdistLine2;
     public static String vdistLine3;
     public static String vdistLine4;
+    public static String vping;
 
     //other
     public static String viewUpdate;
@@ -115,7 +116,7 @@ public class Variable {
         vdistLine2 = Other.getCustomConfig().getString("vdist.line2");
         vdistLine3 = Other.getCustomConfig().getString("vdist.line3");
         vdistLine4 = Other.getCustomConfig().getString("vdist.line4");
-
+        vping = Other.getCustomConfig().getString("vdist.vping");
 
         //other
         viewUpdate = Other.getCustomConfig().getString("view.update");

@@ -38,6 +38,11 @@ public class ViewCommand implements CommandExecutor {
                     sender.sendMessage(colorize(Other.replacePlaceHolders(vdistLine4)));
                 }
             }
+        } else if (cmd.getName().equalsIgnoreCase("vping") && sender.hasPermission("view.info")) {
+            if (sender instanceof Player) {
+                player = ((Player) sender);
+                sender.sendMessage(colorize(Other.replacePlaceHolders(vping)));
+            }
         }
         return true;
     }

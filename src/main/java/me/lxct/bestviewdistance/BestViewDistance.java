@@ -17,7 +17,9 @@ import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import static me.lxct.bestviewdistance.functions.Get.getNewReductionIndice;
+import java.lang.reflect.InvocationTargetException;
+
+import static me.lxct.bestviewdistance.functions.Get.*;
 import static me.lxct.bestviewdistance.functions.Other.*;
 import static me.lxct.bestviewdistance.functions.Set.calculatePlayersBestViewDistance;
 import static me.lxct.bestviewdistance.functions.Set.setServerLimits;
@@ -34,16 +36,15 @@ public class BestViewDistance extends JavaPlugin {
         Bukkit.getLogger().info("╔╗ ┌─┐┌─┐┌┬┐  ╦  ╦┬┌─┐┬ ┬  ╔╦╗┬┌─┐┌┬┐┌─┐┌┐┌┌─┐┌─┐"); // Display
         Bukkit.getLogger().info("╠╩╗├┤ └─┐ │   ╚╗╔╝│├┤ │││   ║║│└─┐ │ ├─┤││││  ├┤ ");
         Bukkit.getLogger().info("╚═╝└─┘└─┘ ┴    ╚╝ ┴└─┘└┴┘  ═╩╝┴└─┘ ┴ ┴ ┴┘└┘└─┘└─┘");
-        Bukkit.getLogger().info("╚ Make sure you use this plugin with Paper.");
-        Bukkit.getLogger().info("╚ https://papermc.io/");
+        Bukkit.getLogger().info("╚ This");
         Bukkit.getLogger().info("╚ Best View Distance, By Lxct. ");
         // WARNING
 
         //
-        // 1.12 compatibility
+        // Retro compatibility
         //
 
-        if (Bukkit.getVersion().contains("1.12")) { // Add 1.12 Support for Client View Distance
+        if (Bukkit.getVersion().contains("1.12") || Bukkit.getVersion().contains("1.11") || Bukkit.getVersion().contains("1.10") || Bukkit.getVersion().contains("1.9") || Bukkit.getVersion().contains("1.8")) { // Add 1.12 Support for Client View Distance
             ProtocolManager protocolManager = ProtocolLibrary.getProtocolManager();
             protocolManager.addPacketListener(new PacketAdapter(BestViewDistance.plugin,
                     ListenerPriority.NORMAL,
@@ -58,8 +59,18 @@ public class BestViewDistance extends JavaPlugin {
             });
         }
 
+        if (Bukkit.getVersion().contains("1.8")) {
+            try {
+                serverInstance = getNMSClass("MinecraftServer").getMethod("getServer").invoke(null);
+                tpsField = serverInstance.getClass().getField("recentTps");
+            } catch (NoSuchFieldException | SecurityException | IllegalAccessException | IllegalArgumentException
+                    | InvocationTargetException | NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+        }
+
         //
-        // 1.12 compatibility
+        // Retro compatibility
         //
 
         //
@@ -77,6 +88,7 @@ public class BestViewDistance extends JavaPlugin {
         genOnlinePlayerData(); // In case of a reload caused by another plugin
         getCommand("view").setExecutor(new ViewCommand()); // Executor for commands
         getCommand("vdist").setExecutor(new ViewCommand());
+        getCommand("vping").setExecutor(new ViewCommand());
         getCommand("view").setTabCompleter(new OnTabComplete()); // Tab completer
 
         //
@@ -109,7 +121,7 @@ public class BestViewDistance extends JavaPlugin {
 
     private Runnable calculations = // CALCULATIONS
             () -> {
-                Variable.reductionIndice = getNewReductionIndice(Bukkit.getTPS()[0]); // Update Reduction Indice
+                Variable.reductionIndice = getNewReductionIndice(get1minTPS()); // Update Reduction Indice
                 setServerLimits(); // Control
                 calculatePlayersBestViewDistance(Variable.reductionIndice); // Update Players View Distance
             };
