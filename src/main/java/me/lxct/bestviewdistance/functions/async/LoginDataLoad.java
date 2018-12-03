@@ -1,11 +1,11 @@
 package me.lxct.bestviewdistance.functions.async;
 
-import me.lxct.bestviewdistance.functions.data.Variable;
-import org.bukkit.entity.Player;
+        import me.lxct.bestviewdistance.functions.data.Variable;
+        import org.bukkit.entity.Player;
 
-import static me.lxct.bestviewdistance.functions.Set.setPlayerPermissions;
-import static me.lxct.bestviewdistance.functions.data.Variable.playerLiveViewDistance;
-import static me.lxct.bestviewdistance.functions.data.Variable.playerViewDistance;
+        import static me.lxct.bestviewdistance.functions.Set.setPlayerPermissions;
+        import static me.lxct.bestviewdistance.functions.data.Variable.playerLiveViewDistance;
+        import static me.lxct.bestviewdistance.functions.data.Variable.playerViewDistance;
 
 public class LoginDataLoad implements Runnable {
     private Player player;

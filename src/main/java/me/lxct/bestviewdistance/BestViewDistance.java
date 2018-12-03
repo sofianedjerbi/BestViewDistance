@@ -8,9 +8,7 @@ import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
 import me.lxct.bestviewdistance.commands.ViewCommand;
-import me.lxct.bestviewdistance.event.OnLogin;
-import me.lxct.bestviewdistance.event.OnPlayerMove;
-import me.lxct.bestviewdistance.event.OnTabComplete;
+import me.lxct.bestviewdistance.event.*;
 import me.lxct.bestviewdistance.functions.Other;
 import me.lxct.bestviewdistance.functions.Set;
 import me.lxct.bestviewdistance.functions.async.AsyncUpdateChecker;
@@ -68,7 +66,9 @@ public class BestViewDistance extends JavaPlugin {
         // Load & Get info
         //
 
+        getServer().getPluginManager().registerEvents(new OnJoin(), this); // Add OnLogin Event
         getServer().getPluginManager().registerEvents(new OnLogin(), this); // Add OnLogin Event
+        getServer().getPluginManager().registerEvents(new OnAsyncPreLogin(), this); // Add OnLogin Event
         getServer().getPluginManager().registerEvents(new OnPlayerMove(), this); // Add OnPlayerMove Event
         saveDefaultConfig(); // GENERATE
         genMessagesYml(); // Generate Messages.yml
