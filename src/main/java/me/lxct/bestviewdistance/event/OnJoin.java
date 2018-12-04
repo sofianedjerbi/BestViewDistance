@@ -15,8 +15,7 @@ public class OnJoin implements Listener {
         Player player = event.getPlayer();
         if (playerLiveViewDistance.containsKey(player.getName())) {
             player.setViewDistance(playerLiveViewDistance.get(player.getName()));
-        }
-        else {
+        } else {
             player.setViewDistance(onloginview);
         }
     }

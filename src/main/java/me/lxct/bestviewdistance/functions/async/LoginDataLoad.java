@@ -19,6 +19,8 @@ public class LoginDataLoad implements Runnable {
         if (!playerViewDistance.containsKey(player.getName())) {
             // we set permissions too here
             playerViewDistance.put(player.getName(), setPlayerPermissions(player, Variable.onloginview)); // LOAD PLAYER DATA
+        }
+        if (!playerLiveViewDistance.containsKey(player.getName())) {
             playerLiveViewDistance.put(player.getName(), setPlayerPermissions(player, Variable.onloginview)); // LOAD PLAYER DATA
         }
     }
