@@ -66,6 +66,7 @@ public class Variable {
     // TMP stuff
     //
 
+    // HashMap<String, ArrayList<Map>> playerBlockMap = new HashMap<>();
     public static HashMap<String, Location> playerLocation = new HashMap<>(); // Location list
     public static HashMap<String, Integer> playerViewDistance = new HashMap<>(); // View Distance list
     public static HashMap<String, Integer> playerLiveViewDistance = new HashMap<>(); // Live View Distance list
