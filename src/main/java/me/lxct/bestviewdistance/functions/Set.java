@@ -122,7 +122,7 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
             int viewDistance = Math.round((int) (sendVD * (1 - ReductionIndice))); // Apply percentage
             // About the line under this comment. We set player view distance only if view distance doesn't get over limits
             // And respect player settings
-            playerLiveViewDistance.put(player.getName(), setClientSettingLimit(player, setViewDistanceLimit(viewDistance))); // Store result of calculations
+            playerLiveViewDistance.put(player.getName(), setViewDistanceLimit(viewDistance)); // Store result of calculations
         }
     }
 }

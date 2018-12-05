@@ -14,10 +14,10 @@ import java.io.IOException;
 
 import static me.lxct.bestviewdistance.functions.data.Variable.*;
 
-public class Other {
+public class  Other {
     private static FileConfiguration customConfig;
 
-    public static void putPlayerAFK() { // What this function does ? if the player has exactly the same position as two minutes ago, he'll be set in "AFK" mode.
+    public static void putPlayerAFK() { // What this function does ? if the player has exactly the same position as x minutes ago, he'll be set in "AFK" mode.
         for (Player player : Bukkit.getServer().getOnlinePlayers()) { // Every players...
             Location location = player.getLocation(); // Get Location
             if (location.equals(playerLocation.get(player.getName()))) { // If same position ...

@@ -6,6 +6,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -71,7 +72,7 @@ public class Variable {
     public static HashMap<String, Integer> playerViewDistance = new HashMap<>(); // View Distance list
     public static HashMap<String, Integer> playerLiveViewDistance = new HashMap<>(); // Live View Distance list
     public static HashMap<String, Integer> playerSettingsViewDistance = new HashMap<>(); // 1.12 Settings View Distance list
-    public static List<String> afkList = new ArrayList<>(); // AFK list
+    public static List<String> afkList = Collections.synchronizedList(new ArrayList<>()); // AFK list
     public static Player player; // Player var used in commands for messages.yml
     public static String playerName; // PlayerNAME var used in commands for messages.yml
     public static Double reductionIndice = 0.0; // Initialize the Reduction indice

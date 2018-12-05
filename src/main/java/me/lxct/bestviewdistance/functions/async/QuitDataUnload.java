@@ -1,8 +1,6 @@
 package me.lxct.bestviewdistance.functions.async;
 
-import static me.lxct.bestviewdistance.functions.data.Variable.playerLiveViewDistance;
-import static me.lxct.bestviewdistance.functions.data.Variable.playerSettingsViewDistance;
-import static me.lxct.bestviewdistance.functions.data.Variable.playerViewDistance;
+import static me.lxct.bestviewdistance.functions.data.Variable.*;
 
 public class QuitDataUnload implements Runnable {
     private String player;
@@ -16,5 +14,6 @@ public class QuitDataUnload implements Runnable {
         playerLiveViewDistance.remove(player);
         playerViewDistance.remove(player);
         playerSettingsViewDistance.remove(player);
+        afkList.remove(player);
     }
 }
