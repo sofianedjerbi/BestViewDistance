@@ -45,7 +45,7 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
     public static int setPlayerPermissions(Player player, int viewDistance) {
         for (int i = 32; i >= 3; i--) { // Start at 32, to 3
             // 3 4 5 6 7 8 9 10 ... 30 31 32
-            if (player.hasPermission("view.set." + i) && !player.hasPermission("*") && !player.hasPermission("*.*")) { // view.set.i is set
+            if (player.hasPermission("view.set." + i) && !player.hasPermission("view.unset")) { // view.set.i is set
                 return i; // If he has permission, then return the number "after" the permission.
             }
         }
