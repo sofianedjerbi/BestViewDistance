@@ -96,7 +96,12 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
     // THE MAIN FUNCTION ! CALCULATE BEST PLAYER VIEW DISTANCE WITH REDUCTION INDICE
     public static void calculatePlayersBestViewDistance(double ReductionIndice) {
         for (Player player : Bukkit.getOnlinePlayers()) {
-            int supportedViewDistance = playerViewDistance.get(player.getName()); // View distance supported by player
+            int supportedViewDistance;
+            if(playerViewDistance.containsKey(player.getName())) {
+                supportedViewDistance = playerViewDistance.get(player.getName()); // View distance supported by player
+            } else {
+                supportedViewDistance = onloginview;
+            }
             int ping = player.spigot().getPing(); // Ping of player
             if (ping < Variable.aping && ping >= safePing) {
                 supportedViewDistance = supportedViewDistance + 1;

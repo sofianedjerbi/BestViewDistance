@@ -79,7 +79,7 @@ public class BestViewDistance extends JavaPlugin {
         //
 
         getServer().getPluginManager().registerEvents(new OnJoin(), this); // Add OnLogin Event
-        getServer().getPluginManager().registerEvents(new OnLogin(), this); // Add OnLogin Event
+        getServer().getPluginManager().registerEvents(new OnQuit(), this); // Add OnLogin Event
         getServer().getPluginManager().registerEvents(new OnPlayerMove(), this); // Add OnPlayerMove Event
         saveDefaultConfig(); // GENERATE
         genMessagesYml(); // Generate Messages.yml

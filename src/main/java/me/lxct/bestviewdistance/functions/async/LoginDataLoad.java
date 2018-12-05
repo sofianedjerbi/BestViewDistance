@@ -1,11 +1,12 @@
 package me.lxct.bestviewdistance.functions.async;
 
-        import me.lxct.bestviewdistance.functions.data.Variable;
-        import org.bukkit.entity.Player;
+        import me.lxct.bestviewdistance.BestViewDistance;
+import me.lxct.bestviewdistance.functions.sync.SetViewDistance;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
-        import static me.lxct.bestviewdistance.functions.Set.setPlayerPermissions;
-        import static me.lxct.bestviewdistance.functions.data.Variable.playerLiveViewDistance;
-        import static me.lxct.bestviewdistance.functions.data.Variable.playerViewDistance;
+import static me.lxct.bestviewdistance.functions.Set.setPlayerPermissions;
+import static me.lxct.bestviewdistance.functions.data.Variable.*;
 
 public class LoginDataLoad implements Runnable {
     private Player player;
@@ -16,12 +17,9 @@ public class LoginDataLoad implements Runnable {
 
     @Override
     public void run() {
-        if (!playerViewDistance.containsKey(player.getName())) {
-            // we set permissions too here
-            playerViewDistance.put(player.getName(), setPlayerPermissions(player, Variable.onloginview)); // LOAD PLAYER DATA
-        }
-        if (!playerLiveViewDistance.containsKey(player.getName())) {
-            playerLiveViewDistance.put(player.getName(), setPlayerPermissions(player, Variable.onloginview)); // LOAD PLAYER DATA
-        }
+        // we set permissions too here
+        playerViewDistance.put(player.getName(), onloginview); // LOAD PLAYER DATA
+        playerLiveViewDistance.put(player.getName(), onloginview); // LOAD PLAYER DATA
+        Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetViewDistance(player, setPlayerPermissions(player, onloginview))); // Break Async chain
     }
 }
