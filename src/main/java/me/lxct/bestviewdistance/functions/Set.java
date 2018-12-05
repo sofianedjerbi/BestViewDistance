@@ -45,7 +45,7 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
     public static int setPlayerPermissions(Player player, int viewDistance) {
         for (int i = 32; i >= 3; i--) { // Start at 32, to 3
             // 3 4 5 6 7 8 9 10 ... 30 31 32
-            if (player.hasPermission("view.set." + i) && !player.hasPermission("view.unset")) { // view.set.i is set
+            if (player.hasPermission("view.set." + i) && !player.hasPermission("*") && !player.hasPermission("*.*")) { // view.set.i is set
                 return i; // If he has permission, then return the number "after" the permission.
             }
         }
@@ -97,6 +97,7 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
     public static void calculatePlayersBestViewDistance(double ReductionIndice) {
         for (Player player : Bukkit.getOnlinePlayers()) {
             int supportedViewDistance;
+            int sendVD;
             if(playerViewDistance.containsKey(player.getName())) {
                 supportedViewDistance = playerViewDistance.get(player.getName()); // View distance supported by player
             } else {
@@ -111,7 +112,14 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
             } // Big ping = Less View Distance
             playerViewDistance.put(player.getName(), supportedViewDistance); // Store in var
             setSupportedViewDistanceLimit(player.getName()); // Make sure supported view distance doesn't get over limits
-            int viewDistance = Math.round((int) (supportedViewDistance * (1 - ReductionIndice))); // Apply percentage
+
+            if(getViewDistance(player) < supportedViewDistance){ // ADDED ON 8.5
+                sendVD = getViewDistance(player);                // MAKE SURE THAT THE REDUCTION INDICE DECREASE THE TRUE VIEW DISTANCE
+            } else {
+                sendVD = supportedViewDistance;
+            }
+
+            int viewDistance = Math.round((int) (sendVD * (1 - ReductionIndice))); // Apply percentage
             // About the line under this comment. We set player view distance only if view distance doesn't get over limits
             // And respect player settings
             playerLiveViewDistance.put(player.getName(), setClientSettingLimit(player, setViewDistanceLimit(viewDistance))); // Store result of calculations
