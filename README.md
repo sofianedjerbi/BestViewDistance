@@ -49,12 +49,14 @@ Does not work with "*"/"*.*" permissions nodes !
 # Read this :
 #
 #
-# Version: 1.0 # Version of the config file. DON'T TOUCH THIS
+# Version: 1.1 # Version of the config file. DON'T TOUCH THIS
 # ViewDistance:
 #   Min: 4 # Min View Distance. Keep it above 4.
 #   Max: 16 # Max View Distance. Player can't get above 32.
 #   AFK : 3 # View Distance of "AFK" players. You can't assign a value less than 3.
 #   OnLogin: 4 # View Distance assigned on login. I advise you to set the same value as Min
+#   OnTeleport: 4 # View distance when the player teleport himself (I suggest you to keep this value between 3 and 8) Reduce bandwidth lags
+#   UnsetTeleportViewDelay: 5 # Delay in seconds to unset OnTeleport view when teleport.
 #   CalculationDelay: 1 # Delay between ASYNC calculations. Keep it above 1. NEED RESTART, DOES NOT AFFECT PERFORMANCES.
 #   SetViewDelay: 15 # Delay between applying calculations. Keep it above 5. A little number will make view distance change faster. NEED RESTART, AFFECT PERFORMANCES.
 # Performances:
@@ -70,18 +72,22 @@ Does not work with "*"/"*.*" permissions nodes !
 #   Metrics: true # Please keep this to true. Metrics is anonymous and it helps developers stay motivated. THIS DOES NOT IMPACT PERFORMANCES, NEED RESTART
 #   SafePing: 1 # Minimum ping required for calculations. Set it to 0 or -1 for local hosting. Keep this value below 1
 #
+#
+#
 # Please restart your server the first time you're using this plugin. Don't reload.
 #
 # Problems ? Performance issues ? Wanna say thanks ? ;)
 # Add me on Discord ! Lxct#9971
 #
 
-Version: 1.0
+Version: 1.1
 ViewDistance:
   Min: 4
   Max: 16
   AFK: 3
   OnLogin: 4
+  OnTeleport: 4
+  UnsetTeleportViewDelay: 5
   CalculationsDelay: 1
   SetViewDelay: 15
 Performances:
