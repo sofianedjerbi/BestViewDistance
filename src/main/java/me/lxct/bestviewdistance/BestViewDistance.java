@@ -38,7 +38,7 @@ public class BestViewDistance extends JavaPlugin {
         Bukkit.getLogger().info("╚═╝└─┘└─┘ ┴    ╚╝ ┴└─┘└┴┘  ═╩╝┴└─┘ ┴ ┴ ┴┘└┘└─┘└─┘");
         Bukkit.getLogger().info("╚ Make sure you use this plugin with Paper.");
         Bukkit.getLogger().info("╚ https://papermc.io/");
-        Bukkit.getLogger().info("╚ Best View Distance, By Lxct. ");
+        Bukkit.getLogger().info("╚ Best View Distance, By Lxct.");
         // WARNING
 
         //
@@ -79,7 +79,8 @@ public class BestViewDistance extends JavaPlugin {
         //
 
         getServer().getPluginManager().registerEvents(new OnJoin(), this); // Add OnLogin Event
-        getServer().getPluginManager().registerEvents(new OnQuit(), this); // Add OnLogin Event
+        getServer().getPluginManager().registerEvents(new OnTeleport(), this); // Add OnTeleport Event
+        getServer().getPluginManager().registerEvents(new OnQuit(), this); // Add OnQuit Event
         getServer().getPluginManager().registerEvents(new OnPlayerMove(), this); // Add OnPlayerMove Event
         saveDefaultConfig(); // GENERATE
         genMessagesYml(); // Generate Messages.yml
