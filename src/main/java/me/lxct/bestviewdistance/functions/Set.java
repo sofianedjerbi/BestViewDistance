@@ -65,10 +65,14 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
     public static void applyViewDistance() {
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (afkList.contains(player.getName())) { // IF player is afk
-                Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetAfkViewDistance(player, setPlayerPermissions(player, setClientSettingLimit(player, afk)))); // Break Async chain
+                if (player.getViewDistance() != afk) { // If it need to be set, just set it.
+                    Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetAfkViewDistance(player, setPlayerPermissions(player, setClientSettingLimit(player, afk)))); // Break Async chain
+                }
             } else {
                 if (playerLiveViewDistance.containsKey(player.getName())) {
-                    Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetViewDistance(player, setPlayerPermissions(player, playerLiveViewDistance.get(player.getName())))); // Break Async chain
+                    if (player.getViewDistance() != playerLiveViewDistance.get(player.getName())) { // If it need to be set, just set it.
+                        Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetViewDistance(player, setPlayerPermissions(player, playerLiveViewDistance.get(player.getName())))); // Break Async chain
+                    }
                 }
             }
         }

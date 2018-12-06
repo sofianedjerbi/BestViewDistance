@@ -15,6 +15,7 @@
 #   AFK : 3 # View Distance of "AFK" players. You can't assign a value less than 3.
 #   OnLogin: 4 # View Distance assigned on login. I advise you to set the same value as Min
 #   OnTeleport: 4 # View distance when the player teleport himself (I suggest you to keep this value between 3 and 8) Reduce bandwidth lags
+#   UnsetTeleportViewDelay: 5 # Delay in seconds to unset OnTeleport view when teleport.
 #   CalculationDelay: 1 # Delay between ASYNC calculations. Keep it above 1. NEED RESTART, DOES NOT AFFECT PERFORMANCES.
 #   SetViewDelay: 15 # Delay between applying calculations. Keep it above 5. A little number will make view distance change faster. NEED RESTART, AFFECT PERFORMANCES.
 # Performances:
@@ -45,6 +46,7 @@ ViewDistance:
   AFK: 3
   OnLogin: 4
   OnTeleport: 4
+  UnsetTeleportViewDelay: 5
   CalculationsDelay: 1
   SetViewDelay: 15
 Performances:

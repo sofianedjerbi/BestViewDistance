@@ -24,6 +24,7 @@ public class Variable {
     public static int rping;
     public static int aping;
     public static int safePing;
+    public static int teleportunset;
     public static double tpslimit;
     public static double tpschange;
     public static double maxindice;
@@ -90,6 +91,7 @@ public class Variable {
         safePing = BestViewDistance.plugin.getConfig().getInt("Other.SafePing");
         onloginview = BestViewDistance.plugin.getConfig().getInt("ViewDistance.OnLogin");
         onteleportview= BestViewDistance.plugin.getConfig().getInt("ViewDistance.OnTeleport");
+        teleportunset= BestViewDistance.plugin.getConfig().getInt("ViewDistance.UnsetTeleportViewDelay");
         rping = BestViewDistance.plugin.getConfig().getInt("Performances.PingForReduction");
         aping = BestViewDistance.plugin.getConfig().getInt("Performances.PingForAugmentation");
         tpslimit = BestViewDistance.plugin.getConfig().getDouble("Performances.TPSLimit");

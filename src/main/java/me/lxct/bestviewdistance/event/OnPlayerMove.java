@@ -3,12 +3,13 @@ import me.lxct.bestviewdistance.BestViewDistance;
 import me.lxct.bestviewdistance.functions.async.UnsetAfk;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
 
 public class OnPlayerMove implements Listener {
-    @EventHandler
+    @EventHandler(priority = EventPriority.MONITOR)
     public static void playerMove(PlayerMoveEvent event) {
         // Unset Afk with Async Method...
         Bukkit.getScheduler().runTaskAsynchronously(BestViewDistance.plugin, new UnsetAfk(event));
