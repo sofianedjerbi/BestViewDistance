@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 import static me.lxct.bestviewdistance.functions.Get.getViewDistance;
 import static me.lxct.bestviewdistance.functions.data.Variable.*;
 
-public class Set extends org.bukkit.plugin.java.JavaPlugin {
+public class Set {
 
     // MAKE SURE CALCULATED VIEW DISTANCE ISN'T OVER LIMITS
     private static int setViewDistanceLimit(int viewDistance) {
@@ -102,7 +102,7 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
         for (Player player : Bukkit.getOnlinePlayers()) {
             int supportedViewDistance;
             int sendVD;
-            if(playerViewDistance.containsKey(player.getName())) {
+            if (playerViewDistance.containsKey(player.getName())) {
                 supportedViewDistance = playerViewDistance.get(player.getName()); // View distance supported by player
             } else {
                 supportedViewDistance = onloginview;
@@ -117,7 +117,7 @@ public class Set extends org.bukkit.plugin.java.JavaPlugin {
             playerViewDistance.put(player.getName(), supportedViewDistance); // Store in var
             setSupportedViewDistanceLimit(player.getName()); // Make sure supported view distance doesn't get over limits
 
-            if(getViewDistance(player) < supportedViewDistance){ // ADDED ON 8.5
+            if (getViewDistance(player) < supportedViewDistance) { // ADDED ON 8.5
                 sendVD = getViewDistance(player);                // MAKE SURE THAT THE REDUCTION INDICE DECREASE THE TRUE VIEW DISTANCE
             } else {
                 sendVD = supportedViewDistance;

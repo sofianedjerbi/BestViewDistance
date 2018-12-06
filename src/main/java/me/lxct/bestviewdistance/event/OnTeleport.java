@@ -13,13 +13,18 @@ import static me.lxct.bestviewdistance.functions.Set.setPlayerPermissions;
 import static me.lxct.bestviewdistance.functions.data.Variable.onteleportview;
 import static me.lxct.bestviewdistance.functions.data.Variable.playerLiveViewDistance;
 import static me.lxct.bestviewdistance.functions.data.Variable.teleportunset;
+import static org.bukkit.event.player.PlayerTeleportEvent.TeleportCause.*;
 
 
 public class OnTeleport implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onPlayerTeleport(PlayerTeleportEvent event) {
         Player player = event.getPlayer();
-        player.setViewDistance(onteleportview);
-        Bukkit.getScheduler().runTaskLater(BestViewDistance.plugin, new SetViewDistance(player, setPlayerPermissions(player, playerLiveViewDistance.get(player.getName()))), teleportunset * 20); // Unset AFK
+        if (!event.getCause().equals(CHORUS_FRUIT) && !event.getCause().equals(ENDER_PEARL) && !event.getCause().equals(UNKNOWN)) {
+            player.setViewDistance(onteleportview);
+            if (playerLiveViewDistance.containsKey(player.getName())) {
+                Bukkit.getScheduler().runTaskLater(BestViewDistance.plugin, new SetViewDistance(player, setPlayerPermissions(player, playerLiveViewDistance.get(player.getName()))), teleportunset * 20); // Unset AFK
+            }
+        }
     }
 }

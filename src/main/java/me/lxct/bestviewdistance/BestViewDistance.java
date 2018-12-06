@@ -23,6 +23,7 @@ import static me.lxct.bestviewdistance.functions.Get.*;
 import static me.lxct.bestviewdistance.functions.Other.*;
 import static me.lxct.bestviewdistance.functions.Set.calculatePlayersBestViewDistance;
 import static me.lxct.bestviewdistance.functions.Set.setServerLimits;
+import static me.lxct.bestviewdistance.functions.UpdateConfig.updateConfig;
 import static me.lxct.bestviewdistance.functions.data.Variable.loadVariables;
 
 public class BestViewDistance extends JavaPlugin {
@@ -81,10 +82,13 @@ public class BestViewDistance extends JavaPlugin {
         // EVENTS
         getServer().getPluginManager().registerEvents(new OnJoin(), this); // Add OnLogin Event
         getServer().getPluginManager().registerEvents(new OnTeleport(), this); // Add OnTeleport Event
-        getServer().getPluginManager().registerEvents(new OnWorldChange(), this); // Add OnWorldChange Event
         getServer().getPluginManager().registerEvents(new OnQuit(), this); // Add OnQuit Event
         getServer().getPluginManager().registerEvents(new OnPlayerMove(), this); // Add OnPlayerMove Event
         // EVENT
+
+        // UPDATE CONFIG
+        updateConfig();
+        // UPDATE CONFIG
 
         // GENERATION
         saveDefaultConfig(); // GENERATE

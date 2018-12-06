@@ -14,7 +14,7 @@ import java.io.IOException;
 
 import static me.lxct.bestviewdistance.functions.data.Variable.*;
 
-public class  Other {
+public class Other {
     private static FileConfiguration customConfig;
 
     public static void putPlayerAFK() { // What this function does ? if the player has exactly the same position as x minutes ago, he'll be set in "AFK" mode.
