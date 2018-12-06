@@ -78,19 +78,28 @@ public class BestViewDistance extends JavaPlugin {
         // Load & Get info
         //
 
+        // EVENTS
         getServer().getPluginManager().registerEvents(new OnJoin(), this); // Add OnLogin Event
         getServer().getPluginManager().registerEvents(new OnTeleport(), this); // Add OnTeleport Event
+        getServer().getPluginManager().registerEvents(new OnWorldChange(), this); // Add OnWorldChange Event
         getServer().getPluginManager().registerEvents(new OnQuit(), this); // Add OnQuit Event
         getServer().getPluginManager().registerEvents(new OnPlayerMove(), this); // Add OnPlayerMove Event
+        // EVENT
+
+        // GENERATION
         saveDefaultConfig(); // GENERATE
         genMessagesYml(); // Generate Messages.yml
         loadMessagesYml(); // Load CustomConfig (Messages)
         loadVariables(); // Load Variables (Config / Messages)
         genOnlinePlayerData(); // In case of a reload caused by another plugin
+        // GENERATION
+
+        // COMMANDS
         getCommand("view").setExecutor(new ViewCommand()); // Executor for commands
         getCommand("vdist").setExecutor(new ViewCommand());
         getCommand("vping").setExecutor(new ViewCommand());
         getCommand("view").setTabCompleter(new OnTabComplete()); // Tab completer
+        // COMMANDS
 
         //
         // Load & Get info
