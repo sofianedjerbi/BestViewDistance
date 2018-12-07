@@ -20,7 +20,7 @@ public class UpdateConfig {
         }
         if (ver < 1.2) {
             Bukkit.getLogger().info("[BestViewDistance] Update config.yml...");
-            config.set("Version", 1.1);
+            config.set("Version", 1.2);
             config.set("Other.ReduceViewOnTeleport", true);
             BestViewDistance.plugin.saveConfig();
             Bukkit.getLogger().info("[BestViewDistance] Updated config.yml!");

@@ -112,7 +112,7 @@
                         <configuration>
                             <artifactSet>
                                 <includes>
-                                    <include>org.bstats:bstats-bukkit:jar:1.4</include>
+                                    <include>org.bstats</include>
                                 </includes>
                             </artifactSet>
                         </configuration>
