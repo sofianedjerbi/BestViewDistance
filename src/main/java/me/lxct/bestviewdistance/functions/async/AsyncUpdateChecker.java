@@ -47,7 +47,6 @@ public class AsyncUpdateChecker {
                 this.spigotPluginVersion = new BufferedReader(new InputStreamReader(connection.getInputStream())).readLine();
             } catch (IOException e) {
                 Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', ERR_MSG));
-                e.printStackTrace();
                 return;
             }
 

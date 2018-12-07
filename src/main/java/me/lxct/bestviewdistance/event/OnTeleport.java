@@ -25,7 +25,6 @@ public class OnTeleport implements Listener {
             if (playerLiveViewDistance.containsKey(player.getName())) {
                 int task = Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, new SetViewDistance(player, setPlayerPermissions(player, playerLiveViewDistance.get(player.getName()))), teleportunset * 20); // Unset teleport
                 if (task == -1) {
-                    Bukkit.broadcastMessage("Scheduling failed !");
                     Bukkit.getScheduler().runTaskLater(BestViewDistance.plugin, new SetViewDistance(player, setPlayerPermissions(player, playerLiveViewDistance.get(player.getName())/4)), teleportunset * 20);
                 }
             }
