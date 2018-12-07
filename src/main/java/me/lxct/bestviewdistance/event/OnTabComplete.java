@@ -34,7 +34,7 @@ public class OnTabComplete implements TabCompleter {
         } else if (args.length > 1) { // Does not spam tab complete
             return new ArrayList<>();
         } else { // TPS / SERVER / PING / RELOAD completion
-            ArrayList<String> COMMANDS = new ArrayList<>(Arrays.asList("tps", "server", "ping", "reload"));
+            ArrayList<String> COMMANDS = new ArrayList<>(Arrays.asList("tps", "server", "ping", "reload", "ver"));
             for (Player player : Bukkit.getOnlinePlayers()) {
                 COMMANDS.add(player.getName());
             }

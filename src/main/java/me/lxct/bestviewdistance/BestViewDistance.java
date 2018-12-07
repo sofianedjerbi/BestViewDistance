@@ -10,7 +10,6 @@ import com.comphenix.protocol.events.PacketEvent;
 import me.lxct.bestviewdistance.commands.ViewCommand;
 import me.lxct.bestviewdistance.event.*;
 import me.lxct.bestviewdistance.functions.Other;
-import me.lxct.bestviewdistance.functions.Set;
 import me.lxct.bestviewdistance.functions.async.AsyncUpdateChecker;
 import me.lxct.bestviewdistance.functions.data.Variable;
 import org.bstats.bukkit.Metrics;
@@ -25,6 +24,7 @@ import static me.lxct.bestviewdistance.functions.Set.calculatePlayersBestViewDis
 import static me.lxct.bestviewdistance.functions.Set.setServerLimits;
 import static me.lxct.bestviewdistance.functions.UpdateConfig.updateConfig;
 import static me.lxct.bestviewdistance.functions.data.Variable.loadVariables;
+import static me.lxct.bestviewdistance.functions.data.Variable.reduceOnTeleport;
 
 public class BestViewDistance extends JavaPlugin {
 
@@ -37,6 +37,7 @@ public class BestViewDistance extends JavaPlugin {
         Bukkit.getLogger().info("╔╗ ┌─┐┌─┐┌┬┐  ╦  ╦┬┌─┐┬ ┬  ╔╦╗┬┌─┐┌┬┐┌─┐┌┐┌┌─┐┌─┐"); // Display
         Bukkit.getLogger().info("╠╩╗├┤ └─┐ │   ╚╗╔╝│├┤ │││   ║║│└─┐ │ ├─┤││││  ├┤ ");
         Bukkit.getLogger().info("╚═╝└─┘└─┘ ┴    ╚╝ ┴└─┘└┴┘  ═╩╝┴└─┘ ┴ ┴ ┴┘└┘└─┘└─┘");
+        Bukkit.getLogger().info("    - The Best View Distance. Version " + plugin.getDescription().getVersion() + " -");
         Bukkit.getLogger().info("╚ Make sure you use this plugin with Paper.");
         Bukkit.getLogger().info("╚ https://papermc.io/");
         Bukkit.getLogger().info("╚ Best View Distance, By Lxct.");
@@ -65,8 +66,7 @@ public class BestViewDistance extends JavaPlugin {
             try {
                 serverInstance = getNMSClass("MinecraftServer").getMethod("getServer").invoke(null);
                 tpsField = serverInstance.getClass().getField("recentTps");
-            } catch (NoSuchFieldException | SecurityException | IllegalAccessException | IllegalArgumentException
-                    | InvocationTargetException | NoSuchMethodException e) {
+            } catch (NoSuchFieldException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException e) {
                 e.printStackTrace();
             }
         }
@@ -81,9 +81,11 @@ public class BestViewDistance extends JavaPlugin {
 
         // EVENTS
         getServer().getPluginManager().registerEvents(new OnJoin(), this); // Add OnLogin Event
-        getServer().getPluginManager().registerEvents(new OnTeleport(), this); // Add OnTeleport Event
         getServer().getPluginManager().registerEvents(new OnQuit(), this); // Add OnQuit Event
         getServer().getPluginManager().registerEvents(new OnPlayerMove(), this); // Add OnPlayerMove Event
+        if (reduceOnTeleport) {
+            getServer().getPluginManager().registerEvents(new OnTeleport(), this); // Add OnTeleport Event
+        }
         // EVENT
 
         // UPDATE CONFIG
@@ -142,7 +144,7 @@ public class BestViewDistance extends JavaPlugin {
 
     // Update Players View Distance
     private Runnable applyViewDistance = // CALCULATIONS
-            Set::applyViewDistance;
+            Other::applyViewDistance;
 
     private Runnable detectAFK = // CHECK IF AFK
             Other::putPlayerAFK;

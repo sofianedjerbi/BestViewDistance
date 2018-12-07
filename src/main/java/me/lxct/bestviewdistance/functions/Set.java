@@ -1,9 +1,6 @@
 package me.lxct.bestviewdistance.functions;
 
-import me.lxct.bestviewdistance.BestViewDistance;
 import me.lxct.bestviewdistance.functions.data.Variable;
-import me.lxct.bestviewdistance.functions.sync.SetAfkViewDistance;
-import me.lxct.bestviewdistance.functions.sync.SetViewDistance;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -23,7 +20,7 @@ public class Set {
     }
 
     // A FUNCTION FOR CLIENT SIDE SETTING. DON'T GIVE MORE VIEW DISTANCE THAN REQUIRED.
-    private static int setClientSettingLimit(Player player, int viewDistance) {
+    static int setClientSettingLimit(Player player, int viewDistance) {
         int clientSideViewDistance = getViewDistance(player); // Get Client Side View Distance
         if (viewDistance > clientSideViewDistance) { // If given view distance is more than client side view distance
             viewDistance = clientSideViewDistance;
@@ -58,23 +55,6 @@ public class Set {
             Variable.reductionIndice = Variable.maxindice;
         } else if (Variable.reductionIndice < 0) {
             Variable.reductionIndice = 0.0;
-        }
-    }
-
-    // A FUNCTION THAT SET THE VIEW DISTANCE WITH FUNCTION THAT BREAK ASYNC CHAINS
-    public static void applyViewDistance() {
-        for (Player player : Bukkit.getOnlinePlayers()) {
-            if (afkList.contains(player.getName())) { // IF player is afk
-                if (player.getViewDistance() != afk) { // If it need to be set, just set it.
-                    Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, new SetAfkViewDistance(player, setPlayerPermissions(player, setClientSettingLimit(player, afk)))); // Break Async chain
-                }
-            } else {
-                if (playerLiveViewDistance.containsKey(player.getName())) {
-                    if (player.getViewDistance() != playerLiveViewDistance.get(player.getName())) { // If it need to be set, just set it.
-                        Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, new SetViewDistance(player, setPlayerPermissions(player, playerLiveViewDistance.get(player.getName())))); // Break Async chain
-                    }
-                }
-            }
         }
     }
 

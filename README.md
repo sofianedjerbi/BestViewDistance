@@ -49,7 +49,7 @@ Does not work with "*"/"*.*" permissions nodes !
 # Read this :
 #
 #
-# Version: 1.1 # Version of the config file. DON'T TOUCH THIS
+# Version: 1.2 # Version of the config file. DON'T TOUCH THIS
 # ViewDistance:
 #   Min: 4 # Min View Distance. Keep it above 4.
 #   Max: 16 # Max View Distance. Player can't get above 32.
@@ -67,6 +67,7 @@ Does not work with "*"/"*.*" permissions nodes !
 #   MaxReductionIndice: 0.75 # Maximum value of the reduction indice.
 #   AFKTimer : 90 # Seconds before getting "AFK" and get his view distance reduced to "Min" value. Keep this value over 60. (Doesn't affect gameplay)
 # Other:
+#   ReduceViewOnTeleport: true # Reduce the view when player teleport himself. (Portals too) NEED RESTART
 #   HideVdistLine4: false # Hide vdist.line4 (in messages.yml) when players uses /vdist
 #   CheckUpdate: true # You should keep this to true. It check if your plugins version is the latest. THIS DOES NOT IMPACT PERFORMANCES, NEED RESTART
 #   Metrics: true # Please keep this to true. Metrics is anonymous and it helps developers stay motivated. THIS DOES NOT IMPACT PERFORMANCES, NEED RESTART
@@ -80,7 +81,7 @@ Does not work with "*"/"*.*" permissions nodes !
 # Add me on Discord ! Lxct#9971
 #
 
-Version: 1.1
+Version: 1.2
 ViewDistance:
   Min: 4
   Max: 16
@@ -98,6 +99,7 @@ Performances:
   MaxReductionIndice: 0.75
   AFKTimer: 90
 Other:
+  ReduceViewOnTeleport: true
   HideVdistLine4: false
   CheckUpdates: true
   Metrics: true

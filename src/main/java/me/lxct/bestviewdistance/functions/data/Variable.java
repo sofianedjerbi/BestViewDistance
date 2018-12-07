@@ -3,6 +3,7 @@ package me.lxct.bestviewdistance.functions.data;
 import me.lxct.bestviewdistance.BestViewDistance;
 import me.lxct.bestviewdistance.functions.Other;
 import org.bukkit.Location;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class Variable {
     public static double tpschange;
     public static double maxindice;
     public static boolean hideVdistLine4;
+    public static boolean reduceOnTeleport;
 
     //
     // Messages.yml stuff
@@ -81,57 +83,63 @@ public class Variable {
 
     public static void loadVariables() {
 
+        // FILES
+        FileConfiguration configYml = BestViewDistance.plugin.getConfig();
+        FileConfiguration messagesYml = Other.getCustomConfig();
+        // FILES
+
         //
         // Config.yml stuff
         //
 
-        max = BestViewDistance.plugin.getConfig().getInt("ViewDistance.Max");
-        afk = BestViewDistance.plugin.getConfig().getInt("ViewDistance.AFK");
-        min = BestViewDistance.plugin.getConfig().getInt("ViewDistance.Min");
-        safePing = BestViewDistance.plugin.getConfig().getInt("Other.SafePing");
-        onloginview = BestViewDistance.plugin.getConfig().getInt("ViewDistance.OnLogin");
-        onteleportview= BestViewDistance.plugin.getConfig().getInt("ViewDistance.OnTeleport");
-        teleportunset= BestViewDistance.plugin.getConfig().getInt("ViewDistance.UnsetTeleportViewDelay");
-        rping = BestViewDistance.plugin.getConfig().getInt("Performances.PingForReduction");
-        aping = BestViewDistance.plugin.getConfig().getInt("Performances.PingForAugmentation");
-        tpslimit = BestViewDistance.plugin.getConfig().getDouble("Performances.TPSLimit");
-        tpschange = BestViewDistance.plugin.getConfig().getDouble("Performances.TPSChangeIndice");
-        maxindice = BestViewDistance.plugin.getConfig().getDouble("Performances.MaxReductionIndice");
-        hideVdistLine4 = BestViewDistance.plugin.getConfig().getBoolean("Other.HideVdistLine4");
+        max = configYml.getInt("ViewDistance.Max");
+        afk = configYml.getInt("ViewDistance.AFK");
+        min = configYml.getInt("ViewDistance.Min");
+        safePing = configYml.getInt("Other.SafePing");
+        onloginview = configYml.getInt("ViewDistance.OnLogin");
+        onteleportview= configYml.getInt("ViewDistance.OnTeleport");
+        teleportunset= configYml.getInt("ViewDistance.UnsetTeleportViewDelay");
+        rping = configYml.getInt("Performances.PingForReduction");
+        aping = configYml.getInt("Performances.PingForAugmentation");
+        tpslimit = configYml.getDouble("Performances.TPSLimit");
+        tpschange = configYml.getDouble("Performances.TPSChangeIndice");
+        maxindice = configYml.getDouble("Performances.MaxReductionIndice");
+        hideVdistLine4 = configYml.getBoolean("Other.HideVdistLine4");
+        reduceOnTeleport = configYml.getBoolean("Other.ReduceViewOnTeleport");
 
         //
         // Messages.yml stuff
         //
 
         //help
-        viewHelpLine1 = Other.getCustomConfig().getString("help.line1");
-        viewHelpLine2 = Other.getCustomConfig().getString("help.line2");
-        viewHelpLine3 = Other.getCustomConfig().getString("help.line3");
-        viewHelpLine4 = Other.getCustomConfig().getString("help.line4");
-        viewHelpLine5 = Other.getCustomConfig().getString("help.line5");
-        viewHelpLine6 = Other.getCustomConfig().getString("help.line6");
-        viewHelpLine7 = Other.getCustomConfig().getString("help.line7");
+        viewHelpLine1 = messagesYml.getString("help.line1");
+        viewHelpLine2 = messagesYml.getString("help.line2");
+        viewHelpLine3 = messagesYml.getString("help.line3");
+        viewHelpLine4 = messagesYml.getString("help.line4");
+        viewHelpLine5 = messagesYml.getString("help.line5");
+        viewHelpLine6 = messagesYml.getString("help.line6");
+        viewHelpLine7 = messagesYml.getString("help.line7");
 
         //viewPlayer
-        viewPlayerLine1 = Other.getCustomConfig().getString("viewPlayer.line1");
-        viewPlayerLine2 = Other.getCustomConfig().getString("viewPlayer.line2");
-        viewPlayerLine3 = Other.getCustomConfig().getString("viewPlayer.line3");
+        viewPlayerLine1 = messagesYml.getString("viewPlayer.line1");
+        viewPlayerLine2 = messagesYml.getString("viewPlayer.line2");
+        viewPlayerLine3 = messagesYml.getString("viewPlayer.line3");
 
         //vdist
-        vdistLine1 = Other.getCustomConfig().getString("vdist.line1");
-        vdistLine2 = Other.getCustomConfig().getString("vdist.line2");
-        vdistLine3 = Other.getCustomConfig().getString("vdist.line3");
-        vdistLine4 = Other.getCustomConfig().getString("vdist.line4");
-        vping = Other.getCustomConfig().getString("vdist.vping");
+        vdistLine1 = messagesYml.getString("vdist.line1");
+        vdistLine2 = messagesYml.getString("vdist.line2");
+        vdistLine3 = messagesYml.getString("vdist.line3");
+        vdistLine4 = messagesYml.getString("vdist.line4");
+        vping = messagesYml.getString("vdist.vping");
 
         //other
-        viewUpdate = Other.getCustomConfig().getString("view.update");
-        viewUpdateFail = Other.getCustomConfig().getString("view.updateFail");
-        viewReload = Other.getCustomConfig().getString("view.reload");
-        viewPing = Other.getCustomConfig().getString("view.ping");
-        viewTps = Other.getCustomConfig().getString("view.tps");
-        viewServer = Other.getCustomConfig().getString("view.server");
-        viewIncorrectPing = Other.getCustomConfig().getString("view.incorrectPing");
-        viewIncorrectView = Other.getCustomConfig().getString("view.incorrectView");
+        viewUpdate = messagesYml.getString("view.update");
+        viewUpdateFail = messagesYml.getString("view.updateFail");
+        viewReload = messagesYml.getString("view.reload");
+        viewPing = messagesYml.getString("view.ping");
+        viewTps = messagesYml.getString("view.tps");
+        viewServer = messagesYml.getString("view.server");
+        viewIncorrectPing = messagesYml.getString("view.incorrectPing");
+        viewIncorrectView = messagesYml.getString("view.incorrectView");
     }
 }
