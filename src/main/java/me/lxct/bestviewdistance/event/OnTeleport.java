@@ -23,7 +23,7 @@ public class OnTeleport implements Listener {
         if (!event.getCause().equals(CHORUS_FRUIT) && !event.getCause().equals(ENDER_PEARL) && !event.getCause().equals(UNKNOWN)) {
             player.setViewDistance(onteleportview);
             if (playerLiveViewDistance.containsKey(player.getName())) {
-                Bukkit.getScheduler().runTaskLater(BestViewDistance.plugin, new SetViewDistance(player, setPlayerPermissions(player, playerLiveViewDistance.get(player.getName()))), teleportunset * 20); // Unset AFK
+                Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, new SetViewDistance(player, setPlayerPermissions(player, playerLiveViewDistance.get(player.getName()))), teleportunset * 20); // Unset AFK
             }
         }
     }

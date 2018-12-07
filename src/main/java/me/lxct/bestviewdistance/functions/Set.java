@@ -66,12 +66,12 @@ public class Set {
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (afkList.contains(player.getName())) { // IF player is afk
                 if (player.getViewDistance() != afk) { // If it need to be set, just set it.
-                    Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetAfkViewDistance(player, setPlayerPermissions(player, setClientSettingLimit(player, afk)))); // Break Async chain
+                    Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, new SetAfkViewDistance(player, setPlayerPermissions(player, setClientSettingLimit(player, afk)))); // Break Async chain
                 }
             } else {
                 if (playerLiveViewDistance.containsKey(player.getName())) {
                     if (player.getViewDistance() != playerLiveViewDistance.get(player.getName())) { // If it need to be set, just set it.
-                        Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetViewDistance(player, setPlayerPermissions(player, playerLiveViewDistance.get(player.getName())))); // Break Async chain
+                        Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, new SetViewDistance(player, setPlayerPermissions(player, playerLiveViewDistance.get(player.getName())))); // Break Async chain
                     }
                 }
             }
@@ -117,10 +117,18 @@ public class Set {
             playerViewDistance.put(player.getName(), supportedViewDistance); // Store in var
             setSupportedViewDistanceLimit(player.getName()); // Make sure supported view distance doesn't get over limits
 
-            if (getViewDistance(player) < supportedViewDistance) { // ADDED ON 8.5
-                sendVD = getViewDistance(player);                // MAKE SURE THAT THE REDUCTION INDICE DECREASE THE TRUE VIEW DISTANCE
+            if (playerLiveViewDistance.containsKey(player.getName())) {
+                if (getViewDistance(player) < playerViewDistance.get(player.getName())) { // ADDED ON 8.5
+                    sendVD = getViewDistance(player);                // MAKE SURE THAT THE REDUCTION INDICE DECREASE THE TRUE VIEW DISTANCE
+                } else {
+                    sendVD = playerViewDistance.get(player.getName());
+                }
             } else {
-                sendVD = supportedViewDistance;
+                if (getViewDistance(player) < supportedViewDistance) { // ADDED ON 9.1
+                    sendVD = getViewDistance(player);                // MAKE SURE THAT THE REDUCTION INDICE DECREASE THE TRUE VIEW DISTANCE
+                } else {
+                    sendVD = supportedViewDistance;
+                }
             }
 
             int viewDistance = Math.round((int) (sendVD * (1 - ReductionIndice))); // Apply percentage
