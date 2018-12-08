@@ -48,7 +48,8 @@ public class BestViewDistance extends JavaPlugin {
         if (Bukkit.getPluginManager().getPlugin("ProtocolLib") != null && Bukkit.getVersion().contains("1.12") || Bukkit.getVersion().contains("1.11") || Bukkit.getVersion().contains("1.10") || Bukkit.getVersion().contains("1.9") || Bukkit.getVersion().contains("1.8")) { // Add 1.12 Support for Client View Distance
             try {
                 Hooks.protocolLibHook(this);
-            } catch (NoClassDefFoundError ignored){}
+            } catch (NoClassDefFoundError ignored) {
+            }
         }
 
         if (Bukkit.getVersion().contains("1.8")) {
