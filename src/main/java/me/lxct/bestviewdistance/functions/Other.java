@@ -45,7 +45,7 @@ public class Other {
                     }
                 }
             } else {
-                if (playerLiveViewDistance.containsKey(player.getName())) {
+                if (playerLiveViewDistance.containsKey(player.getName()) || !waitForTPUnset.containsKey(player.getName())) {
                     if (player.getViewDistance() != playerLiveViewDistance.get(player.getName())) { // If it need to be set, just set it.
                         int task = Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, new SetViewDistance(player, setPlayerPermissions(player, playerLiveViewDistance.get(player.getName())))); // Break Async chain
                         if (task == -1) {
@@ -98,19 +98,19 @@ public class Other {
             string = string.replace("%PLAYER%", playerName);
         }
         if (string.contains("%VIEWDISTANCE%")) {
-            string = string.replace("%VIEWDISTANCE%", String.valueOf(player.getViewDistance()));
+            string = string.replace("%VIEWDISTANCE%", String.valueOf(playerData.getViewDistance()));
         }
         if (string.contains("%SETTINGS%")) {
-            string = string.replace("%SETTINGS%", String.valueOf(Get.getViewDistance(player)));
+            string = string.replace("%SETTINGS%", String.valueOf(Get.getViewDistance(playerData)));
         }
         if (string.contains("%REDUCTIONINDICE%")) {
             string = string.replace("%REDUCTIONINDICE%", String.valueOf(Math.round(reductionIndice * 100)));
         }
         if (string.contains("%PING%")) {
-            string = string.replace("%PING%", String.valueOf(player.spigot().getPing()));
+            string = string.replace("%PING%", String.valueOf(playerData.spigot().getPing()));
         }
         if (string.contains("%PINGVIEW%")) {
-            string = string.replace("%PINGVIEW%", String.valueOf(playerViewDistance.get(player.getName())));
+            string = string.replace("%PINGVIEW%", String.valueOf(playerViewDistance.get(playerData.getName())));
         }
         return string;
     }

@@ -41,7 +41,7 @@ public class Commands {
                 if (playerArgs == null) {
                     sender.sendMessage(colorize(Other.replacePlaceHolders(viewIncorrectPing)));
                 } else {
-                    player = playerArgs;
+                    playerData = playerArgs;
                     playerName = playerArgs.getName();
                     sender.sendMessage(colorize(Other.replacePlaceHolders(viewPing)));
                 }
@@ -55,7 +55,7 @@ public class Commands {
             if (playerArgs == null) {
                 sender.sendMessage(colorize(Other.replacePlaceHolders(viewIncorrectView)));
             } else {
-                player = playerArgs;
+                playerData = playerArgs;
                 playerName = playerArgs.getName();
                 sender.sendMessage(colorize(Other.replacePlaceHolders(viewPlayerLine1)));
                 sender.sendMessage(colorize(Other.replacePlaceHolders(viewPlayerLine2)));

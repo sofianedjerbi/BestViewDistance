@@ -76,8 +76,9 @@ public class Variable {
     public static HashMap<String, Integer> playerViewDistance = new HashMap<>(); // View Distance list
     public static HashMap<String, Integer> playerLiveViewDistance = new HashMap<>(); // Live View Distance list
     public static HashMap<String, Integer> playerSettingsViewDistance = new HashMap<>(); // 1.12 Settings View Distance list
+    public static HashMap<String, Integer> waitForTPUnset = new HashMap<>(); // Waiting for teleport unset list with task ID
     public static List<String> afkList = Collections.synchronizedList(new ArrayList<>()); // AFK list
-    public static Player player; // Player var used in commands for messages.yml
+    public static Player playerData; // Player var used in commands for messages.yml
     public static String playerName; // PlayerNAME var used in commands for messages.yml
     public static Double reductionIndice = 0.0; // Initialize the Reduction indice
 
