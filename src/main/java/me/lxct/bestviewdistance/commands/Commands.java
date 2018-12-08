@@ -9,10 +9,10 @@ import org.bukkit.entity.Player;
 import static me.lxct.bestviewdistance.functions.data.Variable.*;
 
 
-class Commands {
+public class Commands {
 
 
-    static String colorize(String string) {
+    public static String colorize(String string) {
         return org.bukkit.ChatColor.translateAlternateColorCodes('&', string);
     }
 
