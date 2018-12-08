@@ -10,7 +10,7 @@ import static me.lxct.bestviewdistance.functions.data.Variable.*;
 public class Set {
 
     // MAKE SURE CALCULATED VIEW DISTANCE ISN'T OVER LIMITS
-    private static int setViewDistanceLimit(int viewDistance) {
+    public static int setViewDistanceLimit(int viewDistance) {
         if (viewDistance > Variable.max) {
             viewDistance = Variable.max;
         } else if (viewDistance < Variable.min) {

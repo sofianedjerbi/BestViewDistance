@@ -1,16 +1,10 @@
 package me.lxct.bestviewdistance;
 
-import com.comphenix.protocol.PacketType;
-import com.comphenix.protocol.ProtocolLibrary;
-import com.comphenix.protocol.ProtocolManager;
-import com.comphenix.protocol.events.ListenerPriority;
-import com.comphenix.protocol.events.PacketAdapter;
-import com.comphenix.protocol.events.PacketContainer;
-import com.comphenix.protocol.events.PacketEvent;
 import me.lxct.bestviewdistance.commands.ViewCommand;
 import me.lxct.bestviewdistance.event.*;
 import me.lxct.bestviewdistance.functions.Other;
 import me.lxct.bestviewdistance.functions.async.AsyncUpdateChecker;
+import me.lxct.bestviewdistance.functions.data.Hooks;
 import me.lxct.bestviewdistance.functions.data.Variable;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
@@ -34,7 +28,9 @@ public class BestViewDistance extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
         plugin = this; // Allow BestViewDistance.plugin
+
         // WARNING
         Bukkit.getLogger().info("╔╗ ┌─┐┌─┐┌┬┐  ╦  ╦┬┌─┐┬ ┬  ╔╦╗┬┌─┐┌┬┐┌─┐┌┐┌┌─┐┌─┐"); // Display
         Bukkit.getLogger().info("╠╩╗├┤ └─┐ │   ╚╗╔╝│├┤ │││   ║║│└─┐ │ ├─┤││││  ├┤ ");
@@ -49,19 +45,10 @@ public class BestViewDistance extends JavaPlugin {
         // Retro compatibility
         //
 
-        if (Bukkit.getVersion().contains("1.12") || Bukkit.getVersion().contains("1.11") || Bukkit.getVersion().contains("1.10") || Bukkit.getVersion().contains("1.9") || Bukkit.getVersion().contains("1.8")) { // Add 1.12 Support for Client View Distance
-            ProtocolManager protocolManager = ProtocolLibrary.getProtocolManager();
-            protocolManager.addPacketListener(new PacketAdapter(BestViewDistance.plugin,
-                    ListenerPriority.NORMAL,
-                    PacketType.Play.Client.SETTINGS) {
-                @Override
-                public void onPacketReceiving(PacketEvent event) {
-                    if (event.getPacketType() == PacketType.Play.Client.SETTINGS) {
-                        PacketContainer packet = event.getPacket();
-                        Variable.playerSettingsViewDistance.put(event.getPlayer().getName(), packet.getIntegers().read(0));
-                    }
-                }
-            });
+        if (Bukkit.getPluginManager().getPlugin("ProtocolLib") != null && Bukkit.getVersion().contains("1.12") || Bukkit.getVersion().contains("1.11") || Bukkit.getVersion().contains("1.10") || Bukkit.getVersion().contains("1.9") || Bukkit.getVersion().contains("1.8")) { // Add 1.12 Support for Client View Distance
+            try {
+                Hooks.protocolLibHook(this);
+            } catch (NoClassDefFoundError ignored){}
         }
 
         if (Bukkit.getVersion().contains("1.8")) {
@@ -86,6 +73,14 @@ public class BestViewDistance extends JavaPlugin {
         checkServerView();
         // WARNINGS
 
+        // GENERATION
+        saveDefaultConfig(); // GENERATE
+        genMessagesYml(); // Generate Messages.yml
+        loadMessagesYml(); // Load CustomConfig (Messages)
+        loadVariables(); // Load Variables (Config / Messages)
+        genOnlinePlayerData(); // In case of a reload caused by another plugin
+        // GENERATION
+
         // EVENTS
         getServer().getPluginManager().registerEvents(new OnJoin(), this); // Add OnLogin Event
         getServer().getPluginManager().registerEvents(new OnQuit(), this); // Add OnQuit Event
@@ -98,14 +93,6 @@ public class BestViewDistance extends JavaPlugin {
         // UPDATE CONFIG
         updateConfig();
         // UPDATE CONFIG
-
-        // GENERATION
-        saveDefaultConfig(); // GENERATE
-        genMessagesYml(); // Generate Messages.yml
-        loadMessagesYml(); // Load CustomConfig (Messages)
-        loadVariables(); // Load Variables (Config / Messages)
-        genOnlinePlayerData(); // In case of a reload caused by another plugin
-        // GENERATION
 
         // COMMANDS
         getCommand("view").setExecutor(new ViewCommand()); // Executor for commands

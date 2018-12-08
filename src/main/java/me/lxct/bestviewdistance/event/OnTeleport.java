@@ -17,9 +17,11 @@ public class OnTeleport implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onPlayerTeleport(PlayerTeleportEvent event) {
         Player player = event.getPlayer();
-        if (!waitForTPUnset.containsKey(player.getName())) { // If he's not waiting for tp unset
-            player.setViewDistance(onteleportview); // Set on teleport view
+        if (event.getCause() != PlayerTeleportEvent.TeleportCause.CHORUS_FRUIT && event.getCause() != PlayerTeleportEvent.TeleportCause.UNKNOWN && event.getCause() != PlayerTeleportEvent.TeleportCause.ENDER_PEARL) {
+            if (!waitForTPUnset.containsKey(player.getName())) { // If he's not waiting for tp unset
+                player.setViewDistance(onteleportview); // Set on teleport view
+            }
+            Bukkit.getScheduler().runTaskAsynchronously(BestViewDistance.plugin, new TeleportData(player)); // Process teleport data with async method
         }
-        Bukkit.getScheduler().runTaskAsynchronously(BestViewDistance.plugin, new TeleportData(player)); // Process teleport data with async method
     }
 }
