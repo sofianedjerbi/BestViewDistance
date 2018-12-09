@@ -56,22 +56,23 @@ Does not work with "*"/"*.*" permissions nodes !
 #   AFK : 3 # View Distance of "AFK" players. You can't assign a value less than 3.
 #   OnLogin: 4 # View Distance assigned on login. I advise you to set the same value as Min
 #   OnTeleport: 4 # View distance when the player teleport himself (I suggest you to keep this value between 3 and 8) Reduce bandwidth lags
-#   UnsetTeleportViewDelay: 5 # Delay in seconds to unset OnTeleport view when teleport.
+#   UnsetTeleportViewDelay: 3 # Delay in seconds to unset OnTeleport view when teleport.
 #   CalculationDelay: 1 # Delay between ASYNC calculations. Keep it above 1. NEED RESTART, DOES NOT AFFECT PERFORMANCES.
 #   SetViewDelay: 15 # Delay between applying calculations. Keep it above 5. A little number will make view distance change faster. NEED RESTART, AFFECT PERFORMANCES.
 # Performances:
-#   PingForReduction: 1000 # If your ping is higher than this value, then your view distance will be reduced. Keep it above 400.
+#   PingForReduction: 550 # If your ping is higher than this value, then your view distance will be reduced. Keep it above 400.
 #   PingForAugmentation: 90 # If your ping is less than this value, then your view distance will be increased. Keep it below 100.
 #   TPSLimit: 19.5 # If the tps are above this value, the ReductionIndice is reduced. If the tps are below this value, the ReductionIndice will increase.
 #   TPSChangeIndice: 0.01 # How much the reduction indice will be decreased/increased par calculations. Keep this value between 0.1 and 0.01 (10% and 1%) 0.05 = 5%
 #   MaxReductionIndice: 0.75 # Maximum value of the reduction indice.
-#   AFKTimer : 90 # Seconds before getting "AFK" and get his view distance reduced to "Min" value. Keep this value over 60. (Doesn't affect gameplay)
+#   AFKTimer: 90 # Seconds before getting "AFK" and get his view distance reduced to "Min" value. Keep this value over 60. (Doesn't affect gameplay)
+#   UseTasks: true # Use Task instead of ScheduleSync. Set this to "false" will kill lags, but the view distance will take more time to change. AFFECT PERFORMANCES A LOT.
 # Other:
 #   ReduceViewOnTeleport: true # Reduce the view when player teleport himself. (Portals too) NEED RESTART
 #   HideVdistLine4: false # Hide vdist.line4 (in messages.yml) when players uses /vdist
+#   SafePing: 1 # Minimum ping required for calculations. Set it to 0 or -1 for local hosting. Keep this value below 1
 #   CheckUpdate: true # You should keep this to true. It check if your plugins version is the latest. THIS DOES NOT IMPACT PERFORMANCES, NEED RESTART
 #   Metrics: true # Please keep this to true. Metrics is anonymous and it helps developers stay motivated. THIS DOES NOT IMPACT PERFORMANCES, NEED RESTART
-#   SafePing: 1 # Minimum ping required for calculations. Set it to 0 or -1 for local hosting. Keep this value below 1
 #
 #
 #
@@ -88,22 +89,23 @@ ViewDistance:
   AFK: 3
   OnLogin: 4
   OnTeleport: 4
-  UnsetTeleportViewDelay: 5
+  UnsetTeleportViewDelay: 3
   CalculationsDelay: 1
   SetViewDelay: 15
 Performances:
-  PingForReduction: 1000
+  PingForReduction: 550
   PingForAugmentation: 90
   TPSLimit: 19.5
   TPSChangeIndice: 0.01
   MaxReductionIndice: 0.75
   AFKTimer: 90
+  UseTasks: true
 Other:
   ReduceViewOnTeleport: true
   HideVdistLine4: false
+  SafePing: 1
   CheckUpdates: true
   Metrics: true
-  SafePing: 1
 ```
 
 + Messages.yml File.

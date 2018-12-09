@@ -40,7 +40,7 @@ public class Other {
             if (afkList.contains(player.getName())) { // IF player is afk
                 if (player.getViewDistance() != afk) { // If it need to be set, just set it.
                     int task = Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, new SetAfkViewDistance(player, setPlayerPermissions(player, setClientSettingLimit(player, afk)))); // Break Async chain
-                    if (task == -1) {
+                    if (task == -1 && useTasks) {
                         Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetAfkViewDistance(player, setPlayerPermissions(player, setClientSettingLimit(player, afk)))); // Break Async chain
                     }
                 }
@@ -48,7 +48,7 @@ public class Other {
                 if (playerLiveViewDistance.containsKey(player.getName()) || !waitForTPUnset.containsKey(player.getName())) {
                     if (player.getViewDistance() != playerLiveViewDistance.get(player.getName())) { // If it need to be set, just set it.
                         int task = Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, new SetViewDistance(player, setPlayerPermissions(player, playerLiveViewDistance.get(player.getName())))); // Break Async chain
-                        if (task == -1) {
+                        if (task == -1 && useTasks) {
                             Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetViewDistance(player, setPlayerPermissions(player, playerLiveViewDistance.get(player.getName())))); // Break Async chain
                         }
                     }

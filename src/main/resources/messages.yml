@@ -32,7 +32,6 @@ viewPlayer:
   line2: "&aView Distance of %PLAYER% =>&d %PINGVIEW% (Supported)"
   line3: "&aView Distance of %PLAYER% =>&d %SETTINGS% (Settings)"
 
-
 vdist:
   line1: "&aView Distance =>&d %VIEWDISTANCE% (Current)"
   line2: "&aView Distance =>&d %PINGVIEW% (Supported)"

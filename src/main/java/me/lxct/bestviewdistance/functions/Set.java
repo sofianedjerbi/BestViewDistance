@@ -10,7 +10,7 @@ import static me.lxct.bestviewdistance.functions.data.Variable.*;
 public class Set {
 
     // MAKE SURE CALCULATED VIEW DISTANCE ISN'T OVER LIMITS
-    public static int setViewDistanceLimit(int viewDistance) {
+    private static int setViewDistanceLimit(int viewDistance) {
         if (viewDistance > Variable.max) {
             viewDistance = Variable.max;
         } else if (viewDistance < Variable.min) {
@@ -58,25 +58,6 @@ public class Set {
         }
     }
 
-    // WORK IN PROGRESS...
-//    public static void setViewDistance(Player target, int chunks) {
-//        if (!Bukkit.getVersion().toUpperCase().contains("PAPER") || Bukkit.getVersion().contains("1.8")) {
-//            ProtocolManager protocolManager = ProtocolLibrary.getProtocolManager();
-//            PacketContainer viewDistance = ProtocolLibrary.getProtocolManager().createPacket(PacketType.Play.Client.SETTINGS);
-//
-//            viewDistance.getModifier().writeDefaults();
-//            viewDistance.getIntegers().write(0, chunks);
-//
-//            try {
-//                protocolManager.sendServerPacket(target, viewDistance);
-//            } catch (InvocationTargetException e) {
-//                throw new RuntimeException("Cannot send packet " + viewDistance, e);
-//            }
-//        } else {
-//            player.setViewDistance(chunks);
-//        }
-//    }
-
     // THE MAIN FUNCTION ! CALCULATE BEST PLAYER VIEW DISTANCE WITH REDUCTION INDICE
     public static void calculatePlayersBestViewDistance(double ReductionIndice) {
         for (Player player : Bukkit.getOnlinePlayers()) {
@@ -117,4 +98,12 @@ public class Set {
             playerLiveViewDistance.put(player.getName(), setViewDistanceLimit(viewDistance)); // Store result of calculations
         }
     }
+
+    //
+    //
+    //
+    //
+    //
+
+
 }

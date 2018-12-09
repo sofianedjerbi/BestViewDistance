@@ -31,6 +31,7 @@ public class Variable {
     public static double maxindice;
     public static boolean hideVdistLine4;
     public static boolean reduceOnTeleport;
+    public static boolean useTasks;
 
     //
     // Messages.yml stuff
@@ -107,6 +108,7 @@ public class Variable {
         maxindice = configYml.getDouble("Performances.MaxReductionIndice");
         hideVdistLine4 = configYml.getBoolean("Other.HideVdistLine4");
         reduceOnTeleport = configYml.getBoolean("Other.ReduceViewOnTeleport");
+        useTasks = configYml.getBoolean("Performances.UseTasks");
 
         //
         // Messages.yml stuff
