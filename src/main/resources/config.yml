@@ -8,7 +8,7 @@
 # Read this :
 #
 #
-# Version: 1.2 # Version of the config file. DON'T TOUCH THIS
+# Version: 1.3 # Version of the config file. DON'T TOUCH THIS
 # ViewDistance:
 #   Min: 4 # Min View Distance. Keep it above 4.
 #   Max: 16 # Max View Distance. Player can't get above 32.
@@ -27,7 +27,7 @@
 #   AFKTimer: 90 # Seconds before getting "AFK" and get his view distance reduced to "Min" value. Keep this value over 60. (Doesn't affect gameplay)
 #   UseTasks: true # Use Task instead of ScheduleSync. Set this to "false" will kill lags, but the view distance will take more time to change. AFFECT PERFORMANCES A LOT.
 # Other:
-#   ReduceViewOnTeleport: true # Reduce the view when player teleport himself. (Portals too) NEED RESTART
+#   ReduceViewOnTeleport: false # Reduce the view when player teleport himself. (Portals too) NEED RESTART
 #   HideVdistLine4: false # Hide vdist.line4 (in messages.yml) when players uses /vdist
 #   SafePing: 1 # Minimum ping required for calculations. Set it to 0 or -1 for local hosting. Keep this value below 1
 #   CheckUpdate: true # You should keep this to true. It check if your plugins version is the latest. THIS DOES NOT IMPACT PERFORMANCES, NEED RESTART
@@ -41,7 +41,7 @@
 # Add me on Discord ! Lxct#9971
 #
 
-Version: 1.2
+Version: 1.3
 ViewDistance:
   Min: 4
   Max: 16
@@ -60,7 +60,7 @@ Performances:
   AFKTimer: 90
   UseTasks: true
 Other:
-  ReduceViewOnTeleport: true
+  ReduceViewOnTeleport: false
   HideVdistLine4: false
   SafePing: 1
   CheckUpdates: true

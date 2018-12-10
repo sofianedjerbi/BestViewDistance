@@ -27,5 +27,14 @@ public class UpdateConfig {
             Bukkit.getLogger().info("[BestViewDistance] Added: \"ReduceViewOnTeleport\"");
             Bukkit.getLogger().info("[BestViewDistance] More information here: https://www.spigotmc.org/resources/61963/updates");
         }
+        if (ver < 1.3) {
+            Bukkit.getLogger().info("[BestViewDistance] Update config.yml...");
+            config.set("Version", 1.3);
+            config.set("Performances.UseTasks", true);
+            BestViewDistance.plugin.saveConfig();
+            Bukkit.getLogger().info("[BestViewDistance] Updated config.yml!");
+            Bukkit.getLogger().info("[BestViewDistance] Added: \"UseTasks\"");
+            Bukkit.getLogger().info("[BestViewDistance] More information here: https://www.spigotmc.org/resources/61963/updates");
+        }
     }
 }

@@ -49,7 +49,7 @@ Does not work with "*"/"*.*" permissions nodes !
 # Read this :
 #
 #
-# Version: 1.2 # Version of the config file. DON'T TOUCH THIS
+# Version: 1.3 # Version of the config file. DON'T TOUCH THIS
 # ViewDistance:
 #   Min: 4 # Min View Distance. Keep it above 4.
 #   Max: 16 # Max View Distance. Player can't get above 32.
@@ -82,7 +82,7 @@ Does not work with "*"/"*.*" permissions nodes !
 # Add me on Discord ! Lxct#9971
 #
 
-Version: 1.2
+Version: 1.3
 ViewDistance:
   Min: 4
   Max: 16

@@ -94,55 +94,55 @@ public class Variable {
         // Config.yml stuff
         //
 
-        max = configYml.getInt("ViewDistance.Max");
-        afk = configYml.getInt("ViewDistance.AFK");
-        min = configYml.getInt("ViewDistance.Min");
-        safePing = configYml.getInt("Other.SafePing");
-        onloginview = configYml.getInt("ViewDistance.OnLogin");
-        onteleportview= configYml.getInt("ViewDistance.OnTeleport");
-        teleportunset= configYml.getInt("ViewDistance.UnsetTeleportViewDelay");
-        rping = configYml.getInt("Performances.PingForReduction");
-        aping = configYml.getInt("Performances.PingForAugmentation");
-        tpslimit = configYml.getDouble("Performances.TPSLimit");
-        tpschange = configYml.getDouble("Performances.TPSChangeIndice");
-        maxindice = configYml.getDouble("Performances.MaxReductionIndice");
-        hideVdistLine4 = configYml.getBoolean("Other.HideVdistLine4");
-        reduceOnTeleport = configYml.getBoolean("Other.ReduceViewOnTeleport");
-        useTasks = configYml.getBoolean("Performances.UseTasks");
+        max = configYml.getInt("ViewDistance.Max", 16);
+        afk = configYml.getInt("ViewDistance.AFK", 3);
+        min = configYml.getInt("ViewDistance.Min", 4);
+        safePing = configYml.getInt("Other.SafePing", 1);
+        onloginview = configYml.getInt("ViewDistance.OnLogin", 4);
+        onteleportview= configYml.getInt("ViewDistance.OnTeleport", 4);
+        teleportunset= configYml.getInt("ViewDistance.UnsetTeleportViewDelay", 3);
+        rping = configYml.getInt("Performances.PingForReduction", 550);
+        aping = configYml.getInt("Performances.PingForAugmentation", 90);
+        tpslimit = configYml.getDouble("Performances.TPSLimit", 19.5);
+        tpschange = configYml.getDouble("Performances.TPSChangeIndice", 0.01);
+        maxindice = configYml.getDouble("Performances.MaxReductionIndice", 0.75);
+        hideVdistLine4 = configYml.getBoolean("Other.HideVdistLine4", false);
+        reduceOnTeleport = configYml.getBoolean("Other.ReduceViewOnTeleport", false);
+        useTasks = configYml.getBoolean("Performances.UseTasks", true);
 
         //
         // Messages.yml stuff
         //
 
         //help
-        viewHelpLine1 = messagesYml.getString("help.line1");
-        viewHelpLine2 = messagesYml.getString("help.line2");
-        viewHelpLine3 = messagesYml.getString("help.line3");
-        viewHelpLine4 = messagesYml.getString("help.line4");
-        viewHelpLine5 = messagesYml.getString("help.line5");
-        viewHelpLine6 = messagesYml.getString("help.line6");
-        viewHelpLine7 = messagesYml.getString("help.line7");
+        viewHelpLine1 = messagesYml.getString("help.line1", "");
+        viewHelpLine2 = messagesYml.getString("help.line2", "");
+        viewHelpLine3 = messagesYml.getString("help.line3", "");
+        viewHelpLine4 = messagesYml.getString("help.line4", "");
+        viewHelpLine5 = messagesYml.getString("help.line5", "");
+        viewHelpLine6 = messagesYml.getString("help.line6", "");
+        viewHelpLine7 = messagesYml.getString("help.line7", "");
 
         //viewPlayer
-        viewPlayerLine1 = messagesYml.getString("viewPlayer.line1");
-        viewPlayerLine2 = messagesYml.getString("viewPlayer.line2");
-        viewPlayerLine3 = messagesYml.getString("viewPlayer.line3");
+        viewPlayerLine1 = messagesYml.getString("viewPlayer.line1", "");
+        viewPlayerLine2 = messagesYml.getString("viewPlayer.line2", "");
+        viewPlayerLine3 = messagesYml.getString("viewPlayer.line3", "");
 
         //vdist
-        vdistLine1 = messagesYml.getString("vdist.line1");
-        vdistLine2 = messagesYml.getString("vdist.line2");
-        vdistLine3 = messagesYml.getString("vdist.line3");
-        vdistLine4 = messagesYml.getString("vdist.line4");
-        vping = messagesYml.getString("vdist.vping");
+        vdistLine1 = messagesYml.getString("vdist.line1", "");
+        vdistLine2 = messagesYml.getString("vdist.line2", "");
+        vdistLine3 = messagesYml.getString("vdist.line3", "");
+        vdistLine4 = messagesYml.getString("vdist.line4", "");
+        vping = messagesYml.getString("vdist.vping", "");
 
         //other
-        viewUpdate = messagesYml.getString("view.update");
-        viewUpdateFail = messagesYml.getString("view.updateFail");
-        viewReload = messagesYml.getString("view.reload");
-        viewPing = messagesYml.getString("view.ping");
-        viewTps = messagesYml.getString("view.tps");
-        viewServer = messagesYml.getString("view.server");
-        viewIncorrectPing = messagesYml.getString("view.incorrectPing");
-        viewIncorrectView = messagesYml.getString("view.incorrectView");
+        viewUpdate = messagesYml.getString("view.update", "");
+        viewUpdateFail = messagesYml.getString("view.updateFail", "");
+        viewReload = messagesYml.getString("view.reload", "");
+        viewPing = messagesYml.getString("view.ping", "");
+        viewTps = messagesYml.getString("view.tps", "");
+        viewServer = messagesYml.getString("view.server", "");
+        viewIncorrectPing = messagesYml.getString("view.incorrectPing", "");
+        viewIncorrectView = messagesYml.getString("view.incorrectView","");
     }
 }
