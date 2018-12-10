@@ -115,34 +115,34 @@ public class Variable {
         //
 
         //help
-        viewHelpLine1 = messagesYml.getString("help.line1", "");
-        viewHelpLine2 = messagesYml.getString("help.line2", "");
-        viewHelpLine3 = messagesYml.getString("help.line3", "");
-        viewHelpLine4 = messagesYml.getString("help.line4", "");
-        viewHelpLine5 = messagesYml.getString("help.line5", "");
-        viewHelpLine6 = messagesYml.getString("help.line6", "");
-        viewHelpLine7 = messagesYml.getString("help.line7", "");
+        viewHelpLine1 = messagesYml.getString("help.line1", "&d&l======= BestViewDistance By Lxct =======");
+        viewHelpLine2 = messagesYml.getString("help.line2", "&d/vdist =>&a View your own view distance.");
+        viewHelpLine3 = messagesYml.getString("help.line3", "&d/view server =>&a Get reduction indice.");
+        viewHelpLine4 = messagesYml.getString("help.line4", "&d/view tps =>&a Get server's tps.");
+        viewHelpLine5 = messagesYml.getString("help.line5", "&d/view ping <player> =>&a Get player ping.");
+        viewHelpLine6 = messagesYml.getString("help.line6", "&d/view <player> =>&a Get player view distance info.");
+        viewHelpLine7 = messagesYml.getString("help.line7", "&d/view =>&a This message.");
 
         //viewPlayer
-        viewPlayerLine1 = messagesYml.getString("viewPlayer.line1", "");
-        viewPlayerLine2 = messagesYml.getString("viewPlayer.line2", "");
-        viewPlayerLine3 = messagesYml.getString("viewPlayer.line3", "");
+        viewPlayerLine1 = messagesYml.getString("viewPlayer.line1", "&aView Distance of %PLAYER% =>&d %VIEWDISTANCE% (Current)");
+        viewPlayerLine2 = messagesYml.getString("viewPlayer.line2", "&aView Distance of %PLAYER% =>&d %PINGVIEW% (Supported)");
+        viewPlayerLine3 = messagesYml.getString("viewPlayer.line3", "&aView Distance of %PLAYER% =>&d %SETTINGS% (Settings)");
 
         //vdist
-        vdistLine1 = messagesYml.getString("vdist.line1", "");
-        vdistLine2 = messagesYml.getString("vdist.line2", "");
-        vdistLine3 = messagesYml.getString("vdist.line3", "");
-        vdistLine4 = messagesYml.getString("vdist.line4", "");
-        vping = messagesYml.getString("vdist.vping", "");
+        vdistLine1 = messagesYml.getString("vdist.line1", "&aView Distance =>&d %VIEWDISTANCE% (Current)");
+        vdistLine2 = messagesYml.getString("vdist.line2", "&aView Distance =>&d %PINGVIEW% (Supported)");
+        vdistLine3 = messagesYml.getString("vdist.line3", "&aView Distance =>&d %SETTINGS% (Settings)");
+        vdistLine4 = messagesYml.getString("vdist.line4", "&aYour View Distance is reduced by&d %REDUCTIONINDICE%%");
+        vping = messagesYml.getString("vdist.vping", "&aYour ping :&d %PING%ms");
 
         //other
-        viewUpdate = messagesYml.getString("view.update", "");
-        viewUpdateFail = messagesYml.getString("view.updateFail", "");
-        viewReload = messagesYml.getString("view.reload", "");
-        viewPing = messagesYml.getString("view.ping", "");
-        viewTps = messagesYml.getString("view.tps", "");
-        viewServer = messagesYml.getString("view.server", "");
-        viewIncorrectPing = messagesYml.getString("view.incorrectPing", "");
-        viewIncorrectView = messagesYml.getString("view.incorrectView","");
+        viewUpdate = messagesYml.getString("view.update", "&a[BestViewDistance]&7 A new update is available at&a");
+        viewUpdateFail = messagesYml.getString("view.updateFail", "&a[BestViewDistance]&c Update checker failed!");
+        viewReload = messagesYml.getString("view.reload", "&aBest View Distance config reloaded!");
+        viewPing = messagesYml.getString("view.ping", "&aPing of %PLAYER%:&d %PING%ms");
+        viewTps = messagesYml.getString("view.tps", "&aTPS =>&d %TPS%");
+        viewServer = messagesYml.getString("view.server", "&aThe view distance is reduced by&d %REDUCTIONINDICE%%");
+        viewIncorrectPing = messagesYml.getString("view.incorrectPing", "&c/view ping <player>");
+        viewIncorrectView = messagesYml.getString("view.incorrectView","&c/view <player>");
     }
 }
