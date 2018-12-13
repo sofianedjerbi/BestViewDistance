@@ -9,8 +9,8 @@ import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static me.lxct.bestviewdistance.commands.Commands.colorize;
 
@@ -77,11 +77,11 @@ public class Variable {
     //
 
     // HashMap<String, ArrayList<Map>> playerBlockMap = new HashMap<>();
-    public static HashMap<String, Location> playerLocation = new HashMap<>(); // Location list
-    public static HashMap<String, Integer> playerViewDistance = new HashMap<>(); // View Distance list
-    public static HashMap<String, Integer> playerLiveViewDistance = new HashMap<>(); // Live View Distance list
-    public static HashMap<String, Integer> playerSettingsViewDistance = new HashMap<>(); // 1.12 Settings View Distance list
-    public static HashMap<String, Integer> waitForTPUnset = new HashMap<>(); // Waiting for teleport unset list with task ID
+    public static ConcurrentHashMap<String, Location> playerLocation = new ConcurrentHashMap<>(); // Location list
+    public static ConcurrentHashMap<String, Integer> playerViewDistance = new ConcurrentHashMap<>(); // View Distance list
+    public static ConcurrentHashMap<String, Integer> playerLiveViewDistance = new ConcurrentHashMap<>(); // Live View Distance list
+    public static ConcurrentHashMap<String, Integer> playerSettingsViewDistance = new ConcurrentHashMap<>(); // 1.12 Settings View Distance list
+    public static ConcurrentHashMap<String, Integer> waitForTPUnset = new ConcurrentHashMap<>(); // Waiting for teleport unset list with task ID
     public static List<String> afkList = Collections.synchronizedList(new ArrayList<>()); // AFK list
     public static Player playerData; // Player var used in commands for messages.yml
     public static String playerName; // PlayerNAME var used in commands for messages.yml
