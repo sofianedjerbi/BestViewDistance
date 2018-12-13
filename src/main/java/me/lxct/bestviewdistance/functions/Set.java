@@ -70,23 +70,23 @@ public class Set {
             }
             int ping = player.spigot().getPing(); // Ping of player
             if (ping < Variable.aping && ping >= safePing) {
-                supportedViewDistance = supportedViewDistance + 1;
+                ++supportedViewDistance; // increase
             } // Low ping = More View Distance
             else if (ping >= Variable.rping) {
-                supportedViewDistance = supportedViewDistance - 1;
+                --supportedViewDistance; // Decrease
             } // Big ping = Less View Distance
             playerViewDistance.put(player.getName(), supportedViewDistance); // Store in var
             setSupportedViewDistanceLimit(player.getName()); // Make sure supported view distance doesn't get over limits
 
             if (playerLiveViewDistance.containsKey(player.getName())) {
                 if (getViewDistance(player) < playerViewDistance.get(player.getName())) { // ADDED ON 8.5
-                    sendVD = getViewDistance(player);                // MAKE SURE THAT THE REDUCTION INDICE DECREASE THE TRUE VIEW DISTANCE
+                    sendVD = getViewDistance(player) + moreThanSettings;                // MAKE SURE THAT THE REDUCTION INDICE DECREASE THE TRUE VIEW DISTANCE
                 } else {
                     sendVD = playerViewDistance.get(player.getName());
                 }
             } else {
                 if (getViewDistance(player) < supportedViewDistance) { // ADDED ON 9.1
-                    sendVD = getViewDistance(player);                // MAKE SURE THAT THE REDUCTION INDICE DECREASE THE TRUE VIEW DISTANCE
+                    sendVD = getViewDistance(player) + moreThanSettings;                // MAKE SURE THAT THE REDUCTION INDICE DECREASE THE TRUE VIEW DISTANCE
                 } else {
                     sendVD = supportedViewDistance;
                 }

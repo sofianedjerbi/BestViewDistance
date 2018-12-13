@@ -2,6 +2,7 @@ package me.lxct.bestviewdistance.functions.data;
 
 import me.lxct.bestviewdistance.BestViewDistance;
 import me.lxct.bestviewdistance.functions.Other;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -10,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+
+import static me.lxct.bestviewdistance.commands.Commands.colorize;
 
 public class Variable {
 
@@ -26,6 +29,7 @@ public class Variable {
     public static int aping;
     public static int safePing;
     public static int teleportunset;
+    public static int moreThanSettings;
     public static double tpslimit;
     public static double tpschange;
     public static double maxindice;
@@ -99,10 +103,11 @@ public class Variable {
         min = configYml.getInt("ViewDistance.Min", 4);
         safePing = configYml.getInt("Other.SafePing", 1);
         onloginview = configYml.getInt("ViewDistance.OnLogin", 4);
-        onteleportview= configYml.getInt("ViewDistance.OnTeleport", 4);
-        teleportunset= configYml.getInt("ViewDistance.UnsetTeleportViewDelay", 3);
+        onteleportview = configYml.getInt("ViewDistance.OnTeleport", 4);
+        teleportunset = configYml.getInt("ViewDistance.UnsetTeleportViewDelay", 3);
         rping = configYml.getInt("Performances.PingForReduction", 550);
         aping = configYml.getInt("Performances.PingForAugmentation", 90);
+        moreThanSettings = configYml.getInt("ViewDistance.MoreThanSettings", 0);
         tpslimit = configYml.getDouble("Performances.TPSLimit", 19.5);
         tpschange = configYml.getDouble("Performances.TPSChangeIndice", 0.01);
         maxindice = configYml.getDouble("Performances.MaxReductionIndice", 0.75);
@@ -143,6 +148,145 @@ public class Variable {
         viewTps = messagesYml.getString("view.tps", "&aTPS =>&d %TPS%");
         viewServer = messagesYml.getString("view.server", "&aThe view distance is reduced by&d %REDUCTIONINDICE%%");
         viewIncorrectPing = messagesYml.getString("view.incorrectPing", "&c/view ping <player>");
-        viewIncorrectView = messagesYml.getString("view.incorrectView","&c/view <player>");
+        viewIncorrectView = messagesYml.getString("view.incorrectView", "&c/view <player>");
+
+        //
+        // CHECK FOR ERRORS
+        //
+
+        //
+        // Config.yml stuff
+        //
+
+        if (!configYml.isInt("ViewDistance.Max")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"Max\" value is wrong!"));
+        }
+        if (!configYml.isInt("ViewDistance.AFK")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"AFK\" value is wrong!"));
+        }
+        if (!configYml.isInt("ViewDistance.Min")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"Min\" value is wrong!"));
+        }
+        if (!configYml.isInt("Other.SafePing")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"SafePing\" value is wrong!"));
+        }
+        if (!configYml.isInt("ViewDistance.OnLogin")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"OnLogin\" value is wrong!"));
+        }
+        if (!configYml.isInt("ViewDistance.OnTeleport")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"OnTeleport\" value is wrong!"));
+        }
+        if (!configYml.isInt("ViewDistance.MoreThanSettings")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"MoreThanSettings\" value is wrong!"));
+        }
+        if (!configYml.isInt("ViewDistance.UnsetTeleportViewDelay")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"UnsetTeleportViewDelay\" value is wrong!"));
+        }
+        if (!configYml.isInt("Performances.PingForReduction")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"PingForReduction\" value is wrong!"));
+        }
+        if (!configYml.isInt("Performances.PingForAugmentation")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"PingForAugmentation\" value is wrong!"));
+        }
+        if (!configYml.isDouble("Performances.TPSLimit")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"TPSLimit\" value is wrong!"));
+        }
+        if (!configYml.isDouble("Performances.TPSChangeIndice")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"TPSChangeIndice\" value is wrong!"));
+        }
+        if (!configYml.isDouble("Performances.MaxReductionIndice")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"MaxReductionIndice\" value is wrong!"));
+        }
+        if (!configYml.isBoolean("Other.HideVdistLine4")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"HideVdistLine4\" value is wrong!"));
+        }
+        if (!configYml.isBoolean("Other.ReduceViewOnTeleport")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"ReduceViewOnTeleport\" value is wrong!"));
+        }
+        if (!configYml.isBoolean("Performances.UseTasks")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"UseTasks\" value is wrong!"));
+        }
+
+        //
+        // Messages.yml stuff
+        //
+
+        //help
+        if (!messagesYml.isString("help.line1")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"Help Line1\" value is wrong!"));
+        }
+        if (!messagesYml.isString("help.line2")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"Help Line2\" value is wrong!"));
+        }
+        if (!messagesYml.isString("help.line3")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"Help Line3\" value is wrong!"));
+        }
+        if (!messagesYml.isString("help.line4")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"Help Line4\" value is wrong!"));
+        }
+        if (!messagesYml.isString("help.line5")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"Help Line5\" value is wrong!"));
+        }
+        if (!messagesYml.isString("help.line6")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"Help Line6\" value is wrong!"));
+        }
+        if (!messagesYml.isString("help.line7")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"Help Line7\" value is wrong!"));
+        }
+
+        //viewPlayer
+        if (!messagesYml.isString("viewPlayer.line1")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"ViewPlayer Line1\" value is wrong!"));
+        }
+        if (!messagesYml.isString("viewPlayer.line2")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"ViewPlayer Line2\" value is wrong!"));
+        }
+        if (!messagesYml.isString("viewPlayer.line3")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"ViewPlayer Line3\" value is wrong!"));
+        }
+
+        //vdist
+        if (!messagesYml.isString("vdist.line1")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"Vdist Line1\" value is wrong!"));
+        }
+        if (!messagesYml.isString("vdist.line2")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"Vdist Line2\" value is wrong!"));
+        }
+        if (!messagesYml.isString("vdist.line3")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"Vdist Line3\" value is wrong!"));
+        }
+        if (!messagesYml.isString("vdist.line4")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"Vdist Line4\" value is wrong!"));
+        }
+        if (!messagesYml.isString("vdist.vping")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"Vdist Vping\" value is wrong!"));
+        }
+
+        //other
+        if (!messagesYml.isString("view.update")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"Update\" value is wrong!"));
+        }
+        if (!messagesYml.isString("view.updateFail")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"UpdateFail\" value is wrong!"));
+        }
+        if (!messagesYml.isString("view.reload")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"Reload\" value is wrong!"));
+        }
+        if (!messagesYml.isString("view.ping")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"Ping\" value is wrong!"));
+        }
+        if (!messagesYml.isString("view.tps")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"TPS\" value is wrong!"));
+        }
+        if (!messagesYml.isString("view.server")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"Server\" value is wrong!"));
+        }
+        if (!messagesYml.isString("view.incorrectPing")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"IncorrectPing\" value is wrong!"));
+        }
+        if (!messagesYml.isString("view.incorrectView")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"IncorrectView\" value is wrong!"));
+        }
+
     }
 }

@@ -44,7 +44,7 @@ public class Other {
                         Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetAfkViewDistance(player, setPlayerPermissions(player, setClientSettingLimit(player, afk)))); // Break Async chain
                     }
                 }
-            } else {
+            } else { // IF HE'S NOT AFK
                 if (playerLiveViewDistance.containsKey(player.getName()) || !waitForTPUnset.containsKey(player.getName())) {
                     if (player.getViewDistance() != playerLiveViewDistance.get(player.getName())) { // If it need to be set, just set it.
                         int task = Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, new SetViewDistance(player, setPlayerPermissions(player, playerLiveViewDistance.get(player.getName())))); // Break Async chain
