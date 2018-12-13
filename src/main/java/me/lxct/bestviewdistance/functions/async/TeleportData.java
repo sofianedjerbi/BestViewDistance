@@ -18,8 +18,8 @@ public class TeleportData implements Runnable {
 
     @Override
     public void run() {
-        if (playerLiveViewDistance.containsKey(player.getName())) { // If he got a live view
-            if (waitForTPUnset.containsKey(player.getName())) { // If he is waiting for TP UNSET
+        if (playerLiveViewDistance.get(player.getName()) != null) { // If he got a live view
+            if (waitForTPUnset.get(player.getName()) != null) { // If he is waiting for TP UNSET
                 Bukkit.getScheduler().cancelTask(waitForTPUnset.get(player.getName())); // Cancel task if the player got a task
                 waitForTPUnset.remove(player.getName()); // Remove waiting
             }
