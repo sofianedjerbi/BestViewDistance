@@ -5,6 +5,7 @@ import me.lxct.bestviewdistance.functions.Get;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
+import static me.lxct.bestviewdistance.functions.Get.get1minTPS;
 import static me.lxct.bestviewdistance.functions.data.Variable.*;
 
 @SuppressWarnings("deprecation")
@@ -23,7 +24,10 @@ public class PlaceholderAPIHook extends EZPlaceholderHook {
             return String.valueOf(Math.round(reductionIndice * 100));
         }
         if (identifier.equals("DECIMAL_TPS")) {
-            return String.valueOf(Get.get1minTPS());
+            return String.valueOf(get1minTPS());
+        }
+        if (identifier.equals("TPS")) {
+            return String.valueOf(Math.round(get1minTPS()));
         }
         if (player == null) {
             return "";

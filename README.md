@@ -110,6 +110,17 @@ Other:
 
 + Messages.yml File.
 
+## PlaceholderAPI :
+```
+%VDIST_REDUCTION_INDICE% => Get the reduction indice in percentage
+%VDIST_REDUCTION_INDICE_DECIMAL% => Get the reduction indice with decimals
+%VDIST_TPS% => Get TPS
+%VDIST_DECIMAL_TPS% => Get TPS with decimals
+%VDIST_PLAYER_SETTINGS_VIEW% => Get the render distance in player's settings
+%VDIST_PLAYER_SUPPORTED_VIEW% => Get the supported view distance of a player
+%VDIST_PLAYER_CURRENT_VIEW% => Get the currend view distance of a player
+```
+
 ## Compilation
 Bash/Zsh linux terminal :
 
