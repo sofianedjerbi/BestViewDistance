@@ -16,6 +16,15 @@ public class PlaceholderAPIHook extends EZPlaceholderHook {
 
     @Override
     public String onPlaceholderRequest(Player player, String identifier) {
+        if (identifier.equals("REDUCTION_INDICE_DECIMAL")) {
+            return String.valueOf(reductionIndice);
+        }
+        if (identifier.equals("REDUCTION_INDICE")) {
+            return String.valueOf(Math.round(reductionIndice * 100));
+        }
+        if (identifier.equals("DECIMAL_TPS")) {
+            return String.valueOf(Get.get1minTPS());
+        }
         if (player == null) {
             return "";
         }
@@ -25,17 +34,8 @@ public class PlaceholderAPIHook extends EZPlaceholderHook {
         if (identifier.equals("PLAYER_SUPPORTED_VIEW")) {
             return String.valueOf(playerViewDistance.get(player.getName()));
         }
-        if (identifier.equals("PLAYER_LIVE_VIEW")) {
-            return String.valueOf(playerLiveViewDistance.get(player.getName()));
-        }
-        if (identifier.equals("REDUCTION_INDICE_DECIMAL")) {
-            return String.valueOf(reductionIndice);
-        }
-        if (identifier.equals("REDUCTION_INDICE")) {
-            return String.valueOf(Math.round(reductionIndice * 100));
-        }
-        if (identifier.equals("DECIMAL_TPS")) {
-            return String.valueOf(Get.get1minTPS());
+        if (identifier.equals("PLAYER_CURRENT_VIEW")) {
+            return String.valueOf(player.getViewDistance());
         }
         return null;
     }
