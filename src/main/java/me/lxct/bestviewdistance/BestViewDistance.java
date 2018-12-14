@@ -4,7 +4,6 @@ import me.lxct.bestviewdistance.commands.ViewCommand;
 import me.lxct.bestviewdistance.event.*;
 import me.lxct.bestviewdistance.functions.Other;
 import me.lxct.bestviewdistance.functions.async.AsyncUpdateChecker;
-import me.lxct.bestviewdistance.functions.data.Hooks;
 import me.lxct.bestviewdistance.functions.data.Variable;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
@@ -21,6 +20,7 @@ import static me.lxct.bestviewdistance.functions.Warnings.checkProtocolLib;
 import static me.lxct.bestviewdistance.functions.Warnings.checkServerView;
 import static me.lxct.bestviewdistance.functions.data.Variable.loadVariables;
 import static me.lxct.bestviewdistance.functions.data.Variable.reduceOnTeleport;
+import static me.lxct.bestviewdistance.functions.hooks.Hooks.checkHooks;
 
 public class BestViewDistance extends JavaPlugin {
 
@@ -45,12 +45,7 @@ public class BestViewDistance extends JavaPlugin {
         // Retro compatibility
         //
 
-        if (Bukkit.getPluginManager().getPlugin("ProtocolLib") != null && Bukkit.getVersion().contains("1.12") || Bukkit.getVersion().contains("1.11") || Bukkit.getVersion().contains("1.10") || Bukkit.getVersion().contains("1.9") || Bukkit.getVersion().contains("1.8")) { // Add 1.12 Support for Client View Distance
-            try {
-                Hooks.protocolLibHook(this);
-            } catch (NoClassDefFoundError ignored) {
-            }
-        }
+        checkHooks(this);
 
         if (Bukkit.getVersion().contains("1.8")) {
             try {

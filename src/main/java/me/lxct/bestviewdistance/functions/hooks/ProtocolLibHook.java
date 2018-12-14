@@ -1,4 +1,4 @@
-package me.lxct.bestviewdistance.functions.data;
+package me.lxct.bestviewdistance.functions.hooks;
 
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
@@ -7,12 +7,13 @@ import com.comphenix.protocol.events.ListenerPriority;
 import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
-import me.lxct.bestviewdistance.BestViewDistance;
+import me.lxct.bestviewdistance.functions.data.Variable;
+import org.bukkit.plugin.Plugin;
 
-public class Hooks {
-    public static void protocolLibHook(BestViewDistance plugin) {
+class ProtocolLibHook {
+    static void protocolLibHook(Plugin plugin) {
         ProtocolManager protocolManager = ProtocolLibrary.getProtocolManager();
-        protocolManager.addPacketListener(new PacketAdapter(BestViewDistance.plugin,
+        protocolManager.addPacketListener(new PacketAdapter(plugin,
                 ListenerPriority.NORMAL,
                 PacketType.Play.Client.SETTINGS) {
             @Override

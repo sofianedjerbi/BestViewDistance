@@ -35,7 +35,7 @@ public class Get {
     }
 
 
-    static int getViewDistance(Player player) { // Get View Distance in settings
+    public static int getViewDistance(Player player) { // Get View Distance in settings
         if (Bukkit.getVersion().contains("1.12") || Bukkit.getVersion().contains("1.11") || Bukkit.getVersion().contains("1.10") || Bukkit.getVersion().contains("1.9") || Bukkit.getVersion().contains("1.8")) {
             if (Variable.playerSettingsViewDistance.containsKey(player.getName())) {
                 return Variable.playerSettingsViewDistance.get(player.getName());

@@ -92,6 +92,10 @@ public class Set {
                 }
             }
 
+            if(sendVD > getViewDistance(player)) {
+                sendVD = getViewDistance(player);
+            }
+
             int viewDistance = Math.round((int) (sendVD * (1 - ReductionIndice))); // Apply percentage
             // About the line under this comment. We set player view distance only if view distance doesn't get over limits
             // And respect player settings
