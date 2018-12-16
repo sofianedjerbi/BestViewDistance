@@ -14,7 +14,7 @@ public class LoginDataLoad implements Runnable {
     @Override
     public void run() {
         // we set permissions too here
-        playerViewDistance.put(player.getName(), onloginview); // LOAD PLAYER DATA
-        playerLiveViewDistance.put(player.getName(), onloginview); // LOAD PLAYER DATA
+        playerViewDistance.put(player.getName(), onLoginView); // LOAD PLAYER DATA
+        playerLiveViewDistance.put(player.getName(), onLoginView); // LOAD PLAYER DATA
     }
 }

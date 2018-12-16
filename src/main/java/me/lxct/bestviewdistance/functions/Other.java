@@ -2,8 +2,6 @@ package me.lxct.bestviewdistance.functions;
 
 import me.lxct.bestviewdistance.BestViewDistance;
 import me.lxct.bestviewdistance.functions.data.Variable;
-import me.lxct.bestviewdistance.functions.sync.SetAfkViewDistance;
-import me.lxct.bestviewdistance.functions.sync.SetViewDistance;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -14,14 +12,13 @@ import org.bukkit.entity.Player;
 import java.io.File;
 import java.io.IOException;
 
-import static me.lxct.bestviewdistance.functions.Set.setClientSettingLimit;
-import static me.lxct.bestviewdistance.functions.Set.setPlayerPermissions;
+import static me.lxct.bestviewdistance.functions.Get.getSettingsViewDistance;
+import static me.lxct.bestviewdistance.functions.Set.setViewDistance;
 import static me.lxct.bestviewdistance.functions.data.Variable.*;
 
 public class Other {
-    private static FileConfiguration customConfig;
 
-    public static void putPlayerAFK() { // What this function does ? if the player has exactly the same position as x minutes ago, he'll be set in "AFK" mode.
+    public static void AFKchecker() { // What this function does ? if the player has exactly the same position as x minutes ago, he'll be set in "AFK" mode.
         for (Player player : Bukkit.getServer().getOnlinePlayers()) { // Every players...
             Location location = player.getLocation(); // Get Location
             if (location.equals(playerLocation.get(player.getName()))) { // If same position ...
@@ -34,24 +31,30 @@ public class Other {
         }
     }
 
+    public static void flyingChecker() { // What this function does ? if the player is still flying, we'll set this view distance to "flying" value
+        for (Player player : Bukkit.getServer().getOnlinePlayers()) { // Every players...
+            if (player.isFlying()) { // If flying
+                if (!flyingList.contains(player.getName())) { // IF flying && not in the list
+                    flyingList.add(player.getName());
+                }
+            } else { // If not flying
+                flyingList.remove(player.getName());
+            }
+        }
+    }
+
     // A FUNCTION THAT SET THE VIEW DISTANCE WITH FUNCTION THAT BREAK ASYNC CHAINS
     public static void applyViewDistance() {
         for (Player player : Bukkit.getOnlinePlayers()) {
-            if (afkList.contains(player.getName())) { // IF player is afk
-                if (player.getViewDistance() != afk) { // If it need to be set, just set it.
-                    int task = Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, new SetAfkViewDistance(player, setPlayerPermissions(player, setClientSettingLimit(player, afk)))); // Break Async chain
-                    if (task == -1 && useTasks) {
-                        Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetAfkViewDistance(player, setPlayerPermissions(player, setClientSettingLimit(player, afk)))); // Break Async chain
-                    }
-                }
+            if (afkList.contains(player.getName()) && player.getViewDistance() != afk && useAFKView) { // IF player is afk
+                setViewDistance(player, afk);
+            } else if (flyingList.contains(player.getName()) && player.getViewDistance() != onFlyingView && useOnFlyingView) {
+                setViewDistance(player, onFlyingView);
             } else { // IF HE'S NOT AFK
-                if (playerLiveViewDistance.get(player.getName()) != null || waitForTPUnset.get(player.getName()) == null) {
-                    if (player.getViewDistance() != playerLiveViewDistance.get(player.getName())) { // If it need to be set, just set it.
-                        int task = Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, new SetViewDistance(player, setPlayerPermissions(player, playerLiveViewDistance.get(player.getName())))); // Break Async chain
-                        if (task == -1 && useTasks) {
-                            Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetViewDistance(player, setPlayerPermissions(player, playerLiveViewDistance.get(player.getName())))); // Break Async chain
-                        }
-                    }
+                if (playerLiveViewDistance.get(player.getName()) != null
+                        && waitForTPUnset.get(player.getName()) == null
+                        && player.getViewDistance() != playerLiveViewDistance.get(player.getName())) {
+                    setViewDistance(player, playerLiveViewDistance.get(player.getName()));
                 }
             }
         }
@@ -60,26 +63,19 @@ public class Other {
     public static void genOnlinePlayerData() { // Set all playerLiveViewDistance to onLoginView.
         playerLiveViewDistance.clear();
         for (Player player : Bukkit.getServer().getOnlinePlayers()) {
-            playerLiveViewDistance.put(player.getName(), Variable.onloginview);
+            playerLiveViewDistance.put(player.getName(), Variable.onLoginView);
         }
     }
 
     public static void loadMessagesYml() { // Load messages.yml
+        FileConfiguration customConfig;
         File customConfigFile = new File(BestViewDistance.plugin.getDataFolder(), "messages.yml");
+        customConfig = YamlConfiguration.loadConfiguration(customConfigFile);
         try {
-            customConfig = YamlConfiguration.loadConfiguration(customConfigFile);
-            try {
-                customConfig.load(customConfigFile);
-            } catch (IOException | InvalidConfigurationException e) {
-                e.printStackTrace();
-            }
-        } catch (IllegalArgumentException e) {
-            customConfig = new YamlConfiguration();
+            customConfig.load(customConfigFile);
+        } catch (IOException | InvalidConfigurationException e) {
+            e.printStackTrace();
         }
-    }
-
-    public static FileConfiguration getCustomConfig() {
-        return customConfig;
     }
 
     public static void genMessagesYml() { // Generate messages.yml file
@@ -101,7 +97,7 @@ public class Other {
             string = string.replace("%VIEWDISTANCE%", String.valueOf(playerData.getViewDistance()));
         }
         if (string.contains("%SETTINGS%")) {
-            string = string.replace("%SETTINGS%", String.valueOf(Get.getViewDistance(playerData)));
+            string = string.replace("%SETTINGS%", String.valueOf(getSettingsViewDistance(playerData)));
         }
         if (string.contains("%REDUCTIONINDICE%")) {
             string = string.replace("%REDUCTIONINDICE%", String.valueOf(Math.round(reductionIndice * 100)));

@@ -9,7 +9,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
-import static me.lxct.bestviewdistance.functions.data.Variable.onteleportview;
+import static me.lxct.bestviewdistance.functions.data.Variable.onTeleportView;
 import static me.lxct.bestviewdistance.functions.data.Variable.waitForTPUnset;
 
 
@@ -19,7 +19,7 @@ public class OnTeleport implements Listener {
         Player player = event.getPlayer();
         if (event.getCause() != PlayerTeleportEvent.TeleportCause.CHORUS_FRUIT && event.getCause() != PlayerTeleportEvent.TeleportCause.UNKNOWN && event.getCause() != PlayerTeleportEvent.TeleportCause.ENDER_PEARL) {
             if (!waitForTPUnset.containsKey(player.getName())) { // If he's not waiting for tp unset
-                player.setViewDistance(onteleportview); // Set on teleport view
+                player.setViewDistance(onTeleportView); // Set on teleport view
             }
             Bukkit.getScheduler().runTaskAsynchronously(BestViewDistance.plugin, new TeleportData(player)); // Process teleport data with async method
         }

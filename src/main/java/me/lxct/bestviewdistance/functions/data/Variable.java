@@ -1,7 +1,6 @@
 package me.lxct.bestviewdistance.functions.data;
 
 import me.lxct.bestviewdistance.BestViewDistance;
-import me.lxct.bestviewdistance.functions.Other;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -13,6 +12,7 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static me.lxct.bestviewdistance.commands.Commands.colorize;
+import static me.lxct.bestviewdistance.functions.Get.getCustomConfig;
 
 public class Variable {
 
@@ -23,19 +23,23 @@ public class Variable {
     public static int max;
     public static int min;
     public static int afk;
-    public static int onloginview;
-    public static int onteleportview;
+    public static int onLoginView;
+    public static int onTeleportView;
+    public static int onFlyingView;
     public static int rping;
     public static int aping;
     public static int safePing;
-    public static int teleportunset;
+    public static int teleportUnsetDelay;
     public static int moreThanSettings;
-    public static double tpslimit;
-    public static double tpschange;
-    public static double maxindice;
+    public static double tpsLimit;
+    public static double tpsChange;
+    public static double maxIndice;
     public static boolean hideVdistLine4;
-    public static boolean reduceOnTeleport;
+    public static boolean useTeleportView;
+    public static boolean useOnFlyingView;
     public static boolean useTasks;
+    public static boolean usePing;
+    public static boolean useAFKView;
 
     //
     // Messages.yml stuff
@@ -76,13 +80,13 @@ public class Variable {
     // TMP stuff
     //
 
-    // HashMap<String, ArrayList<Map>> playerBlockMap = new HashMap<>();
     public static ConcurrentHashMap<String, Location> playerLocation = new ConcurrentHashMap<>(); // Location list
     public static ConcurrentHashMap<String, Integer> playerViewDistance = new ConcurrentHashMap<>(); // View Distance list
     public static ConcurrentHashMap<String, Integer> playerLiveViewDistance = new ConcurrentHashMap<>(); // Live View Distance list
     public static ConcurrentHashMap<String, Integer> playerSettingsViewDistance = new ConcurrentHashMap<>(); // 1.12 Settings View Distance list
     public static ConcurrentHashMap<String, Integer> waitForTPUnset = new ConcurrentHashMap<>(); // Waiting for teleport unset list with task ID
     public static List<String> afkList = Collections.synchronizedList(new ArrayList<>()); // AFK list
+    public static List<String> flyingList = Collections.synchronizedList(new ArrayList<>()); // Flying list
     public static Player playerData; // Player var used in commands for messages.yml
     public static String playerName; // PlayerNAME var used in commands for messages.yml
     public static Double reductionIndice = 0.0; // Initialize the Reduction indice
@@ -91,7 +95,7 @@ public class Variable {
 
         // FILES
         FileConfiguration configYml = BestViewDistance.plugin.getConfig();
-        FileConfiguration messagesYml = Other.getCustomConfig();
+        FileConfiguration messagesYml = getCustomConfig();
         // FILES
 
         //
@@ -101,19 +105,23 @@ public class Variable {
         max = configYml.getInt("ViewDistance.Max", 16);
         afk = configYml.getInt("ViewDistance.AFK", 3);
         min = configYml.getInt("ViewDistance.Min", 4);
-        safePing = configYml.getInt("Other.SafePing", 1);
-        onloginview = configYml.getInt("ViewDistance.OnLogin", 4);
-        onteleportview = configYml.getInt("ViewDistance.OnTeleport", 4);
-        teleportunset = configYml.getInt("ViewDistance.UnsetTeleportViewDelay", 3);
-        rping = configYml.getInt("Performances.PingForReduction", 550);
-        aping = configYml.getInt("Performances.PingForAugmentation", 90);
+        safePing = configYml.getInt("Settings.SafePing", 1);
+        onLoginView = configYml.getInt("ViewDistance.OnLogin", 4);
+        onFlyingView = configYml.getInt("ViewDistance.OnFlying", 12);
+        onTeleportView = configYml.getInt("ViewDistance.OnTeleport", 4);
+        teleportUnsetDelay = configYml.getInt("Delay.UnsetTeleportViewDelay", 3);
+        rping = configYml.getInt("Settings.PingForReduction", 550);
+        aping = configYml.getInt("Settings.PingForAugmentation", 90);
         moreThanSettings = configYml.getInt("ViewDistance.MoreThanSettings", 0);
-        tpslimit = configYml.getDouble("Performances.TPSLimit", 19.5);
-        tpschange = configYml.getDouble("Performances.TPSChangeIndice", 0.01);
-        maxindice = configYml.getDouble("Performances.MaxReductionIndice", 0.75);
-        hideVdistLine4 = configYml.getBoolean("Other.HideVdistLine4", false);
-        reduceOnTeleport = configYml.getBoolean("Other.ReduceViewOnTeleport", false);
-        useTasks = configYml.getBoolean("Performances.UseTasks", true);
+        tpsLimit = configYml.getDouble("Settings.TpsLimit", 19.5);
+        tpsChange = configYml.getDouble("Settings.TpsChangeIndice", 0.01);
+        maxIndice = configYml.getDouble("Settings.MaxReductionIndice", 0.75);
+        hideVdistLine4 = configYml.getBoolean("Misc.HideVdistLine4", false);
+        useTeleportView = configYml.getBoolean("Features.UseTeleportView", false);
+        useAFKView = configYml.getBoolean("Features.UseAFKView", true);
+        useOnFlyingView = configYml.getBoolean("Features.UseFlyingView", false);
+        useTasks = configYml.getBoolean("Features.UseTasks", true);
+        usePing = configYml.getBoolean("Features.UsePing", true);
 
         //
         // Messages.yml stuff
@@ -158,6 +166,32 @@ public class Variable {
         // Config.yml stuff
         //
 
+        if (!configYml.isBoolean("Features.UseAFKView")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"UseAFKView\" value is wrong!"));
+        }
+        if (!configYml.isBoolean("Features.UsePing")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"UsePing\" value is wrong!"));
+        }
+        if (!configYml.isBoolean("Features.UseFlyingView")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"ChangeViewOnFlying\" value is wrong!"));
+        }
+        if (!configYml.isInt("ViewDistance.OnFlying")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"OnFlying\" value is wrong!"));
+        }
+        if (!configYml.isInt("ViewDistance.CheckFlyingDelay")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"CheckFlyingDelay\" value is wrong!"));
+        }
+        //
+        if (!configYml.isInt("ViewDistance.SetViewDelay")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"SetViewDelay\" value is wrong!"));
+        }
+        if (!configYml.isInt("Settings.AFKTimer")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"AFKTimer\" value is wrong!"));
+        }
+        if (!configYml.isInt("ViewDistance.CalculationsDelay")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"CalculationsDelay\" value is wrong!"));
+        }
+        //
         if (!configYml.isInt("ViewDistance.Max")) {
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"Max\" value is wrong!"));
         }
@@ -167,7 +201,7 @@ public class Variable {
         if (!configYml.isInt("ViewDistance.Min")) {
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"Min\" value is wrong!"));
         }
-        if (!configYml.isInt("Other.SafePing")) {
+        if (!configYml.isInt("Settings.SafePing")) {
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"SafePing\" value is wrong!"));
         }
         if (!configYml.isInt("ViewDistance.OnLogin")) {
@@ -179,31 +213,31 @@ public class Variable {
         if (!configYml.isInt("ViewDistance.MoreThanSettings")) {
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"MoreThanSettings\" value is wrong!"));
         }
-        if (!configYml.isInt("ViewDistance.UnsetTeleportViewDelay")) {
+        if (!configYml.isInt("Delay.UnsetTeleportViewDelay")) {
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"UnsetTeleportViewDelay\" value is wrong!"));
         }
-        if (!configYml.isInt("Performances.PingForReduction")) {
+        if (!configYml.isInt("Settings.PingForReduction")) {
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"PingForReduction\" value is wrong!"));
         }
-        if (!configYml.isInt("Performances.PingForAugmentation")) {
+        if (!configYml.isInt("Settings.PingForAugmentation")) {
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"PingForAugmentation\" value is wrong!"));
         }
-        if (!configYml.isDouble("Performances.TPSLimit")) {
-            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"TPSLimit\" value is wrong!"));
+        if (!configYml.isDouble("Settings.TpsLimit")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"tpsLimit\" value is wrong!"));
         }
-        if (!configYml.isDouble("Performances.TPSChangeIndice")) {
-            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"TPSChangeIndice\" value is wrong!"));
+        if (!configYml.isDouble("Settings.TpsChangeIndice")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"tpsChangeIndice\" value is wrong!"));
         }
-        if (!configYml.isDouble("Performances.MaxReductionIndice")) {
+        if (!configYml.isDouble("Settings.MaxReductionIndice")) {
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"MaxReductionIndice\" value is wrong!"));
         }
-        if (!configYml.isBoolean("Other.HideVdistLine4")) {
+        if (!configYml.isBoolean("Misc.HideVdistLine4")) {
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"HideVdistLine4\" value is wrong!"));
         }
-        if (!configYml.isBoolean("Other.ReduceViewOnTeleport")) {
-            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"ReduceViewOnTeleport\" value is wrong!"));
+        if (!configYml.isBoolean("Features.UseTeleportView")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"UseTeleportView\" value is wrong!"));
         }
-        if (!configYml.isBoolean("Performances.UseTasks")) {
+        if (!configYml.isBoolean("Features.UseTasks")) {
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"UseTasks\" value is wrong!"));
         }
 

@@ -9,7 +9,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import static me.lxct.bestviewdistance.functions.data.Variable.onloginview;
+import static me.lxct.bestviewdistance.functions.data.Variable.onLoginView;
 
 
 public class OnJoin implements Listener {
@@ -17,6 +17,6 @@ public class OnJoin implements Listener {
     public static void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         Bukkit.getScheduler().runTaskAsynchronously(BestViewDistance.plugin, new LoginDataLoad(player)); // Load Data with Async Method
-        player.setViewDistance(onloginview);
+        player.setViewDistance(onLoginView);
     }
 }

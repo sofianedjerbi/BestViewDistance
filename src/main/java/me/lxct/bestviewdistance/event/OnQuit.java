@@ -12,6 +12,6 @@ import org.bukkit.event.player.PlayerQuitEvent;
 public class OnQuit implements Listener {
     @EventHandler(priority = EventPriority.LOWEST)
     public static void onPlayerQuit(PlayerQuitEvent event) {
-        Bukkit.getScheduler().runTaskAsynchronously(BestViewDistance.plugin, new QuitDataUnload(event.getPlayer().getName())); // Load Data with Async Method
+        Bukkit.getScheduler().runTaskAsynchronously(BestViewDistance.plugin, new QuitDataUnload(event.getPlayer().getName())); // Unload Data with Async Method
     }
 }

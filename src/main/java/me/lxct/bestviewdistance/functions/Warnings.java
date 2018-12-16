@@ -21,6 +21,7 @@ public class Warnings {
         if (spigotView > 4) {
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lView distance setting inside spigot.yml is \"" + spigotView + "\"."));
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lSetting a view-distance over 4 in spigot.yml will increase lags."));
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lPlease set \"view-distance: 3\" in spigot.yml"));
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lThe plugin will override the view-distance. Don't worry about that."));
         }
     }

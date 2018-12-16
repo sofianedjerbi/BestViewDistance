@@ -15,5 +15,6 @@ public class QuitDataUnload implements Runnable {
         playerViewDistance.remove(player);
         playerSettingsViewDistance.remove(player);
         afkList.remove(player);
+        flyingList.remove(player);
     }
 }

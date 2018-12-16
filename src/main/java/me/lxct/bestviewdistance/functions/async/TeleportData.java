@@ -23,11 +23,14 @@ public class TeleportData implements Runnable {
                 Bukkit.getScheduler().cancelTask(waitForTPUnset.get(player.getName())); // Cancel task if the player got a task
                 waitForTPUnset.remove(player.getName()); // Remove waiting
             }
-            int task = Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, new UnsetTeleportViewDistance(player, setPlayerPermissions(player, playerLiveViewDistance.get(player.getName()))), teleportunset * 20); // Unset teleport
-            if (task == -1 && useTasks) { // If the task has failed
-                Bukkit.getScheduler().runTaskLater(BestViewDistance.plugin, new UnsetTeleportViewDistance(player, setPlayerPermissions(player, playerLiveViewDistance.get(player.getName()))), teleportunset * 20); // Force unset teleport
-            } else {  // If the task has been successfully scheduled
-                waitForTPUnset.put(player.getName(), task); // Set waiting
+            try {
+                int task = Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, new UnsetTeleportViewDistance(player, setPlayerPermissions(player, playerLiveViewDistance.get(player.getName()))), teleportUnsetDelay * 20); // Unset teleport
+                if (task == -1 && useTasks) { // If the task has failed
+                    Bukkit.getScheduler().runTaskLater(BestViewDistance.plugin, new UnsetTeleportViewDistance(player, setPlayerPermissions(player, playerLiveViewDistance.get(player.getName()))), teleportUnsetDelay * 20); // Force unset teleport
+                } else {  // If the task has been successfully scheduled
+                    waitForTPUnset.put(player.getName(), task); // Set waiting
+                }
+            } catch (NullPointerException ignored) {
             }
         }
     }

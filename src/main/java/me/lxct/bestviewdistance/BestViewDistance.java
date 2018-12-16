@@ -11,15 +11,15 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.lang.reflect.InvocationTargetException;
 
+import static me.lxct.bestviewdistance.functions.Calculations.calculatePlayersBestViewDistance;
 import static me.lxct.bestviewdistance.functions.Get.*;
+import static me.lxct.bestviewdistance.functions.Limit.limitReductionIndice;
 import static me.lxct.bestviewdistance.functions.Other.*;
-import static me.lxct.bestviewdistance.functions.Set.calculatePlayersBestViewDistance;
-import static me.lxct.bestviewdistance.functions.Set.setServerLimits;
 import static me.lxct.bestviewdistance.functions.UpdateConfig.updateConfig;
 import static me.lxct.bestviewdistance.functions.Warnings.checkProtocolLib;
 import static me.lxct.bestviewdistance.functions.Warnings.checkServerView;
 import static me.lxct.bestviewdistance.functions.data.Variable.loadVariables;
-import static me.lxct.bestviewdistance.functions.data.Variable.reduceOnTeleport;
+import static me.lxct.bestviewdistance.functions.data.Variable.useTeleportView;
 import static me.lxct.bestviewdistance.functions.hooks.Hooks.checkHooks;
 
 public class BestViewDistance extends JavaPlugin {
@@ -35,10 +35,10 @@ public class BestViewDistance extends JavaPlugin {
         Bukkit.getLogger().info("╔╗ ┌─┐┌─┐┌┬┐  ╦  ╦┬┌─┐┬ ┬  ╔╦╗┬┌─┐┌┬┐┌─┐┌┐┌┌─┐┌─┐"); // Display
         Bukkit.getLogger().info("╠╩╗├┤ └─┐ │   ╚╗╔╝│├┤ │││   ║║│└─┐ │ ├─┤││││  ├┤ ");
         Bukkit.getLogger().info("╚═╝└─┘└─┘ ┴    ╚╝ ┴└─┘└┴┘  ═╩╝┴└─┘ ┴ ┴ ┴┘└┘└─┘└─┘");
-        Bukkit.getLogger().info("╚ Version: " + plugin.getDescription().getVersion());
-        Bukkit.getLogger().info("╚ Make sure you use this plugin with Paper.");
-        Bukkit.getLogger().info("╚ https://papermc.io/");
-        Bukkit.getLogger().info("╚ Best View Distance, By Lxct.");
+        Bukkit.getLogger().info("└ Version: " + plugin.getDescription().getVersion());
+        Bukkit.getLogger().info("└ Make sure you use this plugin with Paper.");
+        Bukkit.getLogger().info("└ https://papermc.io/");
+        Bukkit.getLogger().info("└ Best View Distance, By Lxct.");
         // WARNING
 
         //
@@ -64,6 +64,9 @@ public class BestViewDistance extends JavaPlugin {
         // Load & Get info
         //
 
+        // UPDATE CONFIG
+        updateConfig();
+
         // WARNINGS
         checkProtocolLib();
         checkServerView();
@@ -81,13 +84,11 @@ public class BestViewDistance extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new OnJoin(), this); // Add OnLogin Event
         getServer().getPluginManager().registerEvents(new OnQuit(), this); // Add OnQuit Event
         getServer().getPluginManager().registerEvents(new OnPlayerMove(), this); // Add OnPlayerMove Event
-        if (reduceOnTeleport) {
+        if (useTeleportView) {
             getServer().getPluginManager().registerEvents(new OnTeleport(), this); // Add OnTeleport Event
         }
-        // EVENT
+        // EVENTS
 
-        // UPDATE CONFIG
-        updateConfig();
         // UPDATE CONFIG
 
         // COMMANDS
@@ -106,21 +107,23 @@ public class BestViewDistance extends JavaPlugin {
         //
 
         //noinspection deprecation
-        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, applyViewDistance, 0L, this.getConfig().getInt("ViewDistance.SetViewDelay") * 20L); // CALCULATIONS SCHEDULER
+        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, applyViewDistance, 0L, this.getConfig().getInt("Delay.SetViewDelay") * 20L); // CALCULATIONS SCHEDULER
         //noinspection deprecation
-        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, detectAFK, 0L, this.getConfig().getInt("Performances.AFKTimer") * 20L); // DETECT AFK SCHEDULER
+        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, detectAFK, 0L, this.getConfig().getInt("Delay.AFKDelay") * 20L); // DETECT AFK SCHEDULER
         //noinspection deprecation
-        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, calculations, 0L, this.getConfig().getInt("ViewDistance.CalculationsDelay") * 20L);
+        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, detectFlying, 0L, this.getConfig().getInt("Delay.CheckFlyingDelay") * 20L); // DETECT AFK SCHEDULER
+        //noinspection deprecation
+        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, calculations, 0L, this.getConfig().getInt("Delay.CalculationsDelay") * 20L);
 
         //
         // BSTATS + ASYNC UPDATE CHECKER
         //
 
-        //if (this.getConfig().getBoolean("Other.Metrics")) {
+        //if (this.getConfig().getBoolean("Misc.Metrics")) {
         //noinspection unused
         Metrics metrics = new Metrics(this); // METRICS
         //}
-        if (this.getConfig().getBoolean("Other.CheckUpdates")) {
+        if (this.getConfig().getBoolean("Misc.CheckUpdates")) {
             new AsyncUpdateChecker(this).checkForUpdate(); // Add AsyncUpdateChecker (Thx Benz56)
         }
     }
@@ -128,7 +131,7 @@ public class BestViewDistance extends JavaPlugin {
     private Runnable calculations = // CALCULATIONS
             () -> {
                 Variable.reductionIndice = getNewReductionIndice(get1minTPS()); // Update Reduction Indice
-                setServerLimits(); // Control
+                limitReductionIndice(); // Control
                 calculatePlayersBestViewDistance(Variable.reductionIndice); // Update Players View Distance
             };
 
@@ -137,5 +140,8 @@ public class BestViewDistance extends JavaPlugin {
             Other::applyViewDistance;
 
     private Runnable detectAFK = // CHECK IF AFK
-            Other::putPlayerAFK;
+            Other::AFKchecker;
+
+    private Runnable detectFlying = // CHECK IF AFK
+            Other::flyingChecker;
 }

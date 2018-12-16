@@ -1,9 +1,13 @@
 package me.lxct.bestviewdistance.functions;
 
+import me.lxct.bestviewdistance.BestViewDistance;
 import me.lxct.bestviewdistance.functions.data.Variable;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
+import java.io.File;
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;
 
@@ -25,17 +29,25 @@ public class Get {
 
     // CALCULATE NEW REDUCTION INDICE
     public static double getNewReductionIndice(Double TPS) {
-        if (TPS > Variable.tpslimit && TPS < 20) { // If tps > tps limit
-            return Variable.reductionIndice - Variable.tpschange; // Decrease indice
-        } else if (TPS < Variable.tpslimit) { // If tps < tps limit
-            return Variable.reductionIndice + Variable.tpschange; // Increase indice
+        if (TPS > Variable.tpsLimit && TPS < 20) { // If tps > tps limit
+            return Variable.reductionIndice - Variable.tpsChange; // Decrease indice
+        } else if (TPS < Variable.tpsLimit) { // If tps < tps limit
+            return Variable.reductionIndice + Variable.tpsChange; // Increase indice
         } else {
             return Variable.reductionIndice; // Nothing.
         }
     }
 
 
-    public static int getViewDistance(Player player) { // Get View Distance in settings
+    public static FileConfiguration getCustomConfig() {
+        FileConfiguration customConfig;
+        File customConfigFile = new File(BestViewDistance.plugin.getDataFolder(), "messages.yml");
+        customConfig = YamlConfiguration.loadConfiguration(customConfigFile);
+        return customConfig;
+    }
+
+
+    static int getSettingsViewDistance(Player player) { // Get View Distance in settings
         if (Bukkit.getVersion().contains("1.12") || Bukkit.getVersion().contains("1.11") || Bukkit.getVersion().contains("1.10") || Bukkit.getVersion().contains("1.9") || Bukkit.getVersion().contains("1.8")) {
             if (Variable.playerSettingsViewDistance.containsKey(player.getName())) {
                 return Variable.playerSettingsViewDistance.get(player.getName());
