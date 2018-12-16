@@ -43,8 +43,10 @@ Does not work with "*"/"*.*" permissions nodes !
 #   ╠╩╗├┤ └─┐ │   ╚╗╔╝│├┤ │││   ║║│└─┐ │ ├─┤││││  ├┤
 #   ╚═╝└─┘└─┘ ┴    ╚╝ ┴└─┘└┴┘  ═╩╝┴└─┘ ┴ ┴ ┴┘└┘└─┘└─┘
 #       - Get a Better View Distance, By LXCT. -
+#
+# Donate: https://paypal.me/lxct
 
-Version: 2.0 # Version of the config file. Don't change this value.
+Version: 2.1 # Version of the config file. Don't change this value.
 
 Features:
   UseAFKView: true # Use a custom view if the player is AFK.
@@ -52,6 +54,7 @@ Features:
   UseTasks: true # Use tasks. Turn this off will reduce lags, but view distance will change slower.
   UseFlyingView: false # Use a custom view if the player is flying.
   UseTeleportView: false # Use a custom view on teleport. Can reduce freeze on teleport.
+  UsePermissions: false # Enable permissions (view.set.x) to bypass algorithm.
 
 ViewDistance:
   Min: 4 # Minimum view distance (Minimum : 3)
@@ -78,6 +81,8 @@ Settings:
   PingForAugmentation: 90 # Ping required to increase view distance
 
 Misc:
+  DecimalsTPS: 2 # How many decimals for the %VDIST_DECIMAL_TPS% placeholder
+  DecimalsIndice: 2 # How many decimals for the %VDIST_REDUCTION_INDICE_DECIMAL% placeholder
   HideVdistLine4: false # Hide the 4th line of the /vdist command
   CheckUpdates: true # Check for updates
   Metrics: true # Send anonymous stats

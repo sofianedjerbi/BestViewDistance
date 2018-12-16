@@ -11,6 +11,8 @@ import java.io.File;
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;
 
+import static me.lxct.bestviewdistance.functions.Other.handler;
+
 public class Get {
 
     private static final String name = Bukkit.getServer().getClass().getPackage().getName();
@@ -37,6 +39,24 @@ public class Get {
             return Variable.reductionIndice; // Nothing.
         }
     }
+
+    static Object getPrivateField(String name, Class<?> clazz, Object o) {
+
+        Field f;
+        Object obj = null;
+
+        try {
+            f = clazz.getDeclaredField(name);
+            f.setAccessible(true);
+            obj = f.get(o);
+        } catch (Exception e) {
+            handler(e);
+        }
+
+        return obj;
+    }
+
+
 
 
     public static FileConfiguration getCustomConfig() {

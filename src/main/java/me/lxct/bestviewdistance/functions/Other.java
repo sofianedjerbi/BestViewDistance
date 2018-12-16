@@ -61,6 +61,13 @@ public class Other {
         }
     }
 
+    static void handler(Exception e) {
+        e.printStackTrace();
+        Bukkit.getServer().getLogger().severe("Serious NMS error.");
+        Bukkit.getPluginManager().disablePlugin(BestViewDistance.plugin);
+        e.printStackTrace();
+    }
+
     public static void genOnlinePlayerData() { // Set all playerLiveViewDistance to onLoginView.
         playerLiveViewDistance.clear();
         for (Player player : Bukkit.getServer().getOnlinePlayers()) {

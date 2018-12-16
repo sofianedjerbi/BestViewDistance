@@ -31,6 +31,8 @@ public class Variable {
     public static int safePing;
     public static int teleportUnsetDelay;
     public static int moreThanSettings;
+    public static int decimalsTPS;
+    public static int decimalsIndice;
     public static double tpsLimit;
     public static double tpsChange;
     public static double maxIndice;
@@ -124,6 +126,8 @@ public class Variable {
         useTasks = configYml.getBoolean("Features.UseTasks", true);
         usePing = configYml.getBoolean("Features.UsePing", true);
         usePing = configYml.getBoolean("Features.UsePermissions", false);
+        decimalsTPS = configYml.getInt("Misc.DecimalsTPS", 90);
+        decimalsIndice = configYml.getInt("Misc.DecimalsIndice", 90);
 
         //
         // Messages.yml stuff
@@ -168,7 +172,12 @@ public class Variable {
         // Config.yml stuff
         //
 
-
+        if (!configYml.isInt("Misc.DecimalsTPS")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"DecimalsTPS\" value is wrong!"));
+        }
+        if (!configYml.isInt("Misc.DecimalsIndice")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"DecimalsIndice\" value is wrong!"));
+        }
         if (!configYml.isBoolean("Features.UsePermissions")) {
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"UsePermissions\" value is wrong!"));
         }

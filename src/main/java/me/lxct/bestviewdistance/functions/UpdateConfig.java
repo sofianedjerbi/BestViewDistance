@@ -30,9 +30,13 @@ public class UpdateConfig {
             Bukkit.getLogger().info("[BestViewDistance] Update config.yml...");
             config.set("Version", 2.1);
             config.set("Features.UsePermissions", false);
+            config.set("Misc.DecimalsTPS", 2);
+            config.set("Misc.DecimalsIndice", 2);
             BestViewDistance.plugin.saveConfig();
             Bukkit.getLogger().info("[BestViewDistance] Updated config.yml!");
             Bukkit.getLogger().info("[BestViewDistance] Added: \"UsePermissions\"");
+            Bukkit.getLogger().info("[BestViewDistance] Added: \"DecimalsTPS\"");
+            Bukkit.getLogger().info("[BestViewDistance] Added: \"DecimalsIndice\"");
             Bukkit.getLogger().info("[BestViewDistance] More information here: https://www.spigotmc.org/resources/61963/updates");
         }
     }

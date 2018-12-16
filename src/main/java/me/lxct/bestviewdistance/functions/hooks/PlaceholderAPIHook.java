@@ -6,8 +6,7 @@ import org.bukkit.plugin.Plugin;
 
 import static me.lxct.bestviewdistance.functions.Get.get1minTPS;
 import static me.lxct.bestviewdistance.functions.Get.getSettingsViewDistance;
-import static me.lxct.bestviewdistance.functions.data.Variable.playerViewDistance;
-import static me.lxct.bestviewdistance.functions.data.Variable.reductionIndice;
+import static me.lxct.bestviewdistance.functions.data.Variable.*;
 
 @SuppressWarnings("deprecation")
 public class PlaceholderAPIHook extends EZPlaceholderHook {
@@ -19,13 +18,13 @@ public class PlaceholderAPIHook extends EZPlaceholderHook {
     @Override
     public String onPlaceholderRequest(Player player, String identifier) {
         if (identifier.equals("REDUCTION_INDICE_DECIMAL")) {
-            return String.valueOf(reductionIndice);
+            return String.valueOf((Math.round(reductionIndice * Math.pow(10, decimalsIndice))) / Math.pow(10, decimalsIndice));
         }
         if (identifier.equals("REDUCTION_INDICE")) {
             return String.valueOf(Math.round(reductionIndice * 100));
         }
         if (identifier.equals("DECIMAL_TPS")) {
-            return String.valueOf(get1minTPS());
+            return String.valueOf((Math.round(get1minTPS() * Math.pow(10, decimalsTPS))) / Math.pow(10, decimalsTPS));
         }
         if (identifier.equals("TPS")) {
             return String.valueOf(Math.round(get1minTPS()));

@@ -7,9 +7,7 @@ import org.bukkit.entity.Player;
 
 import static me.lxct.bestviewdistance.functions.Limit.limitClientSetting;
 import static me.lxct.bestviewdistance.functions.Limit.limitSupportedView;
-import static me.lxct.bestviewdistance.functions.data.Variable.moreThanSettings;
-import static me.lxct.bestviewdistance.functions.data.Variable.usePermissions;
-import static me.lxct.bestviewdistance.functions.data.Variable.useTasks;
+import static me.lxct.bestviewdistance.functions.data.Variable.*;
 
 public class Set {
 
@@ -41,5 +39,30 @@ public class Set {
             Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetViewDistance(player, theViewDistance)); // Break Async chain
         }
     }
+/*
+    public static void setRenderDistance(int vdist) {
 
+        //get CraftBukkit CraftWorld class
+        Class<?> craftworldclass;
+        try {
+            craftworldclass = Class.forName("org.bukkit.craftbukkit." + Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3] + "." + "CraftWorld");
+        } catch (ClassNotFoundException e) {
+            handler(e);
+            return;
+        }
+
+        //get the NMS PlayerChunkManager object for this world
+        Object cw = craftworldclass.cast(Bukkit.getWorld("world"));
+        Object ws = getPrivateField("world", craftworldclass, cw);
+        Object pcm = getPrivateField("manager", ws.getClass(), ws);
+
+        //invoke the public a() method in the PlayerChunkManager class that changes the render distance
+        try {
+            Method viewDistChanger = pcm.getClass().getMethod("a", int.class);
+            viewDistChanger.invoke(pcm, vdist);
+        } catch (Exception e) {
+            handler(e);
+        }
+    }
+*/
 }
