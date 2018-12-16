@@ -5,7 +5,7 @@
 #
 # Donate: https://paypal.me/lxct
 
-Version: 2.0 # Version of the config file. Don't change this value.
+Version: 2.1 # Version of the config file. Don't change this value.
 
 Features:
   UseAFKView: true # Use a custom view if the player is AFK.
