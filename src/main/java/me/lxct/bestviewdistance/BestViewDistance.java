@@ -107,13 +107,13 @@ public class BestViewDistance extends JavaPlugin {
         //
 
         //noinspection deprecation
-        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, applyViewDistance, 0L, this.getConfig().getInt("Delay.SetViewDelay") * 20L); // CALCULATIONS SCHEDULER
+        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, applyViewDistance, 0L, this.getConfig().getInt("Delay.SetViewDelay", 5) * 20L); // CALCULATIONS SCHEDULER
         //noinspection deprecation
-        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, detectAFK, 0L, this.getConfig().getInt("Delay.AFKDelay") * 20L); // DETECT AFK SCHEDULER
+        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, detectAFK, 0L, this.getConfig().getInt("Delay.AFKDelay", 90) * 20L); // DETECT AFK SCHEDULER
         //noinspection deprecation
-        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, detectFlying, 0L, this.getConfig().getInt("Delay.CheckFlyingDelay") * 20L); // DETECT AFK SCHEDULER
+        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, detectFlying, 0L, this.getConfig().getInt("Delay.CheckFlyingDelay", 5) * 20L); // DETECT AFK SCHEDULER
         //noinspection deprecation
-        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, calculations, 0L, this.getConfig().getInt("Delay.CalculationsDelay") * 20L);
+        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, calculations, 0L, this.getConfig().getInt("Delay.CalculationsDelay", 1) * 20L);
 
         //
         // BSTATS + ASYNC UPDATE CHECKER

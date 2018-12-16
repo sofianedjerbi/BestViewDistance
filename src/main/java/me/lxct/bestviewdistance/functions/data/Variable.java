@@ -103,7 +103,7 @@ public class Variable {
         //
 
         max = configYml.getInt("ViewDistance.Max", 16);
-        afk = configYml.getInt("ViewDistance.AFK", 3);
+        afk = configYml.getInt("ViewDistance.OnAFK", 3);
         min = configYml.getInt("ViewDistance.Min", 4);
         safePing = configYml.getInt("Settings.SafePing", 1);
         onLoginView = configYml.getInt("ViewDistance.OnLogin", 4);
@@ -178,25 +178,25 @@ public class Variable {
         if (!configYml.isInt("ViewDistance.OnFlying")) {
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"OnFlying\" value is wrong!"));
         }
-        if (!configYml.isInt("ViewDistance.CheckFlyingDelay")) {
+        if (!configYml.isInt("Delay.CheckFlyingDelay")) {
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"CheckFlyingDelay\" value is wrong!"));
         }
         //
-        if (!configYml.isInt("ViewDistance.SetViewDelay")) {
+        if (!configYml.isInt("Delay.SetViewDelay")) {
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"SetViewDelay\" value is wrong!"));
         }
-        if (!configYml.isInt("Settings.AFKTimer")) {
+        if (!configYml.isInt("Delay.AFKDelay")) {
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"AFKTimer\" value is wrong!"));
         }
-        if (!configYml.isInt("ViewDistance.CalculationsDelay")) {
+        if (!configYml.isInt("Delay.CalculationsDelay")) {
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"CalculationsDelay\" value is wrong!"));
         }
         //
         if (!configYml.isInt("ViewDistance.Max")) {
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"Max\" value is wrong!"));
         }
-        if (!configYml.isInt("ViewDistance.AFK")) {
-            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"AFK\" value is wrong!"));
+        if (!configYml.isInt("ViewDistance.OnAFK")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"OnAFK\" value is wrong!"));
         }
         if (!configYml.isInt("ViewDistance.Min")) {
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"Min\" value is wrong!"));

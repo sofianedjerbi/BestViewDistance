@@ -2,41 +2,43 @@
 #   ╠╩╗├┤ └─┐ │   ╚╗╔╝│├┤ │││   ║║│└─┐ │ ├─┤││││  ├┤
 #   ╚═╝└─┘└─┘ ┴    ╚╝ ┴└─┘└┴┘  ═╩╝┴└─┘ ┴ ┴ ┴┘└┘└─┘└─┘
 #       - Get a Better View Distance, By LXCT. -
+#
+# Donate: https://paypal.me/lxct
 
-Version: 2.0
+Version: 2.0 # Version of the config file. Don't change this value.
 
 Features:
-  UseAFKView: true
-  UsePing: true
-  UseTasks: true
-  UseFlyingView: false
-  UseTeleportView: false
+  UseAFKView: true # Use a custom view if the player is AFK.
+  UsePing: true # The plugin will give a custom view distance for each players
+  UseTasks: true # Use tasks. Turn this off will reduce lags, but view distance will change slower.
+  UseFlyingView: false # Use a custom view if the player is flying.
+  UseTeleportView: false # Use a custom view on teleport. Can reduce freeze on teleport.
 
 ViewDistance:
-  Min: 4
-  Max: 16
-  AFK: 3
-  OnLogin: 4
-  OnTeleport: 4
-  OnFlying: 12
-  MoreThanSettings: 0
+  Min: 4 # Minimum view distance (Minimum : 3)
+  Max: 16 # Maximum view distance (Maximum : 32)
+  OnLogin: 4 # View distance on login
+  OnAFK: 3 # AFK view distance (If UseAFKView is on true)
+  OnTeleport: 4 # View distance on teleport (If UseTeleportView is on true)
+  OnFlying: 12 # View distance if flying (If UseFlyingView is on true)
+  MoreThanSettings: 0 # Add x chunks more than player's settings.
 
 Delay:
-  UnsetTeleportViewDelay: 3
-  CheckFlyingDelay: 5
-  CalculationsDelay: 1
-  SetViewDelay: 15
-  AFKDelay: 90
+  CalculationsDelay: 1 # Delay in seconds to actualize calculations
+  SetViewDelay: 5 # Delay in seconds to actualize global view distance
+  UnsetTeleportViewDelay: 3 # Delay in seconds to unset the OnTeleport custom view
+  CheckFlyingDelay: 5 # Delay in seconds before set the OnFlying view distance
+  AFKDelay: 90 # Delay in seconds before set the OnAFK view distance
 
 Settings:
-  PingForReduction: 550
-  PingForAugmentation: 90
-  TpsLimit: 19.5
-  TpsChangeIndice: 0.01
-  MaxReductionIndice: 0.75
-  SafePing: 1
+  TpsLimit: 19.5 # Below: Decrease Reduction Indice // Over: Increase Reduction Indice.
+  TpsChangeIndice: 0.01 # How much we had to increase/decrease the reduction indice. 0.01 = 1%
+  MaxReductionIndice: 0.75 # Maximum Reduction Indice (0.75 = 75%)
+  SafePing: 1 # Set this value to -1 for local hosting.
+  PingForReduction: 550 # Ping required to decrease view distance
+  PingForAugmentation: 90 # Ping required to increase view distance
 
 Misc:
-  HideVdistLine4: false
-  CheckUpdates: true
-  Metrics: true
+  HideVdistLine4: false # Hide the 4th line of the /vdist command
+  CheckUpdates: true # Check for updates
+  Metrics: true # Send anonymous stats

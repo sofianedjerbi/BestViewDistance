@@ -48,10 +48,10 @@ public class UpdateConfig {
             Bukkit.getLogger().info("[BestViewDistance] More information here: https://www.spigotmc.org/resources/61963/updates");
         }
         if (ver < 2.0) {
-            File f1 = new File(BestViewDistance.plugin.getDataFolder() + "config.yml");
-            File f2 = new File(BestViewDistance.plugin.getDataFolder() + "old-config.yml");
+            File f1 = new File("./plugins/BestViewDistance/config.yml");
+            File f2 = new File("./plugins/BestViewDistance/old-config.yml");
             boolean b1 = f1.renameTo(f2);
-            if (b1) {
+            if (b1 && f1.exists()) {
                 Bukkit.getLogger().info("[BestViewDistance] Changed config file.");
                 Bukkit.getLogger().info("[BestViewDistance] Old \"config.yml\" will be renamed to \"old-config.yml\"!");
             } else {
