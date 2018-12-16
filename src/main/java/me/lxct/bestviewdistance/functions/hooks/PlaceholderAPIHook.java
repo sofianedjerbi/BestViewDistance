@@ -1,12 +1,13 @@
 package me.lxct.bestviewdistance.functions.hooks;
 
 import me.clip.placeholderapi.external.EZPlaceholderHook;
-import me.lxct.bestviewdistance.functions.Get;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import static me.lxct.bestviewdistance.functions.Get.get1minTPS;
-import static me.lxct.bestviewdistance.functions.data.Variable.*;
+import static me.lxct.bestviewdistance.functions.Get.getSettingsViewDistance;
+import static me.lxct.bestviewdistance.functions.data.Variable.playerViewDistance;
+import static me.lxct.bestviewdistance.functions.data.Variable.reductionIndice;
 
 @SuppressWarnings("deprecation")
 public class PlaceholderAPIHook extends EZPlaceholderHook {
@@ -33,7 +34,7 @@ public class PlaceholderAPIHook extends EZPlaceholderHook {
             return "";
         }
         if (identifier.equals("PLAYER_SETTINGS_VIEW")) {
-            return String.valueOf(Get.getViewDistance(player));
+            return String.valueOf(getSettingsViewDistance(player));
         }
         if (identifier.equals("PLAYER_SUPPORTED_VIEW")) {
             return String.valueOf(playerViewDistance.get(player.getName()));
