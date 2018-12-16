@@ -13,6 +13,7 @@ Features:
   UseTasks: true # Use tasks. Turn this off will reduce lags, but view distance will change slower.
   UseFlyingView: false # Use a custom view if the player is flying.
   UseTeleportView: false # Use a custom view on teleport. Can reduce freeze on teleport.
+  UsePermissions: false # Use permissions (view.set.x) to bypass algorithm.
 
 ViewDistance:
   Min: 4 # Minimum view distance (Minimum : 3)

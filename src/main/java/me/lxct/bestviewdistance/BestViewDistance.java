@@ -140,7 +140,7 @@ public class BestViewDistance extends JavaPlugin {
             Other::applyViewDistance;
 
     private Runnable detectAFK = // CHECK IF AFK
-            Other::AFKchecker;
+            Other::AFKChecker;
 
     private Runnable detectFlying = // CHECK IF AFK
             Other::flyingChecker;

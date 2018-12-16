@@ -33,10 +33,10 @@ public class Calculations {
             
             playerViewDistance.put(player.getName(), limitViewDistance(supportedViewDistance)); // Store in var
 
-            if(supportedViewDistance + moreThanSettings > getSettingsViewDistance(player)) {
+            if(supportedViewDistance > getSettingsViewDistance(player)) {
                 sendVD = getSettingsViewDistance(player);
             } else {
-                sendVD = supportedViewDistance + moreThanSettings;
+                sendVD = supportedViewDistance;
             }
 
             int viewDistance = Math.round((int) (sendVD * (1 - ReductionIndice))); // Apply percentage

@@ -4,6 +4,7 @@ import me.lxct.bestviewdistance.functions.data.Variable;
 import org.bukkit.entity.Player;
 
 import static me.lxct.bestviewdistance.functions.Get.getSettingsViewDistance;
+import static me.lxct.bestviewdistance.functions.data.Variable.playerViewDistance;
 
 public class Limit {
 
@@ -22,6 +23,14 @@ public class Limit {
         int clientSideViewDistance = getSettingsViewDistance(player); // Get Client Side View Distance
         if (viewDistance > clientSideViewDistance) { // If given view distance is more than client side view distance
             viewDistance = clientSideViewDistance;
+        }
+        return viewDistance;
+    }
+
+    // A FUNCTION FOR CLIENT SUPPORTED VIEW DISTANCE. MAKE SURE THE REAL VIEW DISTANCE DOESN'T GET OVER SUPPORTED
+    static int limitSupportedView(Player player, int viewDistance) {
+        if (viewDistance > playerViewDistance.get(player.getName())) {
+            viewDistance = playerViewDistance.get(player.getName());
         }
         return viewDistance;
     }

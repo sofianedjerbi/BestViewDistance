@@ -13,12 +13,13 @@ import java.io.File;
 import java.io.IOException;
 
 import static me.lxct.bestviewdistance.functions.Get.getSettingsViewDistance;
+import static me.lxct.bestviewdistance.functions.Set.setNoMoreThanSettingsViewDistance;
 import static me.lxct.bestviewdistance.functions.Set.setViewDistance;
 import static me.lxct.bestviewdistance.functions.data.Variable.*;
 
 public class Other {
 
-    public static void AFKchecker() { // What this function does ? if the player has exactly the same position as x minutes ago, he'll be set in "AFK" mode.
+    public static void AFKChecker() { // What this function does ? if the player has exactly the same position as x minutes ago, he'll be set in "AFK" mode.
         for (Player player : Bukkit.getServer().getOnlinePlayers()) { // Every players...
             Location location = player.getLocation(); // Get Location
             if (location.equals(playerLocation.get(player.getName()))) { // If same position ...
@@ -47,7 +48,7 @@ public class Other {
     public static void applyViewDistance() {
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (afkList.contains(player.getName()) && player.getViewDistance() != afk && useAFKView) { // IF player is afk
-                setViewDistance(player, afk);
+                setNoMoreThanSettingsViewDistance(player, afk);
             } else if (flyingList.contains(player.getName()) && player.getViewDistance() != onFlyingView && useOnFlyingView) {
                 setViewDistance(player, onFlyingView);
             } else { // IF HE'S NOT AFK

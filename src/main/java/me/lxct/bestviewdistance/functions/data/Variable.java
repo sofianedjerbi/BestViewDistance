@@ -40,6 +40,7 @@ public class Variable {
     public static boolean useTasks;
     public static boolean usePing;
     public static boolean useAFKView;
+    public static boolean usePermissions;
 
     //
     // Messages.yml stuff
@@ -122,6 +123,7 @@ public class Variable {
         useOnFlyingView = configYml.getBoolean("Features.UseFlyingView", false);
         useTasks = configYml.getBoolean("Features.UseTasks", true);
         usePing = configYml.getBoolean("Features.UsePing", true);
+        usePing = configYml.getBoolean("Features.UsePermissions", false);
 
         //
         // Messages.yml stuff
@@ -166,6 +168,10 @@ public class Variable {
         // Config.yml stuff
         //
 
+
+        if (!configYml.isBoolean("Features.UsePermissions")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"UsePermissions\" value is wrong!"));
+        }
         if (!configYml.isBoolean("Features.UseAFKView")) {
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"UseAFKView\" value is wrong!"));
         }
@@ -173,7 +179,7 @@ public class Variable {
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"UsePing\" value is wrong!"));
         }
         if (!configYml.isBoolean("Features.UseFlyingView")) {
-            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"ChangeViewOnFlying\" value is wrong!"));
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"UseFlyingView\" value is wrong!"));
         }
         if (!configYml.isInt("ViewDistance.OnFlying")) {
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"OnFlying\" value is wrong!"));
