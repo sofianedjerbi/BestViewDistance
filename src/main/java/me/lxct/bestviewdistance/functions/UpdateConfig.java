@@ -39,5 +39,18 @@ public class UpdateConfig {
             Bukkit.getLogger().info("[BestViewDistance] Added: \"DecimalsIndice\"");
             Bukkit.getLogger().info("[BestViewDistance] More information here: https://www.spigotmc.org/resources/61963/updates");
         }
+        if(ver < 2.2) {
+            Bukkit.getLogger().info("[BestViewDistance] Update config.yml...");
+            config.set("Version", 2.2);
+            config.set("Features.UseLoginView", true);
+            config.set("Permissions.BypassAFKView", true);
+            config.set("Permissions.BypassFlyingView", true);
+            config.set("Permissions.BypassTeleportView", true);
+            BestViewDistance.plugin.saveConfig();
+            Bukkit.getLogger().info("[BestViewDistance] Updated config.yml!");
+            Bukkit.getLogger().info("[BestViewDistance] Added: \"UseLoginView\"");
+            Bukkit.getLogger().info("[BestViewDistance] Added: \"Bypass permissions\"");
+            Bukkit.getLogger().info("[BestViewDistance] More information here: https://www.spigotmc.org/resources/61963/updates");
+        }
     }
 }

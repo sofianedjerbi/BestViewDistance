@@ -5,9 +5,10 @@
 #
 # Donate: https://paypal.me/lxct
 
-Version: 2.1 # Version of the config file. Don't change this value.
+Version: 2.2 # Version of the config file. Don't change this value.
 
 Features:
+  UseLoginView: true # Use a custom view on login
   UseAFKView: true # Use a custom view if the player is AFK.
   UsePing: true # The plugin will give a custom view distance for each players
   UseTasks: true # Use tasks. Turn this off will reduce lags, but view distance will change slower.
@@ -35,9 +36,14 @@ Settings:
   TpsLimit: 19.5 # Below: Decrease Reduction Indice // Over: Increase Reduction Indice.
   TpsChangeIndice: 0.01 # How much we had to increase/decrease the reduction indice. 0.01 = 1%
   MaxReductionIndice: 0.75 # Maximum Reduction Indice (0.75 = 75%)
-  SafePing: 1 # Set this value to -1 for local hosting.
+  SafePing: 1 # Set this value to 0 for local hosting.
   PingForReduction: 550 # Ping required to decrease view distance
   PingForAugmentation: 90 # Ping required to increase view distance
+
+Permissions:
+  BypassAFKView: true # Player with permissions (view.set.x) can bypass the "OnAFK" view.
+  BypassTeleportView: true # Player with permissions (view.set.x) can bypass the "OnTeleport" view.
+  BypassFlyingView: true # Player with permissions (view.set.x) can bypass the "OnFlying" view.
 
 Misc:
   DecimalsTPS: 2 # How many decimals for the %VDIST_DECIMAL_TPS% placeholder

@@ -9,8 +9,8 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
-import static me.lxct.bestviewdistance.functions.data.Variable.onTeleportView;
-import static me.lxct.bestviewdistance.functions.data.Variable.waitForTPUnset;
+import static me.lxct.bestviewdistance.functions.Get.getPlayerPermissions;
+import static me.lxct.bestviewdistance.functions.data.Variable.*;
 
 
 public class OnTeleport implements Listener {
@@ -18,10 +18,19 @@ public class OnTeleport implements Listener {
     public static void onPlayerTeleport(PlayerTeleportEvent event) {
         Player player = event.getPlayer();
         if (event.getCause() != PlayerTeleportEvent.TeleportCause.CHORUS_FRUIT && event.getCause() != PlayerTeleportEvent.TeleportCause.UNKNOWN && event.getCause() != PlayerTeleportEvent.TeleportCause.ENDER_PEARL) {
-            if (!waitForTPUnset.containsKey(player.getName())) { // If he's not waiting for tp unset
-                player.setViewDistance(onTeleportView); // Set on teleport view
+            if (!getPlayerPermissions(player)) {
+                if (!waitForTPUnset.containsKey(player.getName())) { // If he's not waiting for tp unset
+                    player.setViewDistance(onTeleportView); // Set on teleport view
+                }
+                Bukkit.getScheduler().runTaskAsynchronously(BestViewDistance.plugin, new TeleportData(player)); // Process teleport data with async method
+            } else {
+                if (!permissionsBypassTeleport) {
+                    if (!waitForTPUnset.containsKey(player.getName())) { // If he's not waiting for tp unset
+                        player.setViewDistance(onTeleportView); // Set on teleport view
+                    }
+                    Bukkit.getScheduler().runTaskAsynchronously(BestViewDistance.plugin, new TeleportData(player)); // Process teleport data with async method
+                }
             }
-            Bukkit.getScheduler().runTaskAsynchronously(BestViewDistance.plugin, new TeleportData(player)); // Process teleport data with async method
         }
     }
 }

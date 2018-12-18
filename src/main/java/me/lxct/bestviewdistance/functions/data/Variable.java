@@ -42,7 +42,13 @@ public class Variable {
     public static boolean useTasks;
     public static boolean usePing;
     public static boolean useAFKView;
+    public static boolean useLoginView;
     public static boolean usePermissions;
+    public static boolean permissionsBypassAFK;
+    public static boolean permissionsBypassFlying;
+    public static boolean permissionsBypassTeleport;
+
+
 
     //
     // Messages.yml stuff
@@ -125,9 +131,13 @@ public class Variable {
         useOnFlyingView = configYml.getBoolean("Features.UseFlyingView", false);
         useTasks = configYml.getBoolean("Features.UseTasks", true);
         usePing = configYml.getBoolean("Features.UsePing", true);
-        usePing = configYml.getBoolean("Features.UsePermissions", false);
+        useLoginView = configYml.getBoolean("Features.UseLoginView", true);
+        usePermissions = configYml.getBoolean("Features.UsePermissions", false);
         decimalsTPS = configYml.getInt("Misc.DecimalsTPS", 90);
         decimalsIndice = configYml.getInt("Misc.DecimalsIndice", 90);
+        permissionsBypassAFK = configYml.getBoolean("Permissions.BypassAFKView", true);
+        permissionsBypassFlying = configYml.getBoolean("Permissions.BypassFlyingView", true);
+        permissionsBypassTeleport = configYml.getBoolean("Permissions.BypassTeleportView", true);
 
         //
         // Messages.yml stuff
@@ -172,6 +182,15 @@ public class Variable {
         // Config.yml stuff
         //
 
+        if (!configYml.isBoolean("Permissions.BypassAFKView")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"BypassAFKView\" value is wrong!"));
+        }
+        if (!configYml.isBoolean("Permissions.BypassTeleportView")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"BypassTeleportView\" value is wrong!"));
+        }
+        if (!configYml.isBoolean("Permissions.BypassFlyingView")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"BypassFlyingView\" value is wrong!"));
+        }
         if (!configYml.isInt("Misc.DecimalsTPS")) {
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"DecimalsTPS\" value is wrong!"));
         }
@@ -183,6 +202,9 @@ public class Variable {
         }
         if (!configYml.isBoolean("Features.UseAFKView")) {
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"UseAFKView\" value is wrong!"));
+        }
+        if (!configYml.isBoolean("Features.UseLoginView")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"UseLoginView\" value is wrong!"));
         }
         if (!configYml.isBoolean("Features.UsePing")) {
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"UsePing\" value is wrong!"));

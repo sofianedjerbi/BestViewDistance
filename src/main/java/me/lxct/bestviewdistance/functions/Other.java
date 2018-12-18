@@ -12,8 +12,11 @@ import org.bukkit.entity.Player;
 import java.io.File;
 import java.io.IOException;
 
+import static me.lxct.bestviewdistance.functions.Get.getPlayerPermissions;
 import static me.lxct.bestviewdistance.functions.Get.getSettingsViewDistance;
-import static me.lxct.bestviewdistance.functions.Set.setNoMoreThanSettingsViewDistance;
+import static me.lxct.bestviewdistance.functions.Limit.limitClientSetting;
+import static me.lxct.bestviewdistance.functions.Limit.limitSupportedView;
+import static me.lxct.bestviewdistance.functions.Set.setPlayerPermissions;
 import static me.lxct.bestviewdistance.functions.Set.setViewDistance;
 import static me.lxct.bestviewdistance.functions.data.Variable.*;
 
@@ -21,25 +24,50 @@ public class Other {
 
     public static void AFKChecker() { // What this function does ? if the player has exactly the same position as x minutes ago, he'll be set in "AFK" mode.
         for (Player player : Bukkit.getServer().getOnlinePlayers()) { // Every players...
-            Location location = player.getLocation(); // Get Location
-            if (location.equals(playerLocation.get(player.getName()))) { // If same position ...
-                if (!afkList.contains(player.getName())) { // If player is not afk
-                    afkList.add(player.getName()); // SET AFK
+            if (!getPlayerPermissions(player)) {
+                Location location = player.getLocation(); // Get Location
+                if (location.equals(playerLocation.get(player.getName()))) { // If same position ...
+                    if (!afkList.contains(player.getName())) { // If player is not afk
+                        afkList.add(player.getName()); // SET AFK
+                    }
+                } else { // If it's not the same position...
+                    playerLocation.put(player.getName(), player.getLocation()); // Actualize the position.
                 }
-            } else { // If it's not the same position...
-                playerLocation.put(player.getName(), player.getLocation()); // Actualize the position.
+            } else {
+                if(!permissionsBypassAFK){
+                    Location location = player.getLocation(); // Get Location
+                    if (location.equals(playerLocation.get(player.getName()))) { // If same position ...
+                        if (!afkList.contains(player.getName())) { // If player is not afk
+                            afkList.add(player.getName()); // SET AFK
+                        }
+                    } else { // If it's not the same position...
+                        playerLocation.put(player.getName(), player.getLocation()); // Actualize the position.
+                    }
+                }
             }
         }
     }
 
     public static void flyingChecker() { // What this function does ? if the player is still flying, we'll set this view distance to "flying" value
         for (Player player : Bukkit.getServer().getOnlinePlayers()) { // Every players...
-            if (player.isFlying()) { // If flying
-                if (!flyingList.contains(player.getName())) { // IF flying && not in the list
-                    flyingList.add(player.getName());
+            if (!getPlayerPermissions(player)) {
+                if (player.isFlying()) { // If flying
+                    if (!flyingList.contains(player.getName())) { // IF flying && not in the list
+                        flyingList.add(player.getName());
+                    }
+                } else { // If not flying
+                    flyingList.remove(player.getName());
                 }
-            } else { // If not flying
-                flyingList.remove(player.getName());
+            } else {
+                if(!permissionsBypassFlying) {
+                    if (player.isFlying()) { // If flying
+                        if (!flyingList.contains(player.getName())) { // IF flying && not in the list
+                            flyingList.add(player.getName());
+                        }
+                    } else { // If not flying
+                        flyingList.remove(player.getName());
+                    }
+                }
             }
         }
     }
@@ -47,26 +75,33 @@ public class Other {
     // A FUNCTION THAT SET THE VIEW DISTANCE WITH FUNCTION THAT BREAK ASYNC CHAINS
     public static void applyViewDistance() {
         for (Player player : Bukkit.getOnlinePlayers()) {
-            if (afkList.contains(player.getName()) && player.getViewDistance() != afk && useAFKView) { // IF player is afk
-                setNoMoreThanSettingsViewDistance(player, afk);
-            } else if (flyingList.contains(player.getName()) && player.getViewDistance() != onFlyingView && useOnFlyingView) {
+            String pName = player.getName();
+            if (afkList.contains(pName) && player.getViewDistance() != afk && useAFKView) { // IF player is afk
+                setViewDistance(player, afk);
+            } else if (flyingList.contains(pName)
+                    && player.getViewDistance() != onFlyingView + moreThanSettings
+                    && useOnFlyingView) { // FLYING VIEW
                 setViewDistance(player, onFlyingView);
-            } else { // IF HE'S NOT AFK
-                if (playerLiveViewDistance.get(player.getName()) != null
-                        && waitForTPUnset.get(player.getName()) == null
-                        && player.getViewDistance() != playerLiveViewDistance.get(player.getName())) {
-                    setViewDistance(player, playerLiveViewDistance.get(player.getName()));
+            } else {
+                if (playerLiveViewDistance.get(pName) != null  // IF HE GOT A CUSTOM VIEW
+                        && waitForTPUnset.get(pName) == null
+                        && player.getViewDistance() != playerLiveViewDistance.get(pName) + moreThanSettings
+                        && playerLiveViewDistance.get(pName) + moreThanSettings <= playerViewDistance.get(pName)
+                        && setPlayerPermissions(player, limitClientSetting(player, limitSupportedView(player, playerLiveViewDistance.get(pName) + moreThanSettings))) != player.getViewDistance()) {
+                    setViewDistance(player, playerLiveViewDistance.get(pName) + moreThanSettings);
                 }
             }
         }
     }
 
+    /*
     static void handler(Exception e) {
         e.printStackTrace();
         Bukkit.getServer().getLogger().severe("Serious NMS error.");
         Bukkit.getPluginManager().disablePlugin(BestViewDistance.plugin);
         e.printStackTrace();
     }
+    */
 
     public static void genOnlinePlayerData() { // Set all playerLiveViewDistance to onLoginView.
         playerLiveViewDistance.clear();

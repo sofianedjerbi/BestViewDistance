@@ -11,7 +11,7 @@ import java.io.File;
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;
 
-import static me.lxct.bestviewdistance.functions.Other.handler;
+import static me.lxct.bestviewdistance.functions.data.Variable.usePermissions;
 
 public class Get {
 
@@ -40,6 +40,7 @@ public class Get {
         }
     }
 
+/*
     static Object getPrivateField(String name, Class<?> clazz, Object o) {
 
         Field f;
@@ -55,8 +56,20 @@ public class Get {
 
         return obj;
     }
+*/
 
-
+    // CHECK AND USE PERMISSIONS
+    public static boolean getPlayerPermissions(Player player) {
+        if(usePermissions) {
+            for (int i = 32; i >= 3; i--) { // Start at 32, to 3
+                // 3 4 5 6 7 8 9 10 ... 30 31 32
+                if (player.hasPermission("view.set." + i)) { // view.set.i is set
+                    return true; // If he has permission, then return true
+                }
+            }
+        }
+        return false; // If he doesn't have permissions, then return false
+    }
 
 
     public static FileConfiguration getCustomConfig() {

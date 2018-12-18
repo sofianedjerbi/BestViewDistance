@@ -25,15 +25,7 @@ public class Set {
     }
 
     static void setViewDistance(Player player, int viewDistance) {
-        int theViewDistance = setPlayerPermissions(player, limitSupportedView(player, limitClientSetting(player, viewDistance) + moreThanSettings));
-        int task = Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, new SetViewDistance(player, theViewDistance)); // Break Async chain
-        if (task == -1 && useTasks) {
-            Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetViewDistance(player, theViewDistance)); // Break Async chain
-        }
-    }
-
-    static void setNoMoreThanSettingsViewDistance(Player player, int viewDistance) {
-        int theViewDistance = setPlayerPermissions(player, limitSupportedView(player, limitClientSetting(player, viewDistance)));
+        int theViewDistance = setPlayerPermissions(player, limitClientSetting(player, limitSupportedView(player, viewDistance)));
         int task = Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, new SetViewDistance(player, theViewDistance)); // Break Async chain
         if (task == -1 && useTasks) {
             Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetViewDistance(player, theViewDistance)); // Break Async chain

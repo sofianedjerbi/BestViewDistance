@@ -41,6 +41,9 @@ public class PlaceholderAPIHook extends EZPlaceholderHook {
         if (identifier.equals("PLAYER_CURRENT_VIEW")) {
             return String.valueOf(player.getViewDistance());
         }
+        if (identifier.equals("PLAYER_PING")) {
+            return String.valueOf(player.spigot().getPing());
+        }
         return null;
     }
 }
