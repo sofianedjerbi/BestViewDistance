@@ -76,20 +76,19 @@ public class Other {
     public static void applyViewDistance() {
         for (Player player : Bukkit.getOnlinePlayers()) {
             String pName = player.getName();
+            int vdistToApply = playerLiveViewDistance.get(pName) + moreThanSettings;
             if (afkList.contains(pName) && player.getViewDistance() != afk && useAFKView) { // IF player is afk
                 setViewDistance(player, afk);
             } else if (flyingList.contains(pName)
                     && player.getViewDistance() != onFlyingView + moreThanSettings
                     && useOnFlyingView) { // FLYING VIEW
                 setViewDistance(player, onFlyingView);
-            } else {
-                if (playerLiveViewDistance.get(pName) != null  // IF HE GOT A CUSTOM VIEW
-                        && waitForTPUnset.get(pName) == null
-                        && player.getViewDistance() != playerLiveViewDistance.get(pName) + moreThanSettings
-                        && playerLiveViewDistance.get(pName) + moreThanSettings <= playerViewDistance.get(pName)
-                        && setPlayerPermissions(player, limitClientSetting(player, limitSupportedView(player, playerLiveViewDistance.get(pName) + moreThanSettings))) != player.getViewDistance()) {
-                    setViewDistance(player, playerLiveViewDistance.get(pName) + moreThanSettings);
-                }
+            } else if (playerLiveViewDistance.get(pName) != null  // IF HE GOT A CUSTOM VIEW
+                    && waitForTPUnset.get(pName) == null // If he's not waiting for tp unset
+                    && !afkList.contains(pName) // If he's not afk
+                    && !flyingList.contains(pName) // If he's not flying
+                    && setPlayerPermissions(player, limitClientSetting(player, limitSupportedView(player, vdistToApply))) != player.getViewDistance()) {
+                setViewDistance(player, vdistToApply);
             }
         }
     }
