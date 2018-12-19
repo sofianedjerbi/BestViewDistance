@@ -122,6 +122,8 @@ Add me on Discord => Lxct#9971
 I'd like to hear your comments ! <3
 
 
-## Infos
-Spigot Link : [https://www.spigotmc.org/resources/best-view-distance.61963/](https://www.spigotmc.org/resources/best-view-distance.61963/)
-Github Link : [https://github.com/Lxct/BestViewDistance](https://github.com/Lxct/BestViewDistance)
+## Info
+Spigot Link: [https://www.spigotmc.org/resources/best-view-distance.61963/](https://www.spigotmc.org/resources/best-view-distance.61963/)
+Github Link: [https://github.com/Lxct/BestViewDistance](https://github.com/Lxct/BestViewDistance)
+Dev Builds: [https://ci.codemc.org/job/Lxct/job/BestViewDistance/](https://ci.codemc.org/job/Lxct/job/BestViewDistance/)
+[![Build Status](https://ci.codemc.org/job/Lxct/job/BestViewDistance/badge/icon)](https://ci.codemc.org/job/Lxct/job/BestViewDistance/)
