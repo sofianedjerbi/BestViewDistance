@@ -11,6 +11,7 @@ import java.io.File;
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;
 
+import static me.lxct.bestviewdistance.functions.Other.handler;
 import static me.lxct.bestviewdistance.functions.data.Variable.usePermissions;
 
 public class Get {
@@ -40,7 +41,6 @@ public class Get {
         }
     }
 
-/*
     static Object getPrivateField(String name, Class<?> clazz, Object o) {
 
         Field f;
@@ -56,7 +56,6 @@ public class Get {
 
         return obj;
     }
-*/
 
     // CHECK AND USE PERMISSIONS
     public static boolean getPlayerPermissions(Player player) {
@@ -90,6 +89,14 @@ public class Get {
         } else {
             //noinspection deprecation
             return player.getClientViewDistance();
+        }
+    }
+
+    static int getViewDistance(Player player) {
+        if (!Bukkit.getVersion().contains("1.8")) {
+            return player.getViewDistance();
+        } else {
+            return player.getServer().getViewDistance();
         }
     }
 

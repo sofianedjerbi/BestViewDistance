@@ -14,6 +14,7 @@ import java.io.IOException;
 
 import static me.lxct.bestviewdistance.functions.Get.getPlayerPermissions;
 import static me.lxct.bestviewdistance.functions.Get.getSettingsViewDistance;
+import static me.lxct.bestviewdistance.functions.Get.getViewDistance;
 import static me.lxct.bestviewdistance.functions.Limit.limitClientSetting;
 import static me.lxct.bestviewdistance.functions.Limit.limitSupportedView;
 import static me.lxct.bestviewdistance.functions.Set.setPlayerPermissions;
@@ -76,31 +77,29 @@ public class Other {
     public static void applyViewDistance() {
         for (Player player : Bukkit.getOnlinePlayers()) {
             String pName = player.getName();
-            int vdistToApply = playerLiveViewDistance.get(pName) + moreThanSettings;
             if (afkList.contains(pName) && player.getViewDistance() != afk && useAFKView) { // IF player is afk
                 setViewDistance(player, afk);
             } else if (flyingList.contains(pName)
-                    && player.getViewDistance() != onFlyingView + moreThanSettings
+                    && player.getViewDistance() != onFlyingView
                     && useOnFlyingView) { // FLYING VIEW
                 setViewDistance(player, onFlyingView);
-            } else if (playerLiveViewDistance.get(pName) != null  // IF HE GOT A CUSTOM VIEW
-                    && waitForTPUnset.get(pName) == null // If he's not waiting for tp unset
-                    && !afkList.contains(pName) // If he's not afk
-                    && !flyingList.contains(pName) // If he's not flying
-                    && setPlayerPermissions(player, limitClientSetting(player, limitSupportedView(player, vdistToApply))) != player.getViewDistance()) {
-                setViewDistance(player, vdistToApply);
+            } else {
+                if (playerLiveViewDistance.get(pName) != null  && waitForTPUnset.get(pName) == null) {
+                    int vdistToApply = playerLiveViewDistance.get(pName) + moreThanSettings;
+                    if (setPlayerPermissions(player, limitClientSetting(player, limitSupportedView(player, vdistToApply))) != getViewDistance(player)) {
+                        setViewDistance(player, vdistToApply);
+                    }
+                }
             }
         }
     }
 
-    /*
     static void handler(Exception e) {
         e.printStackTrace();
         Bukkit.getServer().getLogger().severe("Serious NMS error.");
         Bukkit.getPluginManager().disablePlugin(BestViewDistance.plugin);
         e.printStackTrace();
     }
-    */
 
     public static void genOnlinePlayerData() { // Set all playerLiveViewDistance to onLoginView.
         playerLiveViewDistance.clear();
@@ -136,7 +135,7 @@ public class Other {
             string = string.replace("%PLAYER%", playerName);
         }
         if (string.contains("%VIEWDISTANCE%")) {
-            string = string.replace("%VIEWDISTANCE%", String.valueOf(playerData.getViewDistance()));
+            string = string.replace("%VIEWDISTANCE%", String.valueOf(getViewDistance(playerData)));
         }
         if (string.contains("%SETTINGS%")) {
             string = string.replace("%SETTINGS%", String.valueOf(getSettingsViewDistance(playerData)));

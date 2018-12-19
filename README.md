@@ -58,8 +58,8 @@ Features:
   UsePermissions: false # Enable permissions (view.set.x) to bypass algorithm.
 
 ViewDistance:
-  Min: 4 # Minimum view distance (Minimum : 3)
-  Max: 16 # Maximum view distance (Maximum : 32)
+  Min: 4 # Minimum view distance (Minimum: 3)
+  Max: 16 # Maximum view distance (Maximum: 32)
   OnLogin: 4 # View distance on login
   OnAFK: 3 # AFK view distance (If UseAFKView is on true)
   OnTeleport: 4 # View distance on teleport (If UseTeleportView is on true)

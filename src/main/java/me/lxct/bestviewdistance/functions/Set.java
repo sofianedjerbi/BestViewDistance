@@ -3,11 +3,17 @@ package me.lxct.bestviewdistance.functions;
 import me.lxct.bestviewdistance.BestViewDistance;
 import me.lxct.bestviewdistance.functions.sync.SetViewDistance;
 import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 
+import java.lang.reflect.Method;
+
+import static me.lxct.bestviewdistance.functions.Get.getPrivateField;
 import static me.lxct.bestviewdistance.functions.Limit.limitClientSetting;
 import static me.lxct.bestviewdistance.functions.Limit.limitSupportedView;
-import static me.lxct.bestviewdistance.functions.data.Variable.*;
+import static me.lxct.bestviewdistance.functions.Other.handler;
+import static me.lxct.bestviewdistance.functions.data.Variable.usePermissions;
+import static me.lxct.bestviewdistance.functions.data.Variable.useTasks;
 
 public class Set {
 
@@ -26,13 +32,17 @@ public class Set {
 
     static void setViewDistance(Player player, int viewDistance) {
         int theViewDistance = setPlayerPermissions(player, limitClientSetting(player, limitSupportedView(player, viewDistance)));
-        int task = Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, new SetViewDistance(player, theViewDistance)); // Break Async chain
-        if (task == -1 && useTasks) {
-            Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetViewDistance(player, theViewDistance)); // Break Async chain
+        if (!Bukkit.getVersion().contains("1.8")) {
+            int task = Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, new SetViewDistance(player, theViewDistance)); // Break Async chain
+            if (task == -1 && useTasks) {
+                Bukkit.getScheduler().runTask(BestViewDistance.plugin, new SetViewDistance(player, theViewDistance)); // Break Async chain
+            }
+        } else {
+            setRenderDistance(viewDistance);
         }
     }
-/*
-    public static void setRenderDistance(int vdist) {
+
+    private static void setRenderDistance(int vdist) {
 
         //get CraftBukkit CraftWorld class
         Class<?> craftworldclass;
@@ -42,19 +52,19 @@ public class Set {
             handler(e);
             return;
         }
+        for(World world : Bukkit.getWorlds()) {
+            //get the NMS PlayerChunkManager object for this world
+            Object cw = craftworldclass.cast(world);
+            Object ws = getPrivateField(world.getName(), craftworldclass, cw);
+            Object pcm = getPrivateField("manager", ws.getClass(), ws);
 
-        //get the NMS PlayerChunkManager object for this world
-        Object cw = craftworldclass.cast(Bukkit.getWorld("world"));
-        Object ws = getPrivateField("world", craftworldclass, cw);
-        Object pcm = getPrivateField("manager", ws.getClass(), ws);
-
-        //invoke the public a() method in the PlayerChunkManager class that changes the render distance
-        try {
-            Method viewDistChanger = pcm.getClass().getMethod("a", int.class);
-            viewDistChanger.invoke(pcm, vdist);
-        } catch (Exception e) {
-            handler(e);
+            //invoke the public a() method in the PlayerChunkManager class that changes the render distance
+            try {
+                Method viewDistChanger = pcm.getClass().getMethod("a", int.class);
+                viewDistChanger.invoke(pcm, vdist);
+            } catch (Exception e) {
+                handler(e);
+            }
         }
     }
-*/
 }
