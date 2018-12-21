@@ -1,7 +1,7 @@
 package me.lxct.bestviewdistance.functions.async;
 
 import me.lxct.bestviewdistance.BestViewDistance;
-import me.lxct.bestviewdistance.functions.sync.UnsetTeleportViewDistance;
+import me.lxct.bestviewdistance.functions.sync.SetViewDistance;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -24,12 +24,13 @@ public class TeleportData implements Runnable {
                 waitForTPUnset.remove(player.getName()); // Remove waiting
             }
             try {
-                int task = Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, new UnsetTeleportViewDistance(player, setPlayerPermissions(player, playerLiveViewDistance.get(player.getName()))), teleportUnsetDelay * 20); // Unset teleport
+                int task = Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, new SetViewDistance(player, setPlayerPermissions(player, playerLiveViewDistance.get(player.getName()))), teleportUnsetDelay * 20); // Unset teleport
                 if (task == -1 && useTasks) { // If the task has failed
-                    Bukkit.getScheduler().runTaskLater(BestViewDistance.plugin, new UnsetTeleportViewDistance(player, setPlayerPermissions(player, playerLiveViewDistance.get(player.getName()))), teleportUnsetDelay * 20); // Force unset teleport
+                    Bukkit.getScheduler().runTaskLater(BestViewDistance.plugin, new SetViewDistance(player, setPlayerPermissions(player, playerLiveViewDistance.get(player.getName()))), teleportUnsetDelay * 20); // Force unset teleport
                 } else {  // If the task has been successfully scheduled
                     waitForTPUnset.put(player.getName(), task); // Set waiting
                 }
+                Bukkit.getScheduler().runTaskLaterAsynchronously(BestViewDistance.plugin, new UnsetTeleport(player), teleportUnsetDelay * 20); // Force unset teleport
             } catch (NullPointerException ignored) {
             }
         }
