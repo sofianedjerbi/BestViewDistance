@@ -6,7 +6,7 @@
 
     <groupId>me.lxct</groupId>
     <artifactId>BestViewDistance</artifactId>
-    <version>11.8-SNAPSHOT</version>
+    <version>11.8</version>
     <packaging>jar</packaging>
 
     <properties>
