@@ -27,7 +27,7 @@ ViewDistance:
 
 Delay:
   CalculationsDelay: 1 # Delay in seconds to actualize calculations
-  SetViewDelay: 5 # Delay in seconds to actualize global view distance
+  SetViewDelay: 15 # Delay in seconds to actualize global view distance
   UnsetTeleportViewDelay: 3 # Delay in seconds to unset the OnTeleport custom view
   CheckFlyingDelay: 5 # Delay in seconds before set the OnFlying view distance
   AFKDelay: 90 # Delay in seconds before set the OnAFK view distance
