@@ -2,13 +2,17 @@ package me.lxct.bestviewdistance.functions;
 
 import org.bukkit.entity.Player;
 
+import static me.lxct.bestviewdistance.functions.Get.getMaxWorldLimits;
+import static me.lxct.bestviewdistance.functions.Get.getMinWorldLimits;
 import static me.lxct.bestviewdistance.functions.Get.getSettingsViewDistance;
 import static me.lxct.bestviewdistance.functions.data.Variable.*;
 
 public class Limit {
 
     // MAKE SURE CALCULATED VIEW DISTANCE ISN'T OVER LIMITS
-    static int limitViewDistance(int viewDistance) {
+    static int limitViewDistance(Player player, int viewDistance) {
+        int max = getMaxWorldLimits(player.getWorld());
+        int min = getMinWorldLimits(player.getWorld());
         if (viewDistance > max) {
             viewDistance = max;
         } else if (viewDistance < min) {

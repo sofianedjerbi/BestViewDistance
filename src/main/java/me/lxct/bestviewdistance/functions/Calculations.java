@@ -4,6 +4,7 @@ import me.lxct.bestviewdistance.functions.data.Variable;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import static me.lxct.bestviewdistance.functions.Get.getMaxWorldLimits;
 import static me.lxct.bestviewdistance.functions.Get.getSettingsViewDistance;
 import static me.lxct.bestviewdistance.functions.Limit.limitViewDistance;
 import static me.lxct.bestviewdistance.functions.data.Variable.*;
@@ -28,10 +29,10 @@ public class Calculations {
                     --supportedViewDistance; // Decrease
                 } // Big ping = Less View Distance
             } else {
-                supportedViewDistance = max;
+                supportedViewDistance = getMaxWorldLimits(player.getWorld());
             }
             
-            playerViewDistance.put(player.getName(), limitViewDistance(supportedViewDistance)); // Store in var
+            playerViewDistance.put(player.getName(), limitViewDistance(player, supportedViewDistance)); // Store in var
 
             if(supportedViewDistance > getSettingsViewDistance(player)) {
                 sendVD = getSettingsViewDistance(player);
@@ -42,7 +43,7 @@ public class Calculations {
             int viewDistance = Math.round((int) (sendVD * (1 - ReductionIndice))); // Apply percentage
             // About the line under this comment. We set player view distance only if view distance doesn't get over limits
             // And respect player settings
-            playerLiveViewDistance.put(player.getName(), limitViewDistance(viewDistance)); // Store result of calculations
+            playerLiveViewDistance.put(player.getName(), limitViewDistance(player, viewDistance)); // Store result of calculations
         }
     }
 }

@@ -52,5 +52,17 @@ public class UpdateConfig {
             Bukkit.getLogger().info("[BestViewDistance] Added: \"Bypass permissions\"");
             Bukkit.getLogger().info("[BestViewDistance] More information here: https://www.spigotmc.org/resources/61963/updates");
         }
+        if(ver < 2.3) {
+            Bukkit.getLogger().info("[BestViewDistance] Update config.yml...");
+            config.set("Version", 2.3);
+            config.set("Worlds.Example.Max", 32);
+            config.set("Worlds.Example.Min", 16);
+            config.set("Worlds.Example2.Max", 8);
+            config.set("Worlds.Example2.Min", 3);
+            BestViewDistance.plugin.saveConfig();
+            Bukkit.getLogger().info("[BestViewDistance] Updated config.yml!");
+            Bukkit.getLogger().info("[BestViewDistance] Added: \"Custom wold view\"");
+            Bukkit.getLogger().info("[BestViewDistance] More information here: https://www.spigotmc.org/resources/61963/updates");
+        }
     }
 }

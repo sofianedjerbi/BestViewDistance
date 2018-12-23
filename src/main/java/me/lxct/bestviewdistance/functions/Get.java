@@ -3,6 +3,7 @@ package me.lxct.bestviewdistance.functions;
 import me.lxct.bestviewdistance.BestViewDistance;
 import me.lxct.bestviewdistance.functions.data.Variable;
 import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -10,8 +11,12 @@ import org.bukkit.entity.Player;
 import java.io.File;
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;
+import java.util.Objects;
 
+import static me.lxct.bestviewdistance.commands.Commands.colorize;
 import static me.lxct.bestviewdistance.functions.Other.handler;
+import static me.lxct.bestviewdistance.functions.data.Variable.max;
+import static me.lxct.bestviewdistance.functions.data.Variable.min;
 import static me.lxct.bestviewdistance.functions.data.Variable.usePermissions;
 
 public class Get {
@@ -21,6 +26,32 @@ public class Get {
     private static final DecimalFormat format = new DecimalFormat("##.##");
     public static Object serverInstance;
     public static Field tpsField;
+
+    static int getMaxWorldLimits(World world){
+        String worldName = world.getName();
+        if(Objects.equals(worldName, Bukkit.getServer().getWorlds().get(0).getName())){ // If it's the main world
+            return max;
+        } else {
+            if(BestViewDistance.plugin.getConfig().isInt("Worlds." + worldName + ".Max")) {
+                BestViewDistance.plugin.getConfig().getInt("Worlds." + worldName + ".Max");
+            }
+        }
+        Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"" + "Worlds." + worldName + ".Max" + "\" value is wrong!"));
+        return max;
+    }
+
+    static int getMinWorldLimits(World world){
+        String worldName = world.getName();
+        if(Objects.equals(worldName, Bukkit.getServer().getWorlds().get(0).getName())){ // If it's the main world
+            return min;
+        } else {
+            if(BestViewDistance.plugin.getConfig().isInt("Worlds." + worldName + ".Min")) {
+                BestViewDistance.plugin.getConfig().getInt("Worlds." + worldName + ".Min");
+            }
+        }
+        Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"" + "Worlds." + worldName + ".Min" + "\" value is wrong!"));
+        return min;
+    }
 
     public static Class<?> getNMSClass(String className) { // Get NMS class
         try {

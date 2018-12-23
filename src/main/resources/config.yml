@@ -5,7 +5,7 @@
 #
 # Donate: https://paypal.me/lxct
 
-Version: 2.2 # Version of the config file. Don't change this value.
+Version: 2.3 # Version of the config file. Don't change this value.
 
 Features:
   UseLoginView: true # Use a custom view on login
@@ -17,8 +17,8 @@ Features:
   UsePermissions: false # Enable permissions (view.set.x) to bypass algorithm.
 
 ViewDistance:
-  Min: 4 # Minimum view distance (Minimum : 3)
-  Max: 16 # Maximum view distance (Maximum : 32)
+  Min: 4 # Minimum view distance (Minimum : 3) FOR MAIN WORLD
+  Max: 16 # Maximum view distance (Maximum : 32) FOR MAIN WORLD
   OnLogin: 4 # View distance on login
   OnAFK: 3 # AFK view distance (If UseAFKView is on true)
   OnTeleport: 4 # View distance on teleport (If UseTeleportView is on true)
@@ -51,3 +51,11 @@ Misc:
   HideVdistLine4: false # Hide the 4th line of the /vdist command
   CheckUpdates: true # Check for updates
   Metrics: true # Send anonymous stats
+
+Worlds: # Custom Min and Max for custom worlds
+  Example: # Name of your custom world
+    Max: 32 # Max value of custom world
+    Min: 16 # Min value of custom world
+  Example2: # Another Example.
+    Max: 8 # Max for Example2 World
+    Min: 3 # Min for Example2 World
