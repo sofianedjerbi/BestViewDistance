@@ -36,7 +36,6 @@ public class Get {
                 BestViewDistance.plugin.getConfig().getInt("Worlds." + worldName + ".Max");
             }
         }
-        Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"" + "Worlds." + worldName + ".Max" + "\" value is wrong!"));
         return max;
     }
 
@@ -49,7 +48,6 @@ public class Get {
                 BestViewDistance.plugin.getConfig().getInt("Worlds." + worldName + ".Min");
             }
         }
-        Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"" + "Worlds." + worldName + ".Min" + "\" value is wrong!"));
         return min;
     }
 
