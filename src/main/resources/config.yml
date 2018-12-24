@@ -17,8 +17,8 @@ Features:
   UsePermissions: false # Enable permissions (view.set.x) to bypass algorithm.
 
 ViewDistance:
-  Min: 4 # Minimum view distance (Minimum : 3) FOR MAIN WORLD
-  Max: 16 # Maximum view distance (Maximum : 32) FOR MAIN WORLD
+  Min: 4 # Default minimum view distance (Minimum : 3)
+  Max: 16 # Default maximum view distance (Maximum : 32)
   OnLogin: 4 # View distance on login
   OnAFK: 3 # AFK view distance (If UseAFKView is on true)
   OnTeleport: 4 # View distance on teleport (If UseTeleportView is on true)
@@ -52,10 +52,10 @@ Misc:
   CheckUpdates: true # Check for updates
   Metrics: true # Send anonymous stats
 
-Worlds: # Custom Min and Max for custom worlds
-  Example: # Name of your custom world
-    Max: 32 # Max value of custom world
-    Min: 16 # Min value of custom world
+Worlds: # Custom Min and Max per worlds
+  Example: # Name of your world
+    Max: 32 # Max value of world
+    Min: 16 # Min value of world
   Example2: # Another Example.
     Max: 8 # Max for Example2 World
     Min: 3 # Min for Example2 World
