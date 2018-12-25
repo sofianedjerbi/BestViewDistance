@@ -77,7 +77,7 @@ public class Other {
     public static void applyViewDistance() {
         for (Player player : Bukkit.getOnlinePlayers()) {
             String pName = player.getName();
-            if (afkList.contains(pName) && player.getViewDistance() != afk && useAFKView) { // IF player is afk
+            if (afkList.contains(pName) && getViewDistance(player) != afk && useAFKView) { // IF player is afk
                 setViewDistance(player, afk);
             } else if (flyingList.contains(pName)
                     && player.getViewDistance() != onFlyingView
@@ -92,13 +92,6 @@ public class Other {
                 }
             }
         }
-    }
-
-    static void handler(Exception e) {
-        e.printStackTrace();
-        Bukkit.getServer().getLogger().severe("Serious NMS error.");
-        Bukkit.getPluginManager().disablePlugin(BestViewDistance.plugin);
-        e.printStackTrace();
     }
 
     public static void genOnlinePlayerData() { // Set all playerLiveViewDistance to onLoginView.

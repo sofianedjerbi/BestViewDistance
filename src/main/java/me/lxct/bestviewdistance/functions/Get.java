@@ -12,7 +12,6 @@ import java.io.File;
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;
 
-import static me.lxct.bestviewdistance.functions.Other.handler;
 import static me.lxct.bestviewdistance.functions.data.Variable.*;
 
 public class Get {
@@ -68,7 +67,7 @@ public class Get {
             f.setAccessible(true);
             obj = f.get(o);
         } catch (Exception e) {
-            handler(e);
+            e.printStackTrace();
         }
 
         return obj;

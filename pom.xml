@@ -37,7 +37,6 @@
             <url>http://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
     </repositories>
-
     <dependencies>
         <!-- Paperclip API -->
         <dependency>
