@@ -59,3 +59,11 @@ Worlds: # Custom Min and Max per worlds
   Example2: # Another Example.
     Max: 8 # Max for Example2 World
     Min: 3 # Min for Example2 World
+
+Regions: # Custom Min and Max per regions
+  Example: # Name of your region
+    Max: 32 # Max value of region
+    Min: 16 # Min value of region
+  Example2: # Another Example.
+    Max: 8 # Max for Example2 region
+    Min: 3 # Min for Example2 region

@@ -64,5 +64,17 @@ public class UpdateConfig {
             Bukkit.getLogger().info("[BestViewDistance] Added: \"Custom wold view\"");
             Bukkit.getLogger().info("[BestViewDistance] More information here: https://www.spigotmc.org/resources/61963/updates");
         }
+        if(ver < 2.4) {
+            Bukkit.getLogger().info("[BestViewDistance] Update config.yml...");
+            config.set("Version", 2.4);
+            config.set("Regions.Example.Max", 32);
+            config.set("Regions.Example.Min", 16);
+            config.set("Regions.Example2.Max", 8);
+            config.set("Regions.Example2.Min", 3);
+            BestViewDistance.plugin.saveConfig();
+            Bukkit.getLogger().info("[BestViewDistance] Updated config.yml!");
+            Bukkit.getLogger().info("[BestViewDistance] Added: \"Custom region view\"");
+            Bukkit.getLogger().info("[BestViewDistance] More information here: https://www.spigotmc.org/resources/61963/updates");
+        }
     }
 }
