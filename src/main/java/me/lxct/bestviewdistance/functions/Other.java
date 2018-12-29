@@ -35,7 +35,7 @@ public class Other {
                     playerLocation.put(player.getName(), player.getLocation()); // Actualize the position.
                 }
             } else {
-                if(!permissionsBypassAFK){
+                if (!permissionsBypassAFK) {
                     Location location = player.getLocation(); // Get Location
                     if (location.equals(playerLocation.get(player.getName()))) { // If same position ...
                         if (!afkList.contains(player.getName())) { // If player is not afk
@@ -60,7 +60,7 @@ public class Other {
                     flyingList.remove(player.getName());
                 }
             } else {
-                if(!permissionsBypassFlying) {
+                if (!permissionsBypassFlying) {
                     if (player.isFlying()) { // If flying
                         if (!flyingList.contains(player.getName())) { // IF flying && not in the list
                             flyingList.add(player.getName());
@@ -84,7 +84,7 @@ public class Other {
                     && useOnFlyingView) { // FLYING VIEW
                 setViewDistance(player, onFlyingView);
             } else {
-                if (playerLiveViewDistance.get(pName) != null  && waitForTPUnset.get(pName) == null) {
+                if (playerLiveViewDistance.get(pName) != null && waitForTPUnset.get(pName) == null) {
                     int vdistToApply = playerLiveViewDistance.get(pName);
                     if (setPlayerPermissions(player, limitClientSetting(player, limitSupportedView(player, vdistToApply))) != getViewDistance(player)) {
                         setViewDistance(player, vdistToApply);
@@ -121,27 +121,13 @@ public class Other {
     }
 
     public static String replacePlaceHolders(String string) { // Replace placeholders in messages.yml
-        if (string.contains("%TPS%")) {
-            string = string.replace("%TPS%", String.valueOf(Get.get1minTPS()));
-        }
-        if (string.contains("%PLAYER%")) {
-            string = string.replace("%PLAYER%", playerName);
-        }
-        if (string.contains("%VIEWDISTANCE%")) {
-            string = string.replace("%VIEWDISTANCE%", String.valueOf(getViewDistance(playerData)));
-        }
-        if (string.contains("%SETTINGS%")) {
-            string = string.replace("%SETTINGS%", String.valueOf(getSettingsViewDistance(playerData)));
-        }
-        if (string.contains("%REDUCTIONINDICE%")) {
-            string = string.replace("%REDUCTIONINDICE%", String.valueOf(Math.round(reductionIndice * 100)));
-        }
-        if (string.contains("%PING%")) {
-            string = string.replace("%PING%", String.valueOf(playerData.spigot().getPing()));
-        }
-        if (string.contains("%PINGVIEW%")) {
-            string = string.replace("%PINGVIEW%", String.valueOf(playerViewDistance.get(playerData.getName())));
-        }
+        string.replace("%TPS%", String.valueOf(Get.get1minTPS()));
+        string.replace("%PLAYER%", playerName);
+        string.replace("%VIEWDISTANCE%", String.valueOf(getViewDistance(playerData)));
+        string.replace("%SETTINGS%", String.valueOf(getSettingsViewDistance(playerData)));
+        string.replace("%REDUCTIONINDICE%", String.valueOf(Math.round(reductionIndice * 100)));
+        string.replace("%PING%", String.valueOf(playerData.spigot().getPing()));
+        string.replace("%PINGVIEW%", String.valueOf(playerViewDistance.get(playerData.getName())));
         return string;
     }
 }
