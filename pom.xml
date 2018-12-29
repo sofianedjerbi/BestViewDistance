@@ -20,21 +20,30 @@
     </properties>
 
     <repositories>
+        <!-- Paper Repo -->
         <repository>
             <id>papermc-repo</id>
             <url>https://papermc.io/repo/repository/maven-public/</url>
         </repository>
+        <!-- ProtocolLib Repo -->
         <repository>
             <id>dmulloy2-repo</id>
             <url>http://repo.dmulloy2.net/nexus/repository/public/</url>
         </repository>
+        <!-- Bstats Repo -->
         <repository>
             <id>codemc-repo</id>
             <url>https://repo.codemc.org/repository/maven-public</url>
         </repository>
+        <!-- Placeholder Repo -->
         <repository>
             <id>extendedclip-repo</id>
             <url>http://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+        </repository>
+        <!-- WorldGuard Repo -->
+        <repository>
+            <id>sk89q-repo</id>
+            <url>http://maven.sk89q.com/repo/</url>
         </repository>
     </repositories>
     <dependencies>
@@ -57,6 +66,13 @@
             <groupId>me.clip</groupId>
             <artifactId>placeholderapi</artifactId>
             <version>2.9.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- WorldGuard API -->
+        <dependency>
+            <groupId>com.sk89q.worldguard</groupId>
+            <artifactId>worldguard-legacy</artifactId>
+            <version>7.0.0</version>
             <scope>provided</scope>
         </dependency>
         <!-- BStats Metrics -->
