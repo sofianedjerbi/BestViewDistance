@@ -27,7 +27,7 @@ public class UpdateConfig {
             }
         }
         if (ver < 2.1) {
-            Bukkit.getLogger().info("[BestViewDistance] Update config.yml...");
+            Bukkit.getLogger().info("[BestViewDistance] Updating config.yml...");
             config.set("Version", 2.1);
             config.set("Features.UsePermissions", false);
             config.set("Misc.DecimalsTPS", 2);
@@ -40,7 +40,7 @@ public class UpdateConfig {
             Bukkit.getLogger().info("[BestViewDistance] More information here: https://www.spigotmc.org/resources/61963/updates");
         }
         if(ver < 2.2) {
-            Bukkit.getLogger().info("[BestViewDistance] Update config.yml...");
+            Bukkit.getLogger().info("[BestViewDistance] Updating config.yml...");
             config.set("Version", 2.2);
             config.set("Features.UseLoginView", true);
             config.set("Permissions.BypassAFKView", true);
@@ -53,7 +53,7 @@ public class UpdateConfig {
             Bukkit.getLogger().info("[BestViewDistance] More information here: https://www.spigotmc.org/resources/61963/updates");
         }
         if(ver < 2.3) {
-            Bukkit.getLogger().info("[BestViewDistance] Update config.yml...");
+            Bukkit.getLogger().info("[BestViewDistance] Updating config.yml...");
             config.set("Version", 2.3);
             config.set("Worlds.Example.Max", 32);
             config.set("Worlds.Example.Min", 16);
@@ -65,7 +65,7 @@ public class UpdateConfig {
             Bukkit.getLogger().info("[BestViewDistance] More information here: https://www.spigotmc.org/resources/61963/updates");
         }
         if(ver < 2.4) {
-            Bukkit.getLogger().info("[BestViewDistance] Update config.yml...");
+            Bukkit.getLogger().info("[BestViewDistance] Updating config.yml...");
             config.set("Version", 2.4);
             config.set("Regions.Example.Max", 32);
             config.set("Regions.Example.Min", 16);
