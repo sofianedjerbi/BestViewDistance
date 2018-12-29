@@ -11,16 +11,7 @@ public class Limit {
 
     // MAKE SURE CALCULATED VIEW DISTANCE ISN'T OVER LIMITS
     static int limitViewDistance(Player player, int viewDistance) {
-        int max = getMaxWorldLimits(player.getWorld());
-        int min = getMinWorldLimits(player.getWorld());
-
-        if (viewDistance >= max) {
-            return max;
-        } else if (viewDistance <= min) {
-            return min;
-        }
-
-        return viewDistance;
+        return Math.max(getMinWorldLimits(player.getWorld()), Math.min(viewDistance, getMaxWorldLimits(player.getWorld())));
     }
 
     // A FUNCTION FOR CLIENT SIDE SETTING. DON'T GIVE MORE VIEW DISTANCE THAN REQUIRED.
@@ -33,10 +24,7 @@ public class Limit {
     }
     // MAKE SURE REDUCTION INDICE ISN'T OVER LIMITS
     public static void limitReductionIndice() {
-        if (reductionIndice > maxIndice) { // Make sure the reduction indice don't get over limits
-            reductionIndice = maxIndice;
-        } else if (reductionIndice < 0) {
-            reductionIndice = 0.0;
-        }
+        // Make sure the reduction indice don't get over limits
+        reductionIndice = Math.min(0.0, Math.min(reductionIndice, maxIndice));
     }
 }
