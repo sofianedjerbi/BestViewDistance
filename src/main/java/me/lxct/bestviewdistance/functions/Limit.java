@@ -13,11 +13,13 @@ public class Limit {
     static int limitViewDistance(Player player, int viewDistance) {
         int max = getMaxWorldLimits(player.getWorld());
         int min = getMinWorldLimits(player.getWorld());
+
         if (viewDistance >= max) {
             return max;
         } else if (viewDistance <= min) {
             return min;
         }
+
         return viewDistance;
     }
 
@@ -31,7 +33,7 @@ public class Limit {
     }
     // MAKE SURE REDUCTION INDICE ISN'T OVER LIMITS
     public static void limitReductionIndice() {
-        if (reductionIndice > maxIndice) { // Make sure the reduction indice don't escape limits
+        if (reductionIndice > maxIndice) { // Make sure the reduction indice don't get over limits
             reductionIndice = maxIndice;
         } else if (reductionIndice < 0) {
             reductionIndice = 0.0;

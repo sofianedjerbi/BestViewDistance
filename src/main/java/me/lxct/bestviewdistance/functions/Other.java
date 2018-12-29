@@ -85,7 +85,7 @@ public class Other {
                 setViewDistance(player, onFlyingView);
             } else {
                 if (playerLiveViewDistance.get(pName) != null  && waitForTPUnset.get(pName) == null) {
-                    int vdistToApply = playerLiveViewDistance.get(pName) + moreThanSettings;
+                    int vdistToApply = playerLiveViewDistance.get(pName);
                     if (setPlayerPermissions(player, limitClientSetting(player, limitSupportedView(player, vdistToApply))) != getViewDistance(player)) {
                         setViewDistance(player, vdistToApply);
                     }

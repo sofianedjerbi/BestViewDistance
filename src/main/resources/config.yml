@@ -5,7 +5,7 @@
 #
 # Donate: https://paypal.me/lxct
 
-Version: 2.3 # Version of the config file. Don't change this value.
+Version: 2.4 # Version of the config file. Don't change this value.
 
 Features:
   UseLoginView: true # Use a custom view on login
