@@ -2,17 +2,17 @@ package me.lxct.bestviewdistance.functions.async;
 
 import org.bukkit.entity.Player;
 
-import static me.lxct.bestviewdistance.functions.data.Variable.waitForTPUnset;
+import static me.lxct.bestviewdistance.functions.data.Variable.onlinePlayers;
 
 public class UnsetTeleport implements Runnable {
-    private Player player;
+    private Player p;
 
-    UnsetTeleport(Player player) {
-        this.player = player;
+    UnsetTeleport(Player p) {
+        this.p = p;
     }
 
     @Override
     public void run() {
-        waitForTPUnset.remove(player.getName());
+        onlinePlayers.get(p).setWaitingForTpUnset(false);
     }
 }

@@ -7,9 +7,10 @@ import com.comphenix.protocol.events.ListenerPriority;
 import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
+import me.lxct.bestviewdistance.functions.BVDPlayer;
 import org.bukkit.plugin.Plugin;
 
-import static me.lxct.bestviewdistance.functions.data.Variable.playerSettingsViewDistance;
+import static me.lxct.bestviewdistance.functions.data.Variable.onlinePlayers;
 
 class ProtocolLibHook {
     static void protocolLibHook(Plugin plugin) {
@@ -18,10 +19,11 @@ class ProtocolLibHook {
                 ListenerPriority.NORMAL,
                 PacketType.Play.Client.SETTINGS) {
             @Override
-            public void onPacketReceiving(PacketEvent event) {
-                if (event.getPacketType() == PacketType.Play.Client.SETTINGS) {
-                    PacketContainer packet = event.getPacket();
-                    playerSettingsViewDistance.put(event.getPlayer().getName(), packet.getIntegers().read(0));
+            public void onPacketReceiving(PacketEvent e) {
+                if (e.getPacketType() == PacketType.Play.Client.SETTINGS) {
+                    PacketContainer packet = e.getPacket();
+                    BVDPlayer player = onlinePlayers.get(e.getPlayer());
+                    player.saveSettingsViewDistance(packet.getIntegers().read(0));
                 }
             }
         });

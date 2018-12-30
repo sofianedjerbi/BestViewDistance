@@ -1,38 +1,32 @@
 package me.lxct.bestviewdistance.functions.async;
 
 import me.lxct.bestviewdistance.BestViewDistance;
+import me.lxct.bestviewdistance.functions.BVDPlayer;
 import me.lxct.bestviewdistance.functions.sync.SetViewDistance;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import static me.lxct.bestviewdistance.functions.Set.setPlayerPermissions;
-import static me.lxct.bestviewdistance.functions.data.Variable.*;
+import static me.lxct.bestviewdistance.functions.data.Variable.onlinePlayers;
+import static me.lxct.bestviewdistance.functions.data.Variable.teleportUnsetDelay;
+import static me.lxct.bestviewdistance.functions.util.Scheduler.scheduleSync;
 
 public class TeleportData implements Runnable {
 
-    private Player player;
+    private Player p;
 
-    public TeleportData(Player player) {
-        this.player = player;
+    public TeleportData(Player p) {
+        this.p = p;
     }
 
     @Override
     public void run() {
-        if (playerLiveViewDistance.get(player.getName()) != null) { // If he got a live view
-            if (waitForTPUnset.get(player.getName()) != null) { // If he is waiting for TP UNSET
-                Bukkit.getScheduler().cancelTask(waitForTPUnset.get(player.getName())); // Cancel task if the player got a task
-                waitForTPUnset.remove(player.getName()); // Remove waiting
-            }
-            try {
-                int task = Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, new SetViewDistance(player, setPlayerPermissions(player, playerLiveViewDistance.get(player.getName()))), teleportUnsetDelay * 20); // Unset teleport
-                if (task == -1 && useTasks) { // If the task has failed
-                    Bukkit.getScheduler().runTaskLater(BestViewDistance.plugin, new SetViewDistance(player, setPlayerPermissions(player, playerLiveViewDistance.get(player.getName()))), teleportUnsetDelay * 20); // Force unset teleport
-                } else {  // If the task has been successfully scheduled
-                    waitForTPUnset.put(player.getName(), task); // Set waiting
-                }
-                Bukkit.getScheduler().runTaskLaterAsynchronously(BestViewDistance.plugin, new UnsetTeleport(player), teleportUnsetDelay * 20); // Force unset teleport
-            } catch (NullPointerException ignored) {
-            }
+        BVDPlayer player = onlinePlayers.get(p);
+        if (player.isWaitingForTpUnset()) { // If he is waiting for TP UNSET
+            Bukkit.getScheduler().cancelTask(player.getTpTaskId()); // Cancel task if the player got a task
+            player.setWaitingForTpUnset(false); // Remove waiting
         }
+        scheduleSync(new SetViewDistance(p, player.getSheduledViewDistance()), teleportUnsetDelay * 20, player);
+        player.setWaitingForTpUnset(true);
+        Bukkit.getScheduler().runTaskLaterAsynchronously(BestViewDistance.plugin, new UnsetTeleport(p), teleportUnsetDelay * 20); // Force unset teleport
     }
 }

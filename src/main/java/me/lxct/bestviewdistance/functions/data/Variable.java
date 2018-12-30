@@ -1,18 +1,16 @@
 package me.lxct.bestviewdistance.functions.data;
 
 import me.lxct.bestviewdistance.BestViewDistance;
+import me.lxct.bestviewdistance.functions.BVDPlayer;
+import me.lxct.bestviewdistance.functions.BVDTimings;
+import me.lxct.bestviewdistance.functions.Messages;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static me.lxct.bestviewdistance.commands.Commands.colorize;
-import static me.lxct.bestviewdistance.functions.Get.getCustomConfig;
 
 public class Variable {
 
@@ -89,22 +87,17 @@ public class Variable {
     // TMP stuff
     //
 
-    public static ConcurrentHashMap<String, Location> playerLocation = new ConcurrentHashMap<>(); // Location list
-    public static ConcurrentHashMap<String, Integer> playerViewDistance = new ConcurrentHashMap<>(); // View Distance list
-    public static ConcurrentHashMap<String, Integer> playerLiveViewDistance = new ConcurrentHashMap<>(); // Live View Distance list
-    public static ConcurrentHashMap<String, Integer> playerSettingsViewDistance = new ConcurrentHashMap<>(); // 1.12 Settings View Distance list
-    public static ConcurrentHashMap<String, Integer> waitForTPUnset = new ConcurrentHashMap<>(); // Waiting for teleport unset list with task ID
-    public static List<String> afkList = Collections.synchronizedList(new ArrayList<>()); // AFK list
-    public static List<String> flyingList = Collections.synchronizedList(new ArrayList<>()); // Flying list
-    public static Player playerData; // Player var used in commands for messages.yml
-    public static String playerName; // PlayerNAME var used in commands for messages.yml
-    public static Double reductionIndice = 0.0; // Initialize the Reduction indice
+
+    public static BVDPlayer playerData; // Player var used in commands for messages.yml
+    public static ConcurrentHashMap<Player, BVDPlayer> onlinePlayers = new ConcurrentHashMap<>(); // All online players BVD players
+    public static BVDTimings timings = new BVDTimings(); // Initialize the Reduction indice
 
     public static void loadVariables() {
 
         // FILES
         FileConfiguration configYml = BestViewDistance.plugin.getConfig();
-        FileConfiguration messagesYml = getCustomConfig();
+        Messages messages = new Messages();
+        FileConfiguration messagesYml = messages.get();
         // FILES
 
         //

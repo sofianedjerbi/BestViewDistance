@@ -1,4 +1,4 @@
-package me.lxct.bestviewdistance.functions;
+package me.lxct.bestviewdistance.functions.util;
 
 import me.lxct.bestviewdistance.BestViewDistance;
 import org.bukkit.Bukkit;

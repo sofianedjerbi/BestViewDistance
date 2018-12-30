@@ -1,6 +1,6 @@
 package me.lxct.bestviewdistance.commands;
 
-import me.lxct.bestviewdistance.functions.Other;
+import me.lxct.bestviewdistance.functions.util.Misc;
 import me.lxct.bestviewdistance.functions.data.Variable;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -30,18 +30,18 @@ public class ViewCommand implements CommandExecutor {
             }
         } else if (cmd.getName().equalsIgnoreCase("vdist") && sender.hasPermission("view.info")) {
             if (sender instanceof Player) {
-                playerData = ((Player) sender);
-                sender.sendMessage(colorize(Other.replacePlaceHolders(vdistLine1)));
-                sender.sendMessage(colorize(Other.replacePlaceHolders(vdistLine2)));
-                sender.sendMessage(colorize(Other.replacePlaceHolders(vdistLine3)));
+                playerData = onlinePlayers.get(sender);
+                sender.sendMessage(colorize(Misc.replacePlaceHolders(vdistLine1)));
+                sender.sendMessage(colorize(Misc.replacePlaceHolders(vdistLine2)));
+                sender.sendMessage(colorize(Misc.replacePlaceHolders(vdistLine3)));
                 if (!Variable.hideVdistLine4) {
-                    sender.sendMessage(colorize(Other.replacePlaceHolders(vdistLine4)));
+                    sender.sendMessage(colorize(Misc.replacePlaceHolders(vdistLine4)));
                 }
             }
         } else if (cmd.getName().equalsIgnoreCase("vping") && sender.hasPermission("view.info")) {
             if (sender instanceof Player) {
-                playerData = ((Player) sender);
-                sender.sendMessage(colorize(Other.replacePlaceHolders(vping)));
+                playerData = onlinePlayers.get(sender);
+                sender.sendMessage(colorize(Misc.replacePlaceHolders(vping)));
             }
         }
         return true;

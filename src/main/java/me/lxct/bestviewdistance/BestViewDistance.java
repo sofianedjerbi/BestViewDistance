@@ -2,31 +2,28 @@ package me.lxct.bestviewdistance;
 
 import me.lxct.bestviewdistance.commands.ViewCommand;
 import me.lxct.bestviewdistance.event.*;
-import me.lxct.bestviewdistance.functions.Other;
 import me.lxct.bestviewdistance.functions.async.AsyncUpdateChecker;
-import me.lxct.bestviewdistance.functions.data.Variable;
+import me.lxct.bestviewdistance.functions.util.Calculations;
+import me.lxct.bestviewdistance.functions.util.Checkers;
+import me.lxct.bestviewdistance.functions.util.Misc;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.lang.reflect.InvocationTargetException;
-
-import static me.lxct.bestviewdistance.functions.Calculations.calculatePlayersBestViewDistance;
-import static me.lxct.bestviewdistance.functions.Get.*;
-import static me.lxct.bestviewdistance.functions.Limit.limitReductionIndice;
-import static me.lxct.bestviewdistance.functions.Other.*;
-import static me.lxct.bestviewdistance.functions.UpdateConfig.updateConfig;
-import static me.lxct.bestviewdistance.functions.Warnings.checkProtocolLib;
-import static me.lxct.bestviewdistance.functions.Warnings.checkServerView;
 import static me.lxct.bestviewdistance.functions.data.Variable.loadVariables;
 import static me.lxct.bestviewdistance.functions.data.Variable.useTeleportView;
 import static me.lxct.bestviewdistance.functions.hooks.Hooks.checkHooks;
+import static me.lxct.bestviewdistance.functions.util.Misc.genOnlinePlayerData;
+import static me.lxct.bestviewdistance.functions.util.UpdateConfig.updateConfig;
+import static me.lxct.bestviewdistance.functions.util.Warnings.checkProtocolLib;
+import static me.lxct.bestviewdistance.functions.util.Warnings.checkServerView;
 
 public class BestViewDistance extends JavaPlugin {
 
     public static BestViewDistance plugin;
 
     @Override
+    @SuppressWarnings("deprecation")
     public void onEnable() {
 
         plugin = this; // Allow BestViewDistance.plugin
@@ -41,24 +38,7 @@ public class BestViewDistance extends JavaPlugin {
         Bukkit.getLogger().info("└ Best View Distance, By Lxct.");
         // WARNING
 
-        //
-        // Retro compatibility
-        //
-
         checkHooks(this);
-
-        if (Bukkit.getVersion().contains("1.8")) {
-            try {
-                serverInstance = getNMSClass("MinecraftServer").getMethod("getServer").invoke(null);
-                tpsField = serverInstance.getClass().getField("recentTps");
-            } catch (NoSuchFieldException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException e) {
-                e.printStackTrace();
-            }
-        }
-
-        //
-        // Retro compatibility
-        //
 
         //
         // Load & Get info
@@ -74,8 +54,6 @@ public class BestViewDistance extends JavaPlugin {
 
         // GENERATION
         saveDefaultConfig(); // GENERATE
-        genMessagesYml(); // Generate Messages.yml
-        loadMessagesYml(); // Load CustomConfig (Messages)
         loadVariables(); // Load Variables (Config / Messages)
         genOnlinePlayerData(); // In case of a reload caused by another plugin
         // GENERATION
@@ -106,13 +84,9 @@ public class BestViewDistance extends JavaPlugin {
         // Schedule tasks
         //
 
-        //noinspection deprecation
         Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, applyViewDistance, 0L, this.getConfig().getInt("Delay.SetViewDelay", 5) * 20L); // CALCULATIONS SCHEDULER
-        //noinspection deprecation
         Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, detectAFK, 0L, this.getConfig().getInt("Delay.AFKDelay", 90) * 20L); // DETECT AFK SCHEDULER
-        //noinspection deprecation
         Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, detectFlying, 0L, this.getConfig().getInt("Delay.CheckFlyingDelay", 5) * 20L); // DETECT AFK SCHEDULER
-        //noinspection deprecation
         Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, calculations, 0L, this.getConfig().getInt("Delay.CalculationsDelay", 1) * 20L);
 
         //
@@ -128,20 +102,12 @@ public class BestViewDistance extends JavaPlugin {
         }
     }
 
-    private Runnable calculations = // CALCULATIONS
-            () -> {
-                Variable.reductionIndice = getNewReductionIndice(get1minTPS()); // Update Reduction Indice
-                limitReductionIndice(); // Control
-                calculatePlayersBestViewDistance(Variable.reductionIndice); // Update Players View Distance
-            };
-
+    // Calculations
+    private Runnable calculations = Calculations::calculatePlayersBestViewDistance;
     // Update Players View Distance
-    private Runnable applyViewDistance = // CALCULATIONS
-            Other::applyViewDistance;
-
-    private Runnable detectAFK = // CHECK IF AFK
-            Other::AFKChecker;
-
-    private Runnable detectFlying = // CHECK IF AFK
-            Other::flyingChecker;
+    private Runnable applyViewDistance = Misc::applyViewDistance;
+    // Check if afk
+    private Runnable detectAFK = Checkers::AFKChecker;
+    // Check if flying
+    private Runnable detectFlying = Checkers::flyingChecker;
 }

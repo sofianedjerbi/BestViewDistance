@@ -2,17 +2,17 @@ package me.lxct.bestviewdistance.functions.async;
 
 import org.bukkit.event.player.PlayerMoveEvent;
 
-import static me.lxct.bestviewdistance.functions.data.Variable.afkList;
+import static me.lxct.bestviewdistance.functions.data.Variable.onlinePlayers;
 
 public class UnsetAfk implements Runnable {
-    private PlayerMoveEvent event;
+    private PlayerMoveEvent e;
 
-    public UnsetAfk(PlayerMoveEvent event) {
-        this.event = event;
+    public UnsetAfk(PlayerMoveEvent e) {
+        this.e = e;
     }
 
     @Override
     public void run() {
-        afkList.remove(event.getPlayer().getName());
+        onlinePlayers.get(e.getPlayer()).setAfk(false);
     }
 }
