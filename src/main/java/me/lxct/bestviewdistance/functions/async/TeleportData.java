@@ -25,7 +25,7 @@ public class TeleportData implements Runnable {
             Bukkit.getScheduler().cancelTask(player.getTpTaskId()); // Cancel task if the player got a task
             player.setWaitingForTpUnset(false); // Remove waiting
         }
-        scheduleSync(new SetViewDistance(p, player.getSheduledViewDistance()), teleportUnsetDelay * 20, player);
+        scheduleSync(new SetViewDistance(p, player.getScheduledViewDistance()), teleportUnsetDelay * 20, player);
         player.setWaitingForTpUnset(true);
         Bukkit.getScheduler().runTaskLaterAsynchronously(BestViewDistance.plugin, new UnsetTeleport(p), teleportUnsetDelay * 20); // Force unset teleport
     }

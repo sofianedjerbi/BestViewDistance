@@ -112,13 +112,13 @@ public class BVDPlayer {
         this.supportedViewDistance = Math.max(min, Math.min(supportedViewDistance, max));
     }
 
-    public int getSheduledViewDistance() {
+    public int getScheduledViewDistance() {
         return this.scheduledViewDistance;
     }
 
     public void setScheduledViewDistance(int scheduledViewDistance) {
-        int tmp = Math.max(this.getCurrentMaxLimit(), Math.min(scheduledViewDistance, this.getCurrentMinLimit()));
-        tmp = Math.min(tmp, this.getSettingsViewDistance() + moreThanSettings);
+        int tmp = Math.min(this.getCurrentMaxLimit(), Math.max(scheduledViewDistance, this.getCurrentMinLimit()));
+        tmp = Math.min(tmp, this.getSettingsViewDistance());
         tmp = Math.min(tmp, this.getSupportedViewDistance());
         this.scheduledViewDistance = tmp;
     }

@@ -21,7 +21,7 @@ public class Misc {
                 player.setViewDistance(onFlyingView);
             } else {
                 if (!player.isWaitingForTpUnset()) {
-                    int vdistToApply = player.getViewBypass(player.getSheduledViewDistance());
+                    int vdistToApply = player.getViewBypass(player.getScheduledViewDistance());
                     if (vdistToApply != player.getCurrentViewDistance()) {
                         player.setViewDistance(vdistToApply);
                     }
