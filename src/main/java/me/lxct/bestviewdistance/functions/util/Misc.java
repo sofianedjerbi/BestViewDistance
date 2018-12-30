@@ -39,13 +39,13 @@ public class Misc {
 
 
     public static String replacePlaceHolders(String string) { // Replace placeholders in messages.yml
-        string.replace("%TPS%", String.valueOf(timings.get1minTPS()));
-        string.replace("%PLAYER%", playerData.getName());
-        string.replace("%VIEWDISTANCE%", String.valueOf(playerData.getCurrentViewDistance()));
-        string.replace("%SETTINGS%", String.valueOf(playerData.getSettingsViewDistance()));
-        string.replace("%REDUCTIONINDICE%", String.valueOf(Math.round(timings.getReductionIndice() * 100)));
-        string.replace("%PING%", String.valueOf(playerData.getPing()));
-        string.replace("%PINGVIEW%", String.valueOf(playerData.getSupportedViewDistance()));
+        string = string.replace("%TPS%", String.valueOf(timings.get1minTPS()));
+        string = string.replace("%PLAYER%", playerData.getName());
+        string = string.replace("%VIEWDISTANCE%", String.valueOf(playerData.getCurrentViewDistance()));
+        string = string.replace("%SETTINGS%", String.valueOf(playerData.getSettingsViewDistance()));
+        string = string.replace("%REDUCTIONINDICE%", String.valueOf(Math.round(timings.getReductionIndice() * 100)));
+        string = string.replace("%PING%", String.valueOf(playerData.getPing()));
+        string = string.replace("%PINGVIEW%", String.valueOf(playerData.getSupportedViewDistance()));
         return string;
     }
 }

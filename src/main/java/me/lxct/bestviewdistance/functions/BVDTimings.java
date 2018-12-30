@@ -56,8 +56,9 @@ public class BVDTimings {
         } else if (TPS < Variable.tpsLimit) { // If tps < tps limit
             tmp = tmp + Variable.tpsChange; // Increase indice
         }
-        this.reductionIndice = Math.min(0.0, Math.min(tmp, maxIndice));
+        this.reductionIndice = Math.max(0.0, Math.min(tmp, maxIndice));
     }
+
     public double getReductionIndice() {
         return this.reductionIndice;
     }
