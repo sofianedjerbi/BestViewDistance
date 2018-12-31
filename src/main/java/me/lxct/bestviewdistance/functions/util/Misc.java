@@ -7,28 +7,7 @@ import org.bukkit.entity.Player;
 import static me.lxct.bestviewdistance.functions.data.Variable.*;
 
 public class Misc {
-    // A FUNCTION THAT SET THE VIEW DISTANCE WITH FUNCTION THAT BREAK ASYNC CHAINS
-    public static void applyViewDistance() {
-        for (Player p : Bukkit.getOnlinePlayers()) {
-            BVDPlayer player = new BVDPlayer(p);
-            if (player.isAfk()
-                    && player.getCurrentViewDistance() != afk
-                    && useAFKView) { // AFK VIEW
-                player.setViewDistance(afk);
-            } else if (player.isFlying()
-                    && player.getCurrentViewDistance() != onFlyingView
-                    && useOnFlyingView) { // FLYING VIEW
-                player.setViewDistance(onFlyingView);
-            } else {
-                if (!player.isWaitingForTpUnset()) {
-                    int vdistToApply = player.getViewBypass(player.getScheduledViewDistance());
-                    if (vdistToApply != player.getCurrentViewDistance()) {
-                        player.setViewDistance(vdistToApply);
-                    }
-                }
-            }
-        }
-    }
+
 
     public static void genOnlinePlayerData() { // Set all playerLiveViewDistance to onLoginView.
         onlinePlayers.clear();

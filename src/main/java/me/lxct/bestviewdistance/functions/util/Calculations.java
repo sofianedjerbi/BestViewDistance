@@ -17,7 +17,7 @@ public class Calculations {
 
             int supportedViewDistance = player.getSupportedViewDistance(); // View distance supported by player
 
-            if(usePing) {
+            if (usePing) {
                 int ping = player.getPing(); // Get ping
 
                 if (ping < Variable.aping && ping >= safePing) { // If ping need to decrease vdist
@@ -29,11 +29,32 @@ public class Calculations {
             } else {
                 supportedViewDistance = player.getCurrentMaxLimit();
             }
-            
+
             player.setSupportedViewDistance(supportedViewDistance); // Store in var
 
             player.setScheduledViewDistance(Math.toIntExact(Math.round((supportedViewDistance + moreThanSettings) * (1 - reductionIndice))));
             // Apply percentage && Store result of calculations
+        }
+    }
+
+    // A FUNCTION THAT SET THE VIEW DISTANCE WITH FUNCTION THAT BREAK ASYNC CHAINS
+    public static void applyViewDistance() {
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            BVDPlayer player = onlinePlayers.get(p);
+            if (player.isAfk()
+                    && player.getCurrentViewDistance() != afk
+                    && useAFKView) { // AFK VIEW
+                player.setViewDistance(afk);
+            } else if (player.isFlying()
+                    && player.getCurrentViewDistance() != onFlyingView
+                    && useOnFlyingView) { // FLYING VIEW
+                player.setViewDistance(onFlyingView);
+            } else if (!player.isWaitingForTpUnset()) {
+                int vdistToApply = player.getViewBypass(player.getScheduledViewDistance());
+                if (vdistToApply != player.getCurrentViewDistance()) {
+                    player.setViewDistance(vdistToApply);
+                }
+            }
         }
     }
 }

@@ -5,13 +5,11 @@ import me.lxct.bestviewdistance.event.*;
 import me.lxct.bestviewdistance.functions.async.AsyncUpdateChecker;
 import me.lxct.bestviewdistance.functions.util.Calculations;
 import me.lxct.bestviewdistance.functions.util.Checkers;
-import me.lxct.bestviewdistance.functions.util.Misc;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import static me.lxct.bestviewdistance.functions.data.Variable.loadVariables;
-import static me.lxct.bestviewdistance.functions.data.Variable.useTeleportView;
+import static me.lxct.bestviewdistance.functions.data.Variable.*;
 import static me.lxct.bestviewdistance.functions.hooks.Hooks.checkHooks;
 import static me.lxct.bestviewdistance.functions.util.Misc.genOnlinePlayerData;
 import static me.lxct.bestviewdistance.functions.util.UpdateConfig.updateConfig;
@@ -59,9 +57,11 @@ public class BestViewDistance extends JavaPlugin {
         // GENERATION
 
         // EVENTS
-        getServer().getPluginManager().registerEvents(new OnJoin(), this); // Add OnLogin Event
+        getServer().getPluginManager().registerEvents(new OnJoin(), this); // Add OnJoin Event
         getServer().getPluginManager().registerEvents(new OnQuit(), this); // Add OnQuit Event
-        getServer().getPluginManager().registerEvents(new OnPlayerMove(), this); // Add OnPlayerMove Event
+        if(useAFKView) {
+            getServer().getPluginManager().registerEvents(new OnPlayerMove(), this); // Add OnPlayerMove Event
+        }
         if (useTeleportView) {
             getServer().getPluginManager().registerEvents(new OnTeleport(), this); // Add OnTeleport Event
         }
@@ -105,7 +105,7 @@ public class BestViewDistance extends JavaPlugin {
     // Calculations
     private Runnable calculations = Calculations::calculatePlayersBestViewDistance;
     // Update Players View Distance
-    private Runnable applyViewDistance = Misc::applyViewDistance;
+    private Runnable applyViewDistance = Calculations::applyViewDistance;
     // Check if afk
     private Runnable detectAFK = Checkers::AFKChecker;
     // Check if flying
