@@ -40,6 +40,7 @@ public class BVDPlayer {
             this.scheduledViewDistance = min;
         }
     }
+
     public Player getPlayer() {
         return this.p;
     }
@@ -179,7 +180,7 @@ public class BVDPlayer {
         }
     }
 
-    public void saveSettingsViewDistance(int viewDistance){
+    public void saveSettingsViewDistance(int viewDistance) {
         this.settingsViewDistance = viewDistance;
     }
 }

@@ -47,7 +47,6 @@ public class Variable {
     public static boolean permissionsBypassTeleport;
 
 
-
     //
     // Messages.yml stuff
     //
