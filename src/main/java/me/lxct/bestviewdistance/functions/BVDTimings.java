@@ -51,13 +51,12 @@ public class BVDTimings {
     // CALCULATE NEW REDUCTION INDICE
     public void actualize() {
         final double TPS = get1minTPS();
-        double tmp = this.reductionIndice;
         if (TPS > Variable.tpsLimit && TPS < 20) { // If tps > tps limit
-            tmp = tmp - Variable.tpsChange; // Decrease indice
+            this.reductionIndice = this.reductionIndice - Variable.tpsChange; // Decrease indice
         } else if (TPS < Variable.tpsLimit) { // If tps < tps limit
-            tmp = tmp + Variable.tpsChange; // Increase indice
+            this.reductionIndice = this.reductionIndice + Variable.tpsChange; // Increase indice
         }
-        this.reductionIndice = Math.max(0.0, Math.min(tmp, maxIndice));
+        this.reductionIndice = Math.max(0.0, Math.min(this.reductionIndice, maxIndice));
     }
 
     public double getReductionIndice() {

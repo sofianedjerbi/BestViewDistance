@@ -36,7 +36,7 @@ public class BestViewDistance extends JavaPlugin {
         Bukkit.getLogger().info("└ Best View Distance, By Lxct.");
         // WARNING
 
-        checkHooks(this);
+        checkHooks(this); // Looking for dependencies
 
         //
         // Load & Get info
@@ -59,7 +59,7 @@ public class BestViewDistance extends JavaPlugin {
         // EVENTS
         getServer().getPluginManager().registerEvents(new OnJoin(), this); // Add OnJoin Event
         getServer().getPluginManager().registerEvents(new OnQuit(), this); // Add OnQuit Event
-        if(useAFKView) {
+        if (useAFKView) {
             getServer().getPluginManager().registerEvents(new OnPlayerMove(), this); // Add OnPlayerMove Event
         }
         if (useTeleportView) {

@@ -89,8 +89,8 @@ public class Variable {
 
     public static BVDPlayer playerData; // Player var used in commands for messages.yml
     public static ConcurrentHashMap<Player, BVDPlayer> onlinePlayers = new ConcurrentHashMap<>(); // All online players BVD players
-    public static BVDTimings timings = new BVDTimings(); // Initialize the Reduction indice
     public static final String serverVersion = Bukkit.getServer().getVersion(); // Get server version
+    public static BVDTimings timings = new BVDTimings(); // Initialize the Reduction indice
 
     public static void loadVariables() {
 
