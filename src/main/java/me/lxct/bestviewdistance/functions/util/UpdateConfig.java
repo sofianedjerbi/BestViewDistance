@@ -76,5 +76,14 @@ public class UpdateConfig {
             Bukkit.getLogger().info("[BestViewDistance] Added: \"Custom region view\"");
             Bukkit.getLogger().info("[BestViewDistance] More information here: https://www.spigotmc.org/resources/61963/updates");
         }
+        if(ver < 2.5) {
+            Bukkit.getLogger().info("[BestViewDistance] Updating config.yml...");
+            config.set("Version", 2.5);
+            config.set("Features.UseTPS", true);
+            BestViewDistance.plugin.saveConfig();
+            Bukkit.getLogger().info("[BestViewDistance] Updated config.yml!");
+            Bukkit.getLogger().info("[BestViewDistance] Added: \"UseTPS\"");
+            Bukkit.getLogger().info("[BestViewDistance] More information here: https://www.spigotmc.org/resources/61963/updates");
+        }
     }
 }

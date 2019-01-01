@@ -39,6 +39,7 @@ public class Variable {
     public static boolean useOnFlyingView;
     public static boolean useTasks;
     public static boolean usePing;
+    public static boolean useTPS;
     public static boolean useAFKView;
     public static boolean useLoginView;
     public static boolean usePermissions;
@@ -124,6 +125,7 @@ public class Variable {
         useOnFlyingView = configYml.getBoolean("Features.UseFlyingView", false);
         useTasks = configYml.getBoolean("Features.UseTasks", true);
         usePing = configYml.getBoolean("Features.UsePing", true);
+        useTPS = configYml.getBoolean("Features.UseTPS", true);
         useLoginView = configYml.getBoolean("Features.UseLoginView", true);
         usePermissions = configYml.getBoolean("Features.UsePermissions", false);
         decimalsTPS = configYml.getInt("Misc.DecimalsTPS", 90);
@@ -198,6 +200,9 @@ public class Variable {
         }
         if (!configYml.isBoolean("Features.UseLoginView")) {
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"UseLoginView\" value is wrong!"));
+        }
+        if (!configYml.isBoolean("Features.UseTPS")) {
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"UseTPS\" value is wrong!"));
         }
         if (!configYml.isBoolean("Features.UsePing")) {
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lWARNING! \"UsePing\" value is wrong!"));

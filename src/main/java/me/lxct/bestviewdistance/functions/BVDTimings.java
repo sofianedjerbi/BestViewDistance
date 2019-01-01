@@ -8,6 +8,7 @@ import java.text.DecimalFormat;
 
 import static me.lxct.bestviewdistance.functions.data.Variable.maxIndice;
 import static me.lxct.bestviewdistance.functions.data.Variable.serverVersion;
+import static me.lxct.bestviewdistance.functions.data.Variable.useTPS;
 
 public class BVDTimings {
 
@@ -50,13 +51,15 @@ public class BVDTimings {
 
     // CALCULATE NEW REDUCTION INDICE
     public void actualize() {
-        final double TPS = get1minTPS();
-        if (TPS > Variable.tpsLimit && TPS < 20) { // If tps > tps limit
-            this.reductionIndice = this.reductionIndice - Variable.tpsChange; // Decrease indice
-        } else if (TPS < Variable.tpsLimit) { // If tps < tps limit
-            this.reductionIndice = this.reductionIndice + Variable.tpsChange; // Increase indice
+        if (useTPS) {
+            final double TPS = get1minTPS();
+            if (TPS > Variable.tpsLimit && TPS < 20) { // If tps > tps limit
+                this.reductionIndice = this.reductionIndice - Variable.tpsChange; // Decrease indice
+            } else if (TPS < Variable.tpsLimit) { // If tps < tps limit
+                this.reductionIndice = this.reductionIndice + Variable.tpsChange; // Increase indice
+            }
+            this.reductionIndice = Math.max(0.0, Math.min(this.reductionIndice, maxIndice));
         }
-        this.reductionIndice = Math.max(0.0, Math.min(this.reductionIndice, maxIndice));
     }
 
     public double getReductionIndice() {

@@ -146,10 +146,9 @@ public class BVDPlayer {
     }
 
     public void setScheduledViewDistance(int scheduledViewDistance) {
-        scheduledViewDistance = Math.min(this.getCurrentMaxLimit(), Math.max(scheduledViewDistance, this.getCurrentMinLimit()));
-        scheduledViewDistance = Math.min(scheduledViewDistance, this.getSettingsViewDistance());
-        scheduledViewDistance = Math.min(scheduledViewDistance, this.getSupportedViewDistance());
-        this.scheduledViewDistance = scheduledViewDistance;
+        this.scheduledViewDistance = Math.min(this.getCurrentMaxLimit(), Math.max(scheduledViewDistance, this.getCurrentMinLimit()));
+        this.scheduledViewDistance = Math.min(this.scheduledViewDistance, this.getSettingsViewDistance());
+        this.scheduledViewDistance = Math.min(this.scheduledViewDistance, this.getSupportedViewDistance());
     }
 
     public int getCurrentViewDistance() {
@@ -193,7 +192,6 @@ public class BVDPlayer {
     public boolean isViewBypass() {
         if (usePermissions) {
             for (int i = 32; i >= 3; i--) { // Start at 32, to 3
-                // 3 4 5 6 7 8 9 10 ... 30 31 32
                 if (this.p.hasPermission("view.set." + i)) { // view.set.i is set
                     return true; // If he has permission, then return the number "after" the permission.
                 }

@@ -5,42 +5,43 @@
 #
 # Donate: https://paypal.me/lxct
 
-Version: 2.4 # Version of the config file. Don't change this value.
+Version: 2.5 # Version of the config file. Don't change this value.
 
-Features:
+Features: # UseTeleportView can increase lags.
+  UseTPS: true # Increase/Decrease view in function of server's TPS (Reduction Indice = 0)
+  UsePing: true # The plugin will give a custom view distance for each players
   UseLoginView: true # Use a custom view on login
   UseAFKView: true # Use a custom view if the player is AFK.
-  UsePing: true # The plugin will give a custom view distance for each players
   UseTasks: true # Use tasks. Turn this off will reduce lags, but view distance will change slower.
   UseFlyingView: false # Use a custom view if the player is flying.
   UseTeleportView: false # Use a custom view on teleport. Can reduce freeze on teleport.
   UsePermissions: false # Enable permissions (view.set.x) to bypass algorithm.
 
-ViewDistance:
-  Min: 4 # Default minimum view distance (Minimum : 3)
-  Max: 16 # Default maximum view distance (Maximum : 32)
+ViewDistance: # Adjust that according to your needs
+  Min: 4 # Default minimum view distance (Minimum: 3)
+  Max: 16 # Default maximum view distance (Maximum: 32)
   OnLogin: 4 # View distance on login
   OnAFK: 3 # AFK view distance (If UseAFKView is on true)
   OnTeleport: 4 # View distance on teleport (If UseTeleportView is on true)
   OnFlying: 12 # View distance if flying (If UseFlyingView is on true)
   MoreThanSettings: 0 # Add x chunks more than player's settings.
 
-Delay:
+Delay: # Warning: A low value for SetViewDelay can increase lags and create ghost chunks!
   CalculationsDelay: 1 # Delay in seconds to actualize calculations
-  SetViewDelay: 15 # Delay in seconds to actualize global view distance
-  UnsetTeleportViewDelay: 3 # Delay in seconds to unset the OnTeleport custom view
+  SetViewDelay: 20 # Delay in seconds to actualize global view distance (Impact performances)
+  UnsetTeleportViewDelay: 3 # Delay in seconds to unset the OnTeleport custom view (Impact performances)
   CheckFlyingDelay: 5 # Delay in seconds before set the OnFlying view distance
   AFKDelay: 90 # Delay in seconds before set the OnAFK view distance
 
-Settings:
-  TpsLimit: 19.5 # Below: Decrease Reduction Indice // Over: Increase Reduction Indice.
+Settings: # Calculations settings
+  TpsLimit: 19.5 # Below: Decrease Reduction Indice || Over: Increase Reduction Indice.
   TpsChangeIndice: 0.01 # How much we had to increase/decrease the reduction indice. 0.01 = 1%
   MaxReductionIndice: 0.75 # Maximum Reduction Indice (0.75 = 75%)
   SafePing: 1 # Set this value to 0 for local hosting.
   PingForReduction: 550 # Ping required to decrease view distance
   PingForAugmentation: 90 # Ping required to increase view distance
 
-Permissions:
+Permissions: # Bypass settings
   BypassAFKView: true # Player with permissions (view.set.x) can bypass the "OnAFK" view.
   BypassTeleportView: true # Player with permissions (view.set.x) can bypass the "OnTeleport" view.
   BypassFlyingView: true # Player with permissions (view.set.x) can bypass the "OnFlying" view.
