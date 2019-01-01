@@ -8,17 +8,17 @@ import java.io.File;
 
 public class UpdateConfig {
     public static void updateConfig() {
-        FileConfiguration config = BestViewDistance.plugin.getConfig();
-        double ver = config.getDouble("Version");
+        final FileConfiguration config = BestViewDistance.plugin.getConfig();
+        final double ver = config.getDouble("Version");
         if (ver < 2.0) {
-            File f1 = new File("./plugins/BestViewDistance/config.yml");
-            File f2 = new File("./plugins/BestViewDistance/old-config.yml");
-            boolean b1 = f1.renameTo(f2);
+            final File f1 = new File("./plugins/BestViewDistance/config.yml");
+            final File f2 = new File("./plugins/BestViewDistance/old-config.yml");
+            final boolean b1 = f1.renameTo(f2);
             if (b1 && f1.exists()) {
                 Bukkit.getLogger().info("[BestViewDistance] Changed config file.");
                 Bukkit.getLogger().info("[BestViewDistance] Old \"config.yml\" will be renamed to \"old-config.yml\"!");
             } else {
-                boolean b2 = f1.delete();
+                final boolean b2 = f1.delete();
                 if (b2) {
                     Bukkit.getLogger().info("[BestViewDistance] Deleted old config file.");
                 } else {

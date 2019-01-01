@@ -13,7 +13,7 @@ import static me.lxct.bestviewdistance.functions.data.Variable.*;
 public class ViewCommand implements CommandExecutor {
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args) {
         if (cmd.getName().equalsIgnoreCase("view")) {
             if (args.length == 0) {
                 commandHelp(sender);

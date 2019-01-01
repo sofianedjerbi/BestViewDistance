@@ -8,21 +8,21 @@ import static me.lxct.bestviewdistance.functions.data.Variable.useTasks;
 
 public class Scheduler {
     public static void scheduleSync(Runnable runnable, int delay) {
-        int task = Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, runnable, delay); // Break Async chain
+        final int task = Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, runnable, delay); // Break Async chain
         if (task == -1 && useTasks) {
             Bukkit.getScheduler().runTaskLater(BestViewDistance.plugin, runnable, delay); // Break Async chain
         }
     }
 
     public static void scheduleSync(Runnable runnable) {
-        int task = Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, runnable); // Break Async chain
+        final int task = Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, runnable); // Break Async chain
         if (task == -1 && useTasks) {
             Bukkit.getScheduler().runTask(BestViewDistance.plugin, runnable); // Break Async chain
         }
     }
 
     public static void scheduleSync(Runnable runnable, int delay, BVDPlayer player) {
-        int task = Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, runnable, delay); // Break Async chain
+        final int task = Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, runnable, delay); // Break Async chain
         if (task == -1 && useTasks) {
             Bukkit.getScheduler().runTaskLater(BestViewDistance.plugin, runnable, delay); // Break Async chain
         } else {
@@ -31,7 +31,7 @@ public class Scheduler {
     }
 
     public static void scheduleSync(Runnable runnable, BVDPlayer player) {
-        int task = Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, runnable); // Break Async chain
+        final int task = Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, runnable); // Break Async chain
         if (task == -1 && useTasks) {
             Bukkit.getScheduler().runTask(BestViewDistance.plugin, runnable); // Break Async chain
         } else {

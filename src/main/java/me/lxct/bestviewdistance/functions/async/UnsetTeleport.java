@@ -5,9 +5,9 @@ import org.bukkit.entity.Player;
 import static me.lxct.bestviewdistance.functions.data.Variable.onlinePlayers;
 
 public class UnsetTeleport implements Runnable {
-    private Player p;
+    private final Player p;
 
-    UnsetTeleport(Player p) {
+    UnsetTeleport(final Player p) {
         this.p = p;
     }
 

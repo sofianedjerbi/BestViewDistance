@@ -5,9 +5,9 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import static me.lxct.bestviewdistance.functions.data.Variable.onlinePlayers;
 
 public class UnsetAfk implements Runnable {
-    private PlayerMoveEvent e;
+    private final PlayerMoveEvent e;
 
-    public UnsetAfk(PlayerMoveEvent e) {
+    public UnsetAfk(final PlayerMoveEvent e) {
         this.e = e;
     }
 

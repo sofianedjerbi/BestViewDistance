@@ -14,15 +14,15 @@ import static me.lxct.bestviewdistance.functions.data.Variable.onlinePlayers;
 
 class ProtocolLibHook {
     static void protocolLibHook(Plugin plugin) {
-        ProtocolManager protocolManager = ProtocolLibrary.getProtocolManager();
+        final ProtocolManager protocolManager = ProtocolLibrary.getProtocolManager();
         protocolManager.addPacketListener(new PacketAdapter(plugin,
                 ListenerPriority.NORMAL,
                 PacketType.Play.Client.SETTINGS) {
             @Override
             public void onPacketReceiving(PacketEvent e) {
                 if (e.getPacketType() == PacketType.Play.Client.SETTINGS) {
-                    PacketContainer packet = e.getPacket();
-                    BVDPlayer player = onlinePlayers.get(e.getPlayer());
+                    final PacketContainer packet = e.getPacket();
+                    final BVDPlayer player = onlinePlayers.get(e.getPlayer());
                     player.saveSettingsViewDistance(packet.getIntegers().read(0));
                 }
             }

@@ -90,13 +90,14 @@ public class Variable {
     public static BVDPlayer playerData; // Player var used in commands for messages.yml
     public static ConcurrentHashMap<Player, BVDPlayer> onlinePlayers = new ConcurrentHashMap<>(); // All online players BVD players
     public static BVDTimings timings = new BVDTimings(); // Initialize the Reduction indice
+    public static final String serverVersion = Bukkit.getServer().getVersion(); // Get server version
 
     public static void loadVariables() {
 
         // FILES
-        FileConfiguration configYml = BestViewDistance.plugin.getConfig();
-        Messages messages = new Messages();
-        FileConfiguration messagesYml = messages.get();
+        final FileConfiguration configYml = BestViewDistance.plugin.getConfig();
+        final Messages messages = new Messages();
+        final FileConfiguration messagesYml = messages.get();
         // FILES
 
         //

@@ -10,9 +10,9 @@ import static me.lxct.bestviewdistance.functions.data.Variable.permissionsBypass
 
 public class Checkers {
     public static void AFKChecker() { // What this function does ? if the player has exactly the same position as x minutes ago, he'll be set in "AFK" mode.
-        for (Player p : Bukkit.getServer().getOnlinePlayers()) { // Every players...
-            BVDPlayer player = new BVDPlayer(p);
-            Location location = player.getLocation(); // Get Location
+        for (final Player p : Bukkit.getServer().getOnlinePlayers()) { // Every players...
+            final BVDPlayer player = new BVDPlayer(p);
+            final Location location = player.getLocation(); // Get Location
 
             if (player.isViewBypass() && permissionsBypassAFK) {
                 if (location.equals(player.getAfkLocation()) && !player.isAfk()) { // If same position ...
@@ -33,8 +33,8 @@ public class Checkers {
     }
 
     public static void flyingChecker() { // What this function does ? if the player is still flying, we'll set this view distance to "flying" value
-        for (Player p : Bukkit.getServer().getOnlinePlayers()) { // Every players...
-            BVDPlayer player = new BVDPlayer(p);
+        for (final Player p : Bukkit.getServer().getOnlinePlayers()) { // Every players...
+            final BVDPlayer player = new BVDPlayer(p);
 
             if (player.isViewBypass() && permissionsBypassFlying) {
                 if (p.isFlying()) { // If flying

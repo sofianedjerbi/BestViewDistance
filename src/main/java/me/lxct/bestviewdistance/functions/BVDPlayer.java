@@ -1,12 +1,16 @@
 package me.lxct.bestviewdistance.functions;
 
+import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import me.lxct.bestviewdistance.BestViewDistance;
 import me.lxct.bestviewdistance.functions.sync.SetViewDistance;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
+import java.util.Set;
+
 import static me.lxct.bestviewdistance.functions.data.Variable.*;
+import static me.lxct.bestviewdistance.functions.hooks.WorldGuardHook.getPlayerRegions;
 import static me.lxct.bestviewdistance.functions.util.Scheduler.scheduleSync;
 
 public class BVDPlayer {
@@ -19,9 +23,9 @@ public class BVDPlayer {
     private boolean isAfk; // AFK
     private boolean isWaitingForTpUnset;
     private boolean isFlying; // Flying
-    private Player p;
+    private final Player p;
 
-    public BVDPlayer(Player p) {
+    public BVDPlayer(final Player p) {
         this.p = p;
 
         this.isAfk = false;
@@ -57,19 +61,19 @@ public class BVDPlayer {
         return this.isWaitingForTpUnset;
     }
 
-    public void setTaskId(int tpTaskId) {
+    public void setTaskId(final int tpTaskId) {
         this.tpTaskId = tpTaskId;
     }
 
-    public void setAfkLocation(Location location) {
+    public void setAfkLocation(final Location location) {
         this.location = location;
     }
 
-    public void setAfk(boolean afk) {
+    public void setAfk(final boolean afk) {
         this.isAfk = afk;
     }
 
-    public void setFlying(boolean flying) {
+    public void setFlying(final boolean flying) {
         this.isFlying = flying;
     }
 
@@ -90,17 +94,41 @@ public class BVDPlayer {
     }
 
     public int getCurrentMaxLimit() {
-        String worldName = this.p.getWorld().getName();
-        if (BestViewDistance.plugin.getConfig().isInt("Worlds." + worldName + ".Max")) {
-            return BestViewDistance.plugin.getConfig().getInt("Worlds." + worldName + ".Max");
+        final FileConfiguration config = BestViewDistance.plugin.getConfig();
+        final Set<ProtectedRegion> regions = getPlayerRegions(this);
+        if(regions != null) {
+            int tmp = max;
+            for (final ProtectedRegion r : regions) {
+                final String name = r.getId();
+                if (config.isInt("Regions." + name + ".Max")) {
+                    tmp = Math.max(tmp, config.getInt("Regions." + name + ".Max"));
+                }
+            }
+            return tmp;
+        }
+        final String worldName = this.p.getWorld().getName();
+        if (config.isInt("Worlds." + worldName + ".Max")) {
+            return config.getInt("Worlds." + worldName + ".Max");
         }
         return max;
     }
 
     private int getCurrentMinLimit() {
-        String worldName = this.p.getWorld().getName();
-        if (BestViewDistance.plugin.getConfig().isInt("Worlds." + worldName + ".Min")) {
-            return BestViewDistance.plugin.getConfig().getInt("Worlds." + worldName + ".Min");
+        final FileConfiguration config = BestViewDistance.plugin.getConfig();
+        final Set<ProtectedRegion> regions = getPlayerRegions(this);
+        if(regions != null) {
+            int tmp = min;
+            for (final ProtectedRegion r : regions) {
+                final String name = r.getId();
+                if (config.isInt("Regions." + name + ".Min")) {
+                    tmp = Math.min(tmp, config.getInt("Regions." + name + ".Min"));
+                }
+            }
+            return tmp;
+        }
+        final String worldName = this.p.getWorld().getName();
+        if (config.isInt("Worlds." + worldName + ".Min")) {
+            return config.getInt("Worlds." + worldName + ".Min");
         }
         return min;
     }
@@ -118,14 +146,14 @@ public class BVDPlayer {
     }
 
     public void setScheduledViewDistance(int scheduledViewDistance) {
-        int tmp = Math.min(this.getCurrentMaxLimit(), Math.max(scheduledViewDistance, this.getCurrentMinLimit()));
-        tmp = Math.min(tmp, this.getSettingsViewDistance());
-        tmp = Math.min(tmp, this.getSupportedViewDistance());
-        this.scheduledViewDistance = tmp;
+        scheduledViewDistance = Math.min(this.getCurrentMaxLimit(), Math.max(scheduledViewDistance, this.getCurrentMinLimit()));
+        scheduledViewDistance = Math.min(scheduledViewDistance, this.getSettingsViewDistance());
+        scheduledViewDistance = Math.min(scheduledViewDistance, this.getSupportedViewDistance());
+        this.scheduledViewDistance = scheduledViewDistance;
     }
 
     public int getCurrentViewDistance() {
-        if (!Bukkit.getVersion().contains("1.8")) {
+        if (!serverVersion.contains("1.8")) {
             return this.p.getViewDistance();
         } else {
             return this.p.getServer().getViewDistance();
@@ -137,7 +165,7 @@ public class BVDPlayer {
     }
 
     public int getSettingsViewDistance() { // Get View Distance in settings
-        if (!Bukkit.getVersion().contains("1.13")) {
+        if (!serverVersion.contains("1.13")) {
             return this.settingsViewDistance;
         } else {
             return this.p.getClientViewDistance();
@@ -145,7 +173,7 @@ public class BVDPlayer {
     }
 
     // CHECK AND USE PERMISSIONS
-    public int getViewBypass(int viewDistance) {
+    public int getViewBypass(final int viewDistance) {
         if (usePermissions) {
             for (int i = 32; i >= 3; i--) { // Start at 32, to 3
                 // 3 4 5 6 7 8 9 10 ... 30 31 32
@@ -157,7 +185,7 @@ public class BVDPlayer {
         return viewDistance; // If he doesn't have permissions, then return viewDistance.
     }
 
-    public void setWaitingForTpUnset(boolean waitingForTpUnset) {
+    public void setWaitingForTpUnset(final boolean waitingForTpUnset) {
         this.isWaitingForTpUnset = waitingForTpUnset;
     }
 
@@ -174,13 +202,14 @@ public class BVDPlayer {
         return false; // If he doesn't have permissions, then return viewDistance.
     }
 
-    public void setViewDistance(int viewDistance) {
-        if (!Bukkit.getVersion().contains("1.8")) {
+    public void setViewDistance(final int viewDistance) {
+        if (!serverVersion.contains("1.8")) {
             scheduleSync(new SetViewDistance(this.p, viewDistance)); // Break Async chain
         }
     }
 
-    public void saveSettingsViewDistance(int viewDistance) {
+    public void saveSettingsViewDistance(final int viewDistance) {
         this.settingsViewDistance = viewDistance;
     }
+
 }

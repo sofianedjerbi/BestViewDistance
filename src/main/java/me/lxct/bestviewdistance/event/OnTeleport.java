@@ -11,14 +11,17 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
 import static me.lxct.bestviewdistance.functions.data.Variable.*;
+import static org.bukkit.event.player.PlayerTeleportEvent.TeleportCause.CHORUS_FRUIT;
+import static org.bukkit.event.player.PlayerTeleportEvent.TeleportCause.ENDER_PEARL;
+import static org.bukkit.event.player.PlayerTeleportEvent.TeleportCause.UNKNOWN;
 
 
 public class OnTeleport implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
-    public static void onPlayerTeleport(PlayerTeleportEvent e) {
-        Player p = e.getPlayer();
-        BVDPlayer player = onlinePlayers.get(p);
-        if (e.getCause() != PlayerTeleportEvent.TeleportCause.CHORUS_FRUIT && e.getCause() != PlayerTeleportEvent.TeleportCause.UNKNOWN && e.getCause() != PlayerTeleportEvent.TeleportCause.ENDER_PEARL) {
+    public static void onPlayerTeleport(final PlayerTeleportEvent e) {
+        final Player p = e.getPlayer();
+        final BVDPlayer player = onlinePlayers.get(p);
+        if (!e.getCause().equals(CHORUS_FRUIT) && !e.getCause().equals(UNKNOWN) && !e.getCause().equals(ENDER_PEARL)) {
             if (player.isViewBypass() && permissionsBypassTeleport) {
                 if (!player.isWaitingForTpUnset()) { // If he's not waiting for tp unset
                     p.setViewDistance(onTeleportView); // Set on teleport view

@@ -12,15 +12,15 @@ import static me.lxct.bestviewdistance.functions.util.Scheduler.scheduleSync;
 
 public class TeleportData implements Runnable {
 
-    private Player p;
+    private final Player p;
 
-    public TeleportData(Player p) {
+    public TeleportData(final Player p) {
         this.p = p;
     }
 
     @Override
     public void run() {
-        BVDPlayer player = onlinePlayers.get(p);
+        final BVDPlayer player = onlinePlayers.get(p);
         if (player.isWaitingForTpUnset()) { // If he is waiting for TP UNSET
             Bukkit.getScheduler().cancelTask(player.getTpTaskId()); // Cancel task if the player got a task
             player.setWaitingForTpUnset(false); // Remove waiting

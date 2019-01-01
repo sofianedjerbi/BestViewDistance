@@ -3,10 +3,10 @@ package me.lxct.bestviewdistance.functions.sync;
 import org.bukkit.entity.Player;
 
 public class SetViewDistance implements Runnable {
-    private int finalViewDistance;
-    private Player player;
+    private final int finalViewDistance;
+    private final Player player;
 
-    public SetViewDistance(Player player, int finalViewDistance) {
+    public SetViewDistance(final Player player, final int finalViewDistance) {
         this.player = player;
         this.finalViewDistance = finalViewDistance;
     }

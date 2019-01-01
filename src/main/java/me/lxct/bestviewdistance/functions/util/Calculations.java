@@ -11,14 +11,14 @@ public class Calculations {
     // THE MAIN FUNCTION ! CALCULATE BEST PLAYER VIEW DISTANCE WITH REDUCTION INDICE
     public static void calculatePlayersBestViewDistance() {
         timings.actualize();
-        double reductionIndice = timings.getReductionIndice();
-        for (Player p : Bukkit.getOnlinePlayers()) {
-            BVDPlayer player = onlinePlayers.get(p);
+        final double reductionIndice = timings.getReductionIndice();
+        for (final Player p : Bukkit.getOnlinePlayers()) {
+            final BVDPlayer player = onlinePlayers.get(p);
 
             int supportedViewDistance = player.getSupportedViewDistance(); // View distance supported by player
 
             if (usePing) {
-                int ping = player.getPing(); // Get ping
+                final int ping = player.getPing(); // Get ping
 
                 if (ping < Variable.aping && ping >= safePing) { // If ping need to decrease vdist
                     ++supportedViewDistance; // increase
@@ -39,8 +39,8 @@ public class Calculations {
 
     // A FUNCTION THAT SET THE VIEW DISTANCE WITH FUNCTION THAT BREAK ASYNC CHAINS
     public static void applyViewDistance() {
-        for (Player p : Bukkit.getOnlinePlayers()) {
-            BVDPlayer player = onlinePlayers.get(p);
+        for (final Player p : Bukkit.getOnlinePlayers()) {
+            final BVDPlayer player = onlinePlayers.get(p);
             if (player.isAfk()
                     && player.getCurrentViewDistance() != afk
                     && useAFKView) { // AFK VIEW
@@ -50,7 +50,7 @@ public class Calculations {
                     && useOnFlyingView) { // FLYING VIEW
                 player.setViewDistance(onFlyingView);
             } else if (!player.isWaitingForTpUnset()) {
-                int vdistToApply = player.getViewBypass(player.getScheduledViewDistance());
+                final int vdistToApply = player.getViewBypass(player.getScheduledViewDistance());
                 if (vdistToApply != player.getCurrentViewDistance()) {
                     player.setViewDistance(vdistToApply);
                 }

@@ -12,17 +12,17 @@ import static me.lxct.bestviewdistance.functions.data.Variable.*;
 public class Commands {
 
 
-    public static String colorize(String string) {
+    public static String colorize(final String string) {
         return org.bukkit.ChatColor.translateAlternateColorCodes('&', string);
     }
 
-    static void commandTPS(String[] args, CommandSender sender) {
+    static void commandTPS(final String[] args, final CommandSender sender) {
         if (args[0].equalsIgnoreCase("tps")) {
             sender.sendMessage(colorize(Misc.replacePlaceHolders(viewTps)));
         }
     }
 
-    static void commandHelp(CommandSender sender) {
+    static void commandHelp(final CommandSender sender) {
         sender.sendMessage(colorize(Misc.replacePlaceHolders(viewHelpLine1)));
         sender.sendMessage(colorize(Misc.replacePlaceHolders(viewHelpLine2)));
         sender.sendMessage(colorize(Misc.replacePlaceHolders(viewHelpLine3)));
@@ -32,12 +32,12 @@ public class Commands {
         sender.sendMessage(colorize(Misc.replacePlaceHolders(viewHelpLine7)));
     }
 
-    static void commandPing(String[] args, CommandSender sender) {
+    static void commandPing(final String[] args, final CommandSender sender) {
         if (args[0].equalsIgnoreCase("ping")) {
             if (args.length != 2) {
                 sender.sendMessage(colorize(Misc.replacePlaceHolders(viewIncorrectPing)));
             } else {
-                Player p = Bukkit.getServer().getPlayerExact(args[1]);
+                final Player p = Bukkit.getServer().getPlayerExact(args[1]);
                 if (p == null) {
                     sender.sendMessage(colorize(Misc.replacePlaceHolders(viewIncorrectPing)));
                 } else {
@@ -48,9 +48,9 @@ public class Commands {
         }
     }
 
-    static void commandView(String[] args, CommandSender sender) {
+    static void commandView(final String[] args, final CommandSender sender) {
         if (!args[0].equalsIgnoreCase("ping") && !args[0].equalsIgnoreCase("tps") && !args[0].equalsIgnoreCase("set") && !args[0].equalsIgnoreCase("unset") && !args[0].equalsIgnoreCase("server") && !args[0].equalsIgnoreCase("reload")) {
-            Player p = Bukkit.getServer().getPlayerExact(args[0]);
+            final Player p = Bukkit.getServer().getPlayerExact(args[0]);
             if (p == null) {
                 sender.sendMessage(colorize(Misc.replacePlaceHolders(viewIncorrectView)));
             } else {
@@ -62,13 +62,13 @@ public class Commands {
         }
     }
 
-    static void commandServer(String[] args, CommandSender sender) {
+    static void commandServer(final String[] args, final CommandSender sender) {
         if (args[0].equalsIgnoreCase("server")) {
             sender.sendMessage(colorize(Misc.replacePlaceHolders(viewServer)));
         }
     }
 
-    static void commandReload(String[] args, CommandSender sender) {
+    static void commandReload(final String[] args, final CommandSender sender) {
         if (args[0].equalsIgnoreCase("reload")) {
             BestViewDistance.plugin.reloadConfig();
             loadVariables();

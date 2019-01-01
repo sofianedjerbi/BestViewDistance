@@ -22,7 +22,7 @@ public class Messages {
             Bukkit.getLogger().info("[BestViewDistance] messages.yml generated !");
         }
 
-        File customConfigFile = new File(BestViewDistance.plugin.getDataFolder(), "messages.yml");
+        final File customConfigFile = new File(BestViewDistance.plugin.getDataFolder(), "messages.yml");
         this.customConfig = YamlConfiguration.loadConfiguration(customConfigFile);
 
         try {

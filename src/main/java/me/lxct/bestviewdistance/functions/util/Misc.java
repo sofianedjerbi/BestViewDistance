@@ -11,7 +11,7 @@ public class Misc {
 
     public static void genOnlinePlayerData() { // Set all playerLiveViewDistance to onLoginView.
         onlinePlayers.clear();
-        for (Player p : Bukkit.getServer().getOnlinePlayers()) {
+        for (final Player p : Bukkit.getServer().getOnlinePlayers()) {
             onlinePlayers.put(p, new BVDPlayer(p));
         }
     }

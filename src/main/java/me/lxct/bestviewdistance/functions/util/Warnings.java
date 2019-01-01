@@ -4,11 +4,12 @@ import me.lxct.bestviewdistance.BestViewDistance;
 import org.bukkit.Bukkit;
 
 import static me.lxct.bestviewdistance.commands.Commands.colorize;
+import static me.lxct.bestviewdistance.functions.data.Variable.serverVersion;
 
 public class Warnings {
 
     public static void checkProtocolLib() {
-        if (Bukkit.getVersion().contains("1.12") || Bukkit.getVersion().contains("1.11") || Bukkit.getVersion().contains("1.10") || Bukkit.getVersion().contains("1.9") || Bukkit.getVersion().contains("1.8")) {
+        if (!serverVersion.contains("1.13")) {
             if (Bukkit.getPluginManager().getPlugin("ProtocolLib") == null) {
                 Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lYOU NEED PROTOCOLLIB TO RUN THIS PLUGIN!"));
                 Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lPlease download ProtocolLib."));
@@ -19,7 +20,7 @@ public class Warnings {
     }
 
     public static void checkServerView() {
-        int spigotView = Bukkit.spigot().getSpigotConfig().getInt("world-settings.default.view-distance");
+        final int spigotView = Bukkit.spigot().getSpigotConfig().getInt("world-settings.default.view-distance");
         if (spigotView != 3) {
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lView distance setting inside spigot.yml is \"" + spigotView + "\"."));
             Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lSetting a view-distance over 3 in spigot.yml will increase lags."));

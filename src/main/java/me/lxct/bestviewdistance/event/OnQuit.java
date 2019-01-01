@@ -10,7 +10,7 @@ import static me.lxct.bestviewdistance.functions.data.Variable.onlinePlayers;
 
 public class OnQuit implements Listener {
     @EventHandler(priority = EventPriority.LOWEST)
-    public static void onPlayerQuit(PlayerQuitEvent e) {
+    public static void onPlayerQuit(final PlayerQuitEvent e) {
         onlinePlayers.remove(e.getPlayer());
     }
 }

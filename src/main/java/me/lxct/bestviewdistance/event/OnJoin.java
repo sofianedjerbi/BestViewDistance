@@ -12,8 +12,8 @@ import static me.lxct.bestviewdistance.functions.data.Variable.*;
 
 public class OnJoin implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
-    public static void onPlayerJoin(PlayerJoinEvent e) {
-        Player p = e.getPlayer();
+    public static void onPlayerJoin(final PlayerJoinEvent e) {
+        final Player p = e.getPlayer();
         onlinePlayers.put(p, new BVDPlayer(p));
         if(useLoginView) {
             p.setViewDistance(onLoginView);

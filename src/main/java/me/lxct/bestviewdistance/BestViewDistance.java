@@ -95,7 +95,7 @@ public class BestViewDistance extends JavaPlugin {
 
         //if (this.getConfig().getBoolean("Misc.Metrics")) {
         //noinspection unused
-        Metrics metrics = new Metrics(this); // METRICS
+        final Metrics metrics = new Metrics(this); // METRICS
         //}
         if (this.getConfig().getBoolean("Misc.CheckUpdates")) {
             new AsyncUpdateChecker(this).checkForUpdate(); // Add AsyncUpdateChecker (Thx Benz56)
@@ -103,11 +103,11 @@ public class BestViewDistance extends JavaPlugin {
     }
 
     // Calculations
-    private Runnable calculations = Calculations::calculatePlayersBestViewDistance;
+    private final Runnable calculations = Calculations::calculatePlayersBestViewDistance;
     // Update Players View Distance
-    private Runnable applyViewDistance = Calculations::applyViewDistance;
+    private final Runnable applyViewDistance = Calculations::applyViewDistance;
     // Check if afk
-    private Runnable detectAFK = Checkers::AFKChecker;
+    private final Runnable detectAFK = Checkers::AFKChecker;
     // Check if flying
-    private Runnable detectFlying = Checkers::flyingChecker;
+    private final Runnable detectFlying = Checkers::flyingChecker;
 }

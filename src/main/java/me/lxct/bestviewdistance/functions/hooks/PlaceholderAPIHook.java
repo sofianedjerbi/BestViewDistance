@@ -15,7 +15,7 @@ public class PlaceholderAPIHook extends EZPlaceholderHook {
     }
 
     @Override
-    public String onPlaceholderRequest(Player p, String identifier) {
+    public String onPlaceholderRequest(final Player p, final String identifier) {
         if (identifier.equals("REDUCTION_INDICE_DECIMAL")) {
             return String.valueOf((Math.round(timings.getReductionIndice() * Math.pow(10, decimalsIndice))) / Math.pow(10, decimalsIndice));
         }
@@ -31,7 +31,7 @@ public class PlaceholderAPIHook extends EZPlaceholderHook {
         if (p == null) {
             return "";
         }
-        BVDPlayer player = onlinePlayers.get(p);
+        final BVDPlayer player = onlinePlayers.get(p);
         if (identifier.equals("PLAYER_SETTINGS_VIEW")) {
             return String.valueOf(player.getSettingsViewDistance());
         }
