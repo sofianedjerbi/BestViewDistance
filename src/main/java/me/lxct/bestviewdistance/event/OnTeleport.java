@@ -20,6 +20,10 @@ public class OnTeleport implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onPlayerTeleport(final PlayerTeleportEvent e) {
         final Player p = e.getPlayer();
+        if (p.hasMetadata("NPC")) {
+            return;
+        }
+
         final BVDPlayer player = onlinePlayers.get(p);
         if (!e.getCause().equals(CHORUS_FRUIT) && !e.getCause().equals(UNKNOWN) && !e.getCause().equals(ENDER_PEARL)) {
             if (player.isViewBypass() && permissionsBypassTeleport) {
