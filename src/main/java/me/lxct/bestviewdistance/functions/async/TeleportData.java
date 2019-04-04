@@ -21,6 +21,10 @@ public class TeleportData implements Runnable {
     @Override
     public void run() {
         final BVDPlayer player = onlinePlayers.get(p);
+        if (player == null) {
+            return;
+        }
+
         if (player.isWaitingForTpUnset()) { // If he is waiting for TP UNSET
             Bukkit.getScheduler().cancelTask(player.getTpTaskId()); // Cancel task if the player got a task
             player.setWaitingForTpUnset(false); // Remove waiting
