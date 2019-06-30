@@ -1,6 +1,6 @@
 name: BestViewDistance
-version: 11.9
-api-version: 1.13
+version: 12
+api-version: 1.14
 description: Best View Distance. Optimize your view distance.
 author: Lxct
 softdepend: [ProtocolLib, PlaceholderAPI, WorldGuard]
