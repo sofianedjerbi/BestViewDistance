@@ -9,6 +9,8 @@ import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Objects;
+
 import static me.lxct.bestviewdistance.functions.data.Variable.*;
 import static me.lxct.bestviewdistance.functions.hooks.Hooks.checkHooks;
 import static me.lxct.bestviewdistance.functions.util.Misc.genOnlinePlayerData;
@@ -70,10 +72,10 @@ public class BestViewDistance extends JavaPlugin {
         // UPDATE CONFIG
 
         // COMMANDS
-        getCommand("view").setExecutor(new ViewCommand()); // Executor for commands
-        getCommand("vdist").setExecutor(new ViewCommand());
-        getCommand("vping").setExecutor(new ViewCommand());
-        getCommand("view").setTabCompleter(new OnTabComplete()); // Tab completer
+        Objects.requireNonNull(getCommand("view")).setExecutor(new ViewCommand()); // Executor for commands
+        Objects.requireNonNull(getCommand("vdist")).setExecutor(new ViewCommand());
+        Objects.requireNonNull(getCommand("vping")).setExecutor(new ViewCommand());
+        Objects.requireNonNull(getCommand("view")).setTabCompleter(new OnTabComplete()); // Tab completer
         // COMMANDS
 
         //

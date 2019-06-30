@@ -19,34 +19,10 @@ public class BVDTimings {
 
     public BVDTimings() {
         this.reductionIndice = 0;
-        if (serverVersion.contains("1.8")) {
-            try {
-                final String name = Bukkit.getServer().getClass().getPackage().getName();
-                final String version = name.substring(name.lastIndexOf('.') + 1);
-                this.serverInstance = Class.forName("net.minecraft.server." + version + "." + "MinecraftServer").getMethod("getServer").invoke(null);
-                this.tpsField = serverInstance.getClass().getField("recentTps");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-
-    private String getTPS() { // Get TPS (USED ONLY FOR 1.8)
-        try {
-            final double[] tps = ((double[]) this.tpsField.get(this.serverInstance));
-            return new DecimalFormat("##.##").format(tps[0]).replace(",", ".");
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public double get1minTPS() {
-        if (serverVersion.contains("1.8")) {
-            return Double.valueOf(getTPS());
-        } else {
-            return Bukkit.getServer().getTPS()[0];
-        }
+        return Bukkit.getServer().getTPS()[0];
     }
 
     // CALCULATE NEW REDUCTION INDICE

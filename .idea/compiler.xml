@@ -9,8 +9,5 @@
         <module name="BestViewDistance" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Best View Distance" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

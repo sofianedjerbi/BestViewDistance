@@ -152,11 +152,7 @@ public class BVDPlayer {
     }
 
     public int getCurrentViewDistance() {
-        if (!serverVersion.contains("1.8")) {
-            return this.p.getViewDistance();
-        } else {
-            return this.p.getServer().getViewDistance();
-        }
+        return this.p.getViewDistance();
     }
 
     public int getPing() {
@@ -201,9 +197,7 @@ public class BVDPlayer {
     }
 
     public void setViewDistance(final int viewDistance) {
-        if (!serverVersion.contains("1.8")) {
-            scheduleSync(new SetViewDistance(this.p, viewDistance)); // Break Async chain
-        }
+        scheduleSync(new SetViewDistance(this.p, viewDistance)); // Break Async chain
     }
 
     public void saveSettingsViewDistance(final int viewDistance) {
