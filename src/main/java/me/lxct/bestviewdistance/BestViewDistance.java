@@ -35,7 +35,7 @@ public class BestViewDistance extends JavaPlugin {
         Bukkit.getLogger().info("└ Version: " + plugin.getDescription().getVersion());
         Bukkit.getLogger().info("└ Make sure you use this plugin with Paper.");
         Bukkit.getLogger().info("└ https://papermc.io/");
-        Bukkit.getLogger().info("└ Best View Distance, By Lxct.");
+        Bukkit.getLogger().info("└ Best View Distance, By Kugge.");
         // WARNING
 
         checkHooks(this); // Looking for dependencies
