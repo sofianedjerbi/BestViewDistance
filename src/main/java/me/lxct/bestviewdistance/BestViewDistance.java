@@ -104,6 +104,10 @@ public class BestViewDistance extends JavaPlugin {
         }
     }
 
+    public void onDisable() {
+        this.getServer().getScheduler().cancelTasks(this);
+    }
+
     // Calculations
     private final Runnable calculations = Calculations::calculatePlayersBestViewDistance;
     // Update Players View Distance

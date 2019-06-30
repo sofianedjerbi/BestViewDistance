@@ -14,6 +14,7 @@ public class OnJoin implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public static void onPlayerJoin(final PlayerJoinEvent e) {
         final Player p = e.getPlayer();
+        onlinePlayers.remove(p);  // Prevent from duplications
         onlinePlayers.put(p, new BVDPlayer(p));
         if(useLoginView) {
             p.setViewDistance(onLoginView);
