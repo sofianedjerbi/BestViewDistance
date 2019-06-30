@@ -2,6 +2,8 @@ package me.lxct.bestviewdistance.functions.async;
 
 import org.bukkit.event.player.PlayerMoveEvent;
 
+import me.lxct.bestviewdistance.functions.BVDPlayer;
+
 import static me.lxct.bestviewdistance.functions.data.Variable.onlinePlayers;
 
 public class UnsetAfk implements Runnable {
@@ -13,6 +15,17 @@ public class UnsetAfk implements Runnable {
 
     @Override
     public void run() {
-        onlinePlayers.get(e.getPlayer()).setAfk(false);
+        // Since this is an async task, the player could have logged off
+        // this usually happens if they lag or the server lags
+        if (e.getPlayer() == null) {
+            return;
+        }
+
+        BVDPlayer p = onlinePlayers.get(e.getPlayer());
+        if (p == null) {
+            return;
+        }
+
+        p.setAfk(false);
     }
 }
