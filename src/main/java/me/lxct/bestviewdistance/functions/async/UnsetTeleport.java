@@ -2,6 +2,8 @@ package me.lxct.bestviewdistance.functions.async;
 
 import org.bukkit.entity.Player;
 
+import me.lxct.bestviewdistance.functions.BVDPlayer;
+
 import static me.lxct.bestviewdistance.functions.data.Variable.onlinePlayers;
 
 public class UnsetTeleport implements Runnable {
@@ -13,6 +15,15 @@ public class UnsetTeleport implements Runnable {
 
     @Override
     public void run() {
-        onlinePlayers.get(p).setWaitingForTpUnset(false);
+        if (p == null) {
+            return;
+        }
+
+        BVDPlayer pl = onlinePlayers.get(p);
+        if (pl == null) {
+            return;
+        }
+
+        pl.setWaitingForTpUnset(false);
     }
 }
