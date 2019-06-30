@@ -8,6 +8,7 @@ import static me.lxct.bestviewdistance.functions.data.Variable.useTasks;
 
 public class Scheduler {
     public static void scheduleSync(Runnable runnable, int delay) {
+        // Delay is in seconds
         final int task = Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, runnable, delay * 20L); // Break Async chain
         if (task == -1 && useTasks) {
             Bukkit.getScheduler().runTaskLater(BestViewDistance.plugin, runnable, delay * 20L); // Break Async chain
@@ -22,7 +23,7 @@ public class Scheduler {
     }
 
     public static void scheduleSync(Runnable runnable, BVDPlayer player, int delay) {
-        // Delay is in tick, 20 tick = 1 Sec.
+        // Delay is in seconds
         final int task = Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, runnable, delay); // Break Async chain
         if (task == -1 && useTasks) {
             Bukkit.getScheduler().runTaskLater(BestViewDistance.plugin, runnable, delay * 20L); // Break Async chain
