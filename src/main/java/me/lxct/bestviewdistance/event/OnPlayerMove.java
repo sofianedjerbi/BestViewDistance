@@ -14,7 +14,6 @@ public class OnPlayerMove implements Listener {
         if (e.getPlayer().hasMetadata("NPC")) {
             return;
         }
-
         // Unset Afk with Async Method...
         Bukkit.getScheduler().runTaskAsynchronously(BestViewDistance.plugin, new UnsetAfk(e));
     }

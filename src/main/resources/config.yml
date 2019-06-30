@@ -5,7 +5,7 @@
 #
 # Donate: https://paypal.me/lxct
 
-Version: 2.5 # Version of the config file. Don't change this value.
+Version: 2.6 # Version of the config file. Don't change this value.
 
 Features: # UseTeleportView can increase lags.
   UseTPS: true # Increase/Decrease view in function of server's TPS (Reduction Indice = 0)
@@ -32,6 +32,7 @@ Delay: # Warning: A low value for SetViewDelay can increase lags and create ghos
   UnsetTeleportViewDelay: 3 # Delay in seconds to unset the OnTeleport custom view (Impact performances)
   CheckFlyingDelay: 5 # Delay in seconds before set the OnFlying view distance
   AFKDelay: 90 # Delay in seconds before set the OnAFK view distance
+  OnLoginDelay: 10 # Delay in seconds before the first OnLogin view change (Fixes invisible players issue)
 
 Settings: # Calculations settings
   TpsLimit: 19.5 # Below: Decrease Reduction Indice || Over: Increase Reduction Indice.

@@ -22,6 +22,7 @@ public class Scheduler {
     }
 
     public static void scheduleSync(Runnable runnable, int delay, BVDPlayer player) {
+        // Delay is in tick, 20 tick = 1 Sec.
         final int task = Bukkit.getScheduler().scheduleSyncDelayedTask(BestViewDistance.plugin, runnable, delay); // Break Async chain
         if (task == -1 && useTasks) {
             Bukkit.getScheduler().runTaskLater(BestViewDistance.plugin, runnable, delay); // Break Async chain

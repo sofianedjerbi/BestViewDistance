@@ -85,5 +85,15 @@ public class UpdateConfig {
             Bukkit.getLogger().info("[BestViewDistance] Added: \"UseTPS\"");
             Bukkit.getLogger().info("[BestViewDistance] More information here: https://www.spigotmc.org/resources/61963/updates");
         }
+        if(ver < 2.6) {
+            Bukkit.getLogger().info("[BestViewDistance] Updating config.yml...");
+            config.set("Version", 2.6);
+            config.set("Delay.OnLoginDelay", 10);
+            BestViewDistance.plugin.saveConfig();
+            Bukkit.getLogger().info("[BestViewDistance] Updated config.yml!");
+            Bukkit.getLogger().info("[BestViewDistance] Added: \"OnLoginDelay\"");
+            Bukkit.getLogger().info("[BestViewDistance] More information here: https://www.spigotmc.org/resources/61963/updates");
+
+        }
     }
 }

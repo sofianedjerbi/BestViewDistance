@@ -21,6 +21,7 @@ public class Variable {
     public static int max;
     public static int min;
     public static int afk;
+    public static int onLoginDelay;
     public static int onLoginView;
     public static int onTeleportView;
     public static int onFlyingView;
@@ -113,6 +114,7 @@ public class Variable {
         onFlyingView = configYml.getInt("ViewDistance.OnFlying", 12);
         onTeleportView = configYml.getInt("ViewDistance.OnTeleport", 4);
         teleportUnsetDelay = configYml.getInt("Delay.UnsetTeleportViewDelay", 3);
+        onLoginDelay = configYml.getInt("Delay.OnLoginDelay", 10);
         rping = configYml.getInt("Settings.PingForReduction", 550);
         aping = configYml.getInt("Settings.PingForAugmentation", 90);
         moreThanSettings = configYml.getInt("ViewDistance.MoreThanSettings", 0);

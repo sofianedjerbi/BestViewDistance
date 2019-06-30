@@ -20,6 +20,7 @@ public class BVDPlayer {
     private int scheduledViewDistance; // Live View Distance list
     private int settingsViewDistance; // 1.12 Settings View Distance list
     private int tpTaskId; // Waiting for teleport unset list with task ID
+    private boolean isAbleToBeSet;
     private boolean isAfk; // AFK
     private boolean isWaitingForTpUnset;
     private boolean isFlying; // Flying
@@ -27,7 +28,7 @@ public class BVDPlayer {
 
     public BVDPlayer(final Player p) {
         this.p = p;
-
+        this.isAbleToBeSet = false;
         this.isAfk = false;
         this.isWaitingForTpUnset = false;
         this.isFlying = false;
@@ -96,7 +97,7 @@ public class BVDPlayer {
     public int getCurrentMaxLimit() {
         final FileConfiguration config = BestViewDistance.plugin.getConfig();
         final Set<ProtectedRegion> regions = getPlayerRegions(this);
-        if(regions != null) {
+        if (regions != null) {
             int tmp = max;
             for (final ProtectedRegion r : regions) {
                 final String name = r.getId();
@@ -116,7 +117,7 @@ public class BVDPlayer {
     private int getCurrentMinLimit() {
         final FileConfiguration config = BestViewDistance.plugin.getConfig();
         final Set<ProtectedRegion> regions = getPlayerRegions(this);
-        if(regions != null) {
+        if (regions != null) {
             int tmp = min;
             for (final ProtectedRegion r : regions) {
                 final String name = r.getId();
@@ -197,8 +198,16 @@ public class BVDPlayer {
     }
 
     public void setViewDistance(final int viewDistance) {
-        scheduleSync(new SetViewDistance(this.p, viewDistance)); // Break Async chain
+        if (this.isAbleToBeSet) {
+            scheduleSync(new SetViewDistance(this.p, viewDistance)); // Break Async chain
+        }
     }
+
+    public void setViewDistanceATBS(final int viewDistance, final int delay) {
+        scheduleSync(new SetViewDistance(this.p, viewDistance)); // Break Async chain
+        this.isAbleToBeSet = true;  // We can finally change the vdist of the player !
+    }
+
 
     public void saveSettingsViewDistance(final int viewDistance) {
         this.settingsViewDistance = viewDistance;

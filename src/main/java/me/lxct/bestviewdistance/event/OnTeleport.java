@@ -28,12 +28,12 @@ public class OnTeleport implements Listener {
         if (!e.getCause().equals(CHORUS_FRUIT) && !e.getCause().equals(UNKNOWN) && !e.getCause().equals(ENDER_PEARL)) {
             if (player.isViewBypass() && permissionsBypassTeleport) {
                 if (!player.isWaitingForTpUnset()) { // If he's not waiting for tp unset
-                    p.setViewDistance(onTeleportView); // Set on teleport view
+                    player.setViewDistance(onTeleportView); // Set on teleport view
                 }
                 Bukkit.getScheduler().runTaskAsynchronously(BestViewDistance.plugin, new TeleportData(p)); // Process teleport data with async method
             } else {
                 if (!player.isWaitingForTpUnset()) { // If he's not waiting for tp unset
-                    p.setViewDistance(onTeleportView); // Set on teleport view
+                    player.setViewDistance(onTeleportView); // Set on teleport view
                 }
                 Bukkit.getScheduler().runTaskAsynchronously(BestViewDistance.plugin, new TeleportData(p)); // Process teleport data with async method
             }
