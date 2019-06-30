@@ -204,7 +204,7 @@ public class BVDPlayer {
     }
 
     public void setViewDistanceATBS(final int viewDistance, final int delay) {
-        scheduleSync(new SetViewDistance(this.p, viewDistance)); // Break Async chain
+        scheduleSync(new SetViewDistance(this.p, viewDistance), delay); // Break Async chain
         this.isAbleToBeSet = true;  // We can finally change the vdist of the player !
     }
 

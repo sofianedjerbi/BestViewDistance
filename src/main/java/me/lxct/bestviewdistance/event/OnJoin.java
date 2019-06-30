@@ -17,10 +17,10 @@ public class OnJoin implements Listener {
         onlinePlayers.remove(p);  // Prevent from duplications
         BVDPlayer data = new BVDPlayer(p);
         onlinePlayers.put(p, data);
-        if(useLoginView) {
-            data.setViewDistanceATBS(onLoginView, onLoginDelay * 20);
+        if (useLoginView) {
+            data.setViewDistanceATBS(onLoginView, onLoginDelay);
         } else {
-            data.setViewDistanceATBS(min, onLoginDelay * 20);
+            data.setViewDistanceATBS(min, onLoginDelay);
         }
     }
 }
