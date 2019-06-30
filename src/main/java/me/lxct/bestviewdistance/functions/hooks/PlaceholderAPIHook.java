@@ -1,21 +1,28 @@
 package me.lxct.bestviewdistance.functions.hooks;
 
-import me.clip.placeholderapi.external.EZPlaceholderHook;
+import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.lxct.bestviewdistance.functions.BVDPlayer;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
-
 import static me.lxct.bestviewdistance.functions.data.Variable.*;
 
-@SuppressWarnings("deprecation")
-public class PlaceholderAPIHook extends EZPlaceholderHook {
+public class PlaceholderAPIHook extends PlaceholderExpansion {
 
-    PlaceholderAPIHook(Plugin plugin) {
-        super(plugin, "VDIST");
+    @Override
+    public String getAuthor() {
+        return "Kugge";
     }
 
     @Override
-    public String onPlaceholderRequest(final Player p, final String identifier) {
+    public String getIdentifier() {
+        return "VDIST";
+    }
+
+    @Override
+    public String getVersion() {
+        return "12";
+    }
+    @Override
+    public String onPlaceholderRequest(Player p, String identifier) {
         if (identifier.equals("REDUCTION_INDICE_DECIMAL")) {
             return String.valueOf((Math.round(timings.getReductionIndice() * Math.pow(10, decimalsIndice))) / Math.pow(10, decimalsIndice));
         }

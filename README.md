@@ -15,7 +15,7 @@ Please download Paper !
 https://papermc.io
 It's better than spigot and bukkit.
 Also provide you a lot of optimizations and options.
-[WARNING] ProtocolLib is needed ONLY for 1.12.X !
+[WARNING] ProtocolLib is needed ONLY for 1.12.X and below!
 
 ## Commands / Permissions
 ```
