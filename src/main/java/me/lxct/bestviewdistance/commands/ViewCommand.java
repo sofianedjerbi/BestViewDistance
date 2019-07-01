@@ -1,5 +1,6 @@
 package me.lxct.bestviewdistance.commands;
 
+import com.sun.istack.internal.NotNull;
 import me.lxct.bestviewdistance.functions.util.Misc;
 import me.lxct.bestviewdistance.functions.data.Variable;
 
@@ -15,12 +16,12 @@ import static me.lxct.bestviewdistance.functions.data.Variable.*;
 public class ViewCommand implements CommandExecutor {
 
     @Override
+    @SuppressWarnings("NullableProblems")
     public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage(ChatColor.RED + "Sadly, this requires a player.");
+            sender.sendMessage(ChatColor.RED + "You're not a player!");
             return true;
         }
-
         playerData = onlinePlayers.get(sender);
 
         if (cmd.getName().equalsIgnoreCase("view")) {

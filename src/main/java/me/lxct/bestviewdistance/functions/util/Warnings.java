@@ -21,12 +21,6 @@ public class Warnings {
     }
 
     public static void checkServerView() {
-        final int spigotView = Bukkit.spigot().getSpigotConfig().getInt("world-settings.default.view-distance");
-        if (spigotView != 3) {
-            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lView distance setting inside spigot.yml is \"" + spigotView + "\"."));
-            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lSetting a view-distance different than 3 in spigot.yml will increase lags."));
-            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lPlease set \"view-distance\" to 3 in spigot.yml"));
-            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lThe plugin will override the view-distance. Don't worry about that."));
-        }
+        Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] Make sure that view-distance setting is set on \"3\" in every .yml files."));
     }
 }
