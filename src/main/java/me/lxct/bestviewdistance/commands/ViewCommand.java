@@ -1,6 +1,5 @@
 package me.lxct.bestviewdistance.commands;
 
-import com.sun.istack.internal.NotNull;
 import me.lxct.bestviewdistance.functions.util.Misc;
 import me.lxct.bestviewdistance.functions.data.Variable;
 
