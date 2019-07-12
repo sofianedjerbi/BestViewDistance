@@ -10,7 +10,7 @@ public class Hooks {
     public static void checkHooks(Plugin plugin) {
 
         // PROTOCOLLIB
-        if (Bukkit.getPluginManager().getPlugin("ProtocolLib") != null && (!serverVersion.contains("1.13") || !serverVersion.contains("1.14"))) { // Add !=1.13 Support for Client View Distance
+        if (Bukkit.getPluginManager().getPlugin("ProtocolLib") != null && !serverVersion.contains("1.13") && !serverVersion.contains("1.14")) { // Add !=1.13 Support for Client View Distance
             try {
                 protocolLibHook(plugin);
                 Bukkit.getLogger().info("[BestViewDistance] Successfully hooked into ProtocolLib!");
