@@ -12,11 +12,20 @@ public class Warnings {
         if (!serverVersion.contains("1.13") && !serverVersion.contains("1.14")) {
             if (Bukkit.getPluginManager().getPlugin("ProtocolLib") == null) {
                 Bukkit.getConsoleSender().sendMessage(serverVersion);
-                Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&l PROTOCOLLIB IS REQUIRED TO RUN THIS PLUGIN BELOW 1.13.X!"));
+                Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lPROTOCOLLIB IS REQUIRED TO RUN THIS PLUGIN BELOW 1.13.X!"));
                 Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lPlease download ProtocolLib."));
                 Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lLink for ProtocolLib: https://www.spigotmc.org/resources/1997/"));
                 Bukkit.getPluginManager().disablePlugin(BestViewDistance.plugin);
             }
+        }
+    }
+
+    public static void checkCompatibility() {
+        if (serverVersion.contains("1.14")) {
+            Bukkit.getConsoleSender().sendMessage(serverVersion);
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lTHIS PLUGIN ISN'T COMPATIBLE WITH 1.14.X."));
+            Bukkit.getConsoleSender().sendMessage(colorize("[BestViewDistance] &4&lMore information here: https://github.com/Kugge/BestViewDistance/issues/32"));
+            Bukkit.getPluginManager().disablePlugin(BestViewDistance.plugin);
         }
     }
 

@@ -15,8 +15,7 @@ import static me.lxct.bestviewdistance.functions.data.Variable.*;
 import static me.lxct.bestviewdistance.functions.hooks.Hooks.checkHooks;
 import static me.lxct.bestviewdistance.functions.util.Misc.genOnlinePlayerData;
 import static me.lxct.bestviewdistance.functions.util.UpdateConfig.updateConfig;
-import static me.lxct.bestviewdistance.functions.util.Warnings.checkProtocolLib;
-import static me.lxct.bestviewdistance.functions.util.Warnings.checkServerView;
+import static me.lxct.bestviewdistance.functions.util.Warnings.*;
 
 public class BestViewDistance extends JavaPlugin {
 
@@ -50,6 +49,7 @@ public class BestViewDistance extends JavaPlugin {
         // WARNINGS
         checkProtocolLib();
         checkServerView();
+        checkCompatibility();
         // WARNINGS
 
         // GENERATION
