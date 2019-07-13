@@ -1,5 +1,5 @@
 # BestViewDistance
-![Picture of BVD](https://www.spigotmc.org/attachments/2018-12-01_09-00-48-png.388902/)
+![Picture of BVD](https://image.noelshack.com/fichiers/2019/28/6/1563043570-bvd.png)
 A view distance plugin for **Paper**. Created to **boost ping/tps and view distance**.
 
 ## How it works ?
@@ -126,5 +126,5 @@ I'd like to hear your comments ! <3
 ## Info
 Spigot Link: [https://www.spigotmc.org/resources/best-view-distance.61963/](https://www.spigotmc.org/resources/best-view-distance.61963/)
 Github Link: [https://github.com/Lxct/BestViewDistance](https://github.com/Lxct/BestViewDistance)
-Dev Builds: [https://ci.codemc.org/job/Lxct/job/BestViewDistance/](https://ci.codemc.org/job/Lxct/job/BestViewDistance/)
-[![Build Status](https://ci.codemc.org/job/Lxct/job/BestViewDistance/badge/icon)](https://ci.codemc.org/job/Kugge/job/BestViewDistance/)
+Dev Builds: [https://ci.codemc.org/job/Kugge/job/BestViewDistance/](https://ci.codemc.org/job/Kugge/job/BestViewDistance/)
+[![Build Status](https://ci.codemc.org/job/Kugge/job/BestViewDistance/badge/icon)](https://ci.codemc.org/job/Kugge/job/BestViewDistance/)
