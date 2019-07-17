@@ -1,5 +1,5 @@
 name: BestViewDistance
-version: 12-SNAPSHOT
+version: 12
 description: Best View Distance. Optimize your view distance.
 author: Kugge
 softdepend: [ProtocolLib, PlaceholderAPI, WorldGuard]
