@@ -18,7 +18,6 @@ public class WorldGuardHook {
 
     public static String getPlayerRegions(final BVDPlayer p) {
         if (Bukkit.getPluginManager().getPlugin("WorldGuard") != null) {
-            //region.contains(BlockVector3.at(20, 0, 30));
             final Player player = p.getPlayer();
             final World world = BukkitAdapter.adapt(player.getWorld());
             final RegionContainer container = WorldGuard.getInstance().getPlatform().getRegionContainer();
@@ -29,9 +28,7 @@ public class WorldGuardHook {
             if (regions != null) {
                 final ApplicableRegionSet apRegions = regions.getApplicableRegions(BlockVector3.at(x, y, z));
                 final Set<ProtectedRegion> set = apRegions.getRegions();
-                String name = set.iterator().next().getId();
-                Bukkit.broadcastMessage(name);
-                return name;
+                return set.iterator().next().getId(); // name = set.iterator().next().getId();
             }
             return null;
         }
