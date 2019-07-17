@@ -31,6 +31,7 @@ public class WorldGuardHook {
             if (regions != null) {
                 final ApplicableRegionSet apRegions = regions.getApplicableRegions(BlockVector3.at(x, y, z));
                 final Set<ProtectedRegion> set = apRegions.getRegions();
+                if(set.isEmpty()) return null;
                 return set.iterator().next().getId(); // name = set.iterator().next().getId();
             }
             return null;
