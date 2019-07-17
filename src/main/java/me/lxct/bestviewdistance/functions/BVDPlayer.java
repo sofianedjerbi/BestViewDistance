@@ -1,13 +1,10 @@
 package me.lxct.bestviewdistance.functions;
 
-import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import me.lxct.bestviewdistance.BestViewDistance;
 import me.lxct.bestviewdistance.functions.sync.SetViewDistance;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-
-import java.util.Set;
 
 import static me.lxct.bestviewdistance.functions.data.Variable.*;
 import static me.lxct.bestviewdistance.functions.hooks.WorldGuardHook.getPlayerRegions;
@@ -96,16 +93,9 @@ public class BVDPlayer {
 
     public int getCurrentMaxLimit() {
         final FileConfiguration config = BestViewDistance.plugin.getConfig();
-        final Set<ProtectedRegion> regions = getPlayerRegions(this);
-        if (regions != null) {
-            int tmp = max;
-            for (final ProtectedRegion r : regions) {
-                final String name = r.getId();
-                if (config.isInt("Regions." + name + ".Max")) {
-                    tmp = Math.max(tmp, config.getInt("Regions." + name + ".Max"));
-                }
-            }
-            return tmp;
+        final String region = getPlayerRegions(this);
+        if (config.isInt("Regions." + region + ".Max")) {
+            return config.getInt("Regions." + region + ".Max");
         }
         final String worldName = this.p.getWorld().getName();
         if (config.isInt("Worlds." + worldName + ".Max")) {
@@ -116,16 +106,9 @@ public class BVDPlayer {
 
     private int getCurrentMinLimit() {
         final FileConfiguration config = BestViewDistance.plugin.getConfig();
-        final Set<ProtectedRegion> regions = getPlayerRegions(this);
-        if (regions != null) {
-            int tmp = min;
-            for (final ProtectedRegion r : regions) {
-                final String name = r.getId();
-                if (config.isInt("Regions." + name + ".Min")) {
-                    tmp = Math.min(tmp, config.getInt("Regions." + name + ".Min"));
-                }
-            }
-            return tmp;
+        final String region = getPlayerRegions(this);
+        if (config.isInt("Regions." + region + ".Min")) {
+            return config.getInt("Regions." + region + ".Min");
         }
         final String worldName = this.p.getWorld().getName();
         if (config.isInt("Worlds." + worldName + ".Min")) {
