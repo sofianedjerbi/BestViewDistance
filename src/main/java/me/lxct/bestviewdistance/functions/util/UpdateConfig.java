@@ -95,5 +95,16 @@ public class UpdateConfig {
             Bukkit.getLogger().info("[BestViewDistance] More information here: https://www.spigotmc.org/resources/61963/updates");
 
         }
+        if(ver < 2.7) {
+            Bukkit.getLogger().info("[BestViewDistance] Updating config.yml...");
+            config.set("Version", 2.7);
+            config.set("Features.UsePerWorldFeature", false);
+            config.set("Features.UsePerRegionFeature", false);
+            BestViewDistance.plugin.saveConfig();
+            Bukkit.getLogger().info("[BestViewDistance] Updated config.yml!");
+            Bukkit.getLogger().info("[BestViewDistance] Added: \"Features.UsePerWorldFeature\" and \"Features.UsePerRegionFeature\"");
+            Bukkit.getLogger().info("[BestViewDistance] More information here: https://www.spigotmc.org/resources/61963/updates");
+
+        }
     }
 }

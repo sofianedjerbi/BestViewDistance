@@ -31,7 +31,7 @@ public class Hooks {
 
         // WORLDGUARD
         if (Bukkit.getPluginManager().getPlugin("WorldGuard") != null) {
-            if(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("WorldGuard")).getDescription().getVersion().contains("7")) {
+            if (Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("WorldGuard")).getDescription().getVersion().contains("7")) {
                 try {
                     Bukkit.getLogger().info("[BestViewDistance] Successfully hooked into WorldGuard!");
                 } catch (NoClassDefFoundError ignored) {

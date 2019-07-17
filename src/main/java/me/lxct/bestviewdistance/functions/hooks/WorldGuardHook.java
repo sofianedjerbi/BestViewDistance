@@ -19,7 +19,8 @@ public class WorldGuardHook {
 
     public static String getPlayerRegions(final BVDPlayer p) {
         if (Bukkit.getPluginManager().getPlugin("WorldGuard") != null) {
-            if(!Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("WorldGuard")).getDescription().getVersion().contains("7")) return null;
+            if (!Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("WorldGuard")).getDescription().getVersion().contains("7"))
+                return null;
             final Player player = p.getPlayer();
             final World world = BukkitAdapter.adapt(player.getWorld());
             final RegionContainer container = WorldGuard.getInstance().getPlatform().getRegionContainer();

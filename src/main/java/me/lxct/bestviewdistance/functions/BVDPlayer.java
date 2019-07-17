@@ -94,11 +94,13 @@ public class BVDPlayer {
     public int getCurrentMaxLimit() {
         final FileConfiguration config = BestViewDistance.plugin.getConfig();
         final String region = getPlayerRegions(this);
-        if (config.isInt("Regions." + region + ".Max")) {
+        if (config.isInt("Regions." + region + ".Max")
+                && usePerRegionFeature) {
             return config.getInt("Regions." + region + ".Max");
         }
         final String worldName = this.p.getWorld().getName();
-        if (config.isInt("Worlds." + worldName + ".Max")) {
+        if (config.isInt("Worlds." + worldName + ".Max")
+                && usePerWorldFeature) {
             return config.getInt("Worlds." + worldName + ".Max");
         }
         return max;
@@ -107,11 +109,13 @@ public class BVDPlayer {
     private int getCurrentMinLimit() {
         final FileConfiguration config = BestViewDistance.plugin.getConfig();
         final String region = getPlayerRegions(this);
-        if (config.isInt("Regions." + region + ".Min")) {
+        if (config.isInt("Regions." + region + ".Min")
+                && usePerRegionFeature) {
             return config.getInt("Regions." + region + ".Min");
         }
         final String worldName = this.p.getWorld().getName();
-        if (config.isInt("Worlds." + worldName + ".Min")) {
+        if (config.isInt("Worlds." + worldName + ".Min")
+                && usePerWorldFeature) {
             return config.getInt("Worlds." + worldName + ".Min");
         }
         return min;

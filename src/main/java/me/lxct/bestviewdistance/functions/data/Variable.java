@@ -44,6 +44,8 @@ public class Variable {
     public static boolean useAFKView;
     public static boolean useLoginView;
     public static boolean usePermissions;
+    public static boolean usePerRegionFeature;
+    public static boolean usePerWorldFeature;
     public static boolean permissionsBypassAFK;
     public static boolean permissionsBypassFlying;
     public static boolean permissionsBypassTeleport;
@@ -130,6 +132,8 @@ public class Variable {
         useTPS = configYml.getBoolean("Features.UseTPS", true);
         useLoginView = configYml.getBoolean("Features.UseLoginView", true);
         usePermissions = configYml.getBoolean("Features.UsePermissions", false);
+        usePerRegionFeature = configYml.getBoolean("Features.UsePerRegionFeature", false);
+        usePerWorldFeature = configYml.getBoolean("Features.UsePerWorldFeature", false);
         decimalsTPS = configYml.getInt("Misc.DecimalsTPS", 90);
         decimalsIndice = configYml.getInt("Misc.DecimalsIndice", 90);
         permissionsBypassAFK = configYml.getBoolean("Permissions.BypassAFKView", true);

@@ -5,7 +5,7 @@
 #
 # Donate: https://paypal.me/lxct
 
-Version: 2.6 # Version of the config file. Don't change this value.
+Version: 2.7 # Version of the config file. Don't change this value.
 
 Features: # UseTeleportView can increase lags.
   UseTPS: true # Increase/Decrease view in function of server's TPS (Reduction Indice = 0)
@@ -16,6 +16,8 @@ Features: # UseTeleportView can increase lags.
   UseFlyingView: false # Use a custom view if the player is flying.
   UseTeleportView: false # Use a custom view on teleport. Can reduce freeze on teleport.
   UsePermissions: false # Enable permissions (view.set.x) to bypass algorithm.
+  UsePerWorldFeature: false # Enable per-world feature
+  UsePerRegionFeature: false # Enable per-region feature (Only for 1.13.2+)
 
 ViewDistance: # Adjust that according to your needs
   Min: 4 # Default minimum view distance (Minimum: 3)
