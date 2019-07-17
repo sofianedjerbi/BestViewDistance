@@ -3,6 +3,8 @@ package me.lxct.bestviewdistance.functions.hooks;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
+import java.util.Objects;
+
 import static me.lxct.bestviewdistance.functions.data.Variable.serverVersion;
 import static me.lxct.bestviewdistance.functions.hooks.ProtocolLibHook.protocolLibHook;
 
@@ -29,9 +31,11 @@ public class Hooks {
 
         // WORLDGUARD
         if (Bukkit.getPluginManager().getPlugin("WorldGuard") != null) {
-            try {
-                Bukkit.getLogger().info("[BestViewDistance] Successfully hooked into WorldGuard!");
-            } catch (NoClassDefFoundError ignored) {
+            if(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("WorldGuard")).getDescription().getVersion().contains("7")) {
+                try {
+                    Bukkit.getLogger().info("[BestViewDistance] Successfully hooked into WorldGuard!");
+                } catch (NoClassDefFoundError ignored) {
+                }
             }
         }
     }
