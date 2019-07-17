@@ -53,7 +53,6 @@ public class AsyncUpdateChecker {
             //Check if the requested version is the same as the one in your plugin.yml.
             if (this.localPluginVersion.equals(this.spigotPluginVersion)) return;
             if (this.localPluginVersion.contains("SNAPSHOT")) return;
-            Bukkit.broadcastMessage(localPluginVersion);
 
             Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', UPDATE_MSG));
 
