@@ -148,11 +148,16 @@ public class BVDPlayer {
     }
 
     public int getSettingsViewDistance() { // Get View Distance in settings
+        int vd;
         if (!serverVersion.contains("1.13")) {
-            return this.settingsViewDistance;
+            vd = this.settingsViewDistance;
         } else {
-            return this.p.getClientViewDistance();
+            vd = this.p.getClientViewDistance();
         }
+        if(vd < 2){
+            vd = 2;
+        }
+        return vd;
     }
 
     // CHECK AND USE PERMISSIONS
