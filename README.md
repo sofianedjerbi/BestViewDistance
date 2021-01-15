@@ -1,4 +1,4 @@
-# BestViewDistance
+# BestViewDistance (OUTDATED !)
 ![Picture of BVD](https://image.noelshack.com/fichiers/2019/28/6/1563043570-bvd.png)
 A view distance plugin for **Paper**. Created to **boost ping/tps and view distance**.
 
