@@ -1,5 +1,6 @@
 # BestViewDistance (OUTDATED !)
-![Picture of BVD](https://image.noelshack.com/fichiers/2019/28/6/1563043570-bvd.png)
+# Please use [View Distance Tweaks](https://www.spigotmc.org/resources/view-distance-tweaks-1-14-1-18.75164/) instead.
+---
 A view distance plugin for **Paper**. Created to **boost ping/tps and view distance**.
 
 ## How it works ?
